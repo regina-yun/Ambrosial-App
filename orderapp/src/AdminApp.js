@@ -7,9 +7,9 @@ import Receipts from './adminPages/Receipts';
 import Payments from './adminPages/Payments';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 
-function App() {
+function AdminApp() {
   return (
-    <div className="App">
+    <div className="admin-app">
       <Header />
         <Router>
           <nav className="navbar">
@@ -34,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default AdminApp;

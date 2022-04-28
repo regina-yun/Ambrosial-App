@@ -1,3 +1,9 @@
 .header {
-    text-align: center;
-  }
+  text-align: center;
+  height: 36vh;
+  width: 100%;
+}
+
+.logo {
+  height: 35vh;
+}

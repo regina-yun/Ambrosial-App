@@ -23,7 +23,7 @@ import './CustomerApp.css';
 import './components/OrderlistSendBtn.css';
 
 
-function App() {
+function CustomerApp() {
   const [menu, setMenu] = useState([]);
 
   const getMenuAPI = async () => {
@@ -80,7 +80,6 @@ function App() {
 
   return (
     <>
-      
       <div className='background-opacity'>
         <div className='ingress'>
           <div className="header">
@@ -126,4 +125,4 @@ function App() {
       );
     }
 
-export default App;
+export default CustomerApp;
