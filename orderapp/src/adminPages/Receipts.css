@@ -3,3 +3,33 @@
     background-color: black;
     height: 100vh;
   }
+
+  .create {
+    position: relative;
+    left: 40vw;
+    top: -10vh;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 3px;
+  }
+
+  .receipts-table {
+    width: 100%;
+  }
+
+  .column-one,
+  .column-two,
+  .column-three {
+    width: 20%
+  }
+
+  .column-four {
+    width: 40%;
+  }
+
+  .action {
+    padding: 2px 5px;
+    margin: 0 10px;
+    border: 1px solid white;
+    border-radius: 3px;
+  }
