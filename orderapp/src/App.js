@@ -9,14 +9,12 @@ function App() {
   return (
     <>
     <Router>
-    <div className="main-page">
         <Switch>  
           <Route exact path="/"><LandingApp /></Route>
           <Route path="/customer"><CustomerApp /></Route>
           <Route path="/admin"><AdminApp /></Route>
           <Redirect from ="*" to="/" />
         </Switch>
-      </div>
     </Router>
     </>
   )
