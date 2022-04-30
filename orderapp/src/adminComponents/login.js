@@ -19,8 +19,8 @@ export default Login = () => {
             <input type='password' minLength='8' maxLength='50' placeholder='Password' name='password' required />
           </div>
 
-          <div className='forgot-password-link'>
-            <p>Forgot password?</p>
+          <div className='forgot-password-button'>
+            <button>Forgot password?</button>
           </div>
 
           <div className='login-button'>
