@@ -16,13 +16,13 @@
 }
 
 .customer-nav,
-.admin-nav {
+.admin-nav,
+.login-nav {
     text-decoration: none;
-    padding: 20px;
-    background-color: grey;
+    padding: 20px;    background-color: grey;
     border: 1px solid grey;
     border-radius: 20px;
-    color: white;
+    color: black;
     font-size: 24px;
 }
 
@@ -31,5 +31,10 @@
 }
 
 .admin-nav {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.login-nav {
     margin-left: 50px;
 }
