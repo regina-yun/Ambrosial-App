@@ -1,6 +1,12 @@
 const ambrosialAxiosAPI = require("./api");
-/*
-This is an example of CRUD which allows you to get, put, post and delete.
+
+/* ********************************************************************************Reminder********************************************************************************
+Ensure that your backend is running before running your front end and testing your axios call
+*/
+
+
+/* 
+This is an example of CRUD which allows you to get, put, post and delete. This will help you to get by for now
 
 This allows you to access the endpoints that were defined by you in your express middleware and retrieve the data from the database
 
@@ -37,7 +43,6 @@ function getReceiptData(){
         *****handle errors here********
      });
 }
-
 */
 
 (async ()=>{
