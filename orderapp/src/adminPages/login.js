@@ -1,7 +1,8 @@
 import React from 'react';
-import Header from './Header';
+import Header from '../adminComponents/Header';
+import './login.css';
 
-export default Login = () => {
+function Login() {
 
   return(
     <>
@@ -32,3 +33,4 @@ export default Login = () => {
   )
 }
 
+export default Login;
