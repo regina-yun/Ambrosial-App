@@ -1,3 +1,44 @@
 body {
-  background: none
+  background: none;
+  background-color: black;
+  color: white;
+}
+
+.login-container {
+  width: 20%;
+  height: 60%;
+  border: white 2px solid;
+  margin: 0 auto;
+  padding: 3%;
+  text-align: center;
+}
+
+.login-input {
+  padding: 5%;
+}
+
+/* .form-group{
+  padding:10px;
+  border:2px solid;
+  margin:10px;
+}
+.form-group>label{
+  position:absolute;
+  top:-1px;
+  left:20px;
+  background-color:white;
+}
+
+.form-group>input{
+  border:none;
+} */
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.forgot-password-button,
+.login-button {
+  padding: 2%;
 }
