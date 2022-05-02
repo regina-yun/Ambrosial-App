@@ -1,103 +1,139 @@
 import './Receipts.css';
 import React, {useEffect, useState} from 'react';
 import Popup from '../adminComponents/popup';
+const ambrosialAxiosAPI = require("../api/api");
 
 export default function Receipts() {
-    /*
+    
     const [receiptsList, setReceiptsList] = useState([]);
 
-    (async ()=>{
+    const getReceipts = async(response) => {
         await ambrosialAxiosAPI.get('/receipts')
         .then((response) => {
              console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
              console.log(`response Status: ${response.data.status}`);
              console.log(`response Message: ${response.data.message}`);
              console.log("response Data: ", response.data.data);
+             setReceiptsList(response.data.data);
            })
         .catch((error) => {
            console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
            console.log(`Error Status: ${error.response.data.status}`);
            console.log(`Error Message: ${error.response.data.message}`);
          });
-    })();
+    }
     
     useEffect(() => {
         getReceipts();
-    },[]);
+    });
 
-    function handleCreate() {
-        const [isOpen, setIsOpen] = useState(false);
+
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [newReceipt, setNewReceipt] = useState([]);
+    function handleCreate() { 
 
         function togglePopup() {
             setIsOpen(!isOpen);
         }
 
-        (async ()=>{
-            await ambrosialAxiosAPI.post('/createreceipt')
-            .then((response) => {
-                console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-                console.log(`response Status: ${response.data.status}`);
-                console.log(`response Message: ${response.data.message}`);
-                console.log("response Data: ", response.data.data);
-            })
-            .catch((error) => {
-            console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-            console.log(`Error Status: ${error.response.data.status}`);
-            console.log(`Error Message: ${error.response.data.message}`);
-            });
-        })();
+        function handlesubmit(e){
+            e.preventDefault();
+    
+            (async ()=>{
+                await ambrosialAxiosAPI.post('/createreceipt')
+                .then((response) => {
+                    console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
+                    console.log(`response Status: ${response.data.status}`);
+                    console.log(`response Message: ${response.data.message}`);
+                    console.log("response Data: ", response.data.data);
+                    setNewReceipt(response.data.data);
+                })
+                .catch((error) => {
+                console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
+                console.log(`Error Status: ${error.response.data.status}`);
+                console.log(`Error Message: ${error.response.data.message}`);
+                });
+            })();
+        }
 
         return (
             <>
                 {isOpen && <Popup
-                popupType='view-receipt-popup'
+                popupType='create-receipt-popup'
                 handleClose={togglePopup}
-                content={<p className='view-receipt-content'>View receipt</p>}/>}   
+                content={
+                    <>
+                        <h2 className='create-receipt-content'>Create receipt</h2>
+                        <form onSubmit={handlesubmit}>
+                        <input className='inputvalue' type="text" placeholder="Enter Order Number ID" name="orderNoID" size="50" autoFocus />
+                        <input className='inputvalue' type="text" placeholder="Enter total price" name="totalPrice" size="50" />
+                        <button className='create-button'>Create</button>
+                        </form>
+                    </>
+                }
+                />
+                }   
             </>    
         );
     }
     
+
+
+
+    const [oneReceipt, setOneReceipt] = useState([]);
+
     function handleView(orderNoId) {
-        const [isOpen, setIsOpen] = useState(false);
 
         function togglePopup() {
             setIsOpen(!isOpen);
         }
 
-        (async ()=>{
+        const getOneReceipt = async(response) => {
             await ambrosialAxiosAPI.get(`/receipts/${orderNoId}`)
             .then((response) => {
                 console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
                 console.log(`response Status: ${response.data.status}`);
                 console.log(`response Message: ${response.data.message}`);
                 console.log("response Data: ", response.data.data);
+                setOneReceipt(response.data.data);
             })
             .catch((error) => {
             console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
             console.log(`Error Status: ${error.response.data.status}`);
             console.log(`Error Message: ${error.response.data.message}`);
             });
-        })();
+        }
+    
+        getOneReceipt();
 
         return (
             <>
                 {isOpen && <Popup
                 popupType='view-receipt-popup'
                 handleClose={togglePopup}
-                content={<p className='view-receipt-content'>View receipt</p>}/>}   
+                content={
+                <h2 className='view-receipt-content'>View receipt</h2>
+                }
+                />
+                }   
             </>    
         );
     }
 
+
+
+
+    const [updatedReceipt, setUpdatedReceipt] = useState([]);
+
     function handleEdit() {
-        const [isOpen, setIsOpen] = useState(false);
 
         function togglePopup() {
             setIsOpen(!isOpen);
         }
 
         (async (receiptID)=>{
-            const receiptID = 1;
+            //const receiptID = 1;
             await ambrosialAxiosAPI.put(`/updatereceipt/${receiptID}`, {    
                 orderNoId: 1,
                 totalPrice: 61.23
@@ -107,6 +143,7 @@ export default function Receipts() {
                 console.log(`response Status: ${response.data.status}`);
                 console.log(`response Message: ${response.data.message}`);
                 console.log("response Data: ", response.data.data);
+                setUpdatedReceipt(response.data.data)
             })
             .catch((error) => {
                 console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
@@ -120,45 +157,81 @@ export default function Receipts() {
                 {isOpen && <Popup
                 popupType='edit-receipt-popup'
                 handleClose={togglePopup}
-                content={<p className='edit-receipt-content'>Edit receipt</p>}/>}   
+                content={
+                <>
+                    <h2 className='edit-receipt-content'>Edit receipt</h2>
+                </>
+                }
+                />
+                }   
             </>    
         );
     }
 
+
+
+
     function handleDelete() {
-        const [isOpen, setIsOpen] = useState(false);
 
         function togglePopup() {
             setIsOpen(!isOpen);
         }
 
-        (async (receiptID)=>{
-            const receiptID = 1;
-            await ambrosialAxiosAPI.delete(`/updatereceipt/${receiptID}`)
-            .then((response) => {
-                console.log(`${response.config.method} method for route: ${response.config.url}`);
-                console.log(`response Status: ${response.data.status}`);
-                console.log(`response Message: ${response.data.message}`);
-                console.log("response Data: ", response.data.data);
-            })
-            .catch((error) => {
-                console.log(error);
-                console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-                console.log(`Error Status: ${error.response.data.status}`);
-                console.log(`Error Message: ${error.response.data.message}`);
-            });
-        })();
+        function handleCancel() {
+            setIsOpen(!isOpen);
+        }
+
+        function handleConfirm() {
+            (async (receiptID)=>{
+                //const receiptID = 1;
+                await ambrosialAxiosAPI.delete(`/updatereceipt/${receiptID}`)
+                .then((response) => {
+                    console.log(`${response.config.method} method for route: ${response.config.url}`);
+                    console.log(`response Status: ${response.data.status}`);
+                    console.log(`response Message: ${response.data.message}`);
+                    console.log("response Data: ", response.data.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+                    console.log(`Error Status: ${error.response.data.status}`);
+                    console.log(`Error Message: ${error.response.data.message}`);
+                });
+            })();
+        }
+        
 
         return (
             <>
                 {isOpen && <Popup
                 popupType='delete-receipt-popup'
                 handleClose={togglePopup}
-                content={<p className='delete-receipt-content'>Delete receipt</p>}/>}   
+                content={
+                    <>
+                        <h2 className='delete-receipt-content'>Delete receipt</h2>
+                        <span>
+                            <button className="cancel" 
+                                    onClick={handleCancel}
+                            >
+                            Cancel
+                            </button>
+                            <button className="confirm"
+                                    onClick={handleConfirm}
+                            >
+                            Confirm
+                            </button>
+                        </span>
+                    </>
+                }
+                />
+                }   
             </>    
         );
     }
-*/
+
+
+
+
     return (
         <div className="receipts">
             <h1>Receipts</h1>
@@ -177,10 +250,13 @@ export default function Receipts() {
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>$50.00</td>
+                    {
+                        receiptsList.length > 0
+                        ? receiptsList.map (r =>
+                        <tr key={r.id}>
+                            <td>{r.id}</td>
+                            <td>{r.orderNoId}</td>
+                            <td>{r.totalPrice}</td>
                             <td>
                                 <button className="action"
                                         onClick={handleView}
@@ -199,6 +275,12 @@ export default function Receipts() {
                                 </button>
                             </td>
                         </tr>  
+                        ) : (
+                            <tr>
+                                <td className="none">No receipts in the list</td>
+                            </tr>
+                        )
+                    }
                 </tbody>
             </table>
         </div>
