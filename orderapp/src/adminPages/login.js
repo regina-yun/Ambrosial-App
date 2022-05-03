@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import { ambrosialAxiosAPI } from '../api/api';
 import AdminApp from '../AdminApp';
 import Header from '../adminComponents/Header';
@@ -28,12 +28,16 @@ function Login() {
        console.log(`${response.config.method} method`, `for route: ${response.config.url}`);
        console.log(`response Status: ${response.status}`);
        console.log(`response Message: ${response.data}`);
-       // setsome state here
+
+       setLoginStatus(true);
     })
     .catch((error) => {
       console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
       console.log(`Error Status: ${error.response.status}`);
       console.log(`Error Message: ${error.response.data}`);
+
+      alert("Invalid username/password");
+      setLoginStatus(false);
     });
 
     e.target.reset();
@@ -43,7 +47,7 @@ function Login() {
     <>
       <Router>
         <Switch>
-          <Route path="/admin"><AdminApp /></Route>
+          <Route path="/admin"><AdminApp user={loginCredentials.username}/></Route>
           <Route path="/change-password"><ChangePassword /></Route>
           <div className='login-container'>
             <Header />
@@ -54,7 +58,7 @@ function Login() {
               </div>
               
               <div className='login-input'>
-                <input id='password-input' type='password' autoComplete='off' placeholder='' minLength='8' name='password' onChange={handleOnChange}/>
+                <input id='password-input' type='password' placeholder='' minLength='8' name='password' onChange={handleOnChange}/>
                 <label>Password</label>
               </div>
 
@@ -64,10 +68,8 @@ function Login() {
 
               <div className='button-container'>
                 <div className='login-button'>
-                  <button onClick={handleSubmit}>
-                    {loginStatus === true ? 
-                      <Link to="/admin" className='login-page-link'>Login</Link> :
-                      <p>Failed</p> }
+                  <button onClick={handleSubmit}>Login
+                    {loginStatus === true && <Redirect to="/admin" className='login-page-link' />}
                   </button>
                 </div>
 
