@@ -7,10 +7,11 @@ import Receipts from './adminPages/Receipts';
 import Payments from './adminPages/Payments';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 
-function AdminApp() {
+function AdminApp(props) {
   return (
     <div className="admin-app">
       <Header />
+      <h2>Welcome back, {props.user}!</h2>
         <Router>
           <nav className="navbar">
             <Link to="/" className="pages">Home</Link>
