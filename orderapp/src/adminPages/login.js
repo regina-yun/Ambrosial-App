@@ -42,7 +42,6 @@ function Login() {
 
   return( 
     <>
-      
       <Router>
         <Switch>
           <Route path="/admin"><AdminApp /></Route>
