@@ -2,17 +2,17 @@ import React,{ useState } from 'react';
 import { ambrosialAxiosAPI } from '../api/api';
 import Login from './login';
 import Header from '../adminComponents/Header';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 import './change-password.css';
 
 function ChangePassword() {
 
   const [updatePassword, setUpdatePassword] = useState({username: "", newPassword: "", confirmPassword: ""});
+  const [updateStatus, setUpdateStatus] = useState(false);
 
   function handleOnChange(e) {
     let updatedPassword = {...updatePassword};
     updatedPassword[e.target.name] = e.target.value;
-    console.log(e.target.value);
 
     setUpdatePassword(updatedPassword);
   }
@@ -26,14 +26,20 @@ function ChangePassword() {
     })
     .then((response) => {
        console.log(`${response.config.method} method for route: ${response.config.url}`);
-       console.log(`response Status: ${response.data.status}`);
-       console.log(`response Message: ${response.data.message}`);
-       console.log("response Data: ", response.data.data);
+       console.log(`response Status: ${response.status}`);
+       console.log(`response Message: ${response.data}`);
+
+       alert("Password was successfully updated");
+       setUpdateStatus(true);
     })
     .catch((error) => {
+      console.log(`${JSON.stringify(error.response.status)}`);
       console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-      console.log(`Error Status: ${error.response.data.status}`);
-      console.log(`Error Message: ${error.response.data.message}`);
+      console.log(`Error Status: ${error.response.status}`);
+      console.log(`Error Message: ${error.response.data}`);
+
+      alert("Password update failed. New password matches previous password.");
+      setUpdateStatus(false);
     });
 
     e.target.reset();
@@ -64,7 +70,9 @@ function ChangePassword() {
 
               <div className='button-container'>
                 <div className='change-button'>
-                  <button onSubmit={handleSubmit}>Change</button>
+                  <button onClick={handleSubmit}>Change
+                    {updateStatus === true && <Redirect to="/login"/>}
+                  </button>
                 </div>
 
                 <div className='cancel-button'>

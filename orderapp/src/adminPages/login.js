@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import { ambrosialAxiosAPI } from '../api/api';
 import AdminApp from '../AdminApp';
 import Header from '../adminComponents/Header';
@@ -7,13 +7,12 @@ import ChangePassword from './change-password';
 import './login.css';
 
 function Login() {
-
   const [loginCredentials, setLoginCredentials] = useState({username: "", password: ""});
+  const [loginStatus, setLoginStatus] = useState(false);
 
   function handleOnChange(e) {
     let updatedCredentials = {...loginCredentials};
     updatedCredentials[e.target.name] = e.target.value;
-    console.log(e.target.value);
 
     setLoginCredentials(updatedCredentials);
   }
@@ -26,15 +25,19 @@ function Login() {
       password: loginCredentials.password
     })
     .then((response) => {
-       console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-       console.log(`response Status: ${response.data.status}`);
-       console.log(`response Message: ${response.data.message}`);
-       console.log("response Data: ", response.data.data);
+       console.log(`${response.config.method} method`, `for route: ${response.config.url}`);
+       console.log(`response Status: ${response.status}`);
+       console.log(`response Message: ${response.data}`);
+
+       setLoginStatus(true);
     })
     .catch((error) => {
       console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-      console.log(`Error Status: ${error.response.data.status}`);
-      console.log(`Error Message: ${error.response.data.message}`);
+      console.log(`Error Status: ${error.response.status}`);
+      console.log(`Error Message: ${error.response.data}`);
+
+      alert("Invalid username/password");
+      setLoginStatus(false);
     });
 
     e.target.reset();
@@ -44,7 +47,7 @@ function Login() {
     <>
       <Router>
         <Switch>
-          <Route path="/admin"><AdminApp /></Route>
+          <Route path="/admin"><AdminApp user={loginCredentials.username}/></Route>
           <Route path="/change-password"><ChangePassword /></Route>
           <div className='login-container'>
             <Header />
@@ -55,7 +58,7 @@ function Login() {
               </div>
               
               <div className='login-input'>
-                <input id='password-input' type='password' autoComplete='off' placeholder='' minLength='8' name='password' onChange={handleOnChange}/>
+                <input id='password-input' type='password' placeholder='' minLength='8' name='password' onChange={handleOnChange}/>
                 <label>Password</label>
               </div>
 
@@ -65,8 +68,8 @@ function Login() {
 
               <div className='button-container'>
                 <div className='login-button'>
-                  <button onSubmit={handleSubmit}>
-                    <Link to="/admin" className='login-page-link'>Login</Link>
+                  <button onClick={handleSubmit}>Login
+                    {loginStatus === true && <Redirect to="/admin" className='login-page-link' />}
                   </button>
                 </div>
 
