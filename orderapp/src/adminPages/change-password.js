@@ -19,7 +19,7 @@ function ChangePassword() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    console.log('hello world');
     await ambrosialAxiosAPI.put('/changepassword', {    
       username: updatePassword.username,
       password: updatePassword.newPassword

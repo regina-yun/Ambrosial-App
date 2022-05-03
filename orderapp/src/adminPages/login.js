@@ -7,13 +7,12 @@ import ChangePassword from './change-password';
 import './login.css';
 
 function Login() {
-
   const [loginCredentials, setLoginCredentials] = useState({username: "", password: ""});
+  const [loginStatus, setLoginStatus] = useState(false);
 
   function handleOnChange(e) {
     let updatedCredentials = {...loginCredentials};
     updatedCredentials[e.target.name] = e.target.value;
-    console.log(e.target.value);
 
     setLoginCredentials(updatedCredentials);
   }
@@ -26,15 +25,15 @@ function Login() {
       password: loginCredentials.password
     })
     .then((response) => {
-       console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-       console.log(`response Status: ${response.data.status}`);
-       console.log(`response Message: ${response.data.message}`);
-       console.log("response Data: ", response.data.data);
+       console.log(`${response.config.method} method`, `for route: ${response.config.url}`);
+       console.log(`response Status: ${response.status}`);
+       console.log(`response Message: ${response.data}`);
+       // setsome state here
     })
     .catch((error) => {
       console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-      console.log(`Error Status: ${error.response.data.status}`);
-      console.log(`Error Message: ${error.response.data.message}`);
+      console.log(`Error Status: ${error.response.status}`);
+      console.log(`Error Message: ${error.response.data}`);
     });
 
     e.target.reset();
@@ -65,8 +64,10 @@ function Login() {
 
               <div className='button-container'>
                 <div className='login-button'>
-                  <button onSubmit={handleSubmit}>
-                    <Link to="/admin" className='login-page-link'>Login</Link>
+                  <button onClick={handleSubmit}>
+                    {loginStatus === true ? 
+                      <Link to="/admin" className='login-page-link'>Login</Link> :
+                      <p>Failed</p> }
                   </button>
                 </div>
 
