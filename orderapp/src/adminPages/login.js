@@ -15,23 +15,26 @@ function Login() {
           <div className='login-container'>
             <form className='login-form'>
               <div className='login-input'>
-                <label>Username: </label>
-                <input id='username-input' type='text' placeholder='Username' name='username' required />
+                <input id='username-input' type='text' autoComplete='off' placeholder='' name='username'/>
+                <label>Username</label>
               </div>
               
               <div className='login-input'>
-                <label> Password: </label>
-                <input id='password-input' type='password' minLength='8' maxLength='50' placeholder='Password' name='password' required />
+                <input id='password-input' type='password' autoComplete='off' placeholder='' minLength='8' name='password'/>
+                <label>Password</label>
+              </div>
+
+              <div className='forgot-password-link'>
+                  <Link to="/change-password">Forgot Password</Link>
               </div>
 
               <div className='button-container'>
-                <div className='forgot-password-button'>
-                  <Link to="/change-password">Forgot Password</Link>
-                  {/* <button>Forgot password?</button> */}
-                </div>
-
                 <div className='login-button'>
                   <button>Login</button>
+                </div>
+
+                <div className='cancel-button'>
+                  <button>Cancel</button>
                 </div>
               </div>
             </form> 
