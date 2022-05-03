@@ -1,12 +1,9 @@
 import React from 'react';
-import Header from './Header';
 
-export default ChangePassword = () => {
+function ChangePassword() {
 
   return(
     <>
-      <Header />
-      
       <div className='change-password-container'>
         <form className='change-password-form'>
           <div className='change-password-input'>
@@ -33,3 +30,5 @@ export default ChangePassword = () => {
     </>
   )
 }
+
+export default ChangePassword;
