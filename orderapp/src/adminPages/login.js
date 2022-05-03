@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { ambrosialAxiosAPI } from '../api/api';
+import AdminApp from '../AdminApp';
 import Header from '../adminComponents/Header';
 import ChangePassword from './change-password';
 import './login.css';
@@ -41,11 +42,13 @@ function Login() {
 
   return( 
     <>
-      <Header />
+      
       <Router>
         <Switch>
+          <Route path="/admin"><AdminApp /></Route>
           <Route path="/change-password"><ChangePassword /></Route>
           <div className='login-container'>
+            <Header />
             <form className='login-form'>
               <div className='login-input'>
                 <input id='username-input' type='text' autoComplete='off' placeholder='' name='username' onChange={handleOnChange}/>
@@ -63,11 +66,15 @@ function Login() {
 
               <div className='button-container'>
                 <div className='login-button'>
-                  <button onSubmit={handleSubmit}>Login</button>
+                  <button onSubmit={handleSubmit}>
+                    <Link to="/admin" className='login-page-link'>Login</Link>
+                  </button>
                 </div>
 
                 <div className='cancel-button'>
-                  <button>Cancel</button>
+                  <button>
+                    <Link to="/" className='login-page-link' />Cancel
+                  </button>
                 </div>
               </div>
             </form> 

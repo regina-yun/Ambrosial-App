@@ -62,7 +62,7 @@ label {
 #username-input:not(:placeholder-shown)#username-input:not(:focus)
 ~ label {
   top: -0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   left: 0.8rem;
 }
 
@@ -70,7 +70,7 @@ label {
 #password-input:not(:placeholder-shown)#password-input:not(:focus)
 ~ label {
   top: -0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   left: 0.8rem;
 }
 
@@ -82,4 +82,9 @@ label {
 .login-button,
 .cancel-button {
   padding: 2%;
+  text-decoration: none;
+}
+
+.login-page-link {
+  text-decoration: none;
 }
