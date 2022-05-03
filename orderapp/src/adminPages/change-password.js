@@ -1,5 +1,8 @@
 import React,{ useState } from 'react';
 import { ambrosialAxiosAPI } from '../api/api';
+import Login from './login';
+import Header from '../adminComponents/Header';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './change-password.css';
 
 function ChangePassword() {
@@ -38,29 +41,37 @@ function ChangePassword() {
 
   return(
     <>
-      <div className='change-password-container'>
-        <form className='change-password-form'>
-          <div className='change-password-input'>
-            <input id='new-password' type='password' minLength='8' maxLength='50' placeholder='' name='newPassword' onChange={handleOnChange} />
-            <label for='new-password'>New Password</label>
-          </div>
-          
-          <div className='change-password-input'>
-            <input id='confirm-password' type='password' minLength='8' maxLength='50' placeholder='' name='confirmPassword' onChange={handleOnChange}/>
-            <label for='confirm-password'>Confirm Password</label>
-          </div>
+      <Router>
+        <Switch>
+          <Route path="/login"><Login /></Route>
+          <div className='change-password-container'>
+            <Header />
+            <form className='change-password-form'>
+              <div className='change-password-input'>
+                <input id='new-password' type='password' minLength='8' maxLength='50' placeholder='' name='newPassword' onChange={handleOnChange} />
+                <label for='new-password'>New Password</label>
+              </div>
+              
+              <div className='change-password-input'>
+                <input id='confirm-password' type='password' minLength='8' maxLength='50' placeholder='' name='confirmPassword' onChange={handleOnChange}/>
+                <label for='confirm-password'>Confirm Password</label>
+              </div>
 
-          <div className='button-container'>
-            <div className='change-password-button'>
-              <button onSubmit={handleSubmit}>Change</button>
-            </div>
+              <div className='button-container'>
+                <div className='change-button'>
+                  <button onSubmit={handleSubmit}>Change</button>
+                </div>
 
-            <div className='confirm-password-button'>
-              <button>Cancel</button>
-            </div>
+                <div className='cancel-button'>
+                  <button>
+                    <Link to="/login" className='cancel-link'>Cancel</Link>
+                  </button>
+                </div>
+              </div>
+            </form> 
           </div>
-        </form> 
-      </div>
+        </Switch>
+      </Router>
     </>
   )
 }
