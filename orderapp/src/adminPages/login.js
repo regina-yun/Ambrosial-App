@@ -1,34 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { ambrosialAxiosAPI } from '../api/api';
 import Header from '../adminComponents/Header';
+import ChangePassword from './change-password';
 import './login.css';
 
 function Login() {
 
-  return(
+  const [loginCredentials, setLoginCredentials] = useState({username: "", password: ""});
+
+  function handleOnChange(e) {
+    let updatedCredentials = {...loginCredentials};
+    updatedCredentials[e.target.name] = e.target.value;
+    console.log(e.target.value);
+
+    setLoginCredentials(updatedCredentials);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    await ambrosialAxiosAPI.post('/login', {
+      username: loginCredentials.username,
+      password: loginCredentials.password
+    })
+    .then((response) => {
+       console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
+       console.log(`response Status: ${response.data.status}`);
+       console.log(`response Message: ${response.data.message}`);
+       console.log("response Data: ", response.data.data);
+    })
+    .catch((error) => {
+      console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
+      console.log(`Error Status: ${error.response.data.status}`);
+      console.log(`Error Message: ${error.response.data.message}`);
+    });
+
+    e.target.reset();
+  }
+
+  return( 
     <>
       <Header />
-      
-      <div className='login-container'>
-        <form className='login-form'>
-          <div className='login-input'>
-            <label>Username:</label>
-            <input type='text' placeholder='Username' name='username' required />
-          </div>
-          
-          <div className='login-input'>
-            <label>Password:</label>
-            <input type='password' minLength='8' maxLength='50' placeholder='Password' name='password' required />
-          </div>
+      <Router>
+        <Switch>
+          <Route path="/change-password"><ChangePassword /></Route>
+          <div className='login-container'>
+            <form className='login-form'>
+              <div className='login-input'>
+                <input id='username-input' type='text' autoComplete='off' placeholder='' name='username' onChange={handleOnChange}/>
+                <label>Username</label>
+              </div>
+              
+              <div className='login-input'>
+                <input id='password-input' type='password' autoComplete='off' placeholder='' minLength='8' name='password' onChange={handleOnChange}/>
+                <label>Password</label>
+              </div>
 
-          <div className='forgot-password-button'>
-            <button>Forgot password?</button>
-          </div>
+              <div className='forgot-password-link'>
+                  <Link to="/change-password">Forgot Password</Link>
+              </div>
 
-          <div className='login-button'>
-            <button>Login</button>
+              <div className='button-container'>
+                <div className='login-button'>
+                  <button onSubmit={handleSubmit}>Login</button>
+                </div>
+
+                <div className='cancel-button'>
+                  <button>Cancel</button>
+                </div>
+              </div>
+            </form> 
           </div>
-        </form> 
-      </div>
+        </Switch>
+      </Router>
     </>
   )
 }
