@@ -7,7 +7,7 @@ import './change-password.css';
 
 function ChangePassword() {
 
-  const [updatePassword, setUpdatePassword] = useState({newPassword: "", confirmPassword: ""});
+  const [updatePassword, setUpdatePassword] = useState({username: "", newPassword: "", confirmPassword: ""});
 
   function handleOnChange(e) {
     let updatedPassword = {...updatePassword};
@@ -21,7 +21,7 @@ function ChangePassword() {
     e.preventDefault();
 
     await ambrosialAxiosAPI.put('/changepassword', {    
-      username: "",
+      username: updatePassword.username,
       password: updatePassword.newPassword
     })
     .then((response) => {
@@ -47,6 +47,11 @@ function ChangePassword() {
           <div className='change-password-container'>
             <Header />
             <form className='change-password-form'>
+              <div className='change-password-input'>
+                <input id='username' type='text' placeholder='' autoComplete='off' name='username' onChange={handleOnChange} />
+                <label for='username'>Username</label>
+              </div>
+
               <div className='change-password-input'>
                 <input id='new-password' type='password' minLength='8' maxLength='50' placeholder='' name='newPassword' onChange={handleOnChange} />
                 <label for='new-password'>New Password</label>
