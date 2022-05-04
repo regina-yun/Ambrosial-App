@@ -1,6 +1,5 @@
 import './Receipts.css';
 import React, {useEffect, useState} from 'react';
-import Popup from '../adminComponents/popup';
 const ambrosialAxiosAPI = require("../api/api");
 
 export default function Receipts() {
@@ -54,16 +53,10 @@ export default function Receipts() {
     
 
 
-/*
+    const [view, setView] = useState(false);
     const [oneReceipt, setOneReceipt] = useState([]);
 
-    function handleView(distinctOrderNoId) {
-
-        function togglePopup() {
-            setIsOpen(!isOpen);
-        }
-
-        const getOneReceipt = async() => {
+        const getOneReceipt = async(distinctOrderNoId) => {
             await ambrosialAxiosAPI.get(`/viewdistinctorder/${distinctOrderNoId}`)
             .then((response) => {
                 console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
@@ -78,33 +71,17 @@ export default function Receipts() {
             console.log(`Error Message: ${error.response.data.message}`);
             });
         }
-    
+
+    useEffect(() => {
         getOneReceipt();
-
-        return (
-            <>
-                {isOpen && <Popup
-                popupType='view-popup'
-                handleClose={togglePopup}
-                content={
-                <h2 className='view-receipt-content'>View receipt</h2>
-                }
-                />
-                }   
-            </>    
-        );
-    }
+    });
 
 
-
-
+    const [edit, setEdit] = useState(false);
     const [updatedReceipt, setUpdatedReceipt] = useState([]);
 
-    function handleEdit() {
-
-        function togglePopup() {
-            setIsOpen(!isOpen);
-        }
+    function handleEdit(e) {
+        e.preventDefault();
 
         (async (receiptID)=>{
             //const receiptID = 1;
@@ -125,37 +102,13 @@ export default function Receipts() {
                 console.log(`Error Message: ${error.response.data.message}`);
             });
         })();
-
-        return (
-            <>
-                {isOpen && <Popup
-                popupType='edit-popup'
-                handleClose={togglePopup}
-                content={
-                <>
-                    <h2 className='edit-receipt-content'>Edit receipt</h2>
-                </>
-                }
-                />
-                }   
-            </>    
-        );
     }
 
 
 
+    const [destroy, setDestroy] = useState(false);
 
-    function handleDelete() {
-
-        function togglePopup() {
-            setIsOpen(!isOpen);
-        }
-
-        function handleCancel() {
-            setIsOpen(!isOpen);
-        }
-
-        function handleConfirm() {
+        function handleDestroy() {
             (async (receiptID)=>{
                 //const receiptID = 1;
                 await ambrosialAxiosAPI.delete(`/updatereceipt/${receiptID}`)
@@ -173,39 +126,9 @@ export default function Receipts() {
                 });
             })();
         }
-        
-
-        return (
-            <>
-                {isOpen && <Popup
-                popupType='delete-popup'
-                handleClose={togglePopup}
-                content={
-                    <>
-                        <h2 className='delete-receipt-content'>Delete receipt</h2>
-                        <span>
-                            <button className="cancel" 
-                                    onClick={handleCancel}
-                            >
-                            Cancel
-                            </button>
-                            <button className="confirm"
-                                    onClick={handleConfirm}
-                            >
-                            Confirm
-                            </button>
-                        </span>
-                    </>
-                }
-                />
-                }   
-            </>    
-        );
-    }
 
 
 
-*/
     return (
     <>
         <div className={create ? "create-popup active" : "create-popup"}>
@@ -225,6 +148,53 @@ export default function Receipts() {
                 </div>
             </form>
         </div>
+
+
+
+        <div className={view ? "view-popup active" : "view-popup"}>
+        <p className="close" onClick={() => setView(false)}>X</p>
+            <h2>View receipt</h2><br />
+            {oneReceipt}
+        </div>
+
+
+        <div className={edit ? "edit-popup active" : "edit-popup"}>
+            <p className="close" onClick={() => setEdit(false)}>X</p>
+            <form onSubmit={handleEdit}>
+                <h2>Edit receipt</h2><br />
+                <div>
+                    <label className="ONID">Order Number ID:</label>
+                    <input className='inputvalue' type="text" placeholder="Enter Order Number ID" name="orderNoID" autoFocus /><br />
+                </div><br />
+                <div>
+                    <label className="TP">Total Price:</label>
+                <input className='inputvalue' type="text" placeholder="Enter total price" name="totalPrice" /><br />
+                </div><br />
+                <div className='create-button'>
+                    <button>Update</button>
+                </div>
+            </form>
+        </div>
+
+
+
+        <div className={destroy ? "destroy-popup active" : "destroy-popup"}>
+        <h2 className='destroy-receipt-content'>Delete receipt</h2>
+        <h3>Are you sure?</h3><br />
+            <span>
+                <button className="cancel" 
+                        onClick={() => setDestroy(false)}
+                >
+                Cancel
+                </button>
+                <button className="confirm"
+                        onClick={handleDestroy}
+                >
+                Confirm
+                </button>
+            </span>
+        </div>
+
 
         <div className="receipts">
             <h1>Receipts</h1>
@@ -252,23 +222,25 @@ export default function Receipts() {
                             <td>{r.totalPrice}</td>
                             <td>
                                 <button className="action"
-                                        //onClick={handleView}
+                                        onClick={() => {setView(true)}}
                                 >
                                 View
                                 </button>
                                 <button className="action"
-                                        //onClick={handleEdit}
+                                        onClick={() => {setEdit(true)}}
                                 >
                                 Edit
                                 </button>
                                 <button className="action"
-                                        //onClick={handleDelete}
+                                        onClick={() => {setDestroy(true)}}
                                 >
                                 Delete
                                 </button>
                             </td>
                         </tr>  
-                        ) : (
+                        )
+                        : 
+                        (
                             <tr>
                                 <td className="none">No receipts in the list</td>
                             </tr>

@@ -46,11 +46,17 @@
     right: 0;
   }
 
-  .create-popup {
+  .create-popup,
+  .view-popup,
+  .edit-popup,
+  .destroy-popup {
     display: none;
   }
 
-  .create-popup.active {
+  .create-popup.active,
+  .view-popup.active,
+  .edit-popup.active,
+  .destroy-popup.active {
     display: block;
     position: absolute;
     top: 40vh;
