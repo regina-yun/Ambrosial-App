@@ -44,7 +44,7 @@ function CartItems(props) {
   if(selectedItemList.length === 0) {
     return(
       <div>
-        <h2>- ORDERS - </h2>
+        <h2 className='orderlist-title'>- ORDERS - </h2>
         <p className="empty-list">Nothing has been ordered.</p>
       </div>
     );
@@ -52,7 +52,7 @@ function CartItems(props) {
   else {
     return(
       <div>
-        <h2>- ORDERS -</h2>
+        <h2 className='orderlist-title'>- ORDERS -</h2>
         <table className="orderlist-table">
           <tr>
             <th className='table-header'>Item</th>
