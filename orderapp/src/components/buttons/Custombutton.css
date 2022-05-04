@@ -1,11 +1,11 @@
-button {
+.custom-button {
     background-color: white;
     opacity: 90%;
     border: none;
     border-radius: 1px;
 }
 
-button:hover {
+.custom-button:hover {
     cursor: pointer;
     font-weight: bold;
 }
