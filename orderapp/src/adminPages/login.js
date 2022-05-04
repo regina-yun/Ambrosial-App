@@ -19,28 +19,35 @@ function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    await ambrosialAxiosAPI.post('/login', {
-      username: loginCredentials.username,
-      password: loginCredentials.password
-    })
-    .then((response) => {
-       console.log(`${response.config.method} method`, `for route: ${response.config.url}`);
-       console.log(`response Status: ${response.status}`);
-       console.log(`response Message: ${response.data}`);
-
-       setLoginStatus(true);
-    })
-    .catch((error) => {
-      console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-      console.log(`Error Status: ${error.response.status}`);
-      console.log(`Error Message: ${error.response.data}`);
-
-      alert("Invalid username/password");
+    
+    if(loginCredentials.username === "" && loginCredentials.password === "") {
+      alert('Please input username and password.');
       setLoginStatus(false);
-    });
+    }
 
-    e.target.reset();
+    else{ 
+      await ambrosialAxiosAPI.post('/login', {
+        username: loginCredentials.username,
+        password: loginCredentials.password
+      })
+      .then((response) => {
+        console.log(`${response.config.method} method`, `for route: ${response.config.url}`);
+        console.log(`response Status: ${response.status}`);
+        console.log(`response Message: ${response.data}`);
+
+        setLoginStatus(true);
+      })
+      .catch((error) => {
+        console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
+        console.log(`Error Status: ${error.response.status}`);
+        console.log(`Error Message: ${error.response.data}`);
+
+        alert("Invalid username/password");
+        setLoginStatus(false);
+      });
+    }
+
+    setLoginCredentials({username: "", password: ""});
   }
 
   return( 
@@ -66,7 +73,7 @@ function Login() {
                   <Link to="/change-password">Forgot Password</Link>
               </div>
 
-              <div className='button-container'>
+              <div className='login-page-button-container'>
                 <div className='login-button'>
                   <button onClick={handleSubmit}>Login
                     {loginStatus === true && <Redirect to="/admin" className='login-page-link' />}
