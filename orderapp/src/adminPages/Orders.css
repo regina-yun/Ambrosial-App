@@ -1,5 +1,117 @@
+.modal{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,.9);
+}
+
 .orders {
     text-align: center;
     background-color: black;
     height: 100vh;
+  }
+  .formHeader{
+    font-size: 300%;
+  }
+
+  .createOrderConfirmationHeader{
+    font-size: 300%;
+    margin-left: 9%;
+  }
+
+  .formLabelText{
+    margin-left:8%;
+  }
+
+  .createAndRefresh{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 82.5%;
+  }
+
+  .createOrder {
+    
+  }
+
+  .refreshList {
+    margin-left: 4%;
+  }
+
+  .createInputOrderId{
+    margin-left: 10%;
+  }
+
+  .createInputMenuItemId{
+    margin-left: 8.5%;
+  }
+
+  .createInputQuantity{
+    margin-left: 16.9%;
+  }
+
+  .createInputTotalItemPrice{
+    margin-left: 4.6%;
+  }
+
+  .createInputTableNo{
+    margin-left: 16.2%;
+  }
+
+  .createInputOrderStatus{
+    margin-left: 10.5%;
+  }
+
+  .createOrderButton{
+    font-size: 110%;
+    margin-top: 5%;
+    margin-left: 40.5%;
+  }
+
+  .createOrderConfirmationYesButton{
+    width:15%;
+    margin-top: 5%;
+    margin-left: 21.5%;
+  }
+
+  .createOrderConfirmationNoButton{
+    width:15%;
+    margin-top: 5%;
+    margin-left: 20.5%;
+  }
+
+  .createOrderConfirmationStatusMessageContainer{
+    margin-top:5%;
+    margin-left: 10%;
+    width:75%;
+  }
+
+  .trialOrderContainer{
+    border: 1px solid white;
+    width: 20%;
+  }
+
+  .trialOrderContainerViewButton{
+    width: 100%;
+    padding-top:3%;
+    padding-bottom:3%;
+  }
+
+  .trialOrderContainerUpdateButton{
+    width: 100%;
+    padding-top:3%;
+    padding-bottom:3%;
+  }
+
+  .trialOrderContainerDeleteButton{
+    width: 100%;
+    padding-top:3%;
+    padding-bottom:3%;
+  }
+
+  .actionButtons{
+    border:1px solid white;
+    width: 20%;
   }

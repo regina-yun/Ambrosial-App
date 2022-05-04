@@ -114,7 +114,43 @@
   overflow: auto;
 }
 
-.member-close-icon, .server-close-icon, .payment-close-icon, .orderlist-close-icon, .orderbill-close-icon{
+.createOrderPopup-box{
+  width:30%;
+  height: 100%;
+  border: 1px solid white;
+  padding:3%;
+}
+
+.createOrder-close-icon{
+  margin-left: 95%;
+}
+
+.createOrderConfirmationPopup-box {
+  width:30%;
+  height: 100%;
+  border: 1px solid white;
+  padding:3%;
+}
+
+.viewOrderPopup-box{
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:30%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+}
+
+.viewOrder-close-icon{
+  margin-left: 95%;
+}
+
+.createOrderConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.member-close-icon, .server-close-icon, .payment-close-icon, .orderlist-close-icon, .orderbill-close-icon {
   content: 'x';
   position: fixed;
   cursor: pointer;
@@ -129,6 +165,6 @@
   font-size: 30px;
 }
 
-.member-close-icon:hover, .orderlist-close-icon:hover, .payment-close-icon:hover, .server-close-icon:hover, .orderbill-close-icon:hover {
+.member-close-icon:hover, .orderlist-close-icon:hover, .payment-close-icon:hover, .server-close-icon:hover, .orderbill-close-icon:hover .createOrder-close-icon:hover{
   font-size: 35px;
 }
