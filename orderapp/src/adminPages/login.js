@@ -61,28 +61,28 @@ function Login() {
             <form className='login-form'>
               <div className='login-input'>
                 <input id='username-input' type='text' autoComplete='off' placeholder='' name='username' onChange={handleOnChange}/>
-                <label>Username</label>
+                <label className='login-username-label'>Username</label>
               </div>
               
               <div className='login-input'>
                 <input id='password-input' type='password' placeholder='' minLength='8' name='password' onChange={handleOnChange}/>
-                <label>Password</label>
+                <label className='login-pw-label'>Password</label>
               </div>
 
-              <div className='forgot-password-link'>
-                  <Link to="/change-password">Forgot Password</Link>
+              <div className='login-forgot-password-div'>
+                  <Link className='login-forgot-password-link' to="/change-password">Forgot Password</Link>
               </div>
 
               <div className='login-page-button-container'>
-                <div className='login-button'>
-                  <button onClick={handleSubmit}>Login
+                <div className='login-button-div'>
+                  <button className='login-button'onClick={handleSubmit}>Login
                     {loginStatus === true && <Redirect to="/admin" className='login-page-link' />}
                   </button>
                 </div>
 
-                <div className='cancel-button'>
-                  <button>
-                    <Link to="/" className='login-page-link' />Cancel
+                <div className='login-cancel-button-div'>
+                  <button className='login-cancel-button'>
+                    <Link to="/" className='login-link' />Cancel
                   </button>
                 </div>
               </div>
