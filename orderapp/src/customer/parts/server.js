@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Popup from '../components/popup/popup';
 import './server.css';
-import BellImg from '../assets/bell.png';
+import BellImg from '../../assets/bell.png';
 
 export default function Server() {
   const [isOpen, setIsOpen] = useState(false);

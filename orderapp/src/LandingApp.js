@@ -1,8 +1,8 @@
 import './LandingApp.css';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
-import CustomerApp from './CustomerApp';
-import AdminApp from './AdminApp';
-import Login from './adminPages/login';
+import CustomerApp from './customer/CustomerApp';
+import AdminApp from './admin/AdminApp';
+import Login from './admin/adminPages/login';
 
 function LandingApp() {
 

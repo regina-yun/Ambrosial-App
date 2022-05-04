@@ -1,6 +1,6 @@
 import './Receipts.css';
 import React, {useEffect, useState} from 'react';
-const ambrosialAxiosAPI = require("../api/api");
+const ambrosialAxiosAPI = require("../../api/api");
 
 export default function Receipts() {
     

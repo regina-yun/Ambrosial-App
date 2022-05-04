@@ -3,9 +3,9 @@ import './home.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import "../../components/carousel/Carousel.css"
-import SteakImg from '../../assets/steak.jpg';
-import BrownieImg from '../../assets/brownie.jpg';
-import MojitoImg from '../../assets/mojito.jpg';
+import SteakImg from '../../../assets/steak.jpg';
+import BrownieImg from '../../../assets/brownie.jpg';
+import MojitoImg from '../../../assets/mojito.jpg';
 
 
 export default function Home() {
