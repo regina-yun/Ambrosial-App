@@ -19,7 +19,7 @@ function AdminApp(props) {
             <Link to="/Payments" className="admin-pages">Payments</Link>
           </nav>
           <Header />
-          <h2>Welcome back, {props.user}!</h2>
+          <h2 className="greeting">Welcome back, {props.user}!</h2>
         <div className="admin-container">
           <Switch>
             <Route exact path="/"><Home /></Route>
