@@ -10,17 +10,17 @@ import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-rout
 function AdminApp(props) {
   return (
     <div className="admin-app">
-      <Header />
-      <h2>Welcome back, {props.user}!</h2>
         <Router>
-          <nav className="navbar">
-            <Link to="/" className="pages">Home</Link>
-            <Link to="/Menu" className="pages">Menu</Link>
-            <Link to="/Orders" className="pages">Orders</Link>
-            <Link to="/Receipts" className="pages">Receipts</Link>
-            <Link to="/Payments" className="pages">Payments</Link>
+          <nav className="admin-navbar">
+            <Link to="/" className="admin-pages">Home</Link>
+            <Link to="/Menu" className="admin-pages">Menu</Link>
+            <Link to="/Orders" className="admin-pages">Orders</Link>
+            <Link to="/Receipts" className="admin-pages">Receipts</Link>
+            <Link to="/Payments" className="admin-pages">Payments</Link>
           </nav>
-        <div className="main-container">
+          <Header />
+          <h2>Welcome back, {props.user}!</h2>
+        <div className="admin-container">
           <Switch>
             <Route exact path="/"><Home /></Route>
             <Route path="/Menu"><Menu /></Route>
