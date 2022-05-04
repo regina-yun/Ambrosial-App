@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './payment.css';
-import BillImg from '../assets/bill.png';
+import BillImg from '../../assets/bill.png';
 import Popup from '../components/popup/popup';
 
 export default function Payment() {
