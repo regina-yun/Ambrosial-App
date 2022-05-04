@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import { ambrosialAxiosAPI } from '../api/api';
 import Login from './login';
-import Header from '../adminComponents/Header';
+import LoginHeader from '../adminComponents/login-header';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 import './change-password.css';
 
@@ -56,35 +56,35 @@ function ChangePassword() {
         <Switch>
           <Route path="/login"><Login /></Route>
           <div className='change-password-container'>
-            <Header />
+            <LoginHeader />
             <form className='change-password-form'>
               <div className='change-password-input'>
                 <input id='username' type='text' placeholder='' autoComplete='off' name='username' onChange={handleOnChange} />
-                <label>Username</label>
+                <label className='change-pw-username-label'>Username</label>
               </div>
 
               <div className='change-password-input'>
                 <input id='new-password' type='password' minLength='8' maxLength='50' placeholder='' name='newPassword' onChange={handleOnChange} />
-                <label>New Password</label>
+                <label className='change-pw-newpw-label'>New Password</label>
               </div>
               
               <div className='change-password-input'>
                 <input id='confirm-password' type='password' minLength='8' maxLength='50' placeholder='' name='confirmPassword' onChange={handleOnChange}/>
-                <label>Confirm Password</label>
+                <label className='change-pw-confirmpw-label'>Confirm Password</label>
               </div>
 
               { updatePassword.newPassword !== updatePassword.confirmPassword && <p>Both passwords do not match!</p>}
 
-              <div className='button-container'>
-                <div className='change-button'>
-                  <button onClick={handleSubmit}>Change
+              <div className='change-pw-button-container'>
+                <div className='change-pw-change-button-div'>
+                  <button className='change-pw-button' onClick={handleSubmit}>Change
                     {updateStatus === true && <Redirect to="/login"/>}
                   </button>
                 </div>
 
-                <div className='cancel-button'>
-                  <button>
-                    <Link to="/login" className='cancel-link'>Cancel</Link>
+                <div className='change-pw-cancel-button-div'>
+                  <button className='change-pw-button'>
+                    <Link to="/login" className='change-pw-cancel-link'>Cancel</Link>
                   </button>
                 </div>
               </div>
