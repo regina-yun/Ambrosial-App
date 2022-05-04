@@ -28,16 +28,10 @@ export default function Receipts() {
     });
 
 
-
-    const [isOpen, setIsOpen] = useState(false);
+    const [create, setCreate] = useState(false);
     const [newReceipt, setNewReceipt] = useState([]);
-    function handleCreate() { 
 
-        function togglePopup() {
-            setIsOpen(!isOpen);
-        }
-
-        function handlesubmit(e){
+        function handleCreate(e){
             e.preventDefault();
     
             (async ()=>{
@@ -56,31 +50,11 @@ export default function Receipts() {
                 });
             })();
         }
-
-        return (
-            <>
-                {isOpen && <Popup
-                popupType='create-popup'
-                handleClose={togglePopup}
-                content={
-                    <>
-                        <h2 className='create-receipt-content'>Create receipt</h2>
-                        <form onSubmit={handlesubmit}>
-                        <input className='inputvalue' type="text" placeholder="Enter Order Number ID" name="orderNoID" size="50" autoFocus />
-                        <input className='inputvalue' type="text" placeholder="Enter total price" name="totalPrice" size="50" />
-                        <button className='create-button'>Create</button>
-                        </form>
-                    </>
-                }
-                />
-                }   
-            </>    
-        );
-    }
+    
     
 
 
-
+/*
     const [oneReceipt, setOneReceipt] = useState([]);
 
     function handleView(distinctOrderNoId) {
@@ -231,12 +205,31 @@ export default function Receipts() {
 
 
 
-
+*/
     return (
+    <>
+        <div className={create ? "create-popup active" : "create-popup"}>
+            <p className="close" onClick={() => setCreate(false)}>X</p>
+            <form onSubmit={handleCreate}>
+                <h2>Create receipt</h2><br />
+                <div>
+                    <label className="ONID">Order Number ID:</label>
+                    <input className='inputvalue' type="text" placeholder="Enter Order Number ID" name="orderNoID" autoFocus /><br />
+                </div><br />
+                <div>
+                    <label className="TP">Total Price:</label>
+                <input className='inputvalue' type="text" placeholder="Enter total price" name="totalPrice" /><br />
+                </div><br />
+                <div className='create-button'>
+                    <button>Create</button>
+                </div>
+            </form>
+        </div>
+
         <div className="receipts">
             <h1>Receipts</h1>
             <button className="create"
-                    onClick={handleCreate}
+                    onClick={() => setCreate(true)}
             >
             Create new receipt
             </button>
@@ -259,17 +252,17 @@ export default function Receipts() {
                             <td>{r.totalPrice}</td>
                             <td>
                                 <button className="action"
-                                        onClick={handleView}
+                                        //onClick={handleView}
                                 >
                                 View
                                 </button>
                                 <button className="action"
-                                        onClick={handleEdit}
+                                        //onClick={handleEdit}
                                 >
                                 Edit
                                 </button>
                                 <button className="action"
-                                        onClick={handleDelete}
+                                        //onClick={handleDelete}
                                 >
                                 Delete
                                 </button>
@@ -284,5 +277,6 @@ export default function Receipts() {
                 </tbody>
             </table>
         </div>
+</>
     )
 }
