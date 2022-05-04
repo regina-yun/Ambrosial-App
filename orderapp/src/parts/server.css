@@ -6,11 +6,11 @@
     right: 110px;
 }
 
-img {
+.server {
     padding: 5px;
 }
 
-img:hover {
+.server:hover {
     cursor: pointer;
     width: 55px;
     height: 55px;

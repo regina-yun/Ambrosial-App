@@ -7,11 +7,11 @@
     z-index: 1;
 }
 
-img {
+.payment {
     padding: 5px;
 }
 
-img:hover {
+.payment:hover {
     cursor: pointer;
 }
 
