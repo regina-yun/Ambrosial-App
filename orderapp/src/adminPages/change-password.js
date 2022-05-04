@@ -20,6 +20,11 @@ function ChangePassword() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (updatePassword.newPassword !== updatePassword.confirmPassword) {
+      alert('Both passwords do not match. Please ensure both passwords are the same.')
+      setUpdateStatus(false);
+    }
+
     await ambrosialAxiosAPI.put('/changepassword', {    
       username: updatePassword.username,
       password: updatePassword.newPassword
@@ -55,18 +60,20 @@ function ChangePassword() {
             <form className='change-password-form'>
               <div className='change-password-input'>
                 <input id='username' type='text' placeholder='' autoComplete='off' name='username' onChange={handleOnChange} />
-                <label for='username'>Username</label>
+                <label>Username</label>
               </div>
 
               <div className='change-password-input'>
                 <input id='new-password' type='password' minLength='8' maxLength='50' placeholder='' name='newPassword' onChange={handleOnChange} />
-                <label for='new-password'>New Password</label>
+                <label>New Password</label>
               </div>
               
               <div className='change-password-input'>
                 <input id='confirm-password' type='password' minLength='8' maxLength='50' placeholder='' name='confirmPassword' onChange={handleOnChange}/>
-                <label for='confirm-password'>Confirm Password</label>
+                <label>Confirm Password</label>
               </div>
+
+              { updatePassword.newPassword !== updatePassword.confirmPassword && <p>Both passwords do not match!</p>}
 
               <div className='button-container'>
                 <div className='change-button'>
