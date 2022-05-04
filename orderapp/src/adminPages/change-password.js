@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import { ambrosialAxiosAPI } from '../api/api';
 import Login from './login';
-import Header from '../adminComponents/Header';
+import LoginHeader from '../adminComponents/login-header';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 import './change-password.css';
 
@@ -56,7 +56,7 @@ function ChangePassword() {
         <Switch>
           <Route path="/login"><Login /></Route>
           <div className='change-password-container'>
-            <Header />
+            <LoginHeader />
             <form className='change-password-form'>
               <div className='change-password-input'>
                 <input id='username' type='text' placeholder='' autoComplete='off' name='username' onChange={handleOnChange} />
