@@ -7,8 +7,16 @@ h2 {
     color: white;
 }
 
-.navbar {
+.admin-navbar {
     text-align:center;
     border: none;
     padding-bottom: 3%;
+    margin-top: 15vh;
+}
+
+.admin-pages {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 24px;
 }

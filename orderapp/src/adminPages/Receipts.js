@@ -7,7 +7,7 @@ export default function Receipts() {
     
     const [receiptsList, setReceiptsList] = useState([]);
 
-    const getReceipts = async(response) => {
+    const getReceipts = async() => {
         await ambrosialAxiosAPI.get('/receipts')
         .then((response) => {
              console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
@@ -60,7 +60,7 @@ export default function Receipts() {
         return (
             <>
                 {isOpen && <Popup
-                popupType='create-receipt-popup'
+                popupType='create-popup'
                 handleClose={togglePopup}
                 content={
                     <>
@@ -83,14 +83,14 @@ export default function Receipts() {
 
     const [oneReceipt, setOneReceipt] = useState([]);
 
-    function handleView(orderNoId) {
+    function handleView(distinctOrderNoId) {
 
         function togglePopup() {
             setIsOpen(!isOpen);
         }
 
-        const getOneReceipt = async(response) => {
-            await ambrosialAxiosAPI.get(`/receipts/${orderNoId}`)
+        const getOneReceipt = async() => {
+            await ambrosialAxiosAPI.get(`/viewdistinctorder/${distinctOrderNoId}`)
             .then((response) => {
                 console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
                 console.log(`response Status: ${response.data.status}`);
@@ -110,7 +110,7 @@ export default function Receipts() {
         return (
             <>
                 {isOpen && <Popup
-                popupType='view-receipt-popup'
+                popupType='view-popup'
                 handleClose={togglePopup}
                 content={
                 <h2 className='view-receipt-content'>View receipt</h2>
@@ -155,7 +155,7 @@ export default function Receipts() {
         return (
             <>
                 {isOpen && <Popup
-                popupType='edit-receipt-popup'
+                popupType='edit-popup'
                 handleClose={togglePopup}
                 content={
                 <>
@@ -204,7 +204,7 @@ export default function Receipts() {
         return (
             <>
                 {isOpen && <Popup
-                popupType='delete-receipt-popup'
+                popupType='delete-popup'
                 handleClose={togglePopup}
                 content={
                     <>
