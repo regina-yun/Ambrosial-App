@@ -38,3 +38,55 @@
     position: absolute;
     left: 45%;
   }
+
+  .close {
+    float: right;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+
+  .create-popup {
+    display: none;
+  }
+
+  .create-popup.active {
+    display: block;
+    position: absolute;
+    top: 40vh;
+    left: 35vw;
+    background-color: white;
+    color: black;
+    height: auto;
+    width: 400px;
+    padding: 20px;
+    z-index: 1;
+  }
+
+  .ONID,
+  .TP {
+    background-color: inherit;
+    color: inherit;
+    position: relative;
+  }
+
+  .inputvalue {
+    width: 200px;
+    margin-left: -40px;
+  }
+
+  .create-popup.active h2 {
+    color: black;
+    padding: 10px;
+  }
+
+  .create-button {
+    text-align: center;
+  }
+
+  .create-button button {
+    background-color: aquamarine;
+    border: 1px solid aquamarine;
+    border-radius: 3px;
+    padding: 5px;
+  }
