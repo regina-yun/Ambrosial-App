@@ -56,8 +56,8 @@ export default function Receipts() {
     const [view, setView] = useState(false);
     const [oneReceipt, setOneReceipt] = useState([]);
 
-        const getOneReceipt = async(distinctOrderNoId) => {
-            await ambrosialAxiosAPI.get(`/viewdistinctorder/${distinctOrderNoId}`)
+        const getOneReceipt = async() => {
+            await ambrosialAxiosAPI.get('/vieworderitems')
             .then((response) => {
                 console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
                 console.log(`response Status: ${response.data.status}`);
@@ -179,6 +179,7 @@ export default function Receipts() {
 
 
         <div className={destroy ? "destroy-popup active" : "destroy-popup"}>
+        <p className="close" onClick={() => setDestroy(false)}>X</p>   
         <h2 className='destroy-receipt-content'>Delete receipt</h2>
         <h3>Are you sure?</h3><br />
             <span>
