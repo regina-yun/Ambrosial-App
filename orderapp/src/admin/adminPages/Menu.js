@@ -214,10 +214,13 @@ export default function Menu() {
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
+                    {
+                        receiptsList.length > 0
+                        ? receiptsList.map (r =>
+                        <tr key={r.id}>
+                            <td>{r.id}</td>
+                            <td>{r.orderNoId}</td>
+                            <td>{r.totalPrice}</td>
                             <td>
                                 <button className="action"
                                         onClick={() => {setView(true)}}
@@ -235,7 +238,15 @@ export default function Menu() {
                                 Delete
                                 </button>
                             </td>
-                        </tr>
+                        </tr>  
+                        )
+                        : 
+                        (
+                            <tr>
+                                <td className="none">No receipts in the list</td>
+                            </tr>
+                        )
+                    }
                 </tbody>
             </table>
         </div>
