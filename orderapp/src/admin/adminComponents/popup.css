@@ -91,6 +91,52 @@
   overflow: auto;
 }
 
+.createOrderPopup-box{
+  width:30%;
+  height: 30%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.createOrder-close-icon{
+  margin-left: 95%;
+}
+
+.createOrderConfirmationPopup-box {
+  width:30%;
+  height: 15%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.viewOrderPopup-box{
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:40%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+}
+
+.viewOrder-close-icon{
+  margin-left: 95%;
+}
+
+.createOrderConfirmation-close-icon {
+  margin-left: 95%;
+}
+
 .view-close-icon, .create-close-icon, .update-close-icon, .delete-close-icon {
   content: 'x';
   position: fixed;
@@ -106,6 +152,6 @@
   font-size: 30px;
 }
 
-.view-close-icon:hover, .create-close-icon:hover, .update-close-icon:hover, .delete-close-icon:hover {
+.view-close-icon:hover, .create-close-icon:hover, .update-close-icon:hover, .delete-close-icon:hover .createOrder-close-icon:hover{
   font-size: 35px;
 }

@@ -1,5 +1,128 @@
+.modal{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,.9);
+  z-index: 1;
+}
+
 .orders {
     text-align: center;
     background-color: black;
     height: 100vh;
+  }
+  .formHeader{
+    font-size: 300%;
+    margin-left:18%;
+  }
+
+  .createOrderConfirmationHeader{
+    font-size: 300%;
+    margin-left: 25%;
+  }
+
+  .formLabelText{
+    margin-left:20%;
+  }
+
+  .formLabelTextStatus{
+    margin-left:3%;
+  }
+
+  .createAndRefresh{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 82.5%;
+  }
+
+  .createOrder {
+    
+  }
+
+  .refreshList {
+    margin-left: 4%;
+  }
+
+  .createInputOrderId{
+    margin-left: 10%;
+  }
+
+  .createInputMenuItemId{
+    margin-left: 9%;
+  }
+
+  .createInputQuantity{
+    margin-left: 14.6%;
+  }
+
+  .createInputTotalItemPrice{
+    margin-left: 6.4%;
+  }
+
+  .createInputTableNo{
+    margin-left: 14.1%;
+  }
+
+  .createInputOrderStatus{
+    margin-left: 10.4%;
+  }
+
+  .createOrderButton{
+    font-size: 110%;
+    margin-top: 5%;
+    margin-left: 45.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    
+  }
+
+  .createOrderConfirmationYesButton{
+    width:15%;
+    margin-top: 5%;
+    margin-left: 25.5%;
+  }
+
+  .createOrderConfirmationNoButton{
+    width:15%;
+    margin-top: 5%;
+    margin-left: 19.5%;
+  }
+
+  .createOrderConfirmationStatusMessageContainer{
+    margin-top:5%;
+    margin-left: 10%;
+    width:75%;
+  }
+
+  .trialOrderContainer{
+    border: 1px solid white;
+    width: 20%;
+  }
+
+  .trialOrderContainerViewButton{
+    width: 100%;
+    padding-top:3%;
+    padding-bottom:3%;
+  }
+
+  .trialOrderContainerUpdateButton{
+    width: 100%;
+    padding-top:3%;
+    padding-bottom:3%;
+  }
+
+  .trialOrderContainerDeleteButton{
+    width: 100%;
+    padding-top:3%;
+    padding-bottom:3%;
+  }
+
+  .actionButtons{
+    border:1px solid white;
+    width: 20%;
   }
