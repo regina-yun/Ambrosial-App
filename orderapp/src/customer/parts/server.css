@@ -1,9 +1,10 @@
 .server {
     height: 30px;
     width: 40px;
-    position: absolute;
-    top: -10px;
-    right: 110px;
+    position: relative;
+    top: 0;
+    right: 0;
+    float: right;
 }
 
 .server {
@@ -12,8 +13,6 @@
 
 .server:hover {
     cursor: pointer;
-    width: 55px;
-    height: 55px;
 }
 
 .server-content {
@@ -22,6 +21,7 @@
     font-family: 'Yomogi', cursive;
     font-size: 20px;
     font-weight: bold;
+    color: black;
 }
 
 /* Extra small devices (phones, 600px and down) */

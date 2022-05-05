@@ -82,9 +82,15 @@ function CustomerApp() {
     <>
       <div className='background-opacity'>
         <div className='ingress'>
-          <div className="header">
-            <Header/>
-          </div>
+        <span className='signup'><Membership/></span>
+        <div>
+          <span className='orderlist'><OrderList selectedItemList={selectedItemList} setSelectedItemList={setSelectedItemList}/></span>
+          <span className='server'><Server /></span>
+          <span className='payment'><Payment /></span>
+        </div>
+        <div className="header">
+          <Header/>
+        </div>
           <div className="toggleMenu" onClick={handleMenu}>
             <span className="bar"></span>
             <span className="bar"></span>
@@ -98,12 +104,6 @@ function CustomerApp() {
                 <Link to="/pages/main"><button onClick={()=> {setPageState("Mains")}} className={pageState === "Mains"? "selected-page" : "pages"}>Mains</button></Link>
                 <Link to="/pages/beverage"><button onClick={()=> {setPageState("Beverages")}} className={pageState === "Beverages"? "selected-page" : "pages"}>Beverages</button></Link>
                 <Link to="/pages/dessert"><button onClick={()=> {setPageState("Desserts")}} className={pageState === "Desserts"? "selected-page" : "pages"}>Desserts</button></Link>
-              </div>
-              <div>
-                <span className='orderlist'><OrderList selectedItemList={selectedItemList} setSelectedItemList={setSelectedItemList}/></span>
-                <span className='signup'><Membership/></span>
-                <span className='server'><Server /></span>
-                <span className='payment'><Payment /></span>
               </div>
               <div className='menuitemcontainer'>
                 <Switch>
