@@ -72,6 +72,16 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'createReceiptPopup'){
+        return(
+            <div className="createReceiptPopup-box">
+                <div className="createReceipt-box">
+                    <span className="createReceipt-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Popup;

@@ -1,6 +1,8 @@
 import './Receipts.css';
+import Popup from '../adminComponents/popup';
 import React, {useEffect, useState} from 'react';
 const ambrosialAxiosAPI = require("../../api/api");
+
 
 export default function Receipts() {
     
@@ -29,6 +31,10 @@ export default function Receipts() {
 
     const [create, setCreate] = useState(false);
     const [newReceipt, setNewReceipt] = useState([]);
+
+        function handleCreateClose(){
+            setCreate(!false);
+        }
 
         function handleCreate(e){
             e.preventDefault();
@@ -131,7 +137,7 @@ export default function Receipts() {
 
     return (
     <>
-        <div className={create ? "create-popup active" : "create-popup"}>
+        {/* <div className={create ? "create-popup active" : "create-popup"}>
             <p className="close" onClick={() => setCreate(false)}>X</p>
             <form onSubmit={handleCreate}>
                 <h2>Create receipt</h2><br />
@@ -147,7 +153,30 @@ export default function Receipts() {
                     <button>Create</button>
                 </div>
             </form>
-        </div>
+        </div> */}
+
+
+        
+            {create && <Popup
+            popupType='createReceiptPopup'
+            handleClose={handleCreateClose}
+            content={
+                <form onSubmit={handleCreate}>
+                    <h2>Create receipt</h2><br />
+                <div>
+                    <label className="ONID">Order Number ID:</label>
+                    <input className='inputvalue' type="text" placeholder="Enter Order Number ID" name="orderNoID" autoFocus /><br />
+                </div><br />
+                <div>
+                    <label className="TP">Total Price:</label>
+                <input className='inputvalue' type="text" placeholder="Enter total price" name="totalPrice" /><br />
+                </div><br />
+                <div className='create-button'>
+                    <button>Create</button>
+                </div>
+                </form>
+            }/>}
+
 
 
 
