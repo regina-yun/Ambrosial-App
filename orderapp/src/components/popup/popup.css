@@ -116,9 +116,15 @@
 
 .createOrderPopup-box{
   width:30%;
-  height: 100%;
+  height: 30%;
   border: 1px solid white;
   padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
 }
 
 .createOrder-close-icon{
@@ -127,16 +133,20 @@
 
 .createOrderConfirmationPopup-box {
   width:30%;
-  height: 100%;
+  height: 15%;
   border: 1px solid white;
   padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
 }
 
 .viewOrderPopup-box{
   position:absolute;
   top: 5%;
   left: 32%;
-  width:30%;
+  width:40%;
   height: 80%;
   border: 1px solid white;
   padding:3%;

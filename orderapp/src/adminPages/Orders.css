@@ -5,6 +5,7 @@
   top: 0px;
   left: 0px;
   background-color: rgba(0,0,0,.9);
+  z-index: 1;
 }
 
 .orders {
@@ -14,15 +15,20 @@
   }
   .formHeader{
     font-size: 300%;
+    margin-left:18%;
   }
 
   .createOrderConfirmationHeader{
     font-size: 300%;
-    margin-left: 9%;
+    margin-left: 25%;
   }
 
   .formLabelText{
-    margin-left:8%;
+    margin-left:20%;
+  }
+
+  .formLabelTextStatus{
+    margin-left:3%;
   }
 
   .createAndRefresh{
@@ -45,41 +51,46 @@
   }
 
   .createInputMenuItemId{
-    margin-left: 8.5%;
+    margin-left: 9%;
   }
 
   .createInputQuantity{
-    margin-left: 16.9%;
+    margin-left: 14.6%;
   }
 
   .createInputTotalItemPrice{
-    margin-left: 4.6%;
+    margin-left: 6.4%;
   }
 
   .createInputTableNo{
-    margin-left: 16.2%;
+    margin-left: 14.1%;
   }
 
   .createInputOrderStatus{
-    margin-left: 10.5%;
+    margin-left: 10.4%;
   }
 
   .createOrderButton{
     font-size: 110%;
     margin-top: 5%;
-    margin-left: 40.5%;
+    margin-left: 45.5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    
   }
 
   .createOrderConfirmationYesButton{
     width:15%;
     margin-top: 5%;
-    margin-left: 21.5%;
+    margin-left: 25.5%;
   }
 
   .createOrderConfirmationNoButton{
     width:15%;
     margin-top: 5%;
-    margin-left: 20.5%;
+    margin-left: 19.5%;
   }
 
   .createOrderConfirmationStatusMessageContainer{

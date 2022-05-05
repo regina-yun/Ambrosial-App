@@ -7,17 +7,51 @@ import ViewOrderItemsButton from '../components/buttons/view-order-items-button'
 
 export default function Orders() {
 
+    //submit popup and confirmation popup
     const [createOrderPopupOpen, setCreateOrderPopupOpen] = useState(false);
     const [confirmationOrderPopupOpen, setConfirmationOrderPopupOpen] = useState(false);
 
     function togglePopupCreateOrder() {
         setCreateOrderPopupOpen(!createOrderPopupOpen);
+        setSubmitStatusMessageStatus(false);
     }
 
-    function togglePopupCreateOrderConfirmation(event) {
+    //State to see empty string and status message
+    const [submitStatusMessageStatus, setSubmitStatusMessageStatus] = useState(false);
+    const [submitStatusMessage, setSubmitStatusMessage] = useState('');
+
+    function onSubmitValidateInput(event){
         event.preventDefault();
+        if(!orderNoIdValue || !menuItemIDValue || !quantityValue || !totalItemPriceValue || !tableNoValue || !orderStatusValue){
+            setSubmitStatusMessageStatus(true);
+            setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
+            return;
+        }
+
+        togglePopupCreateOrderConfirmation();
+    }
+
+    function togglePopupCreateOrderConfirmation() {
+        // event.preventDefault();
         setConfirmationOrderPopupOpen(!confirmationOrderPopupOpen);
-        //setPostDataClicked(!postDataClicked);
+        togglePopupCreateOrder();
+        setSubmitStatusMessageStatus(false);
+    }
+
+    function closePopupCreateOrderConfirmation(){
+        resetInputsToDefaultValue();
+        togglePopupCreateOrderConfirmation();
+    }
+
+    function resetInputsToDefaultValue(){
+        setOrderNoIdValue(0);
+        setMenuItemIDValue(0);
+        setQuantityValue(0);
+        setTotalItemPriceValue(0);
+        setTableNoValue(0);
+        setOrderStatusValue('');
+
+        setSubmitStatusMessageStatus(false);
     }
 
     function handleClosePopups(event){
@@ -166,7 +200,7 @@ export default function Orders() {
             popupType='createOrderPopup'
             handleClose={togglePopupCreateOrder}
             content={
-                <form onSubmit={togglePopupCreateOrderConfirmation}>
+                <form onSubmit={onSubmitValidateInput}>
                     <label className='formHeader'>Create New Order</label>
                     <br></br>
                     <br></br>
@@ -184,7 +218,7 @@ export default function Orders() {
                     <br></br>
 
                     <label className='formLabelText'>Total Item Price:</label>
-                    <input pattern="^\d*(\.\d{0,2})?$" type="number" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
+                    <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
                     <br></br>
 
                     <label className='formLabelText'>Table No:</label>
@@ -196,6 +230,10 @@ export default function Orders() {
                     <br></br>
 
                     <button className='createOrderButton'>Submit</button>
+                    <br></br>
+                    <br></br>
+
+                    {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
                 </form>
             }/>}
 
@@ -209,7 +247,7 @@ export default function Orders() {
                     <br></br>
                     {!postDataClicked ?  <div>
                             <button className='createOrderConfirmationYesButton' onClick={createOrder}>Yes</button>
-                            <button className='createOrderConfirmationNoButton' onClick={togglePopupCreateOrderConfirmation}>No</button>
+                            <button className='createOrderConfirmationNoButton' onClick={closePopupCreateOrderConfirmation}>No</button>
                         </div>:
                         <button type="button" className='createOrderConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
                         

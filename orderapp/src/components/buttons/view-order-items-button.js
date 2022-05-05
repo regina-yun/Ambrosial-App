@@ -1,4 +1,4 @@
-import './Custombutton.css';
+import './view-order-items-button.css';
 
 function ViewOrderItemsButton(props){
 
@@ -9,7 +9,7 @@ function ViewOrderItemsButton(props){
 
     return(
         <>
-            <button className="button" onClick={setOrderNo}>View Order items</button>
+            <button className="viewOrderItemsButton" onClick={setOrderNo}>View Order items</button>
         </>
     )
 }
