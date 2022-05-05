@@ -56,8 +56,8 @@ export default function Receipts() {
     const [view, setView] = useState(false);
     const [oneReceipt, setOneReceipt] = useState([]);
 
-        const getOneReceipt = async(distinctOrderNoId) => {
-            await ambrosialAxiosAPI.get(`/viewdistinctorder/${distinctOrderNoId}`)
+        const getOneReceipt = async() => {
+            await ambrosialAxiosAPI.get('/vieworderitems')
             .then((response) => {
                 console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
                 console.log(`response Status: ${response.data.status}`);
@@ -179,6 +179,7 @@ export default function Receipts() {
 
 
         <div className={destroy ? "destroy-popup active" : "destroy-popup"}>
+        <p className="close" onClick={() => setDestroy(false)}>X</p>   
         <h2 className='destroy-receipt-content'>Delete receipt</h2>
         <h3>Are you sure?</h3><br />
             <span>
@@ -213,13 +214,10 @@ export default function Receipts() {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        receiptsList.length > 0
-                        ? receiptsList.map (r =>
-                        <tr key={r.id}>
-                            <td>{r.id}</td>
-                            <td>{r.orderNoId}</td>
-                            <td>{r.totalPrice}</td>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
                             <td>
                                 <button className="action"
                                         onClick={() => {setView(true)}}
@@ -237,15 +235,7 @@ export default function Receipts() {
                                 Delete
                                 </button>
                             </td>
-                        </tr>  
-                        )
-                        : 
-                        (
-                            <tr>
-                                <td className="none">No receipts in the list</td>
-                            </tr>
-                        )
-                    }
+                        </tr>
                 </tbody>
             </table>
         </div>

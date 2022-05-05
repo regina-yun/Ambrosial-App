@@ -87,7 +87,10 @@
     margin-left: -40px;
   }
 
-  .create-popup.active h2 {
+  .create-popup.active h2,
+  .view-popup.active h2,
+  .edit-popup.active h2,
+  .destroy-popup.active h2 {
     color: black;
     padding: 10px;
   }
@@ -97,6 +100,26 @@
   }
 
   .create-button button {
+    background-color: aquamarine;
+    border: 1px solid aquamarine;
+    border-radius: 3px;
+    padding: 5px;
+  }
+
+  .destroy-popup.active {
+    text-align: center;
+  }
+
+  .cancel {
+    margin: 10px;
+    background-color: lightcoral;
+    border: 1px solid lightcoral;
+    border-radius: 3px;
+    padding: 5px;
+  }
+
+  .confirm {
+    margin: 10px;
     background-color: aquamarine;
     border: 1px solid aquamarine;
     border-radius: 3px;
