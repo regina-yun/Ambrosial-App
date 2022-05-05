@@ -137,6 +137,29 @@
   margin-left: 95%;
 }
 
+.createReceiptPopup-box,
+  .view-popup.active,
+  .edit-popup.active,
+  .destroy-popup.active {
+    display: block;
+    position: absolute;
+    top: 40vh;
+    left: 35vw;
+    background-color: white;
+    color: black;
+    height: auto;
+    width: 400px;
+    padding: 20px;
+    z-index: 1;
+  }
+
+  .createReceipt-close-icon{
+    float: right;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+
 .view-close-icon, .create-close-icon, .update-close-icon, .delete-close-icon {
   content: 'x';
   position: fixed;
