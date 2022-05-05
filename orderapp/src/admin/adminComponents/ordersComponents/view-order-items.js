@@ -1,7 +1,7 @@
 import './view-order-items.css'
-import Popup from './popup';
+import Popup from '../popup';
 import { useEffect, useState } from 'react';
-import { ambrosialAxiosAPI } from '../../api/api';
+import { ambrosialAxiosAPI } from '../../../api/api';
 
 function ViewOrderItems(props){
 
@@ -17,21 +17,21 @@ function ViewOrderItems(props){
 
     
     async function getAllOrderedItems(){
-            await ambrosialAxiosAPI.get(`/vieworderitems/${props.orderNo}`)
-            .then((response) => {
-            console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-            console.log(`response Status: ${response.data.status}`);
-            console.log(`response Message: ${response.data.message}`);
-            //Not in template literal as it will only show the type object
-            console.log("response Data: ", response.data.data);
-            setOrderedItemsData(response.data.data);
-            setOrderedItemsDataStatus(true);
-            })
-            .catch((error) => {
-            console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-            console.log(`Error Status: ${error.response.data.status}`);
-            console.log(`Error Message: ${error.response.data.message}`);
-            });
+        await ambrosialAxiosAPI.get(`/vieworderitems/${props.orderNo}`)
+        .then((response) => {
+        console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
+        console.log(`response Status: ${response.data.status}`);
+        console.log(`response Message: ${response.data.message}`);
+        //Not in template literal as it will only show the type object
+        console.log("response Data: ", response.data.data);
+        setOrderedItemsData(response.data.data);
+        setOrderedItemsDataStatus(true);
+        })
+        .catch((error) => {
+        console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
+        console.log(`Error Status: ${error.response.data.status}`);
+        console.log(`Error Message: ${error.response.data.message}`);
+        });
     }
 
 

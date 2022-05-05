@@ -33,7 +33,7 @@ export default function Receipts() {
     const [newReceipt, setNewReceipt] = useState([]);
 
         function handleCreateClose(){
-            setCreate(!false);
+            setCreate(false);
         }
 
         function handleCreate(e){
