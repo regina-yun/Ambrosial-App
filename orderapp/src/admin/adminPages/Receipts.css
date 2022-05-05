@@ -34,6 +34,12 @@
     border-radius: 3px;
   }
 
+  .create:hover,
+  .action:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
   .none {
     position: absolute;
     left: 45%;

@@ -2,9 +2,10 @@
   height: auto;
   width: auto;
   padding: 10px 20px;
-  position: absolute;
-  top: -25px;
-  right: 170px;
+  position: relative;
+  top: 0;
+  right: 0;
+  float: right;
   z-index: 1;
 }
 

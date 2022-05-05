@@ -127,6 +127,7 @@
   font-family: "Yomogi", cursive;
   font-weight: bold;
   font-size: 30px;
+  color: black;
 }
 
 .member-close-icon:hover, .orderlist-close-icon:hover, .payment-close-icon:hover, .server-close-icon:hover, .orderbill-close-icon:hover {
