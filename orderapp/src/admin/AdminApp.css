@@ -1,0 +1,32 @@
+.admin-app {
+    background-color: black;
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+.greeting {
+    position: absolute;
+    top: 10%;
+    right: 3%;
+}
+
+.admin-navbar {
+    text-align:center;
+    border: none;
+    padding-bottom: 3%;
+    margin-top: 15vh;
+}
+
+.admin-pages {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 24px;
+}
+
+.admin-pages:hover {
+    font-weight: bold;
+}

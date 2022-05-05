@@ -1,0 +1,127 @@
+.receipts {
+    text-align: center;
+    background-color: black;
+    height: 100vh;
+  }
+
+  .create {
+    position: relative;
+    left: 40vw;
+    top: -10vh;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 3px;
+  }
+
+  .receipts-table {
+    width: 100%;
+  }
+
+  .column-one,
+  .column-two,
+  .column-three {
+    width: 20%
+  }
+
+  .column-four {
+    width: 40%;
+  }
+
+  .action {
+    padding: 2px 5px;
+    margin: 0 10px;
+    border: 1px solid white;
+    border-radius: 3px;
+  }
+
+  .create:hover,
+  .action:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .none {
+    position: absolute;
+    left: 45%;
+  }
+
+  .close {
+    float: right;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+
+  .create-popup,
+  .view-popup,
+  .edit-popup,
+  .destroy-popup {
+    display: none;
+  }
+
+  .create-popup.active,
+  .view-popup.active,
+  .edit-popup.active,
+  .destroy-popup.active {
+    display: block;
+    position: absolute;
+    top: 40vh;
+    left: 35vw;
+    background-color: white;
+    color: black;
+    height: auto;
+    width: 400px;
+    padding: 20px;
+    z-index: 1;
+  }
+
+  .ONID,
+  .TP {
+    background-color: inherit;
+    color: inherit;
+    position: relative;
+  }
+
+  .inputvalue {
+    width: 200px;
+    margin-left: -40px;
+  }
+
+  .create-popup.active h2,
+  .view-popup.active h2,
+  .edit-popup.active h2,
+  .destroy-popup.active h2 {
+    color: black;
+    padding: 10px;
+  }
+
+  .create-button {
+    text-align: center;
+  }
+
+  .create-button button {
+    background-color: aquamarine;
+    border: 1px solid aquamarine;
+    border-radius: 3px;
+    padding: 5px;
+  }
+
+  .destroy-popup.active {
+    text-align: center;
+  }
+
+  .cancel {
+    margin: 10px;
+    background-color: lightcoral;
+    border: 1px solid lightcoral;
+    border-radius: 3px;
+    padding: 5px;
+  }
+
+  .confirm {
+    margin: 10px;
+    background-color: aquamarine;
+    border: 1px solid aquamarine;
+    border-radius: 3px;
+    padding: 5px;
+  }

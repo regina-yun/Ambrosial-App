@@ -1,0 +1,157 @@
+/* Popup style */
+.view-popup-box {
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index:1000;
+  }
+   
+.view-box {
+  position: relative;
+  width: 40%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 90vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+  
+.create-popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index:1000;
+}
+  
+.create-box {
+  position: relative;
+  width: 40%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 90vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.update-popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index:1000;
+}
+  
+.update-box {
+  position: relative;
+  width: 40%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 90vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.delete-popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  z-index:1000;
+}
+  
+.delete-box {
+  position: relative;
+  width: 40%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 90vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.createOrderPopup-box{
+  width:30%;
+  height: 30%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.createOrder-close-icon{
+  margin-left: 95%;
+}
+
+.createOrderConfirmationPopup-box {
+  width:30%;
+  height: 15%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.viewOrderPopup-box{
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:40%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+}
+
+.viewOrder-close-icon{
+  margin-left: 95%;
+}
+
+.createOrderConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.view-close-icon, .create-close-icon, .update-close-icon, .delete-close-icon {
+  content: 'x';
+  position: fixed;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  right: 30%;
+  border-radius: 50%;
+  line-height: 25px;
+  text-align: center;
+  font-family: "Yomogi", cursive;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.view-close-icon:hover, .create-close-icon:hover, .update-close-icon:hover, .delete-close-icon:hover .createOrder-close-icon:hover{
+  font-size: 35px;
+}
