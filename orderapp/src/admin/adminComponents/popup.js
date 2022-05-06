@@ -62,6 +62,46 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'updateCurrentDistinctOrderPopup'){
+        return(
+            <div className="updateCurrentDistinctOrderPopup-box">
+                <div className="updateCurrentDistinctOrder-box">
+                    <span className="updateCurrentDistinctOrder-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'updateOrderConfirmationPopup'){
+        return(
+            <div className="updateOrderConfirmationPopup-box">
+                <div className="updateOrderConfirmation-box">
+                    <span className="updateOrderConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'deleteCurrentDistinctOrderPopup'){
+        return(
+            <div className="deleteCurrentDistinctOrderPopup-box">
+                <div className="deleteCurrentDistinctOrder-box">
+                    <span className="deleteCurrentDistinctOrder-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'deleteOrderConfirmationPopup'){
+        return(
+            <div className="deleteOrderConfirmationPopup-box">
+                <div className="deleteOrderConfirmation-box">
+                    <span className="deleteOrderConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'createReceiptPopup'){
         return(
             <div className="createReceiptPopup-box">

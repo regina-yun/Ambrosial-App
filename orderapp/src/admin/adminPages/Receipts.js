@@ -284,12 +284,14 @@ export default function Receipt() {
     //const [viewReceiptItemsOrderNo, setViewReceiptItemsOrderNo] = useState(0);
     const [viewReceipt, setViewReceipt] = useState(false);
 
+
     //modal Code for popups
     const [modalVisibleCreateReceipt, setModalVisibleCreateReceipt] = useState(false);
     const [modalVisibleUpdateReceipt, setModalVisibleUpdateReceipt] = useState(false);
     const [modalVisibleDeleteReceipt, setModalVisibleDeleteReceipt] = useState(false);
     const [modalVisibleViewReceipt, setModalVisibleViewReceipt] = useState(false);
     const [modalVisibleConfirmationReceipt, setModalVisibleConfirmationReceipt] = useState(false);
+
     
     
     useEffect(async () => {

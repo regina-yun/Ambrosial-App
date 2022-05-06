@@ -1,6 +1,6 @@
 .createOrderPopup-box{
   width:30%;
-  height: 30%;
+  height: 48%;
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
@@ -11,19 +11,87 @@
   z-index: 2;
 }
 
-.createOrder-close-icon{
+.updateCurrentDistinctOrderPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.deleteCurrentDistinctOrderPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.createOrder-close-icon {
+  margin-left: 95%;
+}
+
+.updateCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
+.deleteCurrentDistinctOrder-close-icon{
   margin-left: 95%;
 }
 
 .createOrderConfirmationPopup-box {
   width:30%;
-  height: 15%;
+  height: 35%;
   border: 1px solid white;
   padding:3%;
   position:absolute;
   top: 5%;
   left: 32%;
   z-index: 2;
+}
+
+.updateOrderConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.deleteOrderConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.createOrderConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.updateOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderConfirmation-close-icon{
+  margin-left: 95%;
 }
 
 .viewOrderPopup-box{
@@ -34,15 +102,14 @@
   height: 80%;
   border: 1px solid white;
   padding:3%;
+  z-index: 2;
 }
 
 .viewOrder-close-icon{
   margin-left: 95%;
 }
 
-.createOrderConfirmation-close-icon {
-  margin-left: 95%;
-}
+
 
 .createReceiptPopup-box{
   width:30%;
