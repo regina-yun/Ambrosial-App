@@ -5,7 +5,7 @@ import { ambrosialAxiosAPI } from '../../api/api';
 import ViewOrderItems from '../adminComponents/ordersComponents/view-order-items';
 import ViewOrderItemsButton from '../adminComponents/ordersComponents/view-order-items-button';
 import UpdateAndDeleteDistinctOrderButton from '../adminComponents/commonComponents/update-Delete-DistinctOrder-Button';
-import ConfirmationPopupContents from '../adminComponents/ordersComponents/confirmationPopupContents';
+import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmationPopupContents';
 
 export default function Orders() {
 
