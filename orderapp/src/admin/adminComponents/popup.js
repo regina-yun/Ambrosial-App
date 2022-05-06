@@ -92,6 +92,26 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'deleteCurrentDistinctOrderPopup'){
+        return(
+            <div className="deleteCurrentDistinctOrderPopup-box">
+                <div className="deleteCurrentDistinctOrder-box">
+                    <span className="deleteCurrentDistinctOrder-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'deleteOrderConfirmationPopup'){
+        return(
+            <div className="deleteOrderConfirmationPopup-box">
+                <div className="deleteOrderConfirmation-box">
+                    <span className="deleteOrderConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'createReceiptPopup'){
         return(
             <div className="createReceiptPopup-box">

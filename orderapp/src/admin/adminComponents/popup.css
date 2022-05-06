@@ -106,7 +106,20 @@
 
 .updateCurrentDistinctOrderPopup-box{
   width:30%;
-  height: 48%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.deleteCurrentDistinctOrderPopup-box{
+  width:30%;
+  height: 35%;
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
@@ -127,7 +140,7 @@
 
 .createOrderConfirmationPopup-box {
   width:30%;
-  height: 15%;
+  height: 35%;
   border: 1px solid white;
   padding:3%;
   position:absolute;
@@ -138,7 +151,18 @@
 
 .updateOrderConfirmationPopup-box{
   width:30%;
-  height: 15%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.deleteOrderConfirmationPopup-box{
+  width:30%;
+  height: 35%;
   border: 1px solid white;
   padding:3%;
   position:absolute;

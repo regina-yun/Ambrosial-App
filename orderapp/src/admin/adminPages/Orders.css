@@ -28,7 +28,7 @@
   }
 
   .formLabelTextStatus{
-    margin-left:3%;
+    margin-left:13%;
   }
 
   .createAndRefresh{
@@ -125,4 +125,28 @@
   .actionButtons{
     border:1px solid white;
     width: 20%;
+  }
+
+  .formHeaderUpdate{
+    font-size: 300%;
+    margin-left:5%;
+  }
+
+  .updateCurrentDistinctOrderButton{
+    margin-top: 5%;
+    margin-left: 42%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .formLabelOrderNo{
+    margin-left:5%;
+    font-size: 130%;
+  }
+
+  .formLabelTextUpdate{
+    margin-left:25%;
+    font-size: 130%;
   }
