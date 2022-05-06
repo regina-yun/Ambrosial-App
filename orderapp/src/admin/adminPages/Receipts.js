@@ -8,7 +8,7 @@ import ViewOrderItemsButton from '../adminComponents/view-order-items-button';
 export default function Receipt() {
 
     //Create Receipt
-    //submit popup and confirmation popup
+    //Submit popup and confirmation popup
     const [createReceiptPopupOpen, setCreateReceiptPopupOpen] = useState(false);
     const [confirmationReceiptPopupOpen, setConfirmationReceiptPopupOpen] = useState(false);
 
@@ -25,7 +25,7 @@ export default function Receipt() {
         event.preventDefault();
         if(!orderNoIdValue || !totalItemPriceValue) {
             setSubmitStatusMessageStatus(true);
-            setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
+            setSubmitStatusMessage('***Please check the input fields***');
             return;
         }
 
@@ -91,8 +91,6 @@ export default function Receipt() {
             setPostStatus(error.response.data.status);
             setPostStatusMessage(error.response.data.message);
           });
-
-        
           setPostDataClicked(true);
     }
 
@@ -101,8 +99,7 @@ export default function Receipt() {
 
 
     //Update Receipt
-    //submit popup and confirmation popup
-    
+    //Submit popup and confirmation popup
     const [receiptID, setReceiptID] = useState(0);
     const [receiptIDValue, setReceiptIDValue] = useState(0);
     const [updateReceiptPopupOpen, setUpdateReceiptPopupOpen] = useState(false);
@@ -116,7 +113,7 @@ export default function Receipt() {
         event.preventDefault();
         if(!orderNoIdValue || !totalItemPriceValue) {
             setSubmitStatusMessageStatus(true);
-            setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
+            setSubmitStatusMessage('***Please check the input fields***');
             return;
         }
 
@@ -173,8 +170,6 @@ export default function Receipt() {
             setPostStatus(error.response.data.status);
             setPostStatusMessage(error.response.data.message);
           });
-
-        
           setPostDataClicked(true);
     }
 
@@ -184,7 +179,7 @@ export default function Receipt() {
 
 
     //Delete Receipt
-    //submit popup and confirmation popup
+    //Submit popup and confirmation popup
     const [deleteReceiptPopupOpen, setDeleteReceiptPopupOpen] = useState(false);
 
     function togglePopupDeleteReceipt() {
@@ -196,7 +191,7 @@ export default function Receipt() {
         event.preventDefault();
         if(!receiptID || !orderNoIdValue || !totalItemPriceValue) {
             setSubmitStatusMessageStatus(true);
-            setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
+            setSubmitStatusMessage('***Please check the input fields***');
             return;
         }
 
@@ -249,8 +244,6 @@ export default function Receipt() {
             setPostStatus(error.response.data.status);
             setPostStatusMessage(error.response.data.message);
           });
-
-        
           setPostDataClicked(true);
     }
 
@@ -370,14 +363,20 @@ export default function Receipt() {
         
     }, [viewReceipt]);
 
+
+
+
+
     return (
         <>
-        
         <div className='createAndRefresh'>
             <button  className='refreshList' onClick={getReceipts}>Refresh List</button>
             <button className='createReceipt' onClick={togglePopupCreateReceipt}>Create New Receipt</button> 
         </div>
             
+
+
+
             {modalVisibleCreateReceipt ? <div className='modal-one'></div>:null}
             {createReceiptPopupOpen && <Popup
             popupType='createReceiptPopup'
@@ -385,8 +384,7 @@ export default function Receipt() {
             content={
                 <form onSubmit={onSubmitValidateInput}>
                     <label className='formHeader'>Create New Receipt</label>
-                    <br></br>
-                    <br></br>
+                    <br /><br />
 
                     <label className='formLabelText'>Order No. Id:</label>
                     <input type="number" className='createInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
@@ -411,16 +409,15 @@ export default function Receipt() {
                 <div>
                     <label className='createReceiptConfirmationHeader'>Are You Sure ?</label>
                     <br></br>
-                    {!postDataClicked ?  <div>
+                    {!postDataClicked ?  
+                        <div>
                             <button className='createReceiptConfirmationYesButton' onClick={createReceipt}>Yes</button>
                             <button className='createReceiptConfirmationNoButton' onClick={closePopupCreateReceiptConfirmation}>No</button>
                         </div>:
                         <button type="button" className='createReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-                        
                     }
                     <br></br>
                     {postDataClicked ? <div className='createReceiptConfirmationStatusMessageContainer'><label className='createReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-                    
                 </div>
             }/>}  
 
@@ -435,24 +432,26 @@ export default function Receipt() {
             content={
                 <form onSubmit={onSubmitValidateInput}>
                     <label className='formHeader'>Update Receipt</label>
-                    <br></br>
-                    <br></br>
+                    <br /><br />
 
                     <label className='formLabelText'>Order No. Id:</label>
                     <input type="number" className='updateInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
-                    <br></br>
+                    <br /><br />
 
                     <label className='formLabelText'>Total Item Price:</label>
                     <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='updateInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
-                    <br></br>
+                    <br /><br />
 
                     <button className='updateReceiptButton'>Submit</button>
-                    <br></br>
-                    <br></br>
-
+                    <br /><br />
                     {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
                 </form>
             }/>}
+
+
+
+
+
 
             {modalVisibleConfirmationReceipt ? <div className='modal-two'></div>:null}
             {confirmationReceiptPopupOpen && <Popup
@@ -462,18 +461,19 @@ export default function Receipt() {
                 <div>
                     <label className='updateReceiptConfirmationHeader'>Are You Sure ?</label>
                     <br></br>
-                    {!postDataClicked ?  <div>
+                    {!postDataClicked ?  
+                        <div>
                             <button className='updateReceiptConfirmationYesButton' onClick={updateReceipt}>Yes</button>
                             <button className='updateReceiptConfirmationNoButton' onClick={closePopupUpdateReceiptConfirmation}>No</button>
                         </div>:
                         <button type="button" className='updateReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-                        
                     }
                     <br></br>
                     {postDataClicked ? <div className='updateReceiptConfirmationStatusMessageContainer'><label className='updateReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-                    
                 </div>
             }/>}  
+
+
 
 
 
@@ -486,21 +486,24 @@ export default function Receipt() {
                     <div>
                     <label className='deleteReceiptConfirmationHeader'>Are You Sure ?</label>
                     <br></br>
-                    {!postDataClicked ?  <div>
+                    {!postDataClicked ?  
+                        <div>
                             <button className='deleteReceiptConfirmationYesButton' onClick={deleteReceipt}>Yes</button>
                             <button className='deleteReceiptConfirmationNoButton' onClick={closePopupDeleteReceiptConfirmation}>No</button>
                         </div>:
                         <button type="button" className='deleteReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-                        
                     }
                     <br></br>
                     {postDataClicked ? <div className='deleteReceiptConfirmationStatusMessageContainer'><label className='deleteReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-                    
                 </div>
 
                     {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
                 </form>
             }/>}
+
+
+
+
 
             {modalVisibleConfirmationReceipt ? <div className='modal-two'></div>:null}
             {confirmationReceiptPopupOpen && <Popup
@@ -510,16 +513,15 @@ export default function Receipt() {
                 <div>
                     <label className='deleteReceiptConfirmationHeader'>Are You Sure ?</label>
                     <br></br>
-                    {!postDataClicked ?  <div>
+                    {!postDataClicked ? 
+                        <div>
                             <button className='deleteReceiptConfirmationYesButton' onClick={updateReceipt}>Yes</button>
                             <button className='deleteReceiptConfirmationNoButton' onClick={closePopupUpdateReceiptConfirmation}>No</button>
                         </div>:
                         <button type="button" className='deleteReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-                        
                     }
                     <br></br>
                     {postDataClicked ? <div className='deleteReceiptConfirmationStatusMessageContainer'><label className='deleteReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-                    
                 </div>
             }/>}  
 
@@ -529,7 +531,6 @@ export default function Receipt() {
 
             <div className="receipt">
                 <h1>Receipts</h1>
-
                 <table>
                     <tr>
                         <th>No.</th>
@@ -547,13 +548,11 @@ export default function Receipt() {
                             </tr>
                         )
                     )}
-                    
-                    
-
                 </table>
 
                 {modalVisibleViewReceipt ? <div className='modal'></div>:null}
                 <ViewOrderItems orderNo={viewOrderItemsOrderNo} viewOrder={viewOrder} setViewOrder={setViewOrder}/>
+            
             </div>
         </>
     )
