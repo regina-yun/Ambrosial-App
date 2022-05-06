@@ -69,8 +69,6 @@ function Login() {
         setLoginStatus(false);
       });
     }
-
-    setLoginCredentials({username: "", password: ""});
   }
 
   function togglePopupLogin() {
