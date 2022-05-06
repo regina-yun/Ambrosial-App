@@ -1,4 +1,4 @@
-import {API} from '../api/api.js';
+import {ambrosialAxiosAPI} from '../api/api.js';
 import React, {useState, useEffect} from 'react';
 
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
@@ -27,11 +27,11 @@ function CustomerApp() {
   const [menu, setMenu] = useState([]);
 
   const getMenuAPI = async () => {
-    const { status, data } = await API.get("/menu");
+    const { status, data } = await ambrosialAxiosAPI.get('/findall-mi');
     console.log("Status", status);
-    console.log("Data", data);
+     console.log("Data", data);
     if (status === 200) {
-      setMenu(data);
+      setMenu(data.data);
     }
   };
 
