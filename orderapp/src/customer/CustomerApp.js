@@ -27,21 +27,11 @@ function CustomerApp() {
   const [menu, setMenu] = useState([]);
 
   const getMenuAPI = async () => {
-    const { status, data } = await ambrosialAxiosAPI.get('/findall-mi')
-    .then((response) => {
-         console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-         console.log(`response Status: ${response.data.status}`);
-         console.log(`response Message: ${response.data.message}`);
-         console.log("response Data: ", response.data.data);
-       })
-    .catch((error) => {
-       console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-       console.log(`Error Status: ${error.response.data.status}`);
-       console.log(`Error Message: ${error.response.data.message}`);
-     });
-
+    const { status, data } = await ambrosialAxiosAPI.get('/findall-mi');
+    console.log("Status", status);
+     console.log("Data", data);
     if (status === 200) {
-      setMenu(data);
+      setMenu(data.data);
     }
   };
 
