@@ -402,14 +402,17 @@ export default function Orders() {
             setModalVisible(true);
         }
 
-        if((createOrderPopupOpen===false) && (confirmationOrderPopupOpen===false) && (viewOrder===false) && (viewUpdate===false) && (viewConfirmationUpdatePopupOpen===false)){
+        if((viewConfirmationDeletePopupOpen===true)){
+            setModalVisible(true);
+        }
+
+        if((createOrderPopupOpen===false) && (confirmationOrderPopupOpen===false) && (viewOrder===false) && (viewUpdate===false) && (viewConfirmationUpdatePopupOpen===false) && (viewDelete===false) && (viewConfirmationDeletePopupOpen===false)){
             setModalVisible(false);
         }else{
             console.log('not all are false');
         }
-        //, viewDelete  && (viewDelete===false)
         
-    }, [createOrderPopupOpen, confirmationOrderPopupOpen, viewOrder, viewUpdate, viewConfirmationUpdatePopupOpen]);
+    }, [createOrderPopupOpen, confirmationOrderPopupOpen, viewOrder, viewUpdate, viewConfirmationUpdatePopupOpen, viewDelete, viewConfirmationDeletePopupOpen]);
 
 
     return (
