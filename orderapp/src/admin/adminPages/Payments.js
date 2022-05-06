@@ -1,10 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ambrosialAxiosAPI } from '../../api/api';
+import Popup from '../adminComponents/popup';
 import './Payments.css';
 
 export default function Payments() {
 
 	//Create Payment
+
+	const [modalVisibleCreatePayment, setModalVisibleCreatePayment] = useState(false);
+	const [createPaymentPopupOpen, setCreatePaymentPopupOpen] = useState(false);
+
 	async function createPayment(e) {
 		e.preventDefault();
 
@@ -30,7 +35,7 @@ export default function Payments() {
 	async function updatePayment(e) {
 		e.preventDefault();
 
-		await ambrosialAxiosAPI.put(`/updatepayment/${invoiceID}`, {
+		await ambrosialAxiosAPI.put('/updatepayment/:invoiceID', {
 			receiptID: "",
 			paymentType: "",
 			paymentStatus: ""
@@ -52,7 +57,7 @@ export default function Payments() {
 	async function deletePayment(e) {
 		e.preventDefault();
 
-		await ambrosialAxiosAPI.delete(`/deletepayment/${invoiceID}`)
+		await ambrosialAxiosAPI.delete('/deletepayment/:invoiceID')
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
 			console.log(`response Status: ${response.data.status}`);
@@ -71,11 +76,10 @@ export default function Payments() {
 		getAllPayment();
 	});
 
-	const [allPaymentLogsData, setAllPaymentlogsData] = useState([]);
+	const [allPaymentLogsData, setAllPaymentLogsData] = useState([]);
 
-	async function getAllPayment(e) {
-		e.preventDefault();
-
+	async function getAllPayment() {
+		
 		await ambrosialAxiosAPI.get('/viewpaymentlogs')
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
@@ -94,7 +98,7 @@ export default function Payments() {
 	async function getSpecificPayment(e) {
 		e.preventDefault();
 
-		await ambrosialAxiosAPI.get(`/viewpaymentlogs/${invoiceID}`)
+		await ambrosialAxiosAPI.get('viewpaymentlogs/:invoiceID')
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
 			console.log(`response Status: ${response.data.status}`);
@@ -108,25 +112,56 @@ export default function Payments() {
 		});
 	}
 
+	function togglePopupCreatePayment() {
+		setModalVisibleCreatePayment(!modalVisibleCreatePayment);
+		setCreatePaymentPopupOpen(!createPaymentPopupOpen);
+	}
+
 	return (
 		<>
 			<div className='createAndRefresh'>
-				<button className='refreshPaymentLogs' onClick={getAllPayment}>Refresh List</button>
-				<button className='createPayment' onClick={}>Create New Payment Log</button>
+				<button className='refreshPaymentLogs' onClick={e => getAllPayment(e)}>Refresh List</button>
+				<button className='createPayment' onClick={togglePopupCreatePayment}>Create New Payment Log</button>
 			</div>
 
+
 			{/* insert modal code here */}
+
+			{modalVisibleCreatePayment && <div className='create-payment-modal'>
+				{createPaymentPopupOpen && <Popup
+					popupType='createPaymentPopup'
+					handleClose={togglePopupCreatePayment}
+					content={
+						<form>
+							<label className='formHeader'>Create New Payment Log</label>
+
+							<label className='formLabelText'>Receipt ID</label>
+							<input className='createPaymentInputReceiptId' type='number' />
+							
+							<label className='formLabelText'>Payment Type</label>
+							<input className='createPaymentInputPaymentType' type='text'/>
+
+							<label className='formLabelText'>Payment Status</label>
+							<input className='createPaymentInputPaymentStatus' type='text'/>
+							
+							<button className='createPaymentButton'>Submit</button>
+						</form>
+					}/>
+				}
+				</div>
+			}
+				
 
 			<div className="payments">
 					<h1>Payment Logs</h1>
 					<table>
-						<tr>
+						<thead>
 							<th>No.</th>
 							<th>Receipt ID</th>
 							<th>Payment Type</th>
 							<th>Payment Status</th>
-							<th colspan='2'>Actions</th>
-						</tr>
+							<th colSpan='2'>Actions</th>
+						</thead>
 
 						{allPaymentLogsData.map((paymentLogs, index) => {
 							<tr key={paymentLogs.receiptID}>
@@ -134,8 +169,8 @@ export default function Payments() {
 								<td>{paymentLogs.receiptID}</td>
 								<td>{paymentLogs.paymentType}</td>
 								<td>{paymentLogs.paymentStatus}</td>
-								<td className='actionButtons'><button className='paymentsPageUpdateButton' onClick={}>Update Payment Log</button></td>
-								<td className='actionButtons'><button className='paymentsPageDeleteButton' onclick={}>Delete Payment Log</button></td>
+								<td className='actionButtons'><button className='paymentsPageUpdateButton' onClick={togglePopupUpdatePayment}>Update Payment Log</button></td>
+								<td className='actionButtons'><button className='paymentsPageDeleteButton' onclick={togglePopupDeletePayment}>Delete Payment Log</button></td>
 							</tr>
 						})}
 					</table>
