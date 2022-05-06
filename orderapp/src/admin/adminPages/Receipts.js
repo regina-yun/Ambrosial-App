@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './Orders.css';
+import './Receipts.css';
 import Popup from '../adminComponents/popup';
 import { ambrosialAxiosAPI } from '../../api/api';
 import ViewOrderItems from '../adminComponents/view-order-items';
@@ -102,6 +102,9 @@ export default function Receipt() {
 
     //Update Receipt
     //submit popup and confirmation popup
+    
+    const [receiptID, setReceiptID] = useState(0);
+    const [receiptIDValue, setReceiptIDValue] = useState(0);
     const [updateReceiptPopupOpen, setUpdateReceiptPopupOpen] = useState(false);
 
     function togglePopupUpdateReceipt() {
@@ -182,7 +185,6 @@ export default function Receipt() {
 
     //Delete Receipt
     //submit popup and confirmation popup
-    const [receiptID, setReceiptID] = useState(0);
     const [deleteReceiptPopupOpen, setDeleteReceiptPopupOpen] = useState(false);
 
     function togglePopupDeleteReceipt() {
@@ -227,7 +229,7 @@ export default function Receipt() {
         //setPostDataClicked(false);
     }
     
-    async function updateReceipt(event){
+    async function deleteReceipt(event){
         console.log('called delete receipt');
         event.preventDefault();
 
@@ -376,7 +378,7 @@ export default function Receipt() {
             <button className='createReceipt' onClick={togglePopupCreateReceipt}>Create New Receipt</button> 
         </div>
             
-            {modalVisibleCreateReceipt ? <div className='modal'></div>:null}
+            {modalVisibleCreateReceipt ? <div className='modal-one'></div>:null}
             {createReceiptPopupOpen && <Popup
             popupType='createReceiptPopup'
             handleClose={togglePopupCreateReceipt}
@@ -388,21 +390,20 @@ export default function Receipt() {
 
                     <label className='formLabelText'>Order No. Id:</label>
                     <input type="number" className='createInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
-                    <br></br>
+                    <br /><br />
 
                     <label className='formLabelText'>Total Item Price:</label>
                     <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
-                    <br></br>
+                    <br /><br />
 
                     <button className='createReceiptButton'>Submit</button>
-                    <br></br>
-                    <br></br>
+                    <br /><br />
 
                     {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
                 </form>
             }/>}
 
-            {modalVisibleConfirmationReceipt ? <div className='modal'></div>:null}
+            {modalVisibleConfirmationReceipt ? <div className='modal-two'></div>:null}
             {confirmationReceiptPopupOpen && <Popup
             popupType='createReceiptConfirmationPopup'
             handleClose={togglePopupCreateReceiptConfirmation}
@@ -427,7 +428,7 @@ export default function Receipt() {
 
 
 
-            {modalVisibleUpdateReceipt ? <div className='modal'></div>:null}
+            {modalVisibleUpdateReceipt ? <div className='modal-one'></div>:null}
             {updateReceiptPopupOpen && <Popup
             popupType='updateReceiptPopup'
             handleClose={togglePopupUpdateReceipt}
@@ -453,7 +454,7 @@ export default function Receipt() {
                 </form>
             }/>}
 
-            {modalVisibleConfirmationReceipt ? <div className='modal'></div>:null}
+            {modalVisibleConfirmationReceipt ? <div className='modal-two'></div>:null}
             {confirmationReceiptPopupOpen && <Popup
             popupType='updateReceiptConfirmationPopup'
             handleClose={togglePopupUpdateReceiptConfirmation}
@@ -476,9 +477,32 @@ export default function Receipt() {
 
 
 
+            {modalVisibleDeleteReceipt ? <div className='modal-one'></div>:null}
+            {deleteReceiptPopupOpen && <Popup
+            popupType='deleteReceiptPopup'
+            handleClose={togglePopupDeleteReceipt}
+            content={
+                <form onSubmit={onSubmitValidateInput}>
+                    <div>
+                    <label className='deleteReceiptConfirmationHeader'>Are You Sure ?</label>
+                    <br></br>
+                    {!postDataClicked ?  <div>
+                            <button className='deleteReceiptConfirmationYesButton' onClick={deleteReceipt}>Yes</button>
+                            <button className='deleteReceiptConfirmationNoButton' onClick={closePopupDeleteReceiptConfirmation}>No</button>
+                        </div>:
+                        <button type="button" className='deleteReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
+                        
+                    }
+                    <br></br>
+                    {postDataClicked ? <div className='deleteReceiptConfirmationStatusMessageContainer'><label className='deleteReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
+                    
+                </div>
 
+                    {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
+                </form>
+            }/>}
 
-            {modalVisibleConfirmationReceipt ? <div className='modal'></div>:null}
+            {modalVisibleConfirmationReceipt ? <div className='modal-two'></div>:null}
             {confirmationReceiptPopupOpen && <Popup
             popupType='deleteReceiptConfirmationPopup'
             handleClose={togglePopupDeleteReceiptConfirmation}
@@ -487,8 +511,8 @@ export default function Receipt() {
                     <label className='deleteReceiptConfirmationHeader'>Are You Sure ?</label>
                     <br></br>
                     {!postDataClicked ?  <div>
-                            <button className='deleteReceiptConfirmationYesButton' onClick={deleteReceipt}>Yes</button>
-                            <button className='deleteReceiptConfirmationNoButton' onClick={closePopupDeleteReceiptConfirmation}>No</button>
+                            <button className='deleteReceiptConfirmationYesButton' onClick={updateReceipt}>Yes</button>
+                            <button className='deleteReceiptConfirmationNoButton' onClick={closePopupUpdateReceiptConfirmation}>No</button>
                         </div>:
                         <button type="button" className='deleteReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
                         
