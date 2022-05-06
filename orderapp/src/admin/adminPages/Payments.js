@@ -109,28 +109,37 @@ export default function Payments() {
 	}
 
 	return (
-		<div className="payments">
-				<h1>Payment Logs</h1>
-				<table>
-					<tr>
-						<th>No.</th>
-						<th>Receipt ID</th>
-						<th>Payment Type</th>
-						<th>Payment Status</th>
-						<th colspan='2'>Actions</th>
-					</tr>
+		<>
+			<div className='createAndRefresh'>
+				<button className='refreshPaymentLogs' onClick={getAllPayment}>Refresh List</button>
+				<button className='createPayment' onClick={}>Create New Payment Log</button>
+			</div>
 
-					{allPaymentLogsData.map((paymentLogs, index) => {
-						<tr key={paymentLogs.receiptID}>
-							<td>{index+1}</td>
-							<td>{paymentLogs.receiptID}</td>
-							<td>{paymentLogs.paymentType}</td>
-							<td>{paymentLogs.paymentStatus}</td>
-							<td className='actionButtons'><button className='paymentsPageUpdateButton' onClick={}>Update Payment Log</button></td>
-							<td className='actionButtons'><button className='paymentsPageDeleteButton' onclick={}>Delete Payment Log</button></td>
+			{/* insert modal code here */}
+
+			<div className="payments">
+					<h1>Payment Logs</h1>
+					<table>
+						<tr>
+							<th>No.</th>
+							<th>Receipt ID</th>
+							<th>Payment Type</th>
+							<th>Payment Status</th>
+							<th colspan='2'>Actions</th>
 						</tr>
-					})}
-				</table>
-		</div>
+
+						{allPaymentLogsData.map((paymentLogs, index) => {
+							<tr key={paymentLogs.receiptID}>
+								<td>{index+1}</td>
+								<td>{paymentLogs.receiptID}</td>
+								<td>{paymentLogs.paymentType}</td>
+								<td>{paymentLogs.paymentStatus}</td>
+								<td className='actionButtons'><button className='paymentsPageUpdateButton' onClick={}>Update Payment Log</button></td>
+								<td className='actionButtons'><button className='paymentsPageDeleteButton' onclick={}>Delete Payment Log</button></td>
+							</tr>
+						})}
+					</table>
+			</div>
+		</>
 	)
 }
