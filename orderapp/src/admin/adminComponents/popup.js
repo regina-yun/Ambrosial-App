@@ -12,6 +12,26 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'updatePasswordErrorPopup'){
+        return(
+            <div className="updatePasswordError-box">
+                <div className="updatePasswordError-box">
+                    <span className="updatePasswordError-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'updatePasswordSuccessPopup'){
+        return(
+            <div className="updatePasswordSuccess-box">
+                <div className="updatePasswordSuccess-box">
+                    <span className="updatePasswordSuccess-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'createOrderPopup'){
         return(
             <div className="createOrderPopup-box">
