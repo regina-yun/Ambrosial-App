@@ -229,8 +229,8 @@ export default function Payments() {
 					</div>
 					}/>
 				}   
-				</div>
-				}
+			</div>
+			}
 				
 
 			<div className="payments">
