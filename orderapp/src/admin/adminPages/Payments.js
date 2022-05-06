@@ -70,7 +70,9 @@ export default function Payments() {
 	useEffect(() => {
 		getAllPayment();
 	});
-	
+
+	const [allPaymentLogsData, setAllPaymentlogsData] = useState([]);
+
 	async function getAllPayment(e) {
 		e.preventDefault();
 
@@ -115,7 +117,19 @@ export default function Payments() {
 						<th>Receipt ID</th>
 						<th>Payment Type</th>
 						<th>Payment Status</th>
+						<th colspan='2'>Actions</th>
 					</tr>
+
+					{allPaymentLogsData.map((paymentLogs, index) => {
+						<tr key={paymentLogs.receiptID}>
+							<td>{index+1}</td>
+							<td>{paymentLogs.receiptID}</td>
+							<td>{paymentLogs.paymentType}</td>
+							<td>{paymentLogs.paymentStatus}</td>
+							<td className='actionButtons'><button className='paymentsPageUpdateButton' onClick={}>Update Payment Log</button></td>
+							<td className='actionButtons'><button className='paymentsPageDeleteButton' onclick={}>Delete Payment Log</button></td>
+						</tr>
+					})}
 				</table>
 		</div>
 	)
