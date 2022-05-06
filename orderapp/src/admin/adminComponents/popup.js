@@ -132,6 +132,16 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'createPaymentPopup'){
+        return(
+            <div className="createPaymentPopup-box">
+                <div className="createPayment-box">
+                    <span className="createPayment-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'createPaymentErrorPopup'){
         return(
             <div className="createPaymentErrorPopup-box">
