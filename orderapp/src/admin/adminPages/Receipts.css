@@ -1,4 +1,4 @@
-.modal{
+.modal-one{
   width:100%;
   height:100%;
   position: absolute;
@@ -8,33 +8,44 @@
   z-index: 1;
 }
 
+.modal-two{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,.9);
+  z-index: 2;
+}
+
 .receipt {
     text-align: center;
     background-color: black;
     height: 100vh;
   }
   .formHeader{
-    font-size: 300%;
+    font-size: 200%;
     margin-left:18%;
   }
 
   .createReceiptConfirmationHeader{
-    font-size: 300%;
+    font-size: 200%;
     margin-left: 25%;
   }
 
   .updateReceiptConfirmationHeader{
-    font-size: 300%;
+    font-size: 200%;
     margin-left: 25%;
   }
 
   .deleteReceiptConfirmationHeader{
-    font-size: 300%;
+    font-size: 200%;
     margin-left: 25%;
   }
 
   .formLabelText{
-    margin-left:20%;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .formLabelTextStatus{
@@ -44,26 +55,16 @@
   .createAndRefresh{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: 82.5%;
-  }
-
-  .refreshList {
-    margin-left: 4%;
-  }
-
-  .createInputOrderId{
-    margin-left: 10%;
-  }
-
-  .createInputTotalItemPrice{
-    margin-left: 6.4%;
+    flex-wrap: nowrap;
+    width: 300px;
+    gap: 15px;
+    float: right;
   }
 
   .createReceiptButton{
     font-size: 110%;
     margin-top: 5%;
-    margin-left: 45.5%;
+    margin-left: 40%;
     padding-left: 3%;
     padding-right: 3%;
     padding-top: 1%;
@@ -109,7 +110,7 @@
     padding-right: 3%;
     padding-top: 1%;
     padding-bottom: 1%;
-    
+ 
   }
 
   .updateReceiptConfirmationYesButton{
@@ -138,7 +139,6 @@
     padding-right: 3%;
     padding-top: 1%;
     padding-bottom: 1%;
-    
   }
 
   .deleteReceiptConfirmationYesButton{
@@ -160,24 +160,24 @@
   }
 
 
-  .trialOrderContainer{
+  .trialReceiptContainer{
     border: 1px solid white;
     width: 20%;
   }
 
-  .trialOrderContainerViewButton{
+  .trialReceiptContainerViewButton{
     width: 100%;
     padding-top:3%;
     padding-bottom:3%;
   }
 
-  .trialOrderContainerUpdateButton{
+  .trialReceiptContainerUpdateButton{
     width: 100%;
     padding-top:3%;
     padding-bottom:3%;
   }
 
-  .trialOrderContainerDeleteButton{
+  .trialReceiptContainerDeleteButton{
     width: 100%;
     padding-top:3%;
     padding-bottom:3%;
@@ -186,4 +186,9 @@
   .actionButtons{
     border:1px solid white;
     width: 20%;
+  }
+
+  button:hover {
+    cursor: pointer;
+    font-weight: bold;
   }
