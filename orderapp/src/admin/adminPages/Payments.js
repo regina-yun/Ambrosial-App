@@ -16,6 +16,9 @@ export default function Payments() {
 	const [modalVisibleCreatePaymentConfirmation, setModalVisibleCreatePaymentConfirmation] = useState(false);
 	const [createPaymentConfirmationPopupOpen, setCreatePaymentConfirmationPopupOpen] = useState(false);
 
+	const [createPaymentPostStatusMessage, setCreatePaymentPostStatusMessage] = useState(false);
+	const [createPaymentPostDataClicked, setCreatepaymentPostDataClicked] = useState(false);
+
 	function handleCreatePaymentOnChange(e) {
 		let createPaymentInput = {...paymentInput};
 		createPaymentInput[e.target.name] = e.target.value;
@@ -28,19 +31,41 @@ export default function Payments() {
 
 		if(!paymentInput.receiptID && !paymentInput.paymentType && !paymentInput.paymentStatus) {
 			setCreatePaymentMessageStatus(true)
-			setCreatePaymentMessage('***Please check the input fields***');
+			setCreatePaymentMessage('***All of the input fields are empty***');
 			return;
 		}
 		else if(!paymentInput.receiptID || !paymentInput.paymentType || !paymentInput.paymentStatus) {
 			setCreatePaymentMessageStatus(true)
-			setCreatePaymentMessage('***Please check the input fields***');
+			setCreatePaymentMessage('***Some of the input fields are empty***');
 			return;
 		}
+
+		togglePopupCreatePaymentConfirmation();
 	}
 
 	function togglePopupCreatePayment() {
 		setModalVisibleCreatePayment(!modalVisibleCreatePayment);
 		setCreatePaymentPopupOpen(!createPaymentPopupOpen);
+	}
+
+	function togglePopupCreatePaymentConfirmation(){
+		setModalVisibleCreatePaymentConfirmation(!modalVisibleCreatePaymentConfirmation);
+		setCreatePaymentConfirmationPopupOpen(!createPaymentConfirmationPopupOpen);
+	}
+
+	function resetInputsToDefault() {
+		setPaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''})
+	}
+
+	function closePopupCreatePaymentConfirmation() {
+		resetInputsToDefault();
+		togglePopupCreatePaymentConfirmation();
+	}
+
+	function handleCreatePaymentClosePopups(e) {
+		e.preventDefault();
+		setCreatePaymentPopupOpen(!createPaymentPopupOpen);
+		setCreatePaymentConfirmationPopupOpen(!createPaymentConfirmationPopupOpen);
 	}
 
 
@@ -159,50 +184,53 @@ export default function Payments() {
 			{/* insert modal code here */}
 
 			{modalVisibleCreatePayment && <div className='modal'>
-			{createPaymentPopupOpen && <Popup
-				popupType='createPaymentPopup'
-				handleClose={togglePopupCreatePayment}
-				content={
-					<form onSubmit={onSubmitCreatePaymentInputValidation}>
-						<label className='formHeader'>Create New Payment Log</label>
+				{createPaymentPopupOpen && <Popup
+					popupType='createPaymentPopup'
+					handleClose={togglePopupCreatePayment}
+					content={
+						<form onSubmit={onSubmitCreatePaymentInputValidation}>
+							<label className='formHeader'>Create New Payment Log</label>
 
-						<label className='formLabelText'>Receipt ID</label>
-						<input className='createPaymentInputReceiptId' type='number' name='receiptID' onChange={handleCreatePaymentOnChange}/>
-						
-						<label className='formLabelText'>Payment Type</label>
-						<input className='createPaymentInputPaymentType' type='text' name='paymentType' onChange={handleCreatePaymentOnChange}/>
+							<label className='formLabelText'>Receipt ID</label>
+							<input className='createPaymentInputReceiptId' type='number' name='receiptID' onChange={handleCreatePaymentOnChange}/>
+							
+							<label className='formLabelText'>Payment Type</label>
+							<input className='createPaymentInputPaymentType' type='text' name='paymentType' onChange={handleCreatePaymentOnChange}/>
 
-						<label className='formLabelText'>Payment Status</label>
-						<input className='createPaymentInputPaymentStatus' type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange}/>
-						
-						<button className='createPaymentButton'>Submit</button>
+							<label className='formLabelText'>Payment Status</label>
+							<input className='createPaymentInputPaymentStatus' type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange}/>
+							
+							<button className='createPaymentButton'>Submit</button>
 
-						{createPaymentMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{createPaymentMessage}</label>}</label>}
-					</form>
-				}/>
-			}
+							{createPaymentMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{createPaymentMessage}</label>}</label>}
+						</form>
+					}/>
+				}
 			</div>
 			}
 
-			{modalVisibleCreatePaymentConfirmation && <div className='modal'></div>}
+			{modalVisibleCreatePaymentConfirmation && <div className='modal'>
 				{createPaymentConfirmationPopupOpen && <Popup
-				popupType='deleteReceiptConfirmationPopup'
-				handleClose={togglePopupDeleteReceiptConfirmation}
+				popupType='createPaymentConfirmationPopup'
+				handleClose={togglePopupCreatePaymentConfirmation}
 				content={
-						<div>
-								<label className='deleteReceiptConfirmationHeader'>Are You Sure ?</label>
-								<br></br>
-								{!postDataClicked ? 
-										<div>
-												<button className='deleteReceiptConfirmationYesButton' onClick={updateReceipt}>Yes</button>
-												<button className='deleteReceiptConfirmationNoButton' onClick={closePopupUpdateReceiptConfirmation}>No</button>
-										</div>:
-										<button type="button" className='deleteReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-								}
-								<br></br>
-								{postDataClicked ? <div className='deleteReceiptConfirmationStatusMessageContainer'><label className='deleteReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-						</div>
-				}/>}   
+					<div>
+						<label className='createPaymentConfirmationHeader'>Are You Sure ?</label>
+						<br></br>
+						{!createPaymentPostDataClicked ? 
+							<div>
+								<button className='createPaymentConfirmationYesButton' onClick={createPayment}>Yes</button>
+								<button className='createPaymentConfirmationNoButton' onClick={closePopupCreatePaymentConfirmation}>No</button>
+							</div>:
+							<button type="button" className='createPaymentConfirmationYesButton'  onClick={handleCreatePaymentClosePopups} >Close</button>
+						}
+						<br></br>
+						{createPaymentPostDataClicked ? <div className='createPaymentConfirmationStatusMessageContainer'><label className='createPaymentConfirmationStatusMessage'>{createPaymentPostStatusMessage}</label></div>: null}
+					</div>
+					}/>
+				}   
+				</div>
+				}
 				
 
 			<div className="payments">
@@ -217,14 +245,16 @@ export default function Payments() {
 						</tr>
 
 						{allPaymentLogsData.map((paymentLogs, index) => {
-							<tr key={paymentLogs.receiptID}>
-								<td>{index+1}</td>
-								<td>{paymentLogs.receiptID}</td>
-								<td>{paymentLogs.paymentType}</td>
-								<td>{paymentLogs.paymentStatus}</td>
-								<td className='actionButtons'><button className='paymentsPageUpdateButton' onClick={togglePopupUpdatePayment}>Update Payment Log</button></td>
-								<td className='actionButtons'><button className='paymentsPageDeleteButton' onclick={togglePopupDeletePayment}>Delete Payment Log</button></td>
-							</tr>
+							return(
+								<tr key={paymentLogs.receiptID}>
+									<td>{index+1}</td>
+									<td>{paymentLogs.receiptID}</td>
+									<td>{paymentLogs.paymentType}</td>
+									<td>{paymentLogs.paymentStatus}</td>
+									{/* <td className='actionButtons'><button className='paymentsPageUpdateButton' onClick={togglePopupUpdatePayment}>Update Payment Log</button></td>
+									<td className='actionButtons'><button className='paymentsPageDeleteButton' onclick={togglePopupDeletePayment}>Delete Payment Log</button></td> */}
+								</tr>
+							)
 						})}
 					</table>
 			</div>
