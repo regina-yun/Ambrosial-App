@@ -142,26 +142,6 @@ function Popup(props){
             </div>
         );
     }
-    else if(props.popupType === 'createPaymentErrorPopup'){
-        return(
-            <div className="createPaymentErrorPopup-box">
-                <div className="createPaymentError-box">
-                    <span className="createPaymentError-close-icon" onClick={props.handleClose}>x</span>
-                        {props.content}
-                </div>
-            </div>
-        );
-    }
-    else if(props.popupType === 'createPaymentSuccessPopup'){
-        return(
-            <div className="createPaymentSuccessPopup-box">
-                <div className="createPaymentSuccess-box">
-                    <span className="createPaymentSuccess-close-icon" onClick={props.handleClose}>x</span>
-                        {props.content}
-                </div>
-            </div>
-        );
-    }
     else if(props.popupType === 'createPaymentConfirmationPopup'){
         return(
             <div className="createPaymentConfirmationPopup-box">
