@@ -9,6 +9,7 @@ function ConfirmationPopupContents(props){
     function yesButtonAction(event){
         event.preventDefault();
         props.invokeAction();
+        props.invokeRefresh();
     }
 
     function noButtonAction(event){
@@ -19,6 +20,7 @@ function ConfirmationPopupContents(props){
     function closeButtonAction(event){
         event.preventDefault();
         props.closeButton();
+        props.invokeRefresh();
     }
 
     return(

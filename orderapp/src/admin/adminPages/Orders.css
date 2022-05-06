@@ -13,7 +13,7 @@
     background-color: black;
     height: 100vh;
   }
-  .formHeader{
+  .formHeaderCreateDistinctOrder{
     font-size: 300%;
     margin-left:18%;
   }
@@ -46,7 +46,7 @@
     margin-left: 4%;
   }
 
-  .createInputOrderId{
+  .createInputOrderNo{
     margin-left: 10%;
   }
 
@@ -149,4 +149,23 @@
   .formLabelTextUpdate{
     margin-left:25%;
     font-size: 130%;
+  }
+
+  .formHeaderDelete{
+    font-size: 300%;
+    margin-left:15%;
+  }
+
+  .formLabelTextDelete{
+    margin-left:31%;
+    font-size: 130%;
+  }
+
+  .deleteCurrentDistinctOrderButton{
+    margin-top: 5%;
+    margin-left: 42%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
   }

@@ -4,7 +4,7 @@ import Popup from '../adminComponents/popup';
 import { ambrosialAxiosAPI } from '../../api/api';
 import ViewOrderItems from '../adminComponents/ordersComponents/view-order-items';
 import ViewOrderItemsButton from '../adminComponents/ordersComponents/view-order-items-button';
-import UpdateAndDeleteDistinctOrderButton from '../adminComponents/ordersComponents/update-Delete-DistinctOrder-Button';
+import UpdateAndDeleteDistinctOrderButton from '../adminComponents/commonComponents/update-Delete-DistinctOrder-Button';
 import ConfirmationPopupContents from '../adminComponents/ordersComponents/confirmationPopupContents';
 
 export default function Orders() {
@@ -26,7 +26,7 @@ export default function Orders() {
     //validation on submit
     function onSubmitValidateInput(event){
         event.preventDefault();
-        if(!orderNoIdValue || !menuItemIDValue || !quantityValue || !totalItemPriceValue || !tableNoValue || !orderStatusValue){
+        if(!orderNoValue){
             setSubmitStatusMessageStatus(true);
             setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
             return;
@@ -45,15 +45,8 @@ export default function Orders() {
 
     function closePopupCreateOrderConfirmation(){
         console.log('in closePopupCreateOrderConfirmation here');
-        //resetInputsToDefaultValue();
-        //togglePopupCreateOrderConfirmation();
-        setOrderNoIdValue(0);
-        setMenuItemIDValue(0);
-        setQuantityValue(0);
-        setTotalItemPriceValue(0);
-        setTableNoValue(0);
-        setOrderStatusValue('');
-
+        setOrderNoValue(0);
+        
         setPostDataClicked(false);
         setPostStatusMessage(false);
         setPostDataClicked(false);
@@ -66,28 +59,19 @@ export default function Orders() {
     //final close
     function handleClosePopups(event){
         //event.preventDefault();
-        setOrderNoIdValue(0);
-        setMenuItemIDValue(0);
-        setQuantityValue(0);
-        setTotalItemPriceValue(0);
-        setTableNoValue(0);
-        setOrderStatusValue('');
+        setOrderNoValue(0);
+ 
         setPostDataClicked(false);
         setPostStatusMessage(false);
         setPostDataClicked(false);
         setSubmitStatusMessageStatus(false);
-        setCreateOrderPopupOpen(!createOrderPopupOpen);
-        setConfirmationOrderPopupOpen(!confirmationOrderPopupOpen);
+        setCreateOrderPopupOpen(false);
+        setConfirmationOrderPopupOpen(false);
         
     }
 
     //For the inputs to create order
-    const [orderNoIdValue, setOrderNoIdValue] = useState(0);
-    const [menuItemIDValue, setMenuItemIDValue] = useState(0);
-    const [quantityValue, setQuantityValue] = useState(0);
-    const [totalItemPriceValue, setTotalItemPriceValue] = useState(0);
-    const [tableNoValue, setTableNoValue] = useState(0);
-    const [orderStatusValue, setOrderStatusValue] = useState('');
+    const [orderNoValue, setOrderNoValue] = useState(0);
 
     //For the result of the post
     const [postStatus, setPostStatus] = useState(false);
@@ -95,25 +79,11 @@ export default function Orders() {
     //For showing the result message
     const [postDataClicked, setPostDataClicked] = useState(false);
     
-    async function createOrder(event){
-        console.log('called create order');
-        //event.preventDefault();
+    async function createDistinctOrder(){
+        console.log('called create distinct order');
 
-        await ambrosialAxiosAPI.post('/createorder', {
-            orderNoId:orderNoIdValue,
-            menuItemID:menuItemIDValue,
-            quantity:quantityValue,
-            totalItemPrice:totalItemPriceValue,
-            tableNo:tableNoValue,
-            orderStatus:orderStatusValue
-
-            /**prisma syntax
-             * orderNoId:orderNoIdValue,
-        //     menuItemId:menuItemIDValue,
-        //     quantity:quantityValue,
-        //     totalItemPrice:totalItemPriceValue,
-        //     tableNo:tableNoValue,
-        //     orderStatus:orderStatusValue, */
+        await ambrosialAxiosAPI.post('/createdistinctorder', {
+            orderNo:orderNoValue,
         })
         .then((response) => {
              console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
@@ -293,18 +263,13 @@ export default function Orders() {
     //function to validate the input tag for update
     function onSubmitValidateinputForDelete(event){
         event.preventDefault();
-        if(!orderNoUpdate){
-            setDeleteSubmitStatus(true);
-            setDeleteSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
-            return;
-        }
 
         toggleDeleteDistinctOrderConfirmation();
     }
 
     function toggleDeleteDistinctOrderConfirmation() {
-        // event.preventDefault();
-        console.log('in toggle here');
+        
+        console.log('in toggleDeleteDistinctOrderConfirmation');
         setViewDelete(!viewDelete);
         setViewConfirmationDeletePopupOpen(!viewConfirmationDeletePopupOpen);
         toggleDeleteDistinctOrderPopup();
@@ -409,7 +374,7 @@ export default function Orders() {
         if((createOrderPopupOpen===false) && (confirmationOrderPopupOpen===false) && (viewOrder===false) && (viewUpdate===false) && (viewConfirmationUpdatePopupOpen===false) && (viewDelete===false) && (viewConfirmationDeletePopupOpen===false)){
             setModalVisible(false);
         }else{
-            console.log('not all are false');
+            console.log('not all popup states are false');
         }
         
     }, [createOrderPopupOpen, confirmationOrderPopupOpen, viewOrder, viewUpdate, viewConfirmationUpdatePopupOpen, viewDelete, viewConfirmationDeletePopupOpen]);
@@ -428,32 +393,12 @@ export default function Orders() {
         handleClose={togglePopupCreateOrder}
         content={
             <form onSubmit={onSubmitValidateInput}>
-                <label className='formHeader'>Create New Order</label>
+                <label className='formHeaderCreateDistinctOrder'>Create New Order</label>
                 <br></br>
                 <br></br>
 
-                <label className='formLabelText'>Order No. Id:</label>
-                <input type="number" className='createInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
-                <br></br>
-
-                <label className='formLabelText'>Menu Item Id:</label>
-                <input type="number" className='createInputMenuItemId' onChange={(e) => setMenuItemIDValue(e.target.value)}></input>
-                <br></br>
-
-                <label className='formLabelText'>Quantity:</label>
-                <input type="number" className='createInputQuantity' onChange={(e) => setQuantityValue(e.target.value)}></input>
-                <br></br>
-
-                <label className='formLabelText'>Total Item Price:</label>
-                <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
-                <br></br>
-
-                <label className='formLabelText'>Table No:</label>
-                <input type="number" className='createInputTableNo' onChange={(e) => setTableNoValue(e.target.value)}></input>
-                <br></br>
-
-                <label className='formLabelText'>Order Status:</label>
-                <input type="text" className='createInputOrderStatus' onChange={(e) => setOrderStatusValue(e.target.value)}></input>
+                <label className='formLabelText'>Order No.:</label>
+                <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
                 <br></br>
 
                 <button className='createOrderButton'>Submit</button>
@@ -468,23 +413,8 @@ export default function Orders() {
         {confirmationOrderPopupOpen && <Popup
         popupType='createOrderConfirmationPopup'
         handleClose={togglePopupCreateOrderConfirmation}
-        content={
-            // <div>
-            //     <label className='createOrderConfirmationHeader'>Are You Sure ?</label>
-            //     <br></br>
-            //     {!postDataClicked ?  <div>
-            //             <button className='createOrderConfirmationYesButton' onClick={createOrder}>Yes</button>
-            //             <button className='createOrderConfirmationNoButton' onClick={closePopupCreateOrderConfirmation}>No</button>
-            //         </div>:
-            //         <button type="button" className='createOrderConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-                    
-            //     }
-            //     <br></br>
-            //     {postDataClicked ? <div className='createOrderConfirmationStatusMessageContainer'><label className='createOrderConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-                
-            // </div>
-            
-             <ConfirmationPopupContents invokeAction={createOrder} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage}/>
+        content={    
+             <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage}/>
         }/>}
 
         {/* update Popup */}
@@ -517,23 +447,9 @@ export default function Orders() {
         popupType='updateOrderConfirmationPopup'
         handleClose={toggleUpdateDistinctOrderConfirmation}
         content={
-            // <div>
-            //     <label className='createOrderConfirmationHeader'>Are You Sure ?</label>
-            //     <br></br>
-            //     {!updateDataClicked ?  <div> 
-            //             <button className='createOrderConfirmationYesButton' onClick={updateDistinctOrder}>Yes</button>
-            //             <button className='createOrderConfirmationNoButton' onClick={closePopupUpdateDistinctOrderConfirmation}>No</button>
-            //         </div>:
-            //         <button type="button" className='createOrderConfirmationYesButton'  onClick={handleCloseUpdatePopups} >Close</button>
-                    
-            //     }
-            //     <br></br>
-            //     {updateDataClicked ? <div className='createOrderConfirmationStatusMessageContainer'><label className='createOrderConfirmationStatusMessage'>{updateDistinctOrderStatusMessage}</label></div>: null}
-                
-            // </div>
             //props needed are: updateDistinctOrder(), closePopupUpdateDistinctOrderConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateDistinctOrderStatusMessage
-            <ConfirmationPopupContents  invokeAction={updateDistinctOrder} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateDistinctOrderStatusMessage}/>
-        }/>}
+            <ConfirmationPopupContents  invokeAction={updateDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateDistinctOrderStatusMessage}/>
+        }/>} 
 
         {/* delete Popup */}
 
@@ -542,11 +458,11 @@ export default function Orders() {
         handleClose={toggleDeleteDistinctOrderPopup}
         content={
             <form onSubmit={onSubmitValidateinputForDelete}>
-                <label className='formHeaderUpdate'>Delete Current Order Record</label>
+                <label className='formHeaderDelete'>Delete Order Record</label>
                 <br></br>
                 <br></br>
 
-                <label className='formLabelTextUpdate'>Order No. Now:</label>
+                <label className='formLabelTextDelete'>Order No.:</label>
                 <label className='formLabelOrderNo'>{viewOrderItemsOrderNo}</label>
                 <br></br>
 
@@ -554,7 +470,7 @@ export default function Orders() {
                 <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
                 <br></br> */}
 
-                <button className='updateCurrentDistinctOrderButton'>Submit</button>
+                <button className='deleteCurrentDistinctOrderButton'>Submit</button>
                 <br></br>
                 <br></br>
 
@@ -564,11 +480,11 @@ export default function Orders() {
 
         {viewConfirmationDeletePopupOpen && <Popup
         popupType='deleteOrderConfirmationPopup'
-        handleClose={togglePopupCreateOrderConfirmation}
+        handleClose={toggleDeleteDistinctOrderConfirmation}
         content={
-            <ConfirmationPopupContents  invokeAction={deleteDistinctOrder} xButtonClose={closePopupDeleteDistinctOrderConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteDistinctOrderStatusMessage}/>
+            <ConfirmationPopupContents  invokeAction={deleteDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupDeleteDistinctOrderConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteDistinctOrderStatusMessage}/>
         }/>
-} 
+        } 
 
 
         <div className="orders">
@@ -583,15 +499,11 @@ export default function Orders() {
                 
                 {distinctOrderData.map((distinctOrder, index)=>(
                         <tr key={distinctOrder.orderNo}>
-                        <td>{index+1}</td>
-                        <td>{distinctOrder.orderNo}</td>
-                        <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder}/></td>
-                        {/* <td className='actionButtons'><button className='trialOrderContainerViewButton' onClick={createOrder}>View Order items</button></td> */}
-                        <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={distinctOrder.orderNoId} setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."}/></td>
-
-                        {/* <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={distinctOrder.orderNoId} setView={setViewUpdate} buttonText={"Update Order Items"}/></td> */}
-                        {/* <td className='actionButtons'><button className='trialOrderContainerUpdateButton' onClick={togglePopupCreateOrderConfirmation}>Update Order No.</button></td> */}
-                        <td className='actionButtons'><button className='trialOrderContainerDeleteButton' onClick={togglePopupCreateOrderConfirmation}>Delete Order</button></td>
+                            <td>{index+1}</td>
+                            <td>{distinctOrder.orderNo}</td>
+                            <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder}/></td>
+                            <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={distinctOrder.orderNoId} setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."}/></td>
+                            <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={distinctOrder.orderNoId} setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"}/></td>
                         </tr>
                     )
                 )}

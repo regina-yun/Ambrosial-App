@@ -138,6 +138,10 @@
   margin-left: 95%;
 }
 
+.deleteCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
 .createOrderConfirmationPopup-box {
   width:30%;
   height: 35%;
@@ -176,6 +180,10 @@
 }
 
 .updateOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderConfirmation-close-icon{
   margin-left: 95%;
 }
 
