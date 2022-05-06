@@ -2,7 +2,17 @@ import './popup.css';
 
 function Popup(props){
 
-    if(props.popupType === 'createOrderPopup'){
+    if(props.popupType === 'loginPopup'){
+        return(
+            <div className="loginPopup-box">
+                <div className="login-box">
+                    <span className="login-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'createOrderPopup'){
         return(
             <div className="createOrderPopup-box">
                 <div className="createOrder-box">
