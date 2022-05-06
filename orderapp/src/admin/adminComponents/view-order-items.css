@@ -1,0 +1,10 @@
+.updateAndDeleteButtons{
+    width: 100%;
+    padding-top:3%;
+    padding-bottom:3%;
+  }
+
+.updateAndDeleteButtonsContainer{
+    width: 20%;
+    border:1px solid white;
+}

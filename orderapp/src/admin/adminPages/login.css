@@ -1,0 +1,120 @@
+body {
+  background: none;
+  background-color: black;
+  color: white;
+}
+
+.login-container {
+  width: 30%;
+  height: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-input {
+  position: relative;
+  margin: 0 auto;
+  width: 20rem;
+  height: 5rem;
+}
+
+#username-input,
+#password-input{
+  position: absolute;
+  top: 0;
+  left: 4%;
+  width: 80%;
+  height: 5%;
+  border: 2px solid white;
+  font-size: inherit;
+  border-radius: 0.5rem;
+  color: white;
+  outline: none;
+  padding: 1.25rem;
+  background: none;
+}
+
+#username-input:hover,
+#password-input:hover {
+  border-color: yellow;
+}
+
+#username-input:focus,
+#password-input:focus {
+  border-color: yellow;
+}
+
+.login-username-label,
+.login-pw-label {
+  position: absolute;
+  left: 1.5rem;
+  top: 0.8rem;
+  padding: 0 0.2rem;
+  color: white;
+  cursor: text;
+  transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+  background-color: black;
+}
+
+#username-input:focus ~ .login-username-label,
+#username-input:not(:placeholder-shown)#username-input:not(:focus)
+~ .login-username-label {
+  top: -0.5rem;
+  font-size: 0.9rem;
+  left: 1.5rem;
+}
+
+#password-input:focus ~ .login-pw-label,
+#password-input:not(:placeholder-shown)#password-input:not(:focus)
+~ .login-pw-label {
+  top: -0.5rem;
+  font-size: 0.9rem;
+  left: 1.5rem;
+}
+
+.login-forgot-password-div {
+  padding: 5% 0%;
+}
+.login-forgot-password-link {
+  color: white;
+  text-decoration: none;
+}
+
+.login-forgot-password-link:hover{
+  color:orange;
+  text-decoration: underline;
+}
+
+.login-page-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 10%;
+}
+
+.login-button-div,
+.login-cancel-button-div {
+  padding: 5%;
+}
+
+.login-button,
+.login-cancel-button {
+  padding: 0.5rem 1rem;
+  background-color: orange;
+  font-weight: bold;
+  border: solid 3px green
+}
+
+.login-button:hover,
+.login-cancel-button:hover {
+  color: white
+}
+
+.login-link {
+  text-decoration: none;
+  color: black
+}
+
+.login-link:hover {
+  color: white;
+}
