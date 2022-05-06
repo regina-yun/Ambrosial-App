@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Custombutton from "./buttons/Custombutton";
+import capitalize from 'capitalize-the-first-letter';
 import './Menuitemcomponent.css';
 
 function Menuitemcomponent(props){
@@ -90,7 +91,7 @@ function Menuitemcomponent(props){
                 </div>
 
                  <div className="item-desc-container">
-                     <label id="item-name">{props.data.name}</label><br/>
+                     <label id="item-name">{capitalize(props.data.alt)}</label><br/>
                      <label id="item-price">${props.data.price}</label>
                  </div>
                 

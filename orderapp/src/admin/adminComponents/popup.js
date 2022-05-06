@@ -2,41 +2,31 @@ import './popup.css';
 
 function Popup(props){
 
-    if(props.popupType === 'view-popup'){
+    if(props.popupType === 'loginPopup'){
         return(
-            <div className="view-popup-box">
-                <div className="view-box">
-                    <span className="view-close-icon" onClick={props.handleClose}>x</span>
+            <div className="loginPopup-box">
+                <div className="login-box">
+                    <span className="login-close-icon" onClick={props.handleClose}>x</span>
                         {props.content}
                 </div>
             </div>
         );
     }
-    else if(props.popupType === 'create-popup'){
+    else if(props.popupType === 'updatePasswordErrorPopup'){
         return(
-            <div className="create-popup-box">
-                <div className="create-box">
-                    <span className="create-close-icon" onClick={props.handleClose}>x</span>
+            <div className="updatePasswordError-box">
+                <div className="updatePasswordError-box">
+                    <span className="updatePasswordError-close-icon" onClick={props.handleClose}>x</span>
                         {props.content}
                 </div>
             </div>
         );
     }
-    else if(props.popupType === 'update-popup'){
+    else if(props.popupType === 'updatePasswordSuccessPopup'){
         return(
-            <div className="update-popup-box">
-                <div className="update-box">
-                    <span className="update-close-icon" onClick={props.handleClose}>x</span>
-                        {props.content}
-                </div>
-            </div>
-        );
-    }
-    else if(props.popupType === 'delete-popup'){
-        return(
-            <div className="delete-popup-box">
-                <div className="delete-box">
-                    <span className="delete-close-icon" onClick={props.handleClose}>x</span>
+            <div className="updatePasswordSuccess-box">
+                <div className="updatePasswordSuccess-box">
+                    <span className="updatePasswordSuccess-close-icon" onClick={props.handleClose}>x</span>
                         {props.content}
                 </div>
             </div>
@@ -117,6 +107,66 @@ function Popup(props){
             <div className="createReceiptPopup-box">
                 <div className="createReceipt-box">
                     <span className="createReceipt-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'createReceiptConfirmationPopup'){
+        return(
+            <div className="createReceiptConfirmationPopup-box">
+                <div className="createReceiptConfirmation-box">
+                    <span className="createReceiptConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'updateReceiptPopup'){
+        return(
+            <div className="updateReceiptPopup-box">
+                <div className="updateReceipt-box">
+                    <span className="updateReceipt-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'updateReceiptConfirmationPopup'){
+        return(
+            <div className="updateReceiptConfirmationPopup-box">
+                <div className="updateReceiptConfirmation-box">
+                    <span className="updateReceiptConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'deleteReceiptPopup'){
+        return(
+            <div className="deleteReceiptPopup-box">
+                <div className="deleteReceipt-box">
+                    <span className="deleteReceipt-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'deleteReceiptConfirmationPopup'){
+        return(
+            <div className="deleteReceiptConfirmationPopup-box">
+                <div className="deleteReceiptConfirmation-box">
+                    <span className="deleteReceiptConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'viewReceiptPopup'){
+        return(
+            <div className="viewReceiptPopup-box">
+                <div className="viewReceipt-box">
+                    <span className="viewReceipt-close-icon" onClick={props.handleClose}>x</span>
                         {props.content}
                 </div>
             </div>
