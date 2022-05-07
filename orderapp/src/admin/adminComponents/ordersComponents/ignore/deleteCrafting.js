@@ -1,4 +1,4 @@
-//delete distinct order
+    //delete receipt
     //setting delete view
     const [viewDelete, setViewDelete] = useState(false);
     const [viewConfirmationDeletePopupOpen, setViewConfirmationDeletePopupOpen] = useState(false);
@@ -10,39 +10,38 @@
     //setting of the update distinct order confirmation
 
     //function to toggle the popup update
-    function toggleDeleteOrderItemPopup(){
+    function toggleDeleteReceiptPopup(){
         setViewDelete(!viewDelete);
         setDeleteSubmitStatus(false);
         setModalVisible(!modalVisible);
     }
 
     //function to validate the input tag for update
-    function onSubmitValidateinputForDelete(event){
-        event.preventDefault();
-
-        toggleDeleteOrderItemConfirmation();
+    function onSubmitValidateinputForDelete(){
+        
+        toggleDeleteReceiptConfirmation();
     }
 
-    function toggleDeleteOrderItemConfirmation() {
+    function toggleDeleteReceiptConfirmation() {
         
-        console.log('in toggleDeleteOrderItemConfirmation');
+        console.log('in toggleDeleteReceiptConfirmation');
         setViewDelete(!viewDelete);
         setViewConfirmationDeletePopupOpen(!viewConfirmationDeletePopupOpen);
-        toggleDeleteOrderItemPopup();
+        toggleDeleteReceiptPopup();
         setDeleteSubmitStatus(false);
         
     }
 
-    function closePopupDeleteOrderItemConfirmation(){
+    function closePopupDeleteReceiptConfirmation(){
 
         setDeleteDataClicked(false);
-        setDeleteOrderItemStatus(false);
-        setDeleteOrderItemStatusMessage(false);
+        setDeleteReceiptStatus(false);
+        setDeleteReceiptStatusMessage(false);
         setDeleteSubmitStatus(false);
         setDeleteSubmitStatusMessage('');
         setViewDelete(true);
         setViewConfirmationDeletePopupOpen(false);
-        console.log('In closePopupDeleteOrderItemConfirmation');
+        console.log('In closePopupDeleteReceiptConfirmation');
     }
 
     //final close
@@ -50,8 +49,8 @@
         
 
         setDeleteDataClicked(false);
-        setDeleteOrderItemStatus(false);
-        setDeleteOrderItemStatusMessage(false);
+        setDeleteReceiptStatus(false);
+        setDeleteReceiptStatusMessage(false);
         setDeleteSubmitStatus(false);
         setDeleteSubmitStatusMessage('');
         setViewDelete(false);
@@ -60,30 +59,30 @@
 
     //setting of update being clicked and updating of order no for distinct order
     //For the result of the post
-    const [deleteOrderItemStatus, setDeleteOrderItemStatus] = useState(false);
-    const [deleteOrderItemStatusMessage, setDeleteOrderItemStatusMessage] = useState(false);
+    const [deleteOrderItemStatus, setDeleteReceiptStatus] = useState(false);
+    const [deleteOrderItemStatusMessage, setDeleteReceiptStatusMessage] = useState(false);
     //For showing the result message
     const [deleteDataClicked, setDeleteDataClicked] = useState(false);
 
-    async function deleteOrderItem(){
+    async function deleteReceipt(){
         console.log('called delete order item');
 
 
-        await ambrosialAxiosAPI.delete(`/deleteorder/${orderId}`)
+        await ambrosialAxiosAPI.delete(`/deletereceipt/${receiptID}`)
         .then((response) => {
             console.log(`${response.config.method} method for route: ${response.config.url}`);
             console.log(`response Status: ${response.data.status}`);
             console.log(`response Message: ${response.data.message}`);
             console.log("response Data: ", response.data.data);
-            setDeleteOrderItemStatus(response.data.status);
-            setDeleteOrderItemStatusMessage(response.data.message);
+            setDeleteReceiptStatus(response.data.status);
+            setDeleteReceiptStatusMessage(response.data.message);
         })
         .catch((error) => {
             console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
             console.log(`Error Status: ${error.response.data.status}`);
             console.log(`Error Message: ${error.response.data.message}`);
-            setDeleteOrderItemStatus(error.response.data.status);
-            setDeleteOrderItemStatusMessage(error.response.data.message);
+            setDeleteReceiptStatus(error.response.data.status);
+            setDeleteReceiptStatusMessage(error.response.data.message);
         });
 
         setDeleteDataClicked(true);
@@ -93,8 +92,8 @@
 
     {/* delete Popup */}
     {viewDelete && <Popup
-        popupType='deleteOrderItemPopup'
-        handleClose={toggleDeleteDistinctOrderPopup}
+        popupType='deleteReceiptPopup'
+        handleClose={toggleDeleteReceiptPopup}
         content={
             <form onSubmit={onSubmitValidateinputForDelete}>
                 <label className='formHeaderDelete'>Delete Order Record</label>
@@ -102,7 +101,7 @@
                 <br></br>
 
                 <label className='formLabelTextDelete'>Order No.:</label>
-                <label className='formLabelOrderNo'>{viewOrderItemsOrderNo}</label>
+                <label className='formLabelOrderNo'>{orderNo}</label>
                 <br></br>
 
                 {/* <label className='formLabelTextUpdate'>Order No. :</label>
@@ -118,10 +117,10 @@
         }/>}
 
         {viewConfirmationDeletePopupOpen && <Popup
-        popupType='deleteOrderItemConfirmationPopup'
-        handleClose={toggleDeleteDistinctOrderConfirmation}
+        popupType='deleteReceiptConfirmationPopup'
+        handleClose={toggleDeleteReceiptConfirmation}
         content={
-            <ConfirmationPopupContents  invokeAction={deleteOrderItem} invokeRefresh={getAllOrderedItems} xButtonClose={closePopupDeleteOrderItemConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteOrderItemStatusMessage}/>
+            <ConfirmationPopupContents  invokeAction={deleteReceipt} invokeRefresh={getReceipts} xButtonClose={closePopupDeleteReceiptConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteOrderItemStatusMessage}/>
         }/>
         } 
 

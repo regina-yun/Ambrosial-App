@@ -112,10 +112,10 @@ export default function Receipt(props) {
     //setting of receiptID for each row
     const [receiptID, setReceiptID] = useState(false);
     //setting of menuitem name for each row
-    const [orderNoId, setOrderNo] = useState(0);
+    const [orderNo, setOrderNo] = useState(0);
 
     console.log("receiptID is ", receiptID);
-    //console.log("orderNoUpdate is ", orderNoUpdate);
+
 
     //Validating the input tag
     const [updateSubmitStatus, setUpdateSubmitStatus] = useState(false);
@@ -224,78 +224,97 @@ export default function Receipt(props) {
     /////////////////////////////////////////////////////////////////////////////
 
 
+    //Delete Receipt
+    //setting delete view
+    const [viewDelete, setViewDelete] = useState(false);
+    const [viewConfirmationDeletePopupOpen, setViewConfirmationDeletePopupOpen] = useState(false);
+    console.log("viewDelete is ", viewDelete);
+    console.log("viewConfirmationDeletePopupOpen is ", viewConfirmationDeletePopupOpen);
+    //Validating the input tag
+    const [deleteSubmitStatus, setDeleteSubmitStatus] = useState(false);
+    const [deleteSubmitStatusMessage, setDeleteSubmitStatusMessage] = useState('');
+
+    //setting of the update distinct order confirmation
+
+    //function to toggle the popup update
+    function toggleDeleteReceiptPopup(){
+        setViewDelete(!viewDelete);
+        setDeleteSubmitStatus(false);
+        setModalVisible(!modalVisible);
+    }
+
+    //function to validate the input tag for update
+    function onSubmitValidateinputForDelete(){
+        
+        toggleDeleteReceiptConfirmation();
+    }
+
+    function toggleDeleteReceiptConfirmation() {
+        
+        console.log('in toggleDeleteReceiptConfirmation');
+        setViewDelete(!viewDelete);
+        setViewConfirmationDeletePopupOpen(!viewConfirmationDeletePopupOpen);
+        toggleDeleteReceiptPopup();
+        setDeleteSubmitStatus(false);
+        
+    }
+
+    function closePopupDeleteReceiptConfirmation(){
+
+        setDeleteDataClicked(false);
+        setDeleteReceiptStatus(false);
+        setDeleteReceiptStatusMessage(false);
+        setDeleteSubmitStatus(false);
+        setDeleteSubmitStatusMessage('');
+        setViewDelete(true);
+        setViewConfirmationDeletePopupOpen(false);
+        console.log('In closePopupDeleteReceiptConfirmation');
+    }
+
+    //final close
+    function handleCloseDeletePopups(){
+        
+
+        setDeleteDataClicked(false);
+        setDeleteReceiptStatus(false);
+        setDeleteReceiptStatusMessage(false);
+        setDeleteSubmitStatus(false);
+        setDeleteSubmitStatusMessage('');
+        setViewDelete(false);
+        setViewConfirmationDeletePopupOpen(false);
+    }
+
+    //setting of update being clicked and updating of order no for distinct order
+    //For the result of the post
+    const [deleteOrderItemStatus, setDeleteReceiptStatus] = useState(false);
+    const [deleteOrderItemStatusMessage, setDeleteReceiptStatusMessage] = useState(false);
+    //For showing the result message
+    const [deleteDataClicked, setDeleteDataClicked] = useState(false);
+
+    async function deleteReceipt(){
+        console.log('called delete order item');
 
 
+        await ambrosialAxiosAPI.delete(`/deletereceipt/${receiptID}`)
+        .then((response) => {
+            console.log(`${response.config.method} method for route: ${response.config.url}`);
+            console.log(`response Status: ${response.data.status}`);
+            console.log(`response Message: ${response.data.message}`);
+            console.log("response Data: ", response.data.data);
+            setDeleteReceiptStatus(response.data.status);
+            setDeleteReceiptStatusMessage(response.data.message);
+        })
+        .catch((error) => {
+            console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+            console.log(`Error Status: ${error.response.data.status}`);
+            console.log(`Error Message: ${error.response.data.message}`);
+            setDeleteReceiptStatus(error.response.data.status);
+            setDeleteReceiptStatusMessage(error.response.data.message);
+        });
 
-
-    // //Delete Receipt
-    // //Submit popup and confirmation popup
-    // const [deleteReceiptPopupOpen, setDeleteReceiptPopupOpen] = useState(false);
-
-    // function togglePopupDeleteReceipt() {
-    //     setDeleteReceiptPopupOpen(!deleteReceiptPopupOpen);
-    //     setSubmitStatusMessageStatus(false);
-    // }
-
-    // function onSubmitValidateInput(event){
-    //     event.preventDefault();
-    //     if(!receiptID || !orderNoIdValue || !totalItemPriceValue) {
-    //         setSubmitStatusMessageStatus(true);
-    //         setSubmitStatusMessage('***Please check the input fields***');
-    //         return;
-    //     }
-
-    //     togglePopupDeleteReceiptConfirmation();
-    // }
-
-    // function togglePopupDeleteReceiptConfirmation() {
-    //     // event.preventDefault();
-    //     setCreateReceiptConfirmationPopupOpen(!createReceiptConfirmationPopupOpen);
-    //     togglePopupDeleteReceipt();
-    //     setSubmitStatusMessageStatus(false);
-    // }
-
-    // function closePopupDeleteReceiptConfirmation(){
-    //     resetInputsToDefaultValue();
-    //     togglePopupDeleteReceiptConfirmation();
-    // }
-
-    // function resetInputsToDefaultValue(){
-    //     setOrderNoIdValue(0);
-    //     setTotalItemPriceValue(0);
-
-    //     setSubmitStatusMessageStatus(false);
-    // }
-
-    // function handleClosePopups(event){
-    //     event.preventDefault();
-    //     setDeleteReceiptPopupOpen(!deleteReceiptPopupOpen);
-    //     setCreateReceiptConfirmationPopupOpen(!createReceiptConfirmationPopupOpen);
-    //     //setPostDataClicked(false);
-    // }
-    
-    // async function deleteReceipt(event){
-    //     console.log('called delete receipt');
-    //     event.preventDefault();
-
-    //     await ambrosialAxiosAPI.delete('/deletereceipt/:receiptID')
-    //     .then((response) => {
-    //          console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-    //          console.log(`response Status: ${response.data.status}`);
-    //          console.log(`response Message: ${response.data.message}`);
-    //          console.log("response Data: ", response.data.data);
-    //          setPostStatus(response.data.status);
-    //          setPostStatusMessage(response.data.message);
-    //       })
-    //     .catch((error) => {
-    //         console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-    //         console.log(`Error Status: ${error.response.data.status}`);
-    //         console.log(`Error Message: ${error.response.data.message}`);
-    //         setPostStatus(error.response.data.status);
-    //         setPostStatusMessage(error.response.data.message);
-    //       });
-    //       setPostDataClicked(true);
-    // }
+        setDeleteDataClicked(true);
+    }
+    /////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -357,14 +376,21 @@ export default function Receipt(props) {
             setModalVisible(true);
         }
 
-        if((createReceiptPopupOpen===false) && (createReceiptConfirmationPopupOpen===false) && (viewUpdate===false) && (viewConfirmationUpdatePopupOpen===false)){
-            // && (viewDelete===false) && (viewConfirmationDeletePopupOpen===false)
+        if((viewDelete===true)){
+            setModalVisible(true);
+        }
+
+        if((viewConfirmationDeletePopupOpen === true) ){
+            setModalVisible(true);
+        }
+
+        if((createReceiptPopupOpen===false) && (createReceiptConfirmationPopupOpen===false) && (viewUpdate===false) && (viewConfirmationUpdatePopupOpen===false) && (viewDelete===false) && (viewConfirmationDeletePopupOpen===false)){
             setModalVisible(false);
         }else{
             console.log('not all popup states are false');
         }
         
-    }, [createReceiptPopupOpen, createReceiptConfirmationPopupOpen, viewUpdate, viewConfirmationUpdatePopupOpen]);
+    }, [createReceiptPopupOpen, createReceiptConfirmationPopupOpen, viewUpdate, viewConfirmationUpdatePopupOpen, viewDelete, viewConfirmationDeletePopupOpen]);
 
 
     console.log('totalItemPrice is:', totalItemPriceValue);
@@ -446,65 +472,36 @@ export default function Receipt(props) {
                 <ConfirmationPopupContents  invokeAction={updateReceipts} invokeRefresh={getReceipts} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateOrderItemsStatusMessage}/>
             }/>}
 
-
-
-            {/* {modalVisibleUpdateReceipt ? <div className='modal-one'></div>:null}
             
+            {/* delete Popup */}
+            {viewDelete && <Popup
+                popupType='deleteReceiptPopup'
+                handleClose={toggleDeleteReceiptPopup}
+                content={
+                    <form onSubmit={onSubmitValidateinputForDelete}>
+                        <label className='formHeaderDelete'>Delete Receipt Record</label>
+                        <br></br>
+                        <br></br>
 
+                        <label className='formLabelTextDelete'>For Order No.:</label>
+                        <label className='formLabelOrderNo'>{orderNo}</label>
+                        <br></br>
 
+                        <button className='deleteCurrentDistinctOrderButton'>Submit</button>
+                        <br></br>
+                        <br></br>
 
+                        {deleteSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label>:null}
+                    </form>
+                }/>}
 
-
-            {modalVisibleDeleteReceipt ? <div className='modal-one'></div>:null}
-            {deleteReceiptPopupOpen && <Popup
-            popupType='deleteReceiptPopup'
-            handleClose={togglePopupDeleteReceipt}
-            content={
-                <form onSubmit={onSubmitValidateInput}>
-                    <div>
-                    <label className='deleteReceiptConfirmationHeader'>Are You Sure ?</label>
-                    <br></br>
-                    {!postDataClicked ?  
-                        <div>
-                            <button className='deleteReceiptConfirmationYesButton' onClick={deleteReceipt}>Yes</button>
-                            <button className='deleteReceiptConfirmationNoButton' onClick={closePopupDeleteReceiptConfirmation}>No</button>
-                        </div>:
-                        <button type="button" className='deleteReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-                    }
-                    <br></br>
-                    {postDataClicked ? <div className='deleteReceiptConfirmationStatusMessageContainer'><label className='deleteReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-                </div>
-
-                    {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
-                </form>
-            }/>}
-
-
-
-
-
-            {modalVisibleConfirmationReceipt ? <div className='modal-two'></div>:null}
-            {createReceiptConfirmationPopupOpen && <Popup
-            popupType='deleteReceiptConfirmationPopup'
-            handleClose={togglePopupDeleteReceiptConfirmation}
-            content={
-                <div>
-                    <label className='deleteReceiptConfirmationHeader'>Are You Sure ?</label>
-                    <br></br>
-                    {!postDataClicked ? 
-                        <div>
-                            <button className='deleteReceiptConfirmationYesButton' onClick={updateReceipt}>Yes</button>
-                            <button className='deleteReceiptConfirmationNoButton' onClick={closePopupUpdateReceiptConfirmation}>No</button>
-                        </div>:
-                        <button type="button" className='deleteReceiptConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-                    }
-                    <br></br>
-                    {postDataClicked ? <div className='deleteReceiptConfirmationStatusMessageContainer'><label className='deleteReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-                </div>
-            }/>}   */}
-
-
-
+                {viewConfirmationDeletePopupOpen && <Popup
+                popupType='deleteReceiptConfirmationPopup'
+                handleClose={toggleDeleteReceiptConfirmation}
+                content={
+                    <ConfirmationPopupContents  invokeAction={deleteReceipt} invokeRefresh={getReceipts} xButtonClose={closePopupDeleteReceiptConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteOrderItemStatusMessage}/>
+                }/>
+                } 
 
 
             <div className="receipt">
@@ -519,10 +516,10 @@ export default function Receipt(props) {
                     {receiptsListData.map((receiptsList, index)=>(
                             <tr key={receiptsList.orderNoId}>
                             <td>{index+1}</td>
-                            <td>{receiptsList.orderNoId}</td>
+                            <td>{receiptsList.DistinctOrderList.orderNo}</td>
                             <td className='actionButtons'><ViewOrderItemsButton setReceiptNo={setViewOrderItemsOrderNo} orderNo={receiptsList.orderNoId} setViewReceipt={setViewReceipt}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewUpdate} buttonText={"Update Receipt"}/></td>
-                            <td className='actionButtons'><button className='trialReceiptContainerDeleteButton' onClick={togglePopupCreateReceiptConfirmation}>Delete Receipt</button></td>
+                            <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewDelete} buttonText={"Delete Receipt"}/></td>
                             </tr>
                         )
                     )}
