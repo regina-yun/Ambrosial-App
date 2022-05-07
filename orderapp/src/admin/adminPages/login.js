@@ -106,7 +106,7 @@ function Login() {
                   </button>
                 </div>
                 
-                {modalVisibleLogin && <div className='modal'>
+                {modalVisibleLogin && <div className='login-modal'>
                     {loginPopupOpen && <Popup
                       popupType='loginPopup'
                       handleClose={togglePopupLogin}
