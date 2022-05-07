@@ -94,3 +94,37 @@
   padding-bottom: 1%;
   
 }
+
+.formHeaderUpdateOrderItem{
+  font-size: 300%;
+  margin-left:0%;
+}
+
+.updateOrderConfirmationHeader{
+  font-size: 300%;
+  margin-left: 25%;
+}
+
+.formLabelTextUpdateOrder{
+  margin-left:0%;
+}
+
+.formLabelTextUpdateOrderMenuItemId{
+  margin-left:-1%;
+}
+
+.formLabelTextUpdateOrderQuantity{
+  margin-left:4.5%;
+}
+
+.formLabelTextUpdateOrderTotalItemPrice{
+  margin-left:-3.8%;
+}
+
+.formLabelTextUpdateOrderTableNo{
+  margin-left:4%;
+}
+
+.formLabelTextUpdateOrderOrderStatus{
+  margin-left:0.2%;
+}

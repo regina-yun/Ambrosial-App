@@ -112,14 +112,6 @@ async function createOrder(event){
         totalItemPrice:totalItemPriceValue,
         tableNo:tableNoValue,
         orderStatus:orderStatusValue
-
-        /**prisma syntax
-         * orderNoId:orderNoIdValue,
-    //     menuItemId:menuItemIDValue,
-    //     quantity:quantityValue,
-    //     totalItemPrice:totalItemPriceValue,
-    //     tableNo:tableNoValue,
-    //     orderStatus:orderStatusValue, */
     })
     .then((response) => {
          console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
@@ -140,6 +132,141 @@ async function createOrder(event){
     
       setPostDataClicked(true);
 }
+
+//update///////////////////////////////////////////////////////////////////////////
+//setting update view
+const [viewUpdate, setViewUpdate] = useState(false);
+const [viewConfirmationUpdatePopupOpen, setViewConfirmationUpdatePopupOpen] = useState(false);
+
+//setting of orderId for each row
+const [orderId, setOrderId] = useState(false);
+//const [orderNoUpdate, setOrderNoUpdate] = useState(0);
+
+console.log("orderId is ", orderId);
+//console.log("orderNoUpdate is ", orderNoUpdate);
+
+//Validating the input tag
+const [updateSubmitStatus, setUpdateSubmitStatus] = useState(false);
+const [updateSubmitStatusMessage, setUpdateSubmitStatusMessage] = useState('');
+
+//setting of the update distinct order confirmation
+
+//function to toggle the popup update
+function toggleUpdateOrderItemsPopup(){
+    setViewUpdate(!viewUpdate);
+    setUpdateSubmitStatus(false);
+    setModalVisible(!modalVisible);
+}
+
+//function to validate the input tag for update
+function onSubmitValidateinputForUpdate(event){
+    event.preventDefault();
+    console.log(orderNoIdValueUpdate);
+    if(!orderNoIdValueUpdate || !menuItemIDValueUpdate || !quantityValueUpdate || !totalItemPriceValueUpdate || !tableNoValueUpdate || !orderStatusValueUpdate){
+        setUpdateSubmitStatus(true);
+        setUpdateSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
+        console.log('inhere');
+        return;
+    }
+
+    toggleUpdateOrderItemsConfirmation();
+}
+
+function toggleUpdateOrderItemsConfirmation() {
+    // event.preventDefault();
+    console.log('in toggle here');
+    setViewUpdate(!viewUpdate);
+    setViewConfirmationUpdatePopupOpen(!viewConfirmationUpdatePopupOpen);
+    toggleUpdateOrderItemsPopup();
+    setUpdateSubmitStatus(false);
+    //setOrderNoUpdate(0);
+}
+
+function closePopupUpdateDistinctOrderConfirmation(){
+    //setOrderNoUpdate(0);
+    setOrderNoIdValueUpdate(0);
+    setMenuItemIDValueUpdate(0);
+    setQuantityValueUpdate(0);
+    setTotalItemPriceValueUpdate(0);
+    setTableNoValueUpdate(0);
+    setOrderStatusValueUpdate('');
+
+    setUpdateDataClicked(false);
+    setUpdateOrderItemStatus(false);
+    setUpdateOrderItemsStatusMessage(false);
+    setUpdateSubmitStatus(false);
+    setUpdateSubmitStatusMessage('');
+    setViewUpdate(true);
+    setViewConfirmationUpdatePopupOpen(false);
+    console.log('in here');
+}
+
+//final close
+function handleCloseUpdatePopups(event){
+    //setOrderNoUpdate(0);
+    setOrderNoIdValueUpdate(0);
+    setMenuItemIDValueUpdate(0);
+    setQuantityValueUpdate(0);
+    setTotalItemPriceValueUpdate(0);
+    setTableNoValueUpdate(0);
+    setOrderStatusValueUpdate('');
+
+    setUpdateDataClicked(false);
+    setUpdateOrderItemStatus(false);
+    setUpdateOrderItemsStatusMessage(false);
+    setUpdateSubmitStatus(false);
+    setUpdateSubmitStatusMessage('');
+    setViewUpdate(false);
+    setViewConfirmationUpdatePopupOpen(false);
+}
+
+//For the inputs to update order
+const [orderNoIdValueUpdate, setOrderNoIdValueUpdate] = useState(0);
+const [menuItemIDValueUpdate, setMenuItemIDValueUpdate] = useState(0);
+const [quantityValueUpdate, setQuantityValueUpdate] = useState(0);
+const [totalItemPriceValueUpdate, setTotalItemPriceValueUpdate] = useState(0);
+const [tableNoValueUpdate, setTableNoValueUpdate] = useState(0);
+const [orderStatusValueUpdate, setOrderStatusValueUpdate] = useState('');
+
+
+//setting of update being clicked and updating of order no for distinct order
+//For the result of the post
+const [updateOrderItemStatus, setUpdateOrderItemStatus] = useState(false);
+const [updateOrderItemsStatusMessage, setUpdateOrderItemsStatusMessage] = useState(false);
+//For showing the result message
+const [updateDataClicked, setUpdateDataClicked] = useState(false);
+
+async function updateOrderItems(){
+    console.log('called update order item');
+
+    await ambrosialAxiosAPI.put(`/updateorder/${orderId}`, {    
+        orderNoId:orderNoIdValueUpdate,
+        menuItemID:menuItemIDValueUpdate,
+        quantity:quantityValueUpdate,
+        totalItemPrice:totalItemPriceValueUpdate,
+        tableNo:tableNoValueUpdate,
+        orderStatus:orderStatusValueUpdate
+    })
+    .then((response) => {
+         console.log(`${response.config.method} method for route: ${response.config.url}`);
+         console.log(`response Status: ${response.data.status}`);
+         console.log(`response Message: ${response.data.message}`);
+         console.log("response Data: ", response.data.data);
+         setUpdateOrderItemStatus(response.data.status);
+         setUpdateOrderItemsStatusMessage(response.data.message);
+    })
+    .catch((error) => {
+        console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+        console.log(`Error Status: ${error.response.data.status}`);
+        console.log(`Error Message: ${error.response.data.message}`);
+        setUpdateOrderItemStatus(error.response.data.status);
+        setUpdateOrderItemsStatusMessage(error.response.data.message);
+    });
+
+    setUpdateDataClicked(true);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 
     //order data status and ordereditems data
     const [orderedItemsDataStatus, setOrderedItemsDataStatus] = useState(false);
@@ -172,15 +299,8 @@ async function createOrder(event){
         }
     }, [props.viewOrder]);
 
-    //Create order item
-    function createOrderItem(){
-        togglePopupCreateOrder();
-    }
-    
-    //Update order item
-    function updateOrderItem(){
 
-    }
+    
 
     //Update many order item
     function updateManyOrderItem(){
@@ -208,17 +328,13 @@ async function createOrder(event){
             setModalVisible(true);
         }
 
-        // if((viewOrder===true)){
-        //     setModalVisible(true);
-        // }
+        if((viewUpdate===true)){
+            setModalVisible(true);
+        }
 
-        // if((viewUpdate===true)){
-        //     setModalVisible(true);
-        // }
-
-        // if((viewConfirmationUpdatePopupOpen=== true)){
-        //     setModalVisible(true);
-        // }
+        if((viewConfirmationUpdatePopupOpen=== true)){
+            setModalVisible(true);
+        }
 
         // if((viewDelete===true)){
         //     setModalVisible(true);
@@ -228,13 +344,13 @@ async function createOrder(event){
         //     setModalVisible(true);
         // }
 
-        if((createOrderPopupOpen===false) && (confirmationOrderPopupOpen===false) ){
+        if((createOrderPopupOpen===false) && (confirmationOrderPopupOpen===false) && (viewUpdate===false) && (viewConfirmationUpdatePopupOpen===false)){
             setModalVisible(false);
         }else{
             console.log('not all popup states are false');
         }
         
-    }, [createOrderPopupOpen, confirmationOrderPopupOpen,]);
+    }, [createOrderPopupOpen, confirmationOrderPopupOpen, viewUpdate, viewConfirmationUpdatePopupOpen]);
 //}, [createOrderPopupOpen, confirmationOrderPopupOpen, viewOrder, viewUpdate, viewConfirmationUpdatePopupOpen, viewDelete, viewConfirmationDeletePopupOpen]);
     return(
         <>
@@ -264,8 +380,8 @@ async function createOrder(event){
                                 <td>{index+1}</td>
                                 <td>{orderedItemsData.MenuItem.alt}</td>
                                 <td>{orderedItemsData.quantity}</td>
-                                <td className='updateAndDeleteButtonsContainer'><button className='updateAndDeleteButtons' onClick={updateOrderItem}>Update Item</button></td>
-                                {/* <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={props.setOrderNoId} orderNoId={orderedItemsData.orderNoId} setOrderNo={props.setOrderNo} orderNo={props.orderNo} setView={setViewUpdate} buttonText={"Update Order Item"}/></td> */}
+                                {/* <td className='updateAndDeleteButtonsContainer'><button className='updateAndDeleteButtons' onClick={updateOrderItem}>Update Item</button></td> */}
+                                <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderId} orderNoId={orderedItemsData.orderID} setOrderNo={props.setOrderNo} orderNo={props.orderNo} setView={setViewUpdate} buttonText={"Update Order Item"}/></td>
                                 <td className='updateAndDeleteButtonsContainer'><button className='updateAndDeleteButtons' onClick={deleteOrderItem}>Delete Item</button></td>
                                 
                                 {/* <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={distinctOrder.orderNoId} setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"}/></td> */}
@@ -279,7 +395,7 @@ async function createOrder(event){
                 </tr>}
 
                     <tr>
-                        <td colspan="2"><button onClick={createOrderItem}>Create Order Item</button></td>
+                        <td colspan="2"><button onClick={togglePopupCreateOrder}>Create Order Item</button></td>
                         <td colspan="2"><button onClick={updateManyOrderItem}>Update All Order Item(s)</button></td>
                     </tr>
 
@@ -341,7 +457,102 @@ async function createOrder(event){
         }/>}  
 
 
-        </>
+        {/* update Popup */}
+        {viewUpdate && <Popup
+            popupType='updateOrderItemPopup'
+            handleClose={toggleUpdateOrderItemsPopup}
+            content={
+                <form onSubmit={onSubmitValidateinputForUpdate}>
+                    <label className='formHeaderUpdateOrderItem'>Update Order Item</label>
+                        <br></br>
+                        <br></br>
+
+                        <label className='formLabelTextUpdateOrder'>Order No. Id:</label>
+                        <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                        <br></br>
+
+                        <label className='formLabelTextUpdateOrderMenuItemId'>Menu Item Id:</label>
+                        <input type="number" className='createInputMenuItemId' onChange={(e) => setMenuItemIDValueUpdate(e.target.value)}></input>
+                        <br></br>
+
+                        <label className='formLabelTextUpdateOrderQuantity'>Quantity:</label>
+                        <input type="number" className='createInputQuantity' onChange={(e) => setQuantityValueUpdate(e.target.value)}></input>
+                        <br></br>
+
+                        <label className='formLabelTextUpdateOrderTotalItemPrice'>Total Item Price:</label>
+                        <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
+                        <br></br>
+
+                        <label className='formLabelTextUpdateOrderTableNo'>Table No:</label>
+                        <input type="number" className='createInputTableNo' onChange={(e) => setTableNoValueUpdate(e.target.value)}></input>
+                        <br></br>
+
+                        <label className='formLabelTextUpdateOrderOrderStatus'>Order Status:</label>
+                        <input type="text" className='createInputOrderStatus' onChange={(e) => setOrderStatusValueUpdate(e.target.value)}></input>
+                        <br></br>
+
+                        <button className='createOrderItemsButton'>Submit</button>
+                        <br></br>
+                        <br></br>
+
+                    {updateSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{updateSubmitStatusMessage}</label>}</label>:null}
+                </form>
+        }/>}
+        
+        { viewConfirmationUpdatePopupOpen && <Popup
+        popupType='updateOrderItemConfirmationPopup'
+        handleClose={toggleUpdateOrderItemsConfirmation}
+        content={
+            //props needed are: updateOrderItems(), closePopupUpdateDistinctOrderConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateOrderItemsStatusMessage
+            <ConfirmationPopupContents  invokeAction={updateOrderItems} invokeRefresh={getAllOrderedItems} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateOrderItemsStatusMessage}/>
+        }/>}
+
+        {/* update Popup */}
+        {viewUpdate && <Popup
+        popupType='updateCurrentDistinctOrderPopup'
+        handleClose={toggleUpdateOrderItemsPopup}
+        content={
+            <form onSubmit={onSubmitValidateinputForUpdate}>
+                <label className='formHeaderUpdateOrderItem'>Create New Order Item</label>
+                    <br></br>
+                    <br></br>
+
+                    <label className='formLabelTextUpdateOrder'>Order No.:</label>
+                    <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
+                    <br></br>
+
+                    <label className='formLabelTextUpdateOrderMenuItemId'>Menu Item Id:</label>
+                    <input type="number" className='createInputMenuItemId' onChange={(e) => setMenuItemIDValue(e.target.value)}></input>
+                    <br></br>
+
+                    <label className='formLabelTextUpdateOrderQuantity'>Quantity:</label>
+                    <input type="number" className='createInputQuantity' onChange={(e) => setQuantityValue(e.target.value)}></input>
+                    <br></br>
+
+                    <label className='formLabelTextUpdateOrderTotalItemPrice'>Total Item Price:</label>
+                    <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
+                    <br></br>
+
+                    <label className='formLabelTextUpdateOrderTableNo'>Table No:</label>
+                    <input type="number" className='createInputTableNo' onChange={(e) => setTableNoValue(e.target.value)}></input>
+                    <br></br>
+
+                    <label className='formLabelTextUpdateOrderOrderStatus'>Order Status:</label>
+                    <input type="text" className='createInputOrderStatus' onChange={(e) => setOrderStatusValue(e.target.value)}></input>
+                    <br></br>
+
+                {updateSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{updateSubmitStatusMessage}</label>}</label>:null}
+            </form>
+        }/>}
+            
+        { viewConfirmationUpdatePopupOpen && <Popup
+        popupType='updateOrderConfirmationPopup'
+        handleClose={toggleUpdateOrderItemsConfirmation}
+        content={
+            //props needed are: updateOrderItems(), closePopupUpdateDistinctOrderConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateOrderItemsStatusMessage
+            <ConfirmationPopupContents  invokeAction={updateOrderItems} invokeRefresh={getAllOrderedItems} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateOrderItemsStatusMessage}/>
+        }/>}
+    </>
     )
 }
 

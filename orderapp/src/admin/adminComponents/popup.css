@@ -24,6 +24,19 @@
   z-index: 2;
 }
 
+.updateOrderItemPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3;
+}
+
 .deleteCurrentDistinctOrderPopup-box{
   width:30%;
   height: 35%;
@@ -42,6 +55,10 @@
 }
 
 .updateCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
+.updateOrderItem-close-icon{
   margin-left: 95%;
 }
 
@@ -90,6 +107,17 @@
   z-index: 2;
 }
 
+.updateOrderItemConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3;
+}
+
 .deleteOrderConfirmationPopup-box{
   width:30%;
   height: 35%;
@@ -110,6 +138,10 @@
 }
 
 .updateOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.updateOrderItemConfirmation-close-icon{
   margin-left: 95%;
 }
 

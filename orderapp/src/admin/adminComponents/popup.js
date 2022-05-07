@@ -102,6 +102,26 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'updateOrderItemPopup'){
+        return(
+            <div className="updateOrderItemPopup-box">
+                <div className="updateOrderItem-box">
+                    <span className="updateOrderItem-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'updateOrderItemConfirmationPopup'){
+        return(
+            <div className="updateOrderItemConfirmationPopup-box">
+                <div className="updateOrderItemConfirmation-box">
+                    <span className="updateOrderItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'deleteCurrentDistinctOrderPopup'){
         return(
             <div className="deleteCurrentDistinctOrderPopup-box">
