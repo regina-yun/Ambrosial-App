@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ambrosialAxiosAPI } from '../../api/api';
 import Popup from '../adminComponents/popup';
+import UpdateAndDeleteButton from '../adminComponents/commonComponents/UpdateAndDeleteButton';
+import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmationPopupContents';
 import './Payments.css';
 
 export default function Payments() {
@@ -25,7 +27,7 @@ export default function Payments() {
 		let newCreatePaymentInput = {...createPaymentInput};
 		newCreatePaymentInput[e.target.name] = e.target.value;
 		// setCreatePaymentSubmitMessageStatus(false);
-		setCreatePaymentInput(createPaymentInput);
+		setCreatePaymentInput(newCreatePaymentInput);
 	}
 
 	function onSubmitCreatePaymentInputValidation(e) {
@@ -172,14 +174,14 @@ export default function Payments() {
 		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
 	}
 
-	async function updatePayment(e) {
-		e.preventDefault();
+	async function updatePayment(data) {
+
 
 		await ambrosialAxiosAPI.put('/updatepayment/:invoiceID', {
-			paymentInvoiceID: updatePaymentInput.paymentInvoiceID,
-			receiptID: updatePaymentInput.receiptID,
-			paymentType: updatePaymentInput.paymentType,
-			paymentStatus: updatePaymentInput.paymentStatus
+			paymentInvoiceID: data.paymentInvoiceID,
+			receiptID: data.receiptID,
+			paymentType: data.paymentType,
+			paymentStatus: data.paymentStatus
 		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
@@ -241,10 +243,11 @@ export default function Payments() {
 		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
 	}
-	async function deletePayment(e) {
-		e.preventDefault();
-
-		await ambrosialAxiosAPI.delete('/deletepayment/:invoiceID')
+	async function deletePayment(data) {
+		
+		await ambrosialAxiosAPI.delete('/deletepayment/:invoiceID', {
+			receiptID: data.receiptID
+		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
 			console.log(`response Status: ${response.data.status}`);
@@ -271,7 +274,7 @@ export default function Payments() {
 //#region GET ALL PAYMENT
 	useEffect(() => {
 		getAllPayment();
-	});
+	}, []);
 
 	const [allPaymentLogsData, setAllPaymentLogsData] = useState([]);
 
@@ -353,20 +356,14 @@ export default function Payments() {
 				popupType='createPaymentConfirmationPopup'
 				handleClose={togglePopupCreatePaymentConfirmation}
 				content={
-					<div>
-						<label className='createPaymentConfirmationHeader'>Are You Sure ?</label>
-						<br></br>
-						{!updatePaymentPostDataClicked ? 
-							<div>
-								<button className='createPaymentConfirmationYesButton' onClick={createPayment}>Yes</button>
-								<button className='createPaymentConfirmationNoButton' onClick={closePopupCreatePaymentConfirmation}>No</button>
-							</div>:
-							<button type="button" className='createPaymentConfirmationYesButton'  onClick={handleCreatePaymentClosePopups} >Close</button>
-						}
-						<br></br>
-						{createPaymentPostDataClicked ? <div className='createPaymentConfirmationStatusMessageContainer'><label className='createPaymentConfirmationStatusMessage'>{createPaymentPostStatusMessage}</label></div>: null}
-					</div>
-					}/>
+					<ConfirmationPopupContents
+	         clickStatus={createPaymentPostDataClicked}
+					 statusMessage={createPaymentPostStatusMessage}
+					 invokeAction={createPayment}
+					 xButtonClose={closePopupCreatePaymentConfirmation}
+					 closeButton={handleCreatePaymentClosePopups}
+					/>
+				}/>
 				}   
 			</div>
 			}
@@ -405,19 +402,13 @@ export default function Payments() {
 				popupType='updatePaymentConfirmationPopup'
 				handleClose={togglePopupUpdatePaymentConfirmation}
 				content={
-					<div>
-						<label className='updatePaymentConfirmationHeader'>Are You Sure ?</label>
-						<br></br>
-						{!updatePaymentPostDataClicked ? 
-							<div>
-								<button className='updatePaymentConfirmationYesButton' onClick={updatePayment}>Yes</button>
-								<button className='updatePaymentConfirmationNoButton' onClick={closePopupUpdatePaymentConfirmation}>No</button>
-							</div>:
-							<button type="button" className='updatePaymentConfirmationYesButton'  onClick={handleUpdatePaymentClosePopups} >Close</button>
-						}
-						<br></br>
-						{updatePaymentPostDataClicked ? <div className='updatePaymentConfirmationStatusMessageContainer'><label className='updatePaymentConfirmationStatusMessage'>{updatePaymentPostStatusMessage}</label></div>: null}
-					</div>
+					<ConfirmationPopupContents
+					clickStatus={updatePaymentPostDataClicked}
+					statusMessage={updatePaymentPostStatusMessage}
+					invokeAction={updatePayment}
+					xButtonClose={closePopupUpdatePaymentConfirmation}
+					closeButton={handleUpdatePaymentClosePopups}
+					/>
 					}/>
 				}   
 			</div>
@@ -428,19 +419,13 @@ export default function Payments() {
 				popupType='deletePaymentConfirmationPopup'
 				handleClose={togglePopupDeletePaymentConfirmation}
 				content={
-					<div>
-						<label className='deletePaymentConfirmationHeader'>Are You Sure ?</label>
-						<br></br>
-						{!deletePaymentPostDataClicked ? 
-							<div>
-								<button className='deletePaymentConfirmationYesButton' onClick={deletePayment}>Yes</button>
-								<button className='deletePaymentConfirmationNoButton' onClick={closePopupDeletePaymentConfirmation}>No</button>
-							</div>:
-							<button type="button" className='deletePaymentConfirmationYesButton'  onClick={handleDeletePaymentClosePopups} >Close</button>
-						}
-						<br></br>
-						{deletePaymentPostDataClicked ? <div className='deletePaymentConfirmationStatusMessageContainer'><label className='deletePaymentConfirmationStatusMessage'>{deletePaymentPostStatusMessage}</label></div>: null}
-					</div>
+					<ConfirmationPopupContents
+					clickStatus={deletePaymentPostDataClicked}
+					statusMessage={deletePaymentPostStatusMessage}
+					invokeAction={deletePayment}
+					xButtonClose={closePopupDeletePaymentConfirmation}
+					closeButton={handleDeletePaymentClosePopups}
+					/>
 					}/>
 				}   
 			</div>
@@ -467,8 +452,8 @@ export default function Payments() {
 									<td>{paymentLogs.receiptID}</td>
 									<td>{paymentLogs.paymentType}</td>
 									<td>{paymentLogs.paymentStatus}</td>
-									<td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onClick={togglePopupUpdatePayment}>Update Payment Log</button></td>
-									<td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onclick={togglePopupDeletePaymentConfirmation}>Delete Payment Log</button></td>
+									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Update Payment Log'} setView={togglePopupUpdatePayment} setData={updatePayment} data={updatePaymentInput} setId={() => {}}/></td>
+									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Delete Payment Log'} setView={togglePopupDeletePaymentConfirmation} setData={deletePayment} data={updatePaymentInput} setId={() => {}}/></td>
 								</tr>
 							)
 						})}
