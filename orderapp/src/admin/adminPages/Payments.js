@@ -16,6 +16,7 @@ export default function Payments() {
 	const [modalVisibleCreatePaymentConfirmation, setModalVisibleCreatePaymentConfirmation] = useState(false);
 	const [createPaymentConfirmationPopupOpen, setCreatePaymentConfirmationPopupOpen] = useState(false);
 
+	const [createPaymentPostStatus, setCreatePaymentpostStatus] = useState(false);
 	const [createPaymentPostStatusMessage, setCreatePaymentPostStatusMessage] = useState(false);
 	const [createPaymentPostDataClicked, setCreatePaymentPostDataClicked] = useState(false);
 
@@ -82,13 +83,24 @@ export default function Payments() {
 			console.log(`response Status: ${response.data.status}`);
 			console.log(`response Message: ${response.data.message}`);
 			console.log("response Data: ", response.data.data);
+
+			setCreatePaymentpostStatus(response.data.status);
+			setCreatePaymentPostStatusMessage(response.data.message);
  		})
 		.catch((error) => {
-				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-				console.log(`Error Status: ${error.response.data.status}`);
-				console.log(`Error Message: ${error.response.data.message}`);
+			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+			console.log(`Error Status: ${error.response.data.status}`);
+			console.log(`Error Message: ${error.response.data.message}`);
+
+			setCreatePaymentpostStatus(response.data.status);
+			setCreatePaymentPostStatusMessage(response.data.message);
 		});
+		setCreatePaymentPostDataClicked(true);
 	}
+
+
+
+
 
 	//Update Payment
 
@@ -176,7 +188,50 @@ export default function Payments() {
 		});
 	}
 
+
+
+
+
 	//Delete Payment
+
+	// const [deletePaymentInput, setDeletePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
+
+	// const [deletePaymentMessage, setDeletePaymentMessage] = useState('');
+	// const [deletePaymentMessageStatus, setDeletePaymentMessageStatus] = useState(false);
+
+	// const [modalVisibleDeletePayment, setModalVisibleDeletePayment] = useState(false);
+	// const [deletePaymentPopupOpen, setDeletePaymentPopupOpen] = useState(false);
+	const [modalVisibleDeletePaymentConfirmation, setModalVisibleDeletePaymentConfirmation] = useState(false);
+	const [deletePaymentConfirmationPopupOpen, setDeletePaymentConfirmationPopupOpen] = useState(false);
+
+	const [deletePaymentPostStatusMessage, setDeletePaymentPostStatusMessage] = useState(false);
+	const [deletePaymentPostDataClicked, setDeletePaymentPostDataClicked] = useState(false);
+
+
+	// function togglePopupUpdatePayment() {
+	// 	setModalVisibleDeletePayment(!modalVisibleDeletePayment);
+	// 	setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
+	// }
+
+	function togglePopupDeletePaymentConfirmation(){
+		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
+		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
+	}
+
+	// function resetUpdateInputsToDefault() {
+	// 	setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''})
+	// }
+
+	function closePopupDeletePaymentConfirmation() {
+		// resetUpdateInputsToDefault();
+		togglePopupDeletePaymentConfirmation();
+	}
+
+	function handleDeletePaymentClosePopups(e) {
+		e.preventDefault();
+		// setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
+		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
+	}
 	async function deletePayment(e) {
 		e.preventDefault();
 
@@ -193,6 +248,10 @@ export default function Payments() {
 				console.log(`Error Message: ${error.response.data.message}`);
 		});
 	}
+
+
+
+
 
 	//Read All Payment
 	useEffect(() => {
@@ -217,6 +276,10 @@ export default function Payments() {
 				console.log(`Error Message: ${error.response.data.message}`);
 		});
 	}
+
+
+
+
 
 	//Read Specific Payment
 	async function getSpecificPayment(e) {
@@ -282,7 +345,7 @@ export default function Payments() {
 					<div>
 						<label className='createPaymentConfirmationHeader'>Are You Sure ?</label>
 						<br></br>
-						{!createPaymentPostDataClicked ? 
+						{!updatePaymentPostDataClicked ? 
 							<div>
 								<button className='createPaymentConfirmationYesButton' onClick={createPayment}>Yes</button>
 								<button className='createPaymentConfirmationNoButton' onClick={closePopupCreatePaymentConfirmation}>No</button>
@@ -334,7 +397,7 @@ export default function Payments() {
 					<div>
 						<label className='updatePaymentConfirmationHeader'>Are You Sure ?</label>
 						<br></br>
-						{!createPaymentPostDataClicked ? 
+						{!updatePaymentPostDataClicked ? 
 							<div>
 								<button className='updatePaymentConfirmationYesButton' onClick={updatePayment}>Yes</button>
 								<button className='updatePaymentConfirmationNoButton' onClick={closePopupUpdatePaymentConfirmation}>No</button>
@@ -343,6 +406,29 @@ export default function Payments() {
 						}
 						<br></br>
 						{updatePaymentPostDataClicked ? <div className='updatePaymentConfirmationStatusMessageContainer'><label className='updatePaymentConfirmationStatusMessage'>{updatePaymentPostStatusMessage}</label></div>: null}
+					</div>
+					}/>
+				}   
+			</div>
+			}
+
+			{modalVisibleDeletePaymentConfirmation && <div className='modal'>
+				{deletePaymentConfirmationPopupOpen && <Popup
+				popupType='deletePaymentConfirmationPopup'
+				handleClose={togglePopupDeletePaymentConfirmation}
+				content={
+					<div>
+						<label className='deletePaymentConfirmationHeader'>Are You Sure ?</label>
+						<br></br>
+						{!deletePaymentPostDataClicked ? 
+							<div>
+								<button className='deletePaymentConfirmationYesButton' onClick={deletePayment}>Yes</button>
+								<button className='deletePaymentConfirmationNoButton' onClick={closePopupDeletePaymentConfirmation}>No</button>
+							</div>:
+							<button type="button" className='deletePaymentConfirmationYesButton'  onClick={handleDeletePaymentClosePopups} >Close</button>
+						}
+						<br></br>
+						{deletePaymentPostDataClicked ? <div className='deletePaymentConfirmationStatusMessageContainer'><label className='deletePaymentConfirmationStatusMessage'>{deletePaymentPostStatusMessage}</label></div>: null}
 					</div>
 					}/>
 				}   
@@ -371,7 +457,7 @@ export default function Payments() {
 									<td>{paymentLogs.paymentType}</td>
 									<td>{paymentLogs.paymentStatus}</td>
 									<td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onClick={togglePopupUpdatePayment}>Update Payment Log</button></td>
-									{/* <td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onclick={togglePopupDeletePayment}>Delete Payment Log</button></td> */}
+									<td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onclick={togglePopupDeletePaymentConfirmation}>Delete Payment Log</button></td>
 								</tr>
 							)
 						})}
