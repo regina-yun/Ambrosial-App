@@ -31,12 +31,12 @@ export default function Payments() {
 	function onSubmitCreatePaymentInputValidation(e) {
 		e.preventDefault();
 
-		if(!paymentInput.receiptID && !paymentInput.paymentType && !paymentInput.paymentStatus) {
+		if(!createPaymentInput.receiptID && !createPaymentInput.paymentType && !createPaymentInput.paymentStatus) {
 			setCreatePaymentSubmitMessageStatus(true)
 			setCreatePaymentSubmitMessage('***All of the input fields are empty***');
 			return;
 		}
-		else if(!paymentInput.receiptID || !paymentInput.paymentType || !paymentInput.paymentStatus) {
+		else if(!createPaymentInput.receiptID || !createPaymentInput.paymentType || !createPaymentInput.paymentStatus) {
 			setCreatePaymentSubmitMessageStatus(true)
 			setCreatePaymentSubmitMessage('***Some of the input fields are empty***');
 			return;
@@ -59,7 +59,7 @@ export default function Payments() {
 	}
 
 	function resetCreateInputsToDefault() {
-		setPaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''});
+		setCreatePaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''});
 		setCreatePaymentSubmitMessageStatus(false);
 	}
 
@@ -123,7 +123,7 @@ export default function Payments() {
 	function handleUpdatePaymentOnChange(e) {
 		let updatePaymentInputValues = {...updatePaymentInput};
 		updatePaymentInputValues[e.target.name] = e.target.value;
-		setUpdatePaymentMessageStatus(false);
+		setUpdatePaymentSubmitMessageStatus(false);
 		setUpdatePaymentInput(updatePaymentInputValues);
 	}
 
@@ -158,7 +158,7 @@ export default function Payments() {
 
 	function resetUpdateInputsToDefault() {
 		setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
-		setUpdatePaymentMessageStatus(false);
+		setUpdatePaymentSubmitMessageStatus(false);
 	}
 
 	function closePopupUpdatePaymentConfirmation() {
@@ -209,11 +209,10 @@ export default function Payments() {
 	// const [deletePaymentMessage, setDeletePaymentMessage] = useState('');
 	// const [deletePaymentMessageStatus, setDeletePaymentMessageStatus] = useState(false);
 
-	// const [modalVisibleDeletePayment, setModalVisibleDeletePayment] = useState(false);
-	// const [deletePaymentPopupOpen, setDeletePaymentPopupOpen] = useState(false);
 	const [modalVisibleDeletePaymentConfirmation, setModalVisibleDeletePaymentConfirmation] = useState(false);
 	const [deletePaymentConfirmationPopupOpen, setDeletePaymentConfirmationPopupOpen] = useState(false);
 
+	const [deletePaymentPostStatus, setDeletePaymentPostStatus] = useState(false);
 	const [deletePaymentPostStatusMessage, setDeletePaymentPostStatusMessage] = useState(false);
 	const [deletePaymentPostDataClicked, setDeletePaymentPostDataClicked] = useState(false);
 
@@ -239,8 +238,8 @@ export default function Payments() {
 
 	function handleDeletePaymentClosePopups(e) {
 		e.preventDefault();
-		setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
 		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
+		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
 	}
 	async function deletePayment(e) {
 		e.preventDefault();
@@ -332,13 +331,13 @@ export default function Payments() {
 							<label className='formHeader'>Create New Payment Log</label>
 
 							<label className='formLabelText'>Receipt ID</label>
-							<input className='createPaymentInputReceiptId' value={paymentInput.receiptID} type='number' name='receiptID' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
+							<input className='createPaymentInputReceiptId' value={createPaymentInput.receiptID} type='number' name='receiptID' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 							
 							<label className='formLabelText'>Payment Type</label>
-							<input className='createPaymentInputPaymentType' value={paymentInput.paymentType} type='text' name='paymentType' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
+							<input className='createPaymentInputPaymentType' value={createPaymentInput.paymentType} type='text' name='paymentType' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 
 							<label className='formLabelText'>Payment Status</label>
-							<input className='createPaymentInputPaymentStatus' value={paymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
+							<input className='createPaymentInputPaymentStatus' value={createPaymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 							
 							<button className='createPaymentButton'>Submit</button>
 
