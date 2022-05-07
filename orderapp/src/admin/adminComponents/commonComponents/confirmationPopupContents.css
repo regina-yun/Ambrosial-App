@@ -1,28 +1,26 @@
 .generalConfirmationHeader{
       font-size: 300%;
-      margin-left: 25%;
 }
  
 .generalConfirmationYesButton{
     width:15%;
     margin-top: 5%;
-    margin-left: 25.5%;
+    margin-right: 5%;
+    
 }
 
 .generalConfirmationNoButton{
     width:15%;
     margin-top: 5%;
-    margin-left: 19.5%;
+    margin-left: 5%;
 }
 
 .generalConfirmationCloseButton{
     width:15%;
     margin-top: 5%;
-    margin-left: 42.5%;
 }
 
 .generalConfirmationStatusMessageContainer{
     margin-top:5%;
-    margin-left: 18%;
     width:75%;
 }

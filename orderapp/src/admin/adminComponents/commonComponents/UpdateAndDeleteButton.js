@@ -2,7 +2,8 @@ import './UpdateAndDeleteButton.css';
 
 function UpdateAndDeleteButton(props){
 
-    function updateAction(){
+    function updateAction(e){
+        e.preventDefault();
         props.setId(props.id);
         props.setData(props.data);
         props.setView(true);
