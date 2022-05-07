@@ -8,7 +8,7 @@
   z-index: 1;
 }
 
-.modal-two{
+/* .modal-two{
   width:100%;
   height:100%;
   position: absolute;
@@ -16,7 +16,7 @@
   left: 0px;
   background-color: rgba(0,0,0,.9);
   z-index: 2;
-}
+} */
 
 .receipt {
     text-align: center;
