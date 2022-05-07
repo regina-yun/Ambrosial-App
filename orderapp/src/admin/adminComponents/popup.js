@@ -272,6 +272,16 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'deletePaymentConfirmationPopup'){
+        return(
+            <div className="deletePaymentConfirmationPopup-box">
+                <div className="deletePaymentConfirmation-box">
+                    <span className="deletePaymentConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Popup;
