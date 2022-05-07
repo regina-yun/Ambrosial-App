@@ -115,12 +115,12 @@ export default function Payments() {
 	function onSubmitUpdatePaymentInputValidation(e) {
 		e.preventDefault();
 
-		if(!updatePaymentInput.receiptID && !updatePaymentInput.paymentType && !updatePaymentInput.paymentStatus) {
+		if(!updatePaymentInput.paymentInvoiceID && !updatePaymentInput.receiptID && !updatePaymentInput.paymentType && !updatePaymentInput.paymentStatus) {
 			setUpdatePaymentMessageStatus(true)
 			setUpdatePaymentMessage('***All of the input fields are empty***');
 			return;
 		}
-		else if(!paymentInput.receiptID || !paymentInput.paymentType || !paymentInput.paymentStatus) {
+		else if(updatePaymentInput.paymentInvoiceID || !updatePaymentInput.receiptID || !updatePaymentInput.paymentType || !updatePaymentInput.paymentStatus) {
 			setUpdatePaymentMessageStatus(true)
 			setUpdatePaymentMessage('***Some of the input fields are empty***');
 			return;
@@ -139,12 +139,12 @@ export default function Payments() {
 		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
 	}
 
-	function resetInputsToDefault() {
+	function resetUpdateInputsToDefault() {
 		setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''})
 	}
 
 	function closePopupUpdatePaymentConfirmation() {
-		resetInputsToDefault();
+		resetUpdateInputsToDefault();
 		togglePopupUpdatePaymentConfirmation();
 	}
 
@@ -306,16 +306,16 @@ export default function Payments() {
 							<label className='formHeader'>Update Payment Log</label>
 
 							<label className='formLabelText'>Invoice ID</label>
-							<input className='updatePaymentInputInvoiceId' value={paymentInput.paymentInvoiceID} type='number' name='receiptID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							<input className='updatePaymentInputInvoiceId' value={updatePaymentInput.paymentInvoiceID} type='number' name='paymentInvoiceID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
 
 							<label className='formLabelText'>Receipt ID</label>
-							<input className='updatePaymentInputReceiptId' value={paymentInput.receiptID} type='number' name='receiptID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							<input className='updatePaymentInputReceiptId' value={updatePaymentInput.receiptID} type='number' name='receiptID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
 							
 							<label className='formLabelText'>Payment Type</label>
-							<input className='updatePaymentInputPaymentType' value={paymentInput.paymentType} type='text' name='paymentType' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							<input className='updatePaymentInputPaymentType' value={updatePaymentInput.paymentType} type='text' name='paymentType' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
 
 							<label className='formLabelText'>Payment Status</label>
-							<input className='updatePaymentInputPaymentStatus' value={paymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							<input className='updatePaymentInputPaymentStatus' value={updatePaymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
 							
 							<button className='updatePaymentButton'>Submit</button>
 
@@ -325,7 +325,29 @@ export default function Payments() {
 				}
 			</div>
 			}
-				
+			
+			{modalVisibleUpdatePaymentConfirmation && <div className='modal'>
+				{updatePaymentConfirmationPopupOpen && <Popup
+				popupType='updatePaymentConfirmationPopup'
+				handleClose={togglePopupUpdatePaymentConfirmation}
+				content={
+					<div>
+						<label className='updatePaymentConfirmationHeader'>Are You Sure ?</label>
+						<br></br>
+						{!createPaymentPostDataClicked ? 
+							<div>
+								<button className='updatePaymentConfirmationYesButton' onClick={updatePayment}>Yes</button>
+								<button className='updatePaymentConfirmationNoButton' onClick={closePopupUpdatePaymentConfirmation}>No</button>
+							</div>:
+							<button type="button" className='updatePaymentConfirmationYesButton'  onClick={handleUpdatePaymentClosePopups} >Close</button>
+						}
+						<br></br>
+						{updatePaymentPostDataClicked ? <div className='updatePaymentConfirmationStatusMessageContainer'><label className='updatePaymentConfirmationStatusMessage'>{updatePaymentPostStatusMessage}</label></div>: null}
+					</div>
+					}/>
+				}   
+			</div>
+			}
 
 			<div className="payments">
 					<h1>Payment Logs</h1>
