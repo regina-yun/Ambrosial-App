@@ -5,8 +5,8 @@ function Popup(props){
     if(props.popupType === 'loginPopup'){
         return(
             <div className="loginPopup-box">
+                <span className="login-close-icon" onClick={props.handleClose}>x</span>
                 <div className="login-box">
-                    <span className="login-close-icon" onClick={props.handleClose}>x</span>
                         {props.content}
                 </div>
             </div>

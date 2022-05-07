@@ -339,6 +339,9 @@
   margin-left: 95%;
 }
 
+.loginPopup-box,
+.updatePasswordError-box,
+.updatePasswordSuccess-box,
 .createPaymentPopup-box,
 .updatePaymentPopup-box,
 .createPaymentConfirmationPopup-box,
@@ -357,14 +360,31 @@
   z-index: 2;
 }
 
+.login-close-icon,
+.updatePasswordError-close-icon,
+.updatePasswordSuccess-close-icon,
 .createPayment-close-icon,
 .updatePayment-close-icon,
 .createPaymentConfirmation-close-icon,
-.updatePayementConfirmation-close-icon,
+.updatePaymentConfirmation-close-icon,
 .deletePaymentConfirmation-close-icon {
   margin-left: 95%;
 }
 
+.login-close-icon,
+.updatePasswordError-close-icon,
+.updatePasswordSuccess-close-icon,
+.login-box,
+.updatePasswordError-box,
+.updatePasswordSuccess-box {
+  color: white;
+}
+
+.login-box,
+.updatePasswordError-box,
+.updatePasswordSuccess-box {
+  font-size:110%
+}
 .view-popup.active,
 .edit-popup.active,
 .destroy-popup.active {
@@ -412,7 +432,10 @@
 .updatePayment-close-icon:hover,
 .createPaymentConfirmation-close-icon:hover,
 .updatePaymentConfirmation-close-icon:hover,
-.deletePaymentConfirmation-close-icon:hover {
+.deletePaymentConfirmation-close-icon:hover,
+.login-close-icon:hover,
+.updatePasswordError-close-icon:hover,
+.updatePasswordSuccess-close-icon:hover {
   font-size: 20px;
   cursor: pointer;
 }
