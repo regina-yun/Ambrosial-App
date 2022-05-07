@@ -17,7 +17,7 @@ export default function Payments() {
 	const [createPaymentConfirmationPopupOpen, setCreatePaymentConfirmationPopupOpen] = useState(false);
 
 	const [createPaymentPostStatusMessage, setCreatePaymentPostStatusMessage] = useState(false);
-	const [createPaymentPostDataClicked, setCreatepaymentPostDataClicked] = useState(false);
+	const [createPaymentPostDataClicked, setCreatePaymentPostDataClicked] = useState(false);
 
 	function handleCreatePaymentOnChange(e) {
 		let createPaymentInput = {...paymentInput};
@@ -91,10 +91,74 @@ export default function Payments() {
 	}
 
 	//Update Payment
+
+	const [updatePaymentInput, setUpdatePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
+
+	const [updatePaymentMessage, setUpdatePaymentMessage] = useState('');
+	const [updatePaymentMessageStatus, setUpdatePaymentMessageStatus] = useState(false);
+
+	const [modalVisibleUpdatePayment, setModalVisibleUpdatePayment] = useState(false);
+	const [updatePaymentPopupOpen, setUpdatePaymentPopupOpen] = useState(false);
+	const [modalVisibleUpdatePaymentConfirmation, setModalVisibleUpdatePaymentConfirmation] = useState(false);
+	const [updatePaymentConfirmationPopupOpen, setUpdatePaymentConfirmationPopupOpen] = useState(false);
+
+	const [updatePaymentPostStatusMessage, setUpdatePaymentPostStatusMessage] = useState(false);
+	const [updatePaymentPostDataClicked, setUpdatePaymentPostDataClicked] = useState(false);
+
+	function handleUpdatePaymentOnChange(e) {
+		let updatePaymentInputValues = {...updatePaymentInput};
+		updatePaymentInputValues[e.target.name] = e.target.value;
+		setUpdatePaymentMessageStatus(false);
+		setUpdatePaymentInput(updatePaymentInputValues);
+	}
+
+	function onSubmitUpdatePaymentInputValidation(e) {
+		e.preventDefault();
+
+		if(!updatePaymentInput.receiptID && !updatePaymentInput.paymentType && !updatePaymentInput.paymentStatus) {
+			setUpdatePaymentMessageStatus(true)
+			setUpdatePaymentMessage('***All of the input fields are empty***');
+			return;
+		}
+		else if(!paymentInput.receiptID || !paymentInput.paymentType || !paymentInput.paymentStatus) {
+			setUpdatePaymentMessageStatus(true)
+			setUpdatePaymentMessage('***Some of the input fields are empty***');
+			return;
+		}
+
+		togglePopupUpdatePaymentConfirmation();
+	}
+
+	function togglePopupUpdatePayment() {
+		setModalVisibleUpdatePayment(!modalVisibleUpdatePayment);
+		setUpdatePaymentPopupOpen(!updatePaymentPopupOpen);
+	}
+
+	function togglePopupUpdatePaymentConfirmation(){
+		setModalVisibleUpdatePaymentConfirmation(!modalVisibleUpdatePaymentConfirmation);
+		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
+	}
+
+	function resetInputsToDefault() {
+		setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''})
+	}
+
+	function closePopupUpdatePaymentConfirmation() {
+		resetInputsToDefault();
+		togglePopupUpdatePaymentConfirmation();
+	}
+
+	function handleUpdatePaymentClosePopups(e) {
+		e.preventDefault();
+		setUpdatePaymentPopupOpen(!updatePaymentPopupOpen);
+		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
+	}
+
 	async function updatePayment(e) {
 		e.preventDefault();
 
 		await ambrosialAxiosAPI.put('/updatepayment/:invoiceID', {
+			paymentInvoiceID: "",
 			receiptID: "",
 			paymentType: "",
 			paymentStatus: ""
@@ -145,6 +209,7 @@ export default function Payments() {
 			console.log(`response Status: ${response.data.status}`);
 			console.log(`response Message: ${response.data.message}`);
 			console.log("response Data: ", response.data.data);
+			setAllPaymentLogsData(response.data.data);
  		})
 		.catch((error) => {
 				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
@@ -192,13 +257,13 @@ export default function Payments() {
 							<label className='formHeader'>Create New Payment Log</label>
 
 							<label className='formLabelText'>Receipt ID</label>
-							<input className='createPaymentInputReceiptId' value={paymentInput.receiptID} type='number' name='receiptID' onChange={handleCreatePaymentOnChange} autocomplete/>
+							<input className='createPaymentInputReceiptId' value={paymentInput.receiptID} type='number' name='receiptID' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 							
 							<label className='formLabelText'>Payment Type</label>
-							<input className='createPaymentInputPaymentType' value={paymentInput.paymentType} type='text' name='paymentType' onChange={handleCreatePaymentOnChange}/>
+							<input className='createPaymentInputPaymentType' value={paymentInput.paymentType} type='text' name='paymentType' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 
 							<label className='formLabelText'>Payment Status</label>
-							<input className='createPaymentInputPaymentStatus' value={paymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange}/>
+							<input className='createPaymentInputPaymentStatus' value={paymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 							
 							<button className='createPaymentButton'>Submit</button>
 
@@ -231,28 +296,60 @@ export default function Payments() {
 				}   
 			</div>
 			}
+
+			{modalVisibleUpdatePayment && <div className='modal'>
+				{updatePaymentPopupOpen && <Popup
+					popupType='updatePaymentPopup'
+					handleClose={togglePopupUpdatePayment}
+					content={
+						<form onSubmit={onSubmitUpdatePaymentInputValidation}>
+							<label className='formHeader'>Update Payment Log</label>
+
+							<label className='formLabelText'>Invoice ID</label>
+							<input className='updatePaymentInputInvoiceId' value={paymentInput.paymentInvoiceID} type='number' name='receiptID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+
+							<label className='formLabelText'>Receipt ID</label>
+							<input className='updatePaymentInputReceiptId' value={paymentInput.receiptID} type='number' name='receiptID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							
+							<label className='formLabelText'>Payment Type</label>
+							<input className='updatePaymentInputPaymentType' value={paymentInput.paymentType} type='text' name='paymentType' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+
+							<label className='formLabelText'>Payment Status</label>
+							<input className='updatePaymentInputPaymentStatus' value={paymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							
+							<button className='updatePaymentButton'>Submit</button>
+
+							{updatePaymentMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{updatePaymentMessage}</label>}</label>}
+						</form>
+					}/>
+				}
+			</div>
+			}
 				
 
 			<div className="payments">
 					<h1>Payment Logs</h1>
 					<table>
 						<tr>
-							<th>No.</th>
+							<th>Invoice ID</th>
 							<th>Receipt ID</th>
 							<th>Payment Type</th>
 							<th>Payment Status</th>
 							<th colSpan='2'>Actions</th>
 						</tr>
 
-						{allPaymentLogsData.map((paymentLogs, index) => {
+						<br></br> 
+						<br></br> 
+
+						{allPaymentLogsData.map((paymentLogs) => {
 							return(
 								<tr key={paymentLogs.receiptID}>
-									<td>{index+1}</td>
+									<td>{paymentLogs.paymentInvoiceID}</td>
 									<td>{paymentLogs.receiptID}</td>
 									<td>{paymentLogs.paymentType}</td>
 									<td>{paymentLogs.paymentStatus}</td>
-									{/* <td className='actionButtons'><button className='paymentsPageUpdateButton' onClick={togglePopupUpdatePayment}>Update Payment Log</button></td>
-									<td className='actionButtons'><button className='paymentsPageDeleteButton' onclick={togglePopupDeletePayment}>Delete Payment Log</button></td> */}
+									<td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onClick={togglePopupUpdatePayment}>Update Payment Log</button></td>
+									{/* <td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onclick={togglePopupDeletePayment}>Delete Payment Log</button></td> */}
 								</tr>
 							)
 						})}
