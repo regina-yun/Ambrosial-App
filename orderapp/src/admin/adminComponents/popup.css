@@ -340,8 +340,8 @@
 }
 
 .loginPopup-box,
-.updatePasswordError-box,
-.updatePasswordSuccess-box,
+.updatePasswordErrorPopup-box,
+.updatePasswordSuccessPopup-box,
 .createPaymentPopup-box,
 .updatePaymentPopup-box,
 .createPaymentConfirmationPopup-box,
