@@ -5,38 +5,40 @@ import './Payments.css';
 
 export default function Payments() {
 
-	//Create Payment
-	const [paymentInput, setPaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
+//#region CREATE PAYMENT
 
-	const [createPaymentMessage, setCreatePaymentMessage] = useState('');
-	const [createPaymentMessageStatus, setCreatePaymentMessageStatus] = useState(false);
+	const [createPaymentInput, setCreatePaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
+
+	const [createPaymentSubmitMessage, setCreatePaymentSubmitMessage] = useState('');
+	const [createPaymentSubmitMessageStatus, setCreatePaymentSubmitMessageStatus] = useState(false);
 
 	const [modalVisibleCreatePayment, setModalVisibleCreatePayment] = useState(false);
 	const [createPaymentPopupOpen, setCreatePaymentPopupOpen] = useState(false);
 	const [modalVisibleCreatePaymentConfirmation, setModalVisibleCreatePaymentConfirmation] = useState(false);
 	const [createPaymentConfirmationPopupOpen, setCreatePaymentConfirmationPopupOpen] = useState(false);
 
+	const [createPaymentPostStatus, setCreatePaymentPostStatus] = useState(false);
 	const [createPaymentPostStatusMessage, setCreatePaymentPostStatusMessage] = useState(false);
 	const [createPaymentPostDataClicked, setCreatePaymentPostDataClicked] = useState(false);
 
 	function handleCreatePaymentOnChange(e) {
-		let createPaymentInput = {...paymentInput};
-		createPaymentInput[e.target.name] = e.target.value;
-		setCreatePaymentMessageStatus(false);
-		setPaymentInput(createPaymentInput);
+		let newCreatePaymentInput = {...createPaymentInput};
+		newCreatePaymentInput[e.target.name] = e.target.value;
+		// setCreatePaymentSubmitMessageStatus(false);
+		setCreatePaymentInput(createPaymentInput);
 	}
 
 	function onSubmitCreatePaymentInputValidation(e) {
 		e.preventDefault();
 
-		if(!paymentInput.receiptID && !paymentInput.paymentType && !paymentInput.paymentStatus) {
-			setCreatePaymentMessageStatus(true)
-			setCreatePaymentMessage('***All of the input fields are empty***');
+		if(!createPaymentInput.receiptID && !createPaymentInput.paymentType && !createPaymentInput.paymentStatus) {
+			setCreatePaymentSubmitMessageStatus(true)
+			setCreatePaymentSubmitMessage('***All of the input fields are empty***');
 			return;
 		}
-		else if(!paymentInput.receiptID || !paymentInput.paymentType || !paymentInput.paymentStatus) {
-			setCreatePaymentMessageStatus(true)
-			setCreatePaymentMessage('***Some of the input fields are empty***');
+		else if(!createPaymentInput.receiptID || !createPaymentInput.paymentType || !createPaymentInput.paymentStatus) {
+			setCreatePaymentSubmitMessageStatus(true)
+			setCreatePaymentSubmitMessage('***Some of the input fields are empty***');
 			return;
 		}
 
@@ -46,19 +48,23 @@ export default function Payments() {
 	function togglePopupCreatePayment() {
 		setModalVisibleCreatePayment(!modalVisibleCreatePayment);
 		setCreatePaymentPopupOpen(!createPaymentPopupOpen);
+		setCreatePaymentSubmitMessageStatus(false);
 	}
 
 	function togglePopupCreatePaymentConfirmation(){
 		setModalVisibleCreatePaymentConfirmation(!modalVisibleCreatePaymentConfirmation);
 		setCreatePaymentConfirmationPopupOpen(!createPaymentConfirmationPopupOpen);
+		togglePopupCreatePayment();
+		setCreatePaymentSubmitMessageStatus(false);
 	}
 
-	function resetInputsToDefault() {
-		setPaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''})
+	function resetCreateInputsToDefault() {
+		setCreatePaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''});
+		setCreatePaymentSubmitMessageStatus(false);
 	}
 
 	function closePopupCreatePaymentConfirmation() {
-		resetInputsToDefault();
+		resetCreateInputsToDefault();
 		togglePopupCreatePaymentConfirmation();
 	}
 
@@ -73,42 +79,51 @@ export default function Payments() {
 		e.preventDefault();
 
 		await ambrosialAxiosAPI.post('/createpayment', {
-			receiptID: "",
-			paymentType: "",
-			paymentStatus: ""
+			receiptID: createPaymentInput.receiptID,
+			paymentType: createPaymentInput.paymentType,
+			paymentStatus: createPaymentInput.paymentStatus
 		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
 			console.log(`response Status: ${response.data.status}`);
 			console.log(`response Message: ${response.data.message}`);
 			console.log("response Data: ", response.data.data);
+
+			setCreatePaymentPostStatus(response.data.status);
+			setCreatePaymentPostStatusMessage(response.data.message);
  		})
 		.catch((error) => {
-				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-				console.log(`Error Status: ${error.response.data.status}`);
-				console.log(`Error Message: ${error.response.data.message}`);
-		});
-	}
+			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+			console.log(`Error Status: ${error.response.data.status}`);
+			console.log(`Error Message: ${error.response.data.message}`);
 
-	//Update Payment
+			setCreatePaymentPostStatus(error.response.data.status);
+			setCreatePaymentPostStatusMessage(error.response.data.message);
+		});
+		setCreatePaymentPostDataClicked(true);
+	}
+//#endregion
+
+//#region UPDATE PAYMENT
 
 	const [updatePaymentInput, setUpdatePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
 
-	const [updatePaymentMessage, setUpdatePaymentMessage] = useState('');
-	const [updatePaymentMessageStatus, setUpdatePaymentMessageStatus] = useState(false);
+	const [updatePaymentSubmitMessage, setUpdatePaymentSubmitMessage] = useState('');
+	const [updatePaymentSubmitMessageStatus, setUpdatePaymentSubmitMessageStatus] = useState(false);
 
 	const [modalVisibleUpdatePayment, setModalVisibleUpdatePayment] = useState(false);
 	const [updatePaymentPopupOpen, setUpdatePaymentPopupOpen] = useState(false);
 	const [modalVisibleUpdatePaymentConfirmation, setModalVisibleUpdatePaymentConfirmation] = useState(false);
 	const [updatePaymentConfirmationPopupOpen, setUpdatePaymentConfirmationPopupOpen] = useState(false);
 
+	const [updatePaymentPostStatus, setUpdatePaymentPostStatus] = useState(false);
 	const [updatePaymentPostStatusMessage, setUpdatePaymentPostStatusMessage] = useState(false);
 	const [updatePaymentPostDataClicked, setUpdatePaymentPostDataClicked] = useState(false);
 
 	function handleUpdatePaymentOnChange(e) {
 		let updatePaymentInputValues = {...updatePaymentInput};
 		updatePaymentInputValues[e.target.name] = e.target.value;
-		setUpdatePaymentMessageStatus(false);
+		setUpdatePaymentSubmitMessageStatus(false);
 		setUpdatePaymentInput(updatePaymentInputValues);
 	}
 
@@ -116,13 +131,13 @@ export default function Payments() {
 		e.preventDefault();
 
 		if(!updatePaymentInput.paymentInvoiceID && !updatePaymentInput.receiptID && !updatePaymentInput.paymentType && !updatePaymentInput.paymentStatus) {
-			setUpdatePaymentMessageStatus(true)
-			setUpdatePaymentMessage('***All of the input fields are empty***');
+			setUpdatePaymentSubmitMessageStatus(true)
+			setUpdatePaymentSubmitMessage('***All of the input fields are empty***');
 			return;
 		}
 		else if(updatePaymentInput.paymentInvoiceID || !updatePaymentInput.receiptID || !updatePaymentInput.paymentType || !updatePaymentInput.paymentStatus) {
-			setUpdatePaymentMessageStatus(true)
-			setUpdatePaymentMessage('***Some of the input fields are empty***');
+			setUpdatePaymentSubmitMessageStatus(true)
+			setUpdatePaymentSubmitMessage('***Some of the input fields are empty***');
 			return;
 		}
 
@@ -137,10 +152,13 @@ export default function Payments() {
 	function togglePopupUpdatePaymentConfirmation(){
 		setModalVisibleUpdatePaymentConfirmation(!modalVisibleUpdatePaymentConfirmation);
 		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
+		togglePopupUpdatePayment();
+		setUpdatePaymentSubmitMessageStatus(false);
 	}
 
 	function resetUpdateInputsToDefault() {
-		setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''})
+		setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
+		setUpdatePaymentSubmitMessageStatus(false);
 	}
 
 	function closePopupUpdatePaymentConfirmation() {
@@ -158,25 +176,71 @@ export default function Payments() {
 		e.preventDefault();
 
 		await ambrosialAxiosAPI.put('/updatepayment/:invoiceID', {
-			paymentInvoiceID: "",
-			receiptID: "",
-			paymentType: "",
-			paymentStatus: ""
+			paymentInvoiceID: updatePaymentInput.paymentInvoiceID,
+			receiptID: updatePaymentInput.receiptID,
+			paymentType: updatePaymentInput.paymentType,
+			paymentStatus: updatePaymentInput.paymentStatus
 		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
 			console.log(`response Status: ${response.data.status}`);
 			console.log(`response Message: ${response.data.message}`);
 			console.log("response Data: ", response.data.data);
+
+			setUpdatePaymentPostStatus(response.data.status);
+			setCreatePaymentPostStatusMessage(response.data.message);
  		})
 		.catch((error) => {
-				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-				console.log(`Error Status: ${error.response.data.status}`);
-				console.log(`Error Message: ${error.response.data.message}`);
+			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+			console.log(`Error Status: ${error.response.data.status}`);
+			console.log(`Error Message: ${error.response.data.message}`);
+
+			setUpdatePaymentPostStatus(error.response.data.status);
+			setUpdatePaymentPostStatusMessage(error.response.data.message);
 		});
+		setUpdatePaymentPostDataClicked(true);
+	}
+//#endregion
+
+//#region DELETE PAYMENT
+
+	// const [deletePaymentInput, setDeletePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
+
+	// const [deletePaymentMessage, setDeletePaymentMessage] = useState('');
+	// const [deletePaymentMessageStatus, setDeletePaymentMessageStatus] = useState(false);
+
+	const [modalVisibleDeletePaymentConfirmation, setModalVisibleDeletePaymentConfirmation] = useState(false);
+	const [deletePaymentConfirmationPopupOpen, setDeletePaymentConfirmationPopupOpen] = useState(false);
+
+	const [deletePaymentPostStatus, setDeletePaymentPostStatus] = useState(false);
+	const [deletePaymentPostStatusMessage, setDeletePaymentPostStatusMessage] = useState(false);
+	const [deletePaymentPostDataClicked, setDeletePaymentPostDataClicked] = useState(false);
+
+
+	// function togglePopupUpdatePayment() {
+	// 	setModalVisibleDeletePayment(!modalVisibleDeletePayment);
+	// 	setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
+	// }
+
+	function togglePopupDeletePaymentConfirmation(){
+		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
+		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
 	}
 
-	//Delete Payment
+	// function resetUpdateInputsToDefault() {
+	// 	setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''})
+	// }
+
+	function closePopupDeletePaymentConfirmation() {
+		resetUpdateInputsToDefault();
+		togglePopupDeletePaymentConfirmation();
+	} 
+
+	function handleDeletePaymentClosePopups(e) {
+		e.preventDefault();
+		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
+		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
+	}
 	async function deletePayment(e) {
 		e.preventDefault();
 
@@ -186,15 +250,25 @@ export default function Payments() {
 			console.log(`response Status: ${response.data.status}`);
 			console.log(`response Message: ${response.data.message}`);
 			console.log("response Data: ", response.data.data);
+
+			setDeletePaymentPostStatus(response.data.status);
+			setDeletePaymentPostStatusMessage(response.data.message);
  		})
 		.catch((error) => {
-				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-				console.log(`Error Status: ${error.response.data.status}`);
-				console.log(`Error Message: ${error.response.data.message}`);
+			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+			console.log(`Error Status: ${error.response.data.status}`);
+			console.log(`Error Message: ${error.response.data.message}`);
+
+			setDeletePaymentPostStatus(error.response.data.status);
+			setDeletePaymentPostStatusMessage(error.response.data.message);
 		});
+		setDeletePaymentPostDataClicked(true);
 	}
 
-	//Read All Payment
+
+//#endregion
+
+//#region GET ALL PAYMENT
 	useEffect(() => {
 		getAllPayment();
 	});
@@ -218,7 +292,10 @@ export default function Payments() {
 		});
 	}
 
-	//Read Specific Payment
+	//#endregion
+
+//#region GET SPECIFIC PAYMENT
+	
 	async function getSpecificPayment(e) {
 		e.preventDefault();
 
@@ -235,7 +312,7 @@ export default function Payments() {
 				console.log(`Error Message: ${error.response.data.message}`);
 		});
 	}
-
+//#endregion
 
 
 	return (
@@ -244,9 +321,6 @@ export default function Payments() {
 				<button className='refreshPaymentLogs' onClick={getAllPayment}>Refresh List</button>
 				<button className='createPayment' onClick={togglePopupCreatePayment}>Create New Payment Log</button>
 			</div>
-
-
-			{/* insert modal code here */}
 
 			{modalVisibleCreatePayment && <div className='modal'>
 				{createPaymentPopupOpen && <Popup
@@ -257,17 +331,17 @@ export default function Payments() {
 							<label className='formHeader'>Create New Payment Log</label>
 
 							<label className='formLabelText'>Receipt ID</label>
-							<input className='createPaymentInputReceiptId' value={paymentInput.receiptID} type='number' name='receiptID' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
+							<input className='createPaymentInputReceiptId' value={createPaymentInput.receiptID} type='number' name='receiptID' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 							
 							<label className='formLabelText'>Payment Type</label>
-							<input className='createPaymentInputPaymentType' value={paymentInput.paymentType} type='text' name='paymentType' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
+							<input className='createPaymentInputPaymentType' value={createPaymentInput.paymentType} type='text' name='paymentType' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 
 							<label className='formLabelText'>Payment Status</label>
-							<input className='createPaymentInputPaymentStatus' value={paymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
+							<input className='createPaymentInputPaymentStatus' value={createPaymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 							
 							<button className='createPaymentButton'>Submit</button>
 
-							{createPaymentMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{createPaymentMessage}</label>}</label>}
+							{createPaymentSubmitMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{createPaymentSubmitMessage}</label>}</label>}
 						</form>
 					}/>
 				}
@@ -282,7 +356,7 @@ export default function Payments() {
 					<div>
 						<label className='createPaymentConfirmationHeader'>Are You Sure ?</label>
 						<br></br>
-						{!createPaymentPostDataClicked ? 
+						{!updatePaymentPostDataClicked ? 
 							<div>
 								<button className='createPaymentConfirmationYesButton' onClick={createPayment}>Yes</button>
 								<button className='createPaymentConfirmationNoButton' onClick={closePopupCreatePaymentConfirmation}>No</button>
@@ -319,7 +393,7 @@ export default function Payments() {
 							
 							<button className='updatePaymentButton'>Submit</button>
 
-							{updatePaymentMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{updatePaymentMessage}</label>}</label>}
+							{updatePaymentSubmitMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{updatePaymentSubmitMessage}</label>}</label>}
 						</form>
 					}/>
 				}
@@ -334,7 +408,7 @@ export default function Payments() {
 					<div>
 						<label className='updatePaymentConfirmationHeader'>Are You Sure ?</label>
 						<br></br>
-						{!createPaymentPostDataClicked ? 
+						{!updatePaymentPostDataClicked ? 
 							<div>
 								<button className='updatePaymentConfirmationYesButton' onClick={updatePayment}>Yes</button>
 								<button className='updatePaymentConfirmationNoButton' onClick={closePopupUpdatePaymentConfirmation}>No</button>
@@ -343,6 +417,29 @@ export default function Payments() {
 						}
 						<br></br>
 						{updatePaymentPostDataClicked ? <div className='updatePaymentConfirmationStatusMessageContainer'><label className='updatePaymentConfirmationStatusMessage'>{updatePaymentPostStatusMessage}</label></div>: null}
+					</div>
+					}/>
+				}   
+			</div>
+			}
+
+			{modalVisibleDeletePaymentConfirmation && <div className='modal'>
+				{deletePaymentConfirmationPopupOpen && <Popup
+				popupType='deletePaymentConfirmationPopup'
+				handleClose={togglePopupDeletePaymentConfirmation}
+				content={
+					<div>
+						<label className='deletePaymentConfirmationHeader'>Are You Sure ?</label>
+						<br></br>
+						{!deletePaymentPostDataClicked ? 
+							<div>
+								<button className='deletePaymentConfirmationYesButton' onClick={deletePayment}>Yes</button>
+								<button className='deletePaymentConfirmationNoButton' onClick={closePopupDeletePaymentConfirmation}>No</button>
+							</div>:
+							<button type="button" className='deletePaymentConfirmationYesButton'  onClick={handleDeletePaymentClosePopups} >Close</button>
+						}
+						<br></br>
+						{deletePaymentPostDataClicked ? <div className='deletePaymentConfirmationStatusMessageContainer'><label className='deletePaymentConfirmationStatusMessage'>{deletePaymentPostStatusMessage}</label></div>: null}
 					</div>
 					}/>
 				}   
@@ -371,7 +468,7 @@ export default function Payments() {
 									<td>{paymentLogs.paymentType}</td>
 									<td>{paymentLogs.paymentStatus}</td>
 									<td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onClick={togglePopupUpdatePayment}>Update Payment Log</button></td>
-									{/* <td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onclick={togglePopupDeletePayment}>Delete Payment Log</button></td> */}
+									<td className='actionButtons'><button className='updateAndDeleteButtonsContainer' onclick={togglePopupDeletePaymentConfirmation}>Delete Payment Log</button></td>
 								</tr>
 							)
 						})}
