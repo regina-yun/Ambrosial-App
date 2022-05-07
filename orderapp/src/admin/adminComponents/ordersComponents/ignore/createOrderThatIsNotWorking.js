@@ -36,7 +36,7 @@ function closePopupCreateOrderConfirmation(){
     console.log('in closePopupCreateOrderConfirmation here');
     //resetInputsToDefaultValue();
     //togglePopupCreateOrderConfirmation();
-    setOrderNoValue(0);
+    setOrderNoIdValue(0);
     setMenuItemIDValue(0);
     setQuantityValue(0);
     setTotalItemPriceValue(0);
@@ -55,7 +55,7 @@ function closePopupCreateOrderConfirmation(){
 //final close
 function handleClosePopups(event){
     //event.preventDefault();
-    setOrderNoValue(0);
+    setOrderNoIdValue(0);
     setMenuItemIDValue(0);
     setQuantityValue(0);
     setTotalItemPriceValue(0);
@@ -71,7 +71,7 @@ function handleClosePopups(event){
 }
 
 //For the inputs to create order
-const [orderNoIdValue, setOrderNoValue] = useState(0);
+const [orderNoIdValue, setOrderNoIdValue] = useState(0);
 const [menuItemIDValue, setMenuItemIDValue] = useState(0);
 const [quantityValue, setQuantityValue] = useState(0);
 const [totalItemPriceValue, setTotalItemPriceValue] = useState(0);
@@ -88,7 +88,7 @@ async function createOrder(event){
     console.log('called create distinct order');
     //event.preventDefault();
 
-    await ambrosialAxiosAPI.post('/createdistinctorder', {
+    await ambrosialAxiosAPI.post('/createorder', {
         orderNo:orderNoIdValue,
         menuItemID:menuItemIDValue,
         quantity:quantityValue,
@@ -124,31 +124,7 @@ async function createOrder(event){
       setPostDataClicked(true);
 }
 
-useEffect(async () => {    
-    //preload the orders
-    getAllDistinctOrders(); 
-    
-}, []);
 
-//To get all distinct orders data
-const [distinctOrderData, setDistinctOrderData] = useState([]);
-
-async function getAllDistinctOrders(){
-    await ambrosialAxiosAPI.get('/viewdistinctorder')
-    .then((response) => {
-     console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-     console.log(`response Status: ${response.data.status}`);
-     console.log(`response Message: ${response.data.message}`);
-     //Not in template literal as it will only show the type object
-     console.log("response Data: ", response.data.data);
-     setDistinctOrderData(response.data.data);
-   })
-   .catch((error) => {
-   console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-   console.log(`Error Status: ${error.response.data.status}`);
-   console.log(`Error Message: ${error.response.data.message}`);
- });
-}
 
 {modalVisible ? <div className='modalContainer'></div>:null}
         {createOrderPopupOpen && <Popup
@@ -161,10 +137,10 @@ async function getAllDistinctOrders(){
                 <br></br>
 
                 <label className='formLabelText'>Order No.:</label>
-                <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
+                <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
                 <br></br>
 
-                {/* <label className='formLabelText'>Menu Item Id:</label>
+                <label className='formLabelText'>Menu Item Id:</label>
                 <input type="number" className='createInputMenuItemId' onChange={(e) => setMenuItemIDValue(e.target.value)}></input>
                 <br></br>
 
@@ -182,7 +158,7 @@ async function getAllDistinctOrders(){
 
                 <label className='formLabelText'>Order Status:</label>
                 <input type="text" className='createInputOrderStatus' onChange={(e) => setOrderStatusValue(e.target.value)}></input>
-                <br></br> */}
+                <br></br>
 
                 <button className='createOrderButton'>Submit</button>
                 <br></br>
@@ -197,21 +173,6 @@ async function getAllDistinctOrders(){
         popupType='createOrderConfirmationPopup'
         handleClose={togglePopupCreateOrderConfirmation}
         content={
-            // <div>
-            //     <label className='createOrderConfirmationHeader'>Are You Sure ?</label>
-            //     <br></br>
-            //     {!postDataClicked ?  <div>
-            //             <button className='createOrderConfirmationYesButton' onClick={createOrder}>Yes</button>
-            //             <button className='createOrderConfirmationNoButton' onClick={closePopupCreateOrderConfirmation}>No</button>
-            //         </div>:
-            //         <button type="button" className='createOrderConfirmationYesButton'  onClick={handleClosePopups} >Close</button>
-                    
-            //     }
-            //     <br></br>
-            //     {postDataClicked ? <div className='createOrderConfirmationStatusMessageContainer'><label className='createOrderConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
-                
-            // </div>
-            
              <ConfirmationPopupContents invokeAction={createOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage}/>
         }/>}
 

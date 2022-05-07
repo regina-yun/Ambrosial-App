@@ -60,6 +60,25 @@
   z-index: 2;
 }
 
+.createOrderItemConfirmationPopup-box {
+  /* width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3; */
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:40%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+  z-index: 3;
+}
+
 .updateOrderConfirmationPopup-box{
   width:30%;
   height: 35%;
@@ -80,6 +99,10 @@
   top: 5%;
   left: 32%;
   z-index: 2;
+}
+
+.createOrderItemConfirmation-close-icon {
+  margin-left: 95%;
 }
 
 .createOrderConfirmation-close-icon {
@@ -109,7 +132,20 @@
   margin-left: 95%;
 }
 
+.createOrderItemPopup-box{
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:40%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+  z-index: 3;
+}
 
+.createOrderItem-close-icon{
+  margin-left: 95%;
+}
 
 .createReceiptPopup-box{
   width:30%;

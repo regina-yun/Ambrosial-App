@@ -511,7 +511,7 @@ export default function Orders() {
             </table>
 
                 
-            <ViewOrderItems orderNo={viewOrderItemsOrderNo} viewOrder={viewOrder} setViewOrder={setViewOrder}/>
+            <ViewOrderItems setOrderNoId={setOrderNoId} orderNo={viewOrderItemsOrderNo} setOrderNo={setViewOrderItemsOrderNo} viewOrder={viewOrder} setViewOrder={setViewOrder}/>
 
     </div>
     </>
