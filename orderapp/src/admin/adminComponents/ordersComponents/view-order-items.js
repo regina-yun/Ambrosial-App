@@ -483,10 +483,10 @@ async function updateOrderItems(){
                                 <td>{orderedItemsData.MenuItem.alt}</td>
                                 <td>{orderedItemsData.quantity}</td>
                                 {/* <td className='updateAndDeleteButtonsContainer'><button className='updateAndDeleteButtons' onClick={updateOrderItem}>Update Item</button></td> */}
-                                <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderId} orderNoId={orderedItemsData.orderID} setOrderNo={props.setOrderNo} orderNo={props.orderNo} setView={setViewUpdate} buttonText={"Update Order Item"}/></td>
+                                <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setId={setOrderId} id={orderedItemsData.orderID} setData={props.setOrderNo} data={props.orderNo} setView={setViewUpdate} buttonText={"Update Order Item"}/></td>
                                 {/* <td className='updateAndDeleteButtonsContainer'><button className='updateAndDeleteButtons' onClick={deleteOrderItem}>Delete Item</button></td> */}
                                 
-                                <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderId} orderNoId={orderedItemsData.orderID} setOrderNo={setMenuItemName} orderNo={orderedItemsData.MenuItem.alt} setView={setViewDelete} buttonText={"Delete Order Item"}/></td>
+                                <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setId={setOrderId} id={orderedItemsData.orderID} setData={setMenuItemName} data={orderedItemsData.MenuItem.alt} setView={setViewDelete} buttonText={"Delete Order Item"}/></td>
                             </tr>
                         )
                     ): <tr>

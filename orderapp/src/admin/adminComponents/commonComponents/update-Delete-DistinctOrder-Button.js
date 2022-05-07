@@ -3,8 +3,8 @@ import './update-Delete-DistinctOrder-Button.css';
 function UpdateAndDeleteDistinctOrderButton(props){
 
     function updateAction(){
-        props.setOrderNoId(props.orderNoId);
-        props.setOrderNo(props.orderNo);
+        props.setId(props.id);
+        props.setData(props.data);
         props.setView(true);
     }
 

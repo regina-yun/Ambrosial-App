@@ -501,8 +501,8 @@ export default function Orders() {
                             <td>{index+1}</td>
                             <td>{distinctOrder.orderNo}</td>
                             <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder}/></td>
-                            <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={distinctOrder.orderNoId} setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."}/></td>
-                            <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={distinctOrder.orderNoId} setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"}/></td>
+                            <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."}/></td>
+                            <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"}/></td>
                         </tr>
                     )
                 )}
