@@ -339,21 +339,46 @@
   margin-left: 95%;
 }
 
+.createPaymentPopup-box,
+.updatePaymentPopup-box,
+.createPaymentConfirmationPopup-box,
+.updatePaymentConfirmationPopup-box,
+.deletePaymentConfirmationPopup-box {
+  width:30%;
+  height: auto;
+  background-color: black;
+  text-align: center;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+  position:absolute;
+  top: 20%;
+  left: 32%;
+  z-index: 2;
+}
 
-  .view-popup.active,
-  .edit-popup.active,
-  .destroy-popup.active {
-    display: block;
-    position: absolute;
-    top: 40vh;
-    left: 35vw;
-    background-color: white;
-    color: black;
-    height: auto;
-    width: 400px;
-    padding: 20px;
-    z-index: 1;
-  }
+.createPayment-close-icon,
+.updatePayment-close-icon,
+.createPaymentConfirmation-close-icon,
+.updatePayementConfirmation-close-icon,
+.deletePaymentConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.view-popup.active,
+.edit-popup.active,
+.destroy-popup.active {
+  display: block;
+  position: absolute;
+  top: 40vh;
+  left: 35vw;
+  background-color: white;
+  color: black;
+  height: auto;
+  width: 400px;
+  padding: 20px;
+  z-index: 1;
+}
 
 .view-close-icon, .create-close-icon, .update-close-icon, .delete-close-icon {
   content: 'x';
@@ -382,7 +407,12 @@
 .createReceiptConfirmation-close-icon:hover,
 .updateReceiptConfirmation-close-icon:hover,
 .viewReceiptConfirmation-close-icon:hover,
-.deleteReceiptConfirmation-close-icon:hover{
+.deleteReceiptConfirmation-close-icon:hover,
+.createPayment-close-icon:hover,
+.updatePayment-close-icon:hover,
+.createPaymentConfirmation-close-icon:hover,
+.updatePaymentConfirmation-close-icon:hover,
+.deletePaymentConfirmation-close-icon:hover {
   font-size: 20px;
   cursor: pointer;
 }
