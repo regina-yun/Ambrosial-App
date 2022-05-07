@@ -98,154 +98,154 @@ export default function Receipt() {
 
 
 
-    //Update Receipt
-    //Submit popup and confirmation popup
-    const [receiptID, setReceiptID] = useState(0);
-    const [receiptIDValue, setReceiptIDValue] = useState(0);
-    const [updateReceiptPopupOpen, setUpdateReceiptPopupOpen] = useState(false);
+    // //Update Receipt
+    // //Submit popup and confirmation popup
+    // const [receiptID, setReceiptID] = useState(0);
+    // const [receiptIDValue, setReceiptIDValue] = useState(0);
+    // const [updateReceiptPopupOpen, setUpdateReceiptPopupOpen] = useState(false);
 
-    function togglePopupUpdateReceipt() {
-        setUpdateReceiptPopupOpen(!updateReceiptPopupOpen);
-        setSubmitStatusMessageStatus(false);
-    }
+    // function togglePopupUpdateReceipt() {
+    //     setUpdateReceiptPopupOpen(!updateReceiptPopupOpen);
+    //     setSubmitStatusMessageStatus(false);
+    // }
 
-    function onSubmitValidateInput(event){
-        event.preventDefault();
-        if(!orderNoIdValue || !totalItemPriceValue) {
-            setSubmitStatusMessageStatus(true);
-            setSubmitStatusMessage('***Please check the input fields***');
-            return;
-        }
+    // function onSubmitValidateInput(event){
+    //     event.preventDefault();
+    //     if(!orderNoIdValue || !totalItemPriceValue) {
+    //         setSubmitStatusMessageStatus(true);
+    //         setSubmitStatusMessage('***Please check the input fields***');
+    //         return;
+    //     }
 
-        togglePopupUpdateReceiptConfirmation();
-    }
+    //     togglePopupUpdateReceiptConfirmation();
+    // }
 
-    function togglePopupUpdateReceiptConfirmation() {
-        // event.preventDefault();
-        setConfirmationReceiptPopupOpen(!confirmationReceiptPopupOpen);
-        togglePopupUpdateReceipt();
-        setSubmitStatusMessageStatus(false);
-    }
+    // function togglePopupUpdateReceiptConfirmation() {
+    //     // event.preventDefault();
+    //     setConfirmationReceiptPopupOpen(!confirmationReceiptPopupOpen);
+    //     togglePopupUpdateReceipt();
+    //     setSubmitStatusMessageStatus(false);
+    // }
 
-    function closePopupUpdateReceiptConfirmation(){
-        resetInputsToDefaultValue();
-        togglePopupUpdateReceiptConfirmation();
-    }
+    // function closePopupUpdateReceiptConfirmation(){
+    //     resetInputsToDefaultValue();
+    //     togglePopupUpdateReceiptConfirmation();
+    // }
 
-    function resetInputsToDefaultValue(){
-        setOrderNoIdValue(0);
-        setTotalItemPriceValue(0);
+    // function resetInputsToDefaultValue(){
+    //     setOrderNoIdValue(0);
+    //     setTotalItemPriceValue(0);
 
-        setSubmitStatusMessageStatus(false);
-    }
+    //     setSubmitStatusMessageStatus(false);
+    // }
 
-    function handleClosePopups(event){
-        event.preventDefault();
-        setUpdateReceiptPopupOpen(!updateReceiptPopupOpen);
-        setConfirmationReceiptPopupOpen(!confirmationReceiptPopupOpen);
-        //setPostDataClicked(false);
-    }
+    // function handleClosePopups(event){
+    //     event.preventDefault();
+    //     setUpdateReceiptPopupOpen(!updateReceiptPopupOpen);
+    //     setConfirmationReceiptPopupOpen(!confirmationReceiptPopupOpen);
+    //     //setPostDataClicked(false);
+    // }
     
-    async function updateReceipt(event){
-        console.log('called update receipt');
-        event.preventDefault();
+    // async function updateReceipt(event){
+    //     console.log('called update receipt');
+    //     event.preventDefault();
 
-        await ambrosialAxiosAPI.put('/updatereceipt/:receiptID', {
-            receiptID:receiptIDValue,
-            orderNoId:orderNoIdValue,
-            totalItemPrice:totalItemPriceValue,
-        })
-        .then((response) => {
-             console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-             console.log(`response Status: ${response.data.status}`);
-             console.log(`response Message: ${response.data.message}`);
-             console.log("response Data: ", response.data.data);
-             setPostStatus(response.data.status);
-             setPostStatusMessage(response.data.message);
-          })
-        .catch((error) => {
-            console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-            console.log(`Error Status: ${error.response.data.status}`);
-            console.log(`Error Message: ${error.response.data.message}`);
-            setPostStatus(error.response.data.status);
-            setPostStatusMessage(error.response.data.message);
-          });
-          setPostDataClicked(true);
-    }
-
-
+    //     await ambrosialAxiosAPI.put('/updatereceipt/:receiptID', {
+    //         receiptID:receiptIDValue,
+    //         orderNoId:orderNoIdValue,
+    //         totalItemPrice:totalItemPriceValue,
+    //     })
+    //     .then((response) => {
+    //          console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
+    //          console.log(`response Status: ${response.data.status}`);
+    //          console.log(`response Message: ${response.data.message}`);
+    //          console.log("response Data: ", response.data.data);
+    //          setPostStatus(response.data.status);
+    //          setPostStatusMessage(response.data.message);
+    //       })
+    //     .catch((error) => {
+    //         console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
+    //         console.log(`Error Status: ${error.response.data.status}`);
+    //         console.log(`Error Message: ${error.response.data.message}`);
+    //         setPostStatus(error.response.data.status);
+    //         setPostStatusMessage(error.response.data.message);
+    //       });
+    //       setPostDataClicked(true);
+    // }
 
 
 
 
-    //Delete Receipt
-    //Submit popup and confirmation popup
-    const [deleteReceiptPopupOpen, setDeleteReceiptPopupOpen] = useState(false);
 
-    function togglePopupDeleteReceipt() {
-        setDeleteReceiptPopupOpen(!deleteReceiptPopupOpen);
-        setSubmitStatusMessageStatus(false);
-    }
 
-    function onSubmitValidateInput(event){
-        event.preventDefault();
-        if(!receiptID || !orderNoIdValue || !totalItemPriceValue) {
-            setSubmitStatusMessageStatus(true);
-            setSubmitStatusMessage('***Please check the input fields***');
-            return;
-        }
+    // //Delete Receipt
+    // //Submit popup and confirmation popup
+    // const [deleteReceiptPopupOpen, setDeleteReceiptPopupOpen] = useState(false);
 
-        togglePopupDeleteReceiptConfirmation();
-    }
+    // function togglePopupDeleteReceipt() {
+    //     setDeleteReceiptPopupOpen(!deleteReceiptPopupOpen);
+    //     setSubmitStatusMessageStatus(false);
+    // }
 
-    function togglePopupDeleteReceiptConfirmation() {
-        // event.preventDefault();
-        setConfirmationReceiptPopupOpen(!confirmationReceiptPopupOpen);
-        togglePopupDeleteReceipt();
-        setSubmitStatusMessageStatus(false);
-    }
+    // function onSubmitValidateInput(event){
+    //     event.preventDefault();
+    //     if(!receiptID || !orderNoIdValue || !totalItemPriceValue) {
+    //         setSubmitStatusMessageStatus(true);
+    //         setSubmitStatusMessage('***Please check the input fields***');
+    //         return;
+    //     }
 
-    function closePopupDeleteReceiptConfirmation(){
-        resetInputsToDefaultValue();
-        togglePopupDeleteReceiptConfirmation();
-    }
+    //     togglePopupDeleteReceiptConfirmation();
+    // }
 
-    function resetInputsToDefaultValue(){
-        setOrderNoIdValue(0);
-        setTotalItemPriceValue(0);
+    // function togglePopupDeleteReceiptConfirmation() {
+    //     // event.preventDefault();
+    //     setConfirmationReceiptPopupOpen(!confirmationReceiptPopupOpen);
+    //     togglePopupDeleteReceipt();
+    //     setSubmitStatusMessageStatus(false);
+    // }
 
-        setSubmitStatusMessageStatus(false);
-    }
+    // function closePopupDeleteReceiptConfirmation(){
+    //     resetInputsToDefaultValue();
+    //     togglePopupDeleteReceiptConfirmation();
+    // }
 
-    function handleClosePopups(event){
-        event.preventDefault();
-        setDeleteReceiptPopupOpen(!deleteReceiptPopupOpen);
-        setConfirmationReceiptPopupOpen(!confirmationReceiptPopupOpen);
-        //setPostDataClicked(false);
-    }
+    // function resetInputsToDefaultValue(){
+    //     setOrderNoIdValue(0);
+    //     setTotalItemPriceValue(0);
+
+    //     setSubmitStatusMessageStatus(false);
+    // }
+
+    // function handleClosePopups(event){
+    //     event.preventDefault();
+    //     setDeleteReceiptPopupOpen(!deleteReceiptPopupOpen);
+    //     setConfirmationReceiptPopupOpen(!confirmationReceiptPopupOpen);
+    //     //setPostDataClicked(false);
+    // }
     
-    async function deleteReceipt(event){
-        console.log('called delete receipt');
-        event.preventDefault();
+    // async function deleteReceipt(event){
+    //     console.log('called delete receipt');
+    //     event.preventDefault();
 
-        await ambrosialAxiosAPI.delete('/deletereceipt/:receiptID')
-        .then((response) => {
-             console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-             console.log(`response Status: ${response.data.status}`);
-             console.log(`response Message: ${response.data.message}`);
-             console.log("response Data: ", response.data.data);
-             setPostStatus(response.data.status);
-             setPostStatusMessage(response.data.message);
-          })
-        .catch((error) => {
-            console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-            console.log(`Error Status: ${error.response.data.status}`);
-            console.log(`Error Message: ${error.response.data.message}`);
-            setPostStatus(error.response.data.status);
-            setPostStatusMessage(error.response.data.message);
-          });
-          setPostDataClicked(true);
-    }
+    //     await ambrosialAxiosAPI.delete('/deletereceipt/:receiptID')
+    //     .then((response) => {
+    //          console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
+    //          console.log(`response Status: ${response.data.status}`);
+    //          console.log(`response Message: ${response.data.message}`);
+    //          console.log("response Data: ", response.data.data);
+    //          setPostStatus(response.data.status);
+    //          setPostStatusMessage(response.data.message);
+    //       })
+    //     .catch((error) => {
+    //         console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
+    //         console.log(`Error Status: ${error.response.data.status}`);
+    //         console.log(`Error Message: ${error.response.data.message}`);
+    //         setPostStatus(error.response.data.status);
+    //         setPostStatusMessage(error.response.data.message);
+    //       });
+    //       setPostDataClicked(true);
+    // }
 
 
 
@@ -255,7 +255,7 @@ export default function Receipt() {
     //View Receipts
     useEffect(() => {
         getReceipts();
-    });
+    }, []);
 
     //To get all receipts data
     const [receiptsListData, setReceiptsListData] = useState([]);
@@ -309,61 +309,61 @@ export default function Receipt() {
 
 
     
-    useEffect(async () => {
+    // useEffect(async () => {
 
-        if((updateReceiptPopupOpen===true)){
-            setModalVisibleUpdateReceipt(true);
-        }
+    //     if((updateReceiptPopupOpen===true)){
+    //         setModalVisibleUpdateReceipt(true);
+    //     }
 
-        if((updateReceiptPopupOpen===false) ){
-            setModalVisibleUpdateReceipt(false);
-        }
+    //     if((updateReceiptPopupOpen===false) ){
+    //         setModalVisibleUpdateReceipt(false);
+    //     }
         
-    }, [updateReceiptPopupOpen]);
+    // }, [updateReceiptPopupOpen]);
 
 
 
 
-    useEffect(async () => {
+    // useEffect(async () => {
 
-        if((deleteReceiptPopupOpen===true)){
-            setModalVisibleDeleteReceipt(true);
-        }
+    //     if((deleteReceiptPopupOpen===true)){
+    //         setModalVisibleDeleteReceipt(true);
+    //     }
 
-        if((deleteReceiptPopupOpen===false) ){
-            setModalVisibleDeleteReceipt(false);
-        }
+    //     if((deleteReceiptPopupOpen===false) ){
+    //         setModalVisibleDeleteReceipt(false);
+    //     }
         
-    }, [deleteReceiptPopupOpen]);
+    // }, [deleteReceiptPopupOpen]);
 
 
 
-    useEffect(async () => {
+    // useEffect(async () => {
           
-        if((confirmationReceiptPopupOpen===true) ){
-            setModalVisibleConfirmationReceipt(true);
-        }
+    //     if((confirmationReceiptPopupOpen===true) ){
+    //         setModalVisibleConfirmationReceipt(true);
+    //     }
 
-        if((confirmationReceiptPopupOpen===false)){
-            setModalVisibleConfirmationReceipt(false);
-        }
+    //     if((confirmationReceiptPopupOpen===false)){
+    //         setModalVisibleConfirmationReceipt(false);
+    //     }
         
-    }, [confirmationReceiptPopupOpen]);
+    // }, [confirmationReceiptPopupOpen]);
 
 
 
 
-    useEffect(async () => {
+    // useEffect(async () => {
           
-        if((viewReceipt===true) ){
-            setModalVisibleViewReceipt(true);
-        }
+    //     if((viewReceipt===true) ){
+    //         setModalVisibleViewReceipt(true);
+    //     }
 
-        if((viewReceipt===false)){
-            setModalVisibleViewReceipt(false);
-        }
+    //     if((viewReceipt===false)){
+    //         setModalVisibleViewReceipt(false);
+    //     }
         
-    }, [viewReceipt]);
+    // }, [viewReceipt]);
 
 
 
@@ -427,7 +427,7 @@ export default function Receipt() {
 
 
 
-            {modalVisibleUpdateReceipt ? <div className='modal-one'></div>:null}
+            {/* {modalVisibleUpdateReceipt ? <div className='modal-one'></div>:null}
             {updateReceiptPopupOpen && <Popup
             popupType='updateReceiptPopup'
             handleClose={togglePopupUpdateReceipt}
@@ -525,7 +525,7 @@ export default function Receipt() {
                     <br></br>
                     {postDataClicked ? <div className='deleteReceiptConfirmationStatusMessageContainer'><label className='deleteReceiptConfirmationStatusMessage'>{postStatusMessage}</label></div>: null}
                 </div>
-            }/>}  
+            }/>}   */}
 
 
 
