@@ -22,7 +22,7 @@ export default function Payments() {
 	function handleCreatePaymentOnChange(e) {
 		let createPaymentInput = {...paymentInput};
 		createPaymentInput[e.target.name] = e.target.value;
-
+		setCreatePaymentMessageStatus(false);
 		setPaymentInput(createPaymentInput);
 	}
 
@@ -192,13 +192,13 @@ export default function Payments() {
 							<label className='formHeader'>Create New Payment Log</label>
 
 							<label className='formLabelText'>Receipt ID</label>
-							<input className='createPaymentInputReceiptId' type='number' name='receiptID' onChange={handleCreatePaymentOnChange}/>
+							<input className='createPaymentInputReceiptId' value={paymentInput.receiptID} type='number' name='receiptID' onChange={handleCreatePaymentOnChange} autocomplete/>
 							
 							<label className='formLabelText'>Payment Type</label>
-							<input className='createPaymentInputPaymentType' type='text' name='paymentType' onChange={handleCreatePaymentOnChange}/>
+							<input className='createPaymentInputPaymentType' value={paymentInput.paymentType} type='text' name='paymentType' onChange={handleCreatePaymentOnChange}/>
 
 							<label className='formLabelText'>Payment Status</label>
-							<input className='createPaymentInputPaymentStatus' type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange}/>
+							<input className='createPaymentInputPaymentStatus' value={paymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange}/>
 							
 							<button className='createPaymentButton'>Submit</button>
 
