@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import './Receipts.css';
 import Popup from '../adminComponents/popup';
 import { ambrosialAxiosAPI } from '../../api/api';
-import ViewOrderItems from '../adminComponents/view-order-items';
-import ViewOrderItemsButton from '../adminComponents/view-order-items-button';
+import ViewOrderItems from '../adminComponents/ordersComponents/view-order-items';
+import ViewOrderItemsButton from '../adminComponents/ordersComponents/view-order-items-button';
 
 export default function Receipt() {
 
