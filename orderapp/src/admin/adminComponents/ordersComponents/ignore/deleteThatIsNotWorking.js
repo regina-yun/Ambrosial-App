@@ -1,111 +1,126 @@
-//Validating the input tag
-const [deleteSubmitStatus, setDeleteSubmitStatus] = useState(false);
-const [deleteSubmitStatusMessage, setDeleteSubmitStatusMessage] = useState('');
+//delete distinct order
+    //setting delete view
+    const [viewDelete, setViewDelete] = useState(false);
+    const [viewConfirmationDeletePopupOpen, setViewConfirmationDeletePopupOpen] = useState(false);
 
-//setting of the update distinct order confirmation
+    //Validating the input tag
+    const [deleteSubmitStatus, setDeleteSubmitStatus] = useState(false);
+    const [deleteSubmitStatusMessage, setDeleteSubmitStatusMessage] = useState('');
 
-//function to toggle the popup update
-function toggleDeleteDistinctOrderPopup(){
-    setViewDelete(!viewDelete);
-    setDeleteSubmitStatus(false);
-    setModalVisible(!modalVisible);
-}
+    //setting of the update distinct order confirmation
 
-//function to validate the input tag for update
-function onSubmitValidateinputForDelete(event){
-    event.preventDefault();
-    if(!orderNoUpdate){
-        setDeleteSubmitStatus(true);
-        setDeleteSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
-        return;
+    //function to toggle the popup update
+    function toggleDeleteOrderItemPopup(){
+        setViewDelete(!viewDelete);
+        setDeleteSubmitStatus(false);
+        setModalVisible(!modalVisible);
     }
 
-    toggleDeleteDistinctOrderConfirmation();
-}
+    //function to validate the input tag for update
+    function onSubmitValidateinputForDelete(event){
+        event.preventDefault();
 
-function toggleDeleteDistinctOrderConfirmation() {
-    // event.preventDefault();
-    console.log('in toggle here');
-    setViewDelete(!viewDelete);
-    setViewConfirmationDeletePopupOpen(!viewConfirmationDeletePopupOpen);
-    toggleDeleteDistinctOrderPopup();
-    setDeleteSubmitStatus(false);
-    setOrderNoUpdate(0);
-}
+        toggleDeleteOrderItemConfirmation();
+    }
 
-function closePopupDeleteDistinctOrderConfirmation(){
-    setOrderNoUpdate(0);
+    function toggleDeleteOrderItemConfirmation() {
+        
+        console.log('in toggleDeleteOrderItemConfirmation');
+        setViewDelete(!viewDelete);
+        setViewConfirmationDeletePopupOpen(!viewConfirmationDeletePopupOpen);
+        toggleDeleteOrderItemPopup();
+        setDeleteSubmitStatus(false);
+        
+    }
 
-    setDeleteDataClicked(false);
-    setDeleteDistinctOrderStatus(false);
-    setDeleteDistinctOrderStatusMessage(false);
-    setDeleteSubmitStatus(false);
-    setDeleteSubmitStatusMessage('');
-    setViewDelete(true);
-    setViewConfirmationDeletePopupOpen(false);
-    console.log('in here');
-}
+    function closePopupDeleteOrderItemConfirmation(){
 
-//final close
-function handleCloseDeletePopups(event){
-    setOrderNoUpdate(0);
+        setDeleteDataClicked(false);
+        setDeleteOrderItemStatus(false);
+        setDeleteOrderItemStatusMessage(false);
+        setDeleteSubmitStatus(false);
+        setDeleteSubmitStatusMessage('');
+        setViewDelete(true);
+        setViewConfirmationDeletePopupOpen(false);
+        console.log('In closePopupDeleteOrderItemConfirmation');
+    }
 
-    setDeleteDataClicked(false);
-    setDeleteDistinctOrderStatus(false);
-    setDeleteDistinctOrderStatusMessage(false);
-    setDeleteSubmitStatus(false);
-    setDeleteSubmitStatusMessage('');
-    setViewDelete(false);
-    setViewConfirmationDeletePopupOpen(false);
-}
+    //final close
+    function handleCloseDeletePopups(){
+        
 
-//setting of update being clicked and updating of order no for distinct order
-//For the result of the post
-const [deleteDistinctOrderStatus, setDeleteDistinctOrderStatus] = useState(false);
-const [deleteDistinctOrderStatusMessage, setDeleteDistinctOrderStatusMessage] = useState(false);
-//For showing the result message
-const [deleteDataClicked, setDeleteDataClicked] = useState(false);
+        setDeleteDataClicked(false);
+        setDeleteOrderItemStatus(false);
+        setDeleteOrderItemStatusMessage(false);
+        setDeleteSubmitStatus(false);
+        setDeleteSubmitStatusMessage('');
+        setViewDelete(false);
+        setViewConfirmationDeletePopupOpen(false);
+    }
 
-async function deleteDistinctOrder(event){
-    console.log('called delete distinct order');
+    //setting of update being clicked and updating of order no for distinct order
+    //For the result of the post
+    const [deleteOrderItemStatus, setDeleteOrderItemStatus] = useState(false);
+    const [deleteOrderItemStatusMessage, setDeleteOrderItemStatusMessage] = useState(false);
+    //For showing the result message
+    const [deleteDataClicked, setDeleteDataClicked] = useState(false);
 
-
-    await ambrosialAxiosAPI.delete(`/deletedistinctOrder/${orderNoId}`)
-    .then((response) => {
-         console.log(`${response.config.method} method for route: ${response.config.url}`);
-         console.log(`response Status: ${response.data.status}`);
-         console.log(`response Message: ${response.data.message}`);
-         console.log("response Data: ", response.data.data);
-         setDeleteDistinctOrderStatus(response.data.status);
-         setDeleteDistinctOrderStatusMessage(response.data.message);
-    })
-    .catch((error) => {
-        console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-        console.log(`Error Status: ${error.response.data.status}`);
-        console.log(`Error Message: ${error.response.data.message}`);
-        setDeleteDistinctOrderStatus(error.response.data.status);
-        setDeleteDistinctOrderStatusMessage(error.response.data.message);
-    });
-
-    setDeleteDataClicked(true);
-}
+    async function deleteOrderItem(){
+        console.log('called delete order item');
 
 
+        await ambrosialAxiosAPI.delete(`/deleteorder/${orderId}`)
+        .then((response) => {
+            console.log(`${response.config.method} method for route: ${response.config.url}`);
+            console.log(`response Status: ${response.data.status}`);
+            console.log(`response Message: ${response.data.message}`);
+            console.log("response Data: ", response.data.data);
+            setDeleteOrderItemStatus(response.data.status);
+            setDeleteOrderItemStatusMessage(response.data.message);
+        })
+        .catch((error) => {
+            console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+            console.log(`Error Status: ${error.response.data.status}`);
+            console.log(`Error Message: ${error.response.data.message}`);
+            setDeleteOrderItemStatus(error.response.data.status);
+            setDeleteOrderItemStatusMessage(error.response.data.message);
+        });
 
-
-
+        setDeleteDataClicked(true);
+    }
 
 
 
-
-
-
-
-
-{confirmationOrderPopupOpen && <Popup
-        popupType='deleteOrderConfirmationPopup'
-        handleClose={togglePopupCreateOrderConfirmation}
+    {/* delete Popup */}
+    {viewDelete && <Popup
+        popupType='deleteOrderItemPopup'
+        handleClose={toggleDeleteDistinctOrderPopup}
         content={
-            <ConfirmationPopupContents  invokeAction={deleteDistinctOrder} xButtonClose={closePopupDeleteDistinctOrderConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteDistinctOrderStatusMessage}/>
+            <form onSubmit={onSubmitValidateinputForDelete}>
+                <label className='formHeaderDelete'>Delete Order Record</label>
+                <br></br>
+                <br></br>
+
+                <label className='formLabelTextDelete'>Order No.:</label>
+                <label className='formLabelOrderNo'>{viewOrderItemsOrderNo}</label>
+                <br></br>
+
+                {/* <label className='formLabelTextUpdate'>Order No. :</label>
+                <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
+                <br></br> */}
+
+                <button className='deleteCurrentDistinctOrderButton'>Submit</button>
+                <br></br>
+                <br></br>
+
+                {deleteSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label>:null}
+            </form>
+        }/>}
+
+        {viewConfirmationDeletePopupOpen && <Popup
+        popupType='deleteOrderItemConfirmationPopup'
+        handleClose={toggleDeleteDistinctOrderConfirmation}
+        content={
+            <ConfirmationPopupContents  invokeAction={deleteOrderItem} invokeRefresh={getAllOrderedItems} xButtonClose={closePopupDeleteOrderItemConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteOrderItemStatusMessage}/>
         }/>
-}     
+        } 

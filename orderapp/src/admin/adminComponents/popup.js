@@ -62,6 +62,26 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'createOrderItemPopup'){
+        return(
+            <div className="createOrderItemPopup-box">
+                <div className="createOrderItem-box">
+                    <span className="createOrderItem-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'createOrderItemConfirmationPopup'){
+        return(
+            <div className="createOrderItemConfirmationPopup-box">
+                <div className="createOrderItemConfirmation-box">
+                    <span className="createOrderItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'updateCurrentDistinctOrderPopup'){
         return(
             <div className="updateCurrentDistinctOrderPopup-box">
@@ -82,6 +102,26 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'updateOrderItemPopup'){
+        return(
+            <div className="updateOrderItemPopup-box">
+                <div className="updateOrderItem-box">
+                    <span className="updateOrderItem-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'updateOrderItemConfirmationPopup'){
+        return(
+            <div className="updateOrderItemConfirmationPopup-box">
+                <div className="updateOrderItemConfirmation-box">
+                    <span className="updateOrderItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'deleteCurrentDistinctOrderPopup'){
         return(
             <div className="deleteCurrentDistinctOrderPopup-box">
@@ -97,6 +137,26 @@ function Popup(props){
             <div className="deleteOrderConfirmationPopup-box">
                 <div className="deleteOrderConfirmation-box">
                     <span className="deleteOrderConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'deleteOrderItemPopup'){
+        return(
+            <div className="deleteOrderItemPopup-box">
+                <div className="deleteOrderItem-box">
+                    <span className="deleteOrderItem-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'deleteOrderItemConfirmationPopup'){
+        return(
+            <div className="deleteOrderItemConfirmationPopup-box">
+                <div className="deleteOrderItemConfirmation-box">
+                    <span className="deleteOrderItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
                         {props.content}
                 </div>
             </div>

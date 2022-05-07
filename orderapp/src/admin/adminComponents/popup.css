@@ -24,6 +24,19 @@
   z-index: 2;
 }
 
+.updateOrderItemPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3;
+}
+
 .deleteCurrentDistinctOrderPopup-box{
   width:30%;
   height: 35%;
@@ -37,6 +50,19 @@
   z-index: 2;
 }
 
+.deleteOrderItemPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 4;
+}
+
 .createOrder-close-icon {
   margin-left: 95%;
 }
@@ -45,7 +71,15 @@
   margin-left: 95%;
 }
 
+.updateOrderItem-close-icon{
+  margin-left: 95%;
+}
+
 .deleteCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderItem-close-icon{
   margin-left: 95%;
 }
 
@@ -60,6 +94,25 @@
   z-index: 2;
 }
 
+.createOrderItemConfirmationPopup-box {
+  /* width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3; */
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:40%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+  z-index: 4;
+}
+
 .updateOrderConfirmationPopup-box{
   width:30%;
   height: 35%;
@@ -69,6 +122,17 @@
   top: 5%;
   left: 32%;
   z-index: 2;
+}
+
+.updateOrderItemConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3;
 }
 
 .deleteOrderConfirmationPopup-box{
@@ -82,6 +146,21 @@
   z-index: 2;
 }
 
+.deleteOrderItemConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 4;
+}
+
+.createOrderItemConfirmation-close-icon {
+  margin-left: 95%;
+}
+
 .createOrderConfirmation-close-icon {
   margin-left: 95%;
 }
@@ -90,7 +169,15 @@
   margin-left: 95%;
 }
 
+.updateOrderItemConfirmation-close-icon{
+  margin-left: 95%;
+}
+
 .deleteOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderItemConfirmation-close-icon{
   margin-left: 95%;
 }
 
@@ -109,7 +196,20 @@
   margin-left: 95%;
 }
 
+.createOrderItemPopup-box{
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:40%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+  z-index: 4;
+}
 
+.createOrderItem-close-icon{
+  margin-left: 95%;
+}
 
 .createReceiptPopup-box{
   width:30%;
