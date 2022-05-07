@@ -5,8 +5,8 @@ import './Payments.css';
 
 export default function Payments() {
 
-//#region CREATE
-	//Create Payment
+//#region CREATE PAYMENT
+
 	const [createPaymentInput, setCreatePaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
 
 	const [createPaymentSubmitMessage, setCreatePaymentSubmitMessage] = useState('');
@@ -58,13 +58,13 @@ export default function Payments() {
 		setCreatePaymentSubmitMessageStatus(false);
 	}
 
-	function resetInputsToDefault() {
+	function resetCreateInputsToDefault() {
 		setPaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''});
 		setCreatePaymentSubmitMessageStatus(false);
 	}
 
 	function closePopupCreatePaymentConfirmation() {
-		resetInputsToDefault();
+		resetCreateInputsToDefault();
 		togglePopupCreatePaymentConfirmation();
 	}
 
@@ -104,19 +104,19 @@ export default function Payments() {
 	}
 //#endregion
 
-//#region UPDATE
-	//Update Payment
+//#region UPDATE PAYMENT
 
 	const [updatePaymentInput, setUpdatePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
 
-	const [updatePaymentMessage, setUpdatePaymentMessage] = useState('');
-	const [updatePaymentMessageStatus, setUpdatePaymentMessageStatus] = useState(false);
+	const [updatePaymentSubmitMessage, setUpdatePaymentSubmitMessage] = useState('');
+	const [updatePaymentSubmitMessageStatus, setUpdatePaymentSubmitMessageStatus] = useState(false);
 
 	const [modalVisibleUpdatePayment, setModalVisibleUpdatePayment] = useState(false);
 	const [updatePaymentPopupOpen, setUpdatePaymentPopupOpen] = useState(false);
 	const [modalVisibleUpdatePaymentConfirmation, setModalVisibleUpdatePaymentConfirmation] = useState(false);
 	const [updatePaymentConfirmationPopupOpen, setUpdatePaymentConfirmationPopupOpen] = useState(false);
 
+	const [updatePaymentPostStatus, setUpdatePaymentPostStatus] = useState(false);
 	const [updatePaymentPostStatusMessage, setUpdatePaymentPostStatusMessage] = useState(false);
 	const [updatePaymentPostDataClicked, setUpdatePaymentPostDataClicked] = useState(false);
 
@@ -131,13 +131,13 @@ export default function Payments() {
 		e.preventDefault();
 
 		if(!updatePaymentInput.paymentInvoiceID && !updatePaymentInput.receiptID && !updatePaymentInput.paymentType && !updatePaymentInput.paymentStatus) {
-			setUpdatePaymentMessageStatus(true)
-			setUpdatePaymentMessage('***All of the input fields are empty***');
+			setUpdatePaymentSubmitMessageStatus(true)
+			setUpdatePaymentSubmitMessage('***All of the input fields are empty***');
 			return;
 		}
 		else if(updatePaymentInput.paymentInvoiceID || !updatePaymentInput.receiptID || !updatePaymentInput.paymentType || !updatePaymentInput.paymentStatus) {
-			setUpdatePaymentMessageStatus(true)
-			setUpdatePaymentMessage('***Some of the input fields are empty***');
+			setUpdatePaymentSubmitMessageStatus(true)
+			setUpdatePaymentSubmitMessage('***Some of the input fields are empty***');
 			return;
 		}
 
@@ -152,10 +152,13 @@ export default function Payments() {
 	function togglePopupUpdatePaymentConfirmation(){
 		setModalVisibleUpdatePaymentConfirmation(!modalVisibleUpdatePaymentConfirmation);
 		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
+		togglePopupUpdatePayment();
+		setUpdatePaymentSubmitMessageStatus(false);
 	}
 
 	function resetUpdateInputsToDefault() {
-		setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''})
+		setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
+		setUpdatePaymentMessageStatus(false);
 	}
 
 	function closePopupUpdatePaymentConfirmation() {
@@ -173,27 +176,33 @@ export default function Payments() {
 		e.preventDefault();
 
 		await ambrosialAxiosAPI.put('/updatepayment/:invoiceID', {
-			paymentInvoiceID: "",
-			receiptID: "",
-			paymentType: "",
-			paymentStatus: ""
+			paymentInvoiceID: updatePaymentInput.paymentInvoiceID,
+			receiptID: updatePaymentInput.receiptID,
+			paymentType: updatePaymentInput.paymentType,
+			paymentStatus: updatePaymentInput.paymentStatus
 		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
 			console.log(`response Status: ${response.data.status}`);
 			console.log(`response Message: ${response.data.message}`);
 			console.log("response Data: ", response.data.data);
+
+			setUpdatePaymentPostStatus(response.data.status);
+			setCreatePaymentPostStatusMessage(response.data.message);
  		})
 		.catch((error) => {
-				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-				console.log(`Error Status: ${error.response.data.status}`);
-				console.log(`Error Message: ${error.response.data.message}`);
+			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+			console.log(`Error Status: ${error.response.data.status}`);
+			console.log(`Error Message: ${error.response.data.message}`);
+
+			setUpdatePaymentPostStatus(error.response.data.status);
+			setUpdatePaymentPostStatusMessage(error.response.data.message);
 		});
+		setUpdatePaymentPostDataClicked(true);
 	}
 //#endregion
 
-//#region DELETE
-	//Delete Payment
+//#region DELETE PAYMENT
 
 	// const [deletePaymentInput, setDeletePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
 
@@ -224,13 +233,13 @@ export default function Payments() {
 	// }
 
 	function closePopupDeletePaymentConfirmation() {
-		// resetUpdateInputsToDefault();
+		resetUpdateInputsToDefault();
 		togglePopupDeletePaymentConfirmation();
-	}
+	} 
 
 	function handleDeletePaymentClosePopups(e) {
 		e.preventDefault();
-		// setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
+		setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
 		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
 	}
 	async function deletePayment(e) {
@@ -242,19 +251,25 @@ export default function Payments() {
 			console.log(`response Status: ${response.data.status}`);
 			console.log(`response Message: ${response.data.message}`);
 			console.log("response Data: ", response.data.data);
+
+			setDeletePaymentPostStatus(response.data.status);
+			setDeletePaymentPostStatusMessage(response.data.message);
  		})
 		.catch((error) => {
-				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-				console.log(`Error Status: ${error.response.data.status}`);
-				console.log(`Error Message: ${error.response.data.message}`);
+			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+			console.log(`Error Status: ${error.response.data.status}`);
+			console.log(`Error Message: ${error.response.data.message}`);
+
+			setDeletePaymentPostStatus(error.response.data.status);
+			setDeletePaymentPostStatusMessage(error.response.data.message);
 		});
+		setDeletePaymentPostDataClicked(true);
 	}
 
 
 //#endregion
 
-//#region GETALL
-	//Read All Payment
+//#region GET ALL PAYMENT
 	useEffect(() => {
 		getAllPayment();
 	});
@@ -280,8 +295,8 @@ export default function Payments() {
 
 	//#endregion
 
-//#region GET SPECIFIC
-	//Read Specific Payment
+//#region GET SPECIFIC PAYMENT
+	
 	async function getSpecificPayment(e) {
 		e.preventDefault();
 
@@ -327,7 +342,7 @@ export default function Payments() {
 							
 							<button className='createPaymentButton'>Submit</button>
 
-							{createPaymentMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{createPaymentMessage}</label>}</label>}
+							{createPaymentSubmitMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{createPaymentSubmitMessage}</label>}</label>}
 						</form>
 					}/>
 				}
@@ -379,7 +394,7 @@ export default function Payments() {
 							
 							<button className='updatePaymentButton'>Submit</button>
 
-							{updatePaymentMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{updatePaymentMessage}</label>}</label>}
+							{updatePaymentSubmitMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{updatePaymentSubmitMessage}</label>}</label>}
 						</form>
 					}/>
 				}
