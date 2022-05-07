@@ -75,12 +75,18 @@ function ChangePassword() {
       });
   }}
 
+  function resetChangePasswordStateToDefault() {
+    setUpdatePassword({username: "", newPassword: "", confirmPassword: ""});
+  }
+
   function togglePopupUpdatePasswordError() {
+    resetChangePasswordStateToDefault()
     setUpdatePasswordErrorPopupOpen(!updatePasswordErrorPopUpOpen);
     setModalVisibleUpdatePasswordError(!modalVisibleUpdatePasswordError);
   }
 
   function togglePopupUpdatePasswordSuccess() {
+    resetChangePasswordStateToDefault()
     setUpdatePasswordSuccessPopupOpen(!updatePasswordSuccessPopUpOpen);
     setModalVisibleUpdatePasswordSuccess(!modalVisibleUpdatePasswordSuccess);
 
@@ -96,17 +102,17 @@ function ChangePassword() {
             <LoginHeader />
             <form className='change-password-form'>
               <div className='change-password-input'>
-                <input id='username' type='text' placeholder='' autoComplete='off' name='username' onChange={handleOnChange} />
+                <input id='username' type='text' placeholder='' autoComplete='off' value={updatePassword.username} name='username' onChange={handleOnChange} />
                 <label className='change-pw-username-label'>Username</label>
               </div>
 
               <div className='change-password-input'>
-                <input id='new-password' type='password' minLength='8' maxLength='50' placeholder='' name='newPassword' onChange={handleOnChange} />
+                <input id='new-password' type='password' minLength='8' maxLength='50' placeholder='' value={updatePassword.newPassword} name='newPassword' onChange={handleOnChange} />
                 <label className='change-pw-newpw-label'>New Password</label>
               </div>
               
               <div className='change-password-input'>
-                <input id='confirm-password' type='password' minLength='8' maxLength='50' placeholder='' name='confirmPassword' onChange={handleOnChange}/>
+                <input id='confirm-password' type='password' minLength='8' maxLength='50' placeholder='' value={updatePassword.confirmPassword} name='confirmPassword' onChange={handleOnChange}/>
                 <label className='change-pw-confirmpw-label'>Confirm Password</label>
               </div>
 
