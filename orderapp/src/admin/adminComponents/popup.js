@@ -14,9 +14,9 @@ function Popup(props){
     }
     else if(props.popupType === 'updatePasswordErrorPopup'){
         return(
-            <div className="updatePasswordError-box">
+            <div className="updatePasswordErrorPopup-box">
+                <span className="updatePasswordError-close-icon" onClick={props.handleClose}>x</span>
                 <div className="updatePasswordError-box">
-                    <span className="updatePasswordError-close-icon" onClick={props.handleClose}>x</span>
                         {props.content}
                 </div>
             </div>
@@ -24,9 +24,9 @@ function Popup(props){
     }
     else if(props.popupType === 'updatePasswordSuccessPopup'){
         return(
-            <div className="updatePasswordSuccess-box">
+            <div className="updatePasswordSuccessPopup-box">
+                <span className="updatePasswordSuccess-close-icon" onClick={props.handleClose}>x</span>
                 <div className="updatePasswordSuccess-box">
-                    <span className="updatePasswordSuccess-close-icon" onClick={props.handleClose}>x</span>
                         {props.content}
                 </div>
             </div>
