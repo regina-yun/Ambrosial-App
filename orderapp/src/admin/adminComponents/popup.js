@@ -192,6 +192,26 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'updatePaymentPopup'){
+        return(
+            <div className="updatePaymentPopup-box">
+                <div className="updatePayment-box">
+                    <span className="updatePayment-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'updatePaymentConfirmationPopup'){
+        return(
+            <div className="updatePaymentConfirmationPopup-box">
+                <div className="updatePaymentConfirmation-box">
+                    <span className="updatePaymentConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Popup;
