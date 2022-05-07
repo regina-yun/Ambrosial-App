@@ -495,13 +495,13 @@ export default function Receipt(props) {
                     </form>
                 }/>}
 
-                {viewConfirmationDeletePopupOpen && <Popup
-                popupType='deleteReceiptConfirmationPopup'
-                handleClose={toggleDeleteReceiptConfirmation}
-                content={
-                    <ConfirmationPopupContents  invokeAction={deleteReceipt} invokeRefresh={getReceipts} xButtonClose={closePopupDeleteReceiptConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteOrderItemStatusMessage}/>
-                }/>
-                } 
+            {viewConfirmationDeletePopupOpen && <Popup
+            popupType='deleteReceiptConfirmationPopup'
+            handleClose={toggleDeleteReceiptConfirmation}
+            content={
+                <ConfirmationPopupContents  invokeAction={deleteReceipt} invokeRefresh={getReceipts} xButtonClose={closePopupDeleteReceiptConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteOrderItemStatusMessage}/>
+            }/>
+            } 
 
 
             <div className="receipt">
