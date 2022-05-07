@@ -4,7 +4,7 @@ import Popup from '../adminComponents/popup';
 import { ambrosialAxiosAPI } from '../../api/api';
 import ViewOrderItems from '../adminComponents/ordersComponents/view-order-items';
 import ViewOrderItemsButton from '../adminComponents/ordersComponents/view-order-items-button';
-import UpdateAndDeleteDistinctOrderButton from '../adminComponents/commonComponents/update-Delete-DistinctOrder-Button';
+import UpdateAndDeleteButton from '../adminComponents/commonComponents/UpdateAndDeleteButton';
 import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmationPopupContents';
 
 export default function Orders() {
@@ -501,8 +501,8 @@ export default function Orders() {
                             <td>{index+1}</td>
                             <td>{distinctOrder.orderNo}</td>
                             <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder}/></td>
-                            <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."}/></td>
-                            <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"}/></td>
+                            <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."}/></td>
+                            <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"}/></td>
                         </tr>
                     )
                 )}

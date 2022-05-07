@@ -1,6 +1,6 @@
-import './update-Delete-DistinctOrder-Button.css';
+import './UpdateAndDeleteButton.css';
 
-function UpdateAndDeleteDistinctOrderButton(props){
+function UpdateAndDeleteButton(props){
 
     function updateAction(){
         props.setId(props.id);
@@ -15,6 +15,6 @@ function UpdateAndDeleteDistinctOrderButton(props){
     )
 }
 
-export default UpdateAndDeleteDistinctOrderButton;
+export default UpdateAndDeleteButton;
 
 

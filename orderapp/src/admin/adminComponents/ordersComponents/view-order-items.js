@@ -2,7 +2,7 @@ import './view-order-items.css'
 import Popup from '../popup';
 import { useEffect, useState } from 'react';
 import { ambrosialAxiosAPI } from '../../../api/api';
-import UpdateAndDeleteDistinctOrderButton from '../commonComponents/update-Delete-DistinctOrder-Button';
+import UpdateAndDeleteButton from '../commonComponents/UpdateAndDeleteButton';
 import ConfirmationPopupContents from '../commonComponents/confirmationPopupContents';
 
 
@@ -267,7 +267,6 @@ async function updateOrderItems(){
 
     setUpdateDataClicked(true);
 }
-
 /////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////DELETE//////////////////////////////////////
@@ -361,11 +360,6 @@ async function updateOrderItems(){
 
         setDeleteDataClicked(true);
     }
-
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////
     //order data status and ordereditems data
     const [orderedItemsDataStatus, setOrderedItemsDataStatus] = useState(false);
@@ -398,21 +392,6 @@ async function updateOrderItems(){
         }
     }, [props.viewOrder]);
 
-
-    
-
-    //Update many order item
-    function updateManyOrderItem(){
-
-    }
-
-    //delete order item
-    // function deleteOrderItem(){
-    //     //delete the ordered item
-
-    //     //get all data and refresh
-    //     //getAllOrderedItems(); 
-    // }
 
     //modal Code for popups
     const [modalVisible, setModalVisible] = useState(false);
@@ -482,11 +461,8 @@ async function updateOrderItems(){
                                 <td>{index+1}</td>
                                 <td>{orderedItemsData.MenuItem.alt}</td>
                                 <td>{orderedItemsData.quantity}</td>
-                                {/* <td className='updateAndDeleteButtonsContainer'><button className='updateAndDeleteButtons' onClick={updateOrderItem}>Update Item</button></td> */}
-                                <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setId={setOrderId} id={orderedItemsData.orderID} setData={props.setOrderNo} data={props.orderNo} setView={setViewUpdate} buttonText={"Update Order Item"}/></td>
-                                {/* <td className='updateAndDeleteButtonsContainer'><button className='updateAndDeleteButtons' onClick={deleteOrderItem}>Delete Item</button></td> */}
-                                
-                                <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setId={setOrderId} id={orderedItemsData.orderID} setData={setMenuItemName} data={orderedItemsData.MenuItem.alt} setView={setViewDelete} buttonText={"Delete Order Item"}/></td>
+                                <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderId} id={orderedItemsData.orderID} setData={props.setOrderNo} data={props.orderNo} setView={setViewUpdate} buttonText={"Update Order Item"}/></td>
+                                <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderId} id={orderedItemsData.orderID} setData={setMenuItemName} data={orderedItemsData.MenuItem.alt} setView={setViewDelete} buttonText={"Delete Order Item"}/></td>
                             </tr>
                         )
                     ): <tr>
