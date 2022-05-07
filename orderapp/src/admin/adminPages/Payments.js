@@ -244,7 +244,7 @@ export default function Payments() {
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
 	}
 	async function deletePayment(data) {
-		
+
 		await ambrosialAxiosAPI.delete('/deletepayment/:invoiceID', {
 			receiptID: data.receiptID
 		})
@@ -320,38 +320,48 @@ export default function Payments() {
 
 	return (
 		<>
-			<div className='createAndRefresh'>
+			<div className='createAndRefreshPayment'>
 				<button className='refreshPaymentLogs' onClick={getAllPayment}>Refresh List</button>
 				<button className='createPayment' onClick={togglePopupCreatePayment}>Create New Payment Log</button>
 			</div>
 
-			{modalVisibleCreatePayment && <div className='modal'>
+			{modalVisibleCreatePayment && <div className='payment-modal'>
 				{createPaymentPopupOpen && <Popup
 					popupType='createPaymentPopup'
 					handleClose={togglePopupCreatePayment}
 					content={
-						<form onSubmit={onSubmitCreatePaymentInputValidation}>
-							<label className='formHeader'>Create New Payment Log</label>
+						<form className='paymentForm' onSubmit={onSubmitCreatePaymentInputValidation}>
+							<label className='paymentFormHeader'>Create New Payment Log</label>
 
-							<label className='formLabelText'>Receipt ID</label>
+							<br /><br />
+
+							<label className='createPaymentFormLabelText'>Receipt ID</label>
 							<input className='createPaymentInputReceiptId' value={createPaymentInput.receiptID} type='number' name='receiptID' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 							
-							<label className='formLabelText'>Payment Type</label>
+							<br /><br />
+
+							<label className='createPaymentFormLabelText'>Payment Type</label>
 							<input className='createPaymentInputPaymentType' value={createPaymentInput.paymentType} type='text' name='paymentType' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 
-							<label className='formLabelText'>Payment Status</label>
+							<br /><br />
+
+							<label className='createPaymentFormLabelText'>Payment Status</label>
 							<input className='createPaymentInputPaymentStatus' value={createPaymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleCreatePaymentOnChange} autoComplete='off'/>
 							
-							<button className='createPaymentButton'>Submit</button>
+							<br /><br />
 
-							{createPaymentSubmitMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{createPaymentSubmitMessage}</label>}</label>}
+							<button className='paymentButton'>Submit</button>
+
+							<br /><br />
+
+							{createPaymentSubmitMessageStatus && <label className='paymentFormLabelTextStatus'>{<label className='paymentFormLabelText'>{createPaymentSubmitMessage}</label>}</label>}
 						</form>
 					}/>
 				}
 			</div>
 			}
 
-			{modalVisibleCreatePaymentConfirmation && <div className='modal'>
+			{modalVisibleCreatePaymentConfirmation && <div className='payment-confirmation-modal'>
 				{createPaymentConfirmationPopupOpen && <Popup
 				popupType='createPaymentConfirmationPopup'
 				handleClose={togglePopupCreatePaymentConfirmation}
@@ -368,36 +378,48 @@ export default function Payments() {
 			</div>
 			}
 
-			{modalVisibleUpdatePayment && <div className='modal'>
+			{modalVisibleUpdatePayment && <div className='payment-modal'>
 				{updatePaymentPopupOpen && <Popup
 					popupType='updatePaymentPopup'
 					handleClose={togglePopupUpdatePayment}
 					content={
 						<form onSubmit={onSubmitUpdatePaymentInputValidation}>
-							<label className='formHeader'>Update Payment Log</label>
+							<label className='paymentFormHeader'>Update Payment Log</label>
 
-							<label className='formLabelText'>Invoice ID</label>
+							<br /><br />
+
+							<label className='updatePaymentFormLabelText'>Invoice ID</label>
 							<input className='updatePaymentInputInvoiceId' value={updatePaymentInput.paymentInvoiceID} type='number' name='paymentInvoiceID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							
+							<br /><br />
 
-							<label className='formLabelText'>Receipt ID</label>
+							<label className='updatePaymentFormLabelText'>Receipt ID</label>
 							<input className='updatePaymentInputReceiptId' value={updatePaymentInput.receiptID} type='number' name='receiptID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
 							
-							<label className='formLabelText'>Payment Type</label>
-							<input className='updatePaymentInputPaymentType' value={updatePaymentInput.paymentType} type='text' name='paymentType' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							<br /><br />
 
-							<label className='formLabelText'>Payment Status</label>
+							<label className='updatePaymentFormLabelText'>Payment Type</label>
+							<input className='updatePaymentInputPaymentType' value={updatePaymentInput.paymentType} type='text' name='paymentType' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							
+							<br /><br />
+
+							<label className='updatePaymentFormLabelText'>Payment Status</label>
 							<input className='updatePaymentInputPaymentStatus' value={updatePaymentInput.paymentStatus} type='text' name='paymentStatus' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
 							
-							<button className='updatePaymentButton'>Submit</button>
+							<br /><br />
 
-							{updatePaymentSubmitMessageStatus && <label className='formLabelTextStatus'>{<label className='formLabelText'>{updatePaymentSubmitMessage}</label>}</label>}
+							<button className='paymentButton'>Submit</button>
+							
+							<br /><br />
+
+							{updatePaymentSubmitMessageStatus && <label className='paymentFormLabelTextStatus'>{<label className='paymentFormLabelText'>{updatePaymentSubmitMessage}</label>}</label>}
 						</form>
 					}/>
 				}
 			</div>
 			}
 			
-			{modalVisibleUpdatePaymentConfirmation && <div className='modal'>
+			{modalVisibleUpdatePaymentConfirmation && <div className='payment-confirmation-modal'>
 				{updatePaymentConfirmationPopupOpen && <Popup
 				popupType='updatePaymentConfirmationPopup'
 				handleClose={togglePopupUpdatePaymentConfirmation}
@@ -414,7 +436,7 @@ export default function Payments() {
 			</div>
 			}
 
-			{modalVisibleDeletePaymentConfirmation && <div className='modal'>
+			{modalVisibleDeletePaymentConfirmation && <div className='payment-confirmation-modal'>
 				{deletePaymentConfirmationPopupOpen && <Popup
 				popupType='deletePaymentConfirmationPopup'
 				handleClose={togglePopupDeletePaymentConfirmation}
@@ -433,7 +455,7 @@ export default function Payments() {
 
 			<div className="payments">
 					<h1>Payment Logs</h1>
-					<table>
+					<table className='paymentTable'>
 						<tr>
 							<th>Invoice ID</th>
 							<th>Receipt ID</th>
