@@ -70,8 +70,12 @@ function Login() {
       });
     }
   }
+  function resetLoginStateToDefault() {
+    setLoginCredentials({username: '', password: ''});
+  }
 
   function togglePopupLogin() {
+    resetLoginStateToDefault();
     setLoginPopupOpen(!loginPopupOpen);
     setModalVisibleLogin(!modalVisibleLogin);
   }
@@ -86,12 +90,12 @@ function Login() {
             <LoginHeader />
             <form className='login-form'>
               <div className='login-input'>
-                <input id='username-input' type='text' autoComplete='off' placeholder='' name='username' onChange={handleOnChange}/>
+                <input id='username-input' type='text' autoComplete='off' placeholder='' value={loginCredentials.username} name='username' onChange={handleOnChange}/>
                 <label className='login-username-label'>Username</label>
               </div>
               
               <div className='login-input'>
-                <input id='password-input' type='password' placeholder='' minLength='8' name='password' onChange={handleOnChange}/>
+                <input id='password-input' type='password' placeholder='' minLength='8' value={loginCredentials.password} name='password' onChange={handleOnChange}/>
                 <label className='login-pw-label'>Password</label>
               </div>
 
