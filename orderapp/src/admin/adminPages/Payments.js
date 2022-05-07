@@ -5,39 +5,40 @@ import './Payments.css';
 
 export default function Payments() {
 
+//#region CREATE
 	//Create Payment
-	const [paymentInput, setPaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
+	const [createPaymentInput, setCreatePaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
 
-	const [createPaymentMessage, setCreatePaymentMessage] = useState('');
-	const [createPaymentMessageStatus, setCreatePaymentMessageStatus] = useState(false);
+	const [createPaymentSubmitMessage, setCreatePaymentSubmitMessage] = useState('');
+	const [createPaymentSubmitMessageStatus, setCreatePaymentSubmitMessageStatus] = useState(false);
 
 	const [modalVisibleCreatePayment, setModalVisibleCreatePayment] = useState(false);
 	const [createPaymentPopupOpen, setCreatePaymentPopupOpen] = useState(false);
 	const [modalVisibleCreatePaymentConfirmation, setModalVisibleCreatePaymentConfirmation] = useState(false);
 	const [createPaymentConfirmationPopupOpen, setCreatePaymentConfirmationPopupOpen] = useState(false);
 
-	const [createPaymentPostStatus, setCreatePaymentpostStatus] = useState(false);
+	const [createPaymentPostStatus, setCreatePaymentPostStatus] = useState(false);
 	const [createPaymentPostStatusMessage, setCreatePaymentPostStatusMessage] = useState(false);
 	const [createPaymentPostDataClicked, setCreatePaymentPostDataClicked] = useState(false);
 
 	function handleCreatePaymentOnChange(e) {
-		let createPaymentInput = {...paymentInput};
-		createPaymentInput[e.target.name] = e.target.value;
-		setCreatePaymentMessageStatus(false);
-		setPaymentInput(createPaymentInput);
+		let newCreatePaymentInput = {...createPaymentInput};
+		newCreatePaymentInput[e.target.name] = e.target.value;
+		// setCreatePaymentSubmitMessageStatus(false);
+		setCreatePaymentInput(createPaymentInput);
 	}
 
 	function onSubmitCreatePaymentInputValidation(e) {
 		e.preventDefault();
 
 		if(!paymentInput.receiptID && !paymentInput.paymentType && !paymentInput.paymentStatus) {
-			setCreatePaymentMessageStatus(true)
-			setCreatePaymentMessage('***All of the input fields are empty***');
+			setCreatePaymentSubmitMessageStatus(true)
+			setCreatePaymentSubmitMessage('***All of the input fields are empty***');
 			return;
 		}
 		else if(!paymentInput.receiptID || !paymentInput.paymentType || !paymentInput.paymentStatus) {
-			setCreatePaymentMessageStatus(true)
-			setCreatePaymentMessage('***Some of the input fields are empty***');
+			setCreatePaymentSubmitMessageStatus(true)
+			setCreatePaymentSubmitMessage('***Some of the input fields are empty***');
 			return;
 		}
 
@@ -47,15 +48,19 @@ export default function Payments() {
 	function togglePopupCreatePayment() {
 		setModalVisibleCreatePayment(!modalVisibleCreatePayment);
 		setCreatePaymentPopupOpen(!createPaymentPopupOpen);
+		setCreatePaymentSubmitMessageStatus(false);
 	}
 
 	function togglePopupCreatePaymentConfirmation(){
 		setModalVisibleCreatePaymentConfirmation(!modalVisibleCreatePaymentConfirmation);
 		setCreatePaymentConfirmationPopupOpen(!createPaymentConfirmationPopupOpen);
+		togglePopupCreatePayment();
+		setCreatePaymentSubmitMessageStatus(false);
 	}
 
 	function resetInputsToDefault() {
-		setPaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''})
+		setPaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''});
+		setCreatePaymentSubmitMessageStatus(false);
 	}
 
 	function closePopupCreatePaymentConfirmation() {
@@ -74,9 +79,9 @@ export default function Payments() {
 		e.preventDefault();
 
 		await ambrosialAxiosAPI.post('/createpayment', {
-			receiptID: "",
-			paymentType: "",
-			paymentStatus: ""
+			receiptID: createPaymentInput.receiptID,
+			paymentType: createPaymentInput.paymentType,
+			paymentStatus: createPaymentInput.paymentStatus
 		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
@@ -84,7 +89,7 @@ export default function Payments() {
 			console.log(`response Message: ${response.data.message}`);
 			console.log("response Data: ", response.data.data);
 
-			setCreatePaymentpostStatus(response.data.status);
+			setCreatePaymentPostStatus(response.data.status);
 			setCreatePaymentPostStatusMessage(response.data.message);
  		})
 		.catch((error) => {
@@ -92,16 +97,14 @@ export default function Payments() {
 			console.log(`Error Status: ${error.response.data.status}`);
 			console.log(`Error Message: ${error.response.data.message}`);
 
-			setCreatePaymentpostStatus(response.data.status);
-			setCreatePaymentPostStatusMessage(response.data.message);
+			setCreatePaymentPostStatus(error.response.data.status);
+			setCreatePaymentPostStatusMessage(error.response.data.message);
 		});
 		setCreatePaymentPostDataClicked(true);
 	}
+//#endregion
 
-
-
-
-
+//#region UPDATE
 	//Update Payment
 
 	const [updatePaymentInput, setUpdatePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
@@ -187,11 +190,9 @@ export default function Payments() {
 				console.log(`Error Message: ${error.response.data.message}`);
 		});
 	}
+//#endregion
 
-
-
-
-
+//#region DELETE
 	//Delete Payment
 
 	// const [deletePaymentInput, setDeletePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
@@ -250,9 +251,9 @@ export default function Payments() {
 	}
 
 
+//#endregion
 
-
-
+//#region GETALL
 	//Read All Payment
 	useEffect(() => {
 		getAllPayment();
@@ -277,10 +278,9 @@ export default function Payments() {
 		});
 	}
 
+	//#endregion
 
-
-
-
+//#region GET SPECIFIC
 	//Read Specific Payment
 	async function getSpecificPayment(e) {
 		e.preventDefault();
@@ -298,7 +298,7 @@ export default function Payments() {
 				console.log(`Error Message: ${error.response.data.message}`);
 		});
 	}
-
+//#endregion
 
 
 	return (
@@ -307,9 +307,6 @@ export default function Payments() {
 				<button className='refreshPaymentLogs' onClick={getAllPayment}>Refresh List</button>
 				<button className='createPayment' onClick={togglePopupCreatePayment}>Create New Payment Log</button>
 			</div>
-
-
-			{/* insert modal code here */}
 
 			{modalVisibleCreatePayment && <div className='modal'>
 				{createPaymentPopupOpen && <Popup
