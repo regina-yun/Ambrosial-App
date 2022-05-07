@@ -50,6 +50,19 @@
   z-index: 2;
 }
 
+.deleteOrderItemPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 4;
+}
+
 .createOrder-close-icon {
   margin-left: 95%;
 }
@@ -63,6 +76,10 @@
 }
 
 .deleteCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderItem-close-icon{
   margin-left: 95%;
 }
 
@@ -93,7 +110,7 @@
   height: 80%;
   border: 1px solid white;
   padding:3%;
-  z-index: 3;
+  z-index: 4;
 }
 
 .updateOrderConfirmationPopup-box{
@@ -129,6 +146,17 @@
   z-index: 2;
 }
 
+.deleteOrderItemConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 4;
+}
+
 .createOrderItemConfirmation-close-icon {
   margin-left: 95%;
 }
@@ -146,6 +174,10 @@
 }
 
 .deleteOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderItemConfirmation-close-icon{
   margin-left: 95%;
 }
 
@@ -172,7 +204,7 @@
   height: 80%;
   border: 1px solid white;
   padding:3%;
-  z-index: 3;
+  z-index: 4;
 }
 
 .createOrderItem-close-icon{

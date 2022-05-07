@@ -142,6 +142,26 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'deleteOrderItemPopup'){
+        return(
+            <div className="deleteOrderItemPopup-box">
+                <div className="deleteOrderItem-box">
+                    <span className="deleteOrderItem-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if(props.popupType === 'deleteOrderItemConfirmationPopup'){
+        return(
+            <div className="deleteOrderItemConfirmationPopup-box">
+                <div className="deleteOrderItemConfirmation-box">
+                    <span className="deleteOrderItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'createReceiptPopup'){
         return(
             <div className="createReceiptPopup-box">

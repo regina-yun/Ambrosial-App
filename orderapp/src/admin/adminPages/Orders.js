@@ -452,7 +452,6 @@ export default function Orders() {
         }/>} 
 
         {/* delete Popup */}
-
         {viewDelete && <Popup
         popupType='deleteCurrentDistinctOrderPopup'
         handleClose={toggleDeleteDistinctOrderPopup}

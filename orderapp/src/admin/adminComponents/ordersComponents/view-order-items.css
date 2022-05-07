@@ -128,3 +128,27 @@
 .formLabelTextUpdateOrderOrderStatus{
   margin-left:0.2%;
 }
+
+.formHeaderDeleteOrderItem{
+  font-size: 300%;
+  margin-left:15%;
+}
+
+.formLabelTextDeleteOrderItem{
+  margin-left:31%;
+  font-size: 130%;
+}
+
+.formLabelOrderNo{
+  margin-left:5%;
+  font-size: 130%;
+}
+
+.deleteOrderItemButton{
+  margin-top: 5%;
+  margin-left: 42%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
