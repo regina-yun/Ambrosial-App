@@ -7,6 +7,7 @@ import './Payments.css';
 
 export default function Payments() {
 
+	//State for Payments Table
 	const [tableStatus, setTableStatus] = useState(false);
 
 //#region CREATE PAYMENT
@@ -211,11 +212,6 @@ export default function Payments() {
 
 //#region DELETE PAYMENT
 
-	// const [deletePaymentInput, setDeletePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
-
-	// const [deletePaymentMessage, setDeletePaymentMessage] = useState('');
-	// const [deletePaymentMessageStatus, setDeletePaymentMessageStatus] = useState(false);
-
 	const [pendingDelete, setPendingDelete] = useState({invoiceId: 0});
 	const [modalVisibleDeletePaymentConfirmation, setModalVisibleDeletePaymentConfirmation] = useState(false);
 	const [deletePaymentConfirmationPopupOpen, setDeletePaymentConfirmationPopupOpen] = useState(false);
@@ -224,11 +220,6 @@ export default function Payments() {
 	const [deletePaymentPostStatusMessage, setDeletePaymentPostStatusMessage] = useState(false);
 	const [deletePaymentPostDataClicked, setDeletePaymentPostDataClicked] = useState(false);
 
-
-	// function togglePopupUpdatePayment() {
-	// 	setModalVisibleDeletePayment(!modalVisibleDeletePayment);
-	// 	setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
-	// }
 	function deleteOnClick(invoiceId) {
 		let newPendingDelete = {invoiceId: invoiceId};
 		setPendingDelete(newPendingDelete);
@@ -239,10 +230,6 @@ export default function Payments() {
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
 		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
 	}
-
-	// function resetUpdateInputsToDefault() {
-	// 	setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''})
-	// }
 
 	function closePopupDeletePaymentConfirmation() {
 		resetUpdateInputsToDefault();
