@@ -75,13 +75,12 @@
 }
 
 .navbar {
-    margin: -2% auto;
-    border-top: solid white 2px;
-    border-bottom: solid white 2px;
+    margin: 0 auto;
+    /* border-top: solid white 2px;
+    border-bottom: solid white 2px; */
 }
 
 .pages {
-    border: none;
     background-color: transparent;
     padding: 10px 40px;
     font-size: 20px;
@@ -91,13 +90,12 @@
 }
 
 
-.pages:hover, .pages:hover::before, .pages:hover::after{
+.pages:hover {
     cursor: pointer;
-    content: "\1F338";
 }
 
 .selected-page {
-    border: none;
+    border-top: yellow 2px solid;
     padding: 10px 40px;
     font-size: 20px;
     font-weight: bold;
@@ -107,7 +105,7 @@
 }
 
 .selected-page:hover, .selected-page:before, .selected-page:after {
-    content: "\1F338";
+    border-top: yellow 2px solid
 }
 
 .maincontainer {
