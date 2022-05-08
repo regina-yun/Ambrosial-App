@@ -4,8 +4,8 @@ import Popup from '../adminComponents/popup';
 import { ambrosialAxiosAPI } from '../../api/api';
 import UpdateAndDeleteButton from '../adminComponents/commonComponents/UpdateAndDeleteButton';
 import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmationPopupContents';
-import ViewOrderItems from '../adminComponents/ordersComponents/view-order-items';
 import ViewOrderItemsButton from '../adminComponents/ordersComponents/view-order-items-button';
+import ViewReceiptItems from '../adminComponents/ordersComponents/view-receipt-items';
 
 export default function Receipt(props) {
 
@@ -26,19 +26,26 @@ export default function Receipt(props) {
     function onSubmitValidateInput(event){
         event.preventDefault();
         if(!orderNoIdValue || !totalItemPriceValue) {
+            console.log('invalid orderNoIdValue is', orderNoIdValue);
+            console.log('invalid totalItemPriceValue', totalItemPriceValue);
             setSubmitStatusMessageStatus(true);
             setSubmitStatusMessage('***Please check the input fields***');
             return;
+        }else{
+            console.log('In here');
+            console.log('orderNoIdValue is', orderNoIdValue);
+            console.log('totalItemPriceValue', totalItemPriceValue);
         }
 
         togglePopupCreateReceiptConfirmation();
     }
 
     function togglePopupCreateReceiptConfirmation() {
-        // event.preventDefault();
         setCreateReceiptConfirmationPopupOpen(!createReceiptConfirmationPopupOpen);
         togglePopupCreateReceipt();
+        
         setSubmitStatusMessageStatus(false);
+        setSubmitStatusMessage('');
     }
 
     function closePopupCreateReceiptConfirmation(){
@@ -51,14 +58,17 @@ export default function Receipt(props) {
         setTotalItemPriceValue(0);
 
         setSubmitStatusMessageStatus(false);
+        setSubmitStatusMessage('');
+        setPostStatus(false);
+        setPostStatusMessage(false);
+        setPostDataClicked(false);
     }
 
     function handleClosePopups(){
-        
         setCreateReceiptPopupOpen(false);
         setCreateReceiptConfirmationPopupOpen(false);
-        setOrderNoIdValue(0);
-        setTotalItemPriceValue(0);
+        setOrderNoIdValue('');
+        setTotalItemPriceValue('');
         setPostStatus(false);
         setPostStatusMessage(false);
         setPostDataClicked(false);
@@ -107,21 +117,19 @@ export default function Receipt(props) {
     //setting update view
     const [viewUpdate, setViewUpdate] = useState(false);
     const [viewConfirmationUpdatePopupOpen, setViewConfirmationUpdatePopupOpen] = useState(false);
-    console.log("viewUpdate is ", viewUpdate);
-    console.log("viewConfirmationUpdatePopupOpen is ", viewConfirmationUpdatePopupOpen);
+    
     //setting of receiptID for each row
     const [receiptID, setReceiptID] = useState(false);
-    //setting of menuitem name for each row
+    //setting of orderNo for each row
     const [orderNo, setOrderNo] = useState(0);
 
+    //***********To take out *********/
     console.log("receiptID is ", receiptID);
 
 
     //Validating the input tag
     const [updateSubmitStatus, setUpdateSubmitStatus] = useState(false);
     const [updateSubmitStatusMessage, setUpdateSubmitStatusMessage] = useState('');
-
-    //setting of the update distinct order confirmation
 
     //function to toggle the popup update
     function toggleUpdateReceiptsPopup(){
@@ -139,23 +147,22 @@ export default function Receipt(props) {
             setUpdateSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
             console.log('in validating inputs for update receipts');
             return;
+        }else{
+            console.log('Currently still can submit');
         }
 
         toggleUpdateReceiptsConfirmation();
     }
 
     function toggleUpdateReceiptsConfirmation() {
-        // event.preventDefault();
         console.log('in toggle here');
         setViewUpdate(!viewUpdate);
         setViewConfirmationUpdatePopupOpen(!viewConfirmationUpdatePopupOpen);
         toggleUpdateReceiptsPopup();
         setUpdateSubmitStatus(false);
-        //setOrderNoUpdate(0);
     }
 
-    function closePopupUpdateDistinctOrderConfirmation(){
-        //setOrderNoUpdate(0);
+    function closePopupUpdateReceiptConfirmation(){
         setOrderNoIdValueUpdate(0);
         setTotalItemPriceValueUpdate(0);
 
@@ -170,8 +177,7 @@ export default function Receipt(props) {
     }
 
     //final close
-    function handleCloseUpdatePopups(event){
-        //setOrderNoUpdate(0);
+    function handleCloseUpdatePopups(){
         setOrderNoIdValueUpdate(0);
         setTotalItemPriceValueUpdate(0);
 
@@ -190,9 +196,9 @@ export default function Receipt(props) {
     const [totalItemPriceValueUpdate, setTotalItemPriceValueUpdate] = useState(0);
 
     //setting of update being clicked and updating of order no for distinct order
-    //For the result of the post
-    const [updateOrderItemStatus, setUpdateReceiptStatus] = useState(false);
-    const [updateOrderItemsStatusMessage, setUpdateReceiptsStatusMessage] = useState(false);
+    //For the result of the update
+    const [updateReceiptStatus, setUpdateReceiptStatus] = useState(false);
+    const [updateReceiptsStatusMessage, setUpdateReceiptsStatusMessage] = useState(false);
     //For showing the result message
     const [updateDataClicked, setUpdateDataClicked] = useState(false);
 
@@ -225,16 +231,13 @@ export default function Receipt(props) {
 
 
     //Delete Receipt
-    //setting delete view
+    //setting delete view, setting of the delete confirmation view
     const [viewDelete, setViewDelete] = useState(false);
     const [viewConfirmationDeletePopupOpen, setViewConfirmationDeletePopupOpen] = useState(false);
-    console.log("viewDelete is ", viewDelete);
-    console.log("viewConfirmationDeletePopupOpen is ", viewConfirmationDeletePopupOpen);
-    //Validating the input tag
+
+    //States for validating the input tag
     const [deleteSubmitStatus, setDeleteSubmitStatus] = useState(false);
     const [deleteSubmitStatusMessage, setDeleteSubmitStatusMessage] = useState('');
-
-    //setting of the update distinct order confirmation
 
     //function to toggle the popup update
     function toggleDeleteReceiptPopup(){
@@ -245,12 +248,10 @@ export default function Receipt(props) {
 
     //function to validate the input tag for update
     function onSubmitValidateinputForDelete(){
-        
         toggleDeleteReceiptConfirmation();
     }
 
     function toggleDeleteReceiptConfirmation() {
-        
         console.log('in toggleDeleteReceiptConfirmation');
         setViewDelete(!viewDelete);
         setViewConfirmationDeletePopupOpen(!viewConfirmationDeletePopupOpen);
@@ -260,7 +261,6 @@ export default function Receipt(props) {
     }
 
     function closePopupDeleteReceiptConfirmation(){
-
         setDeleteDataClicked(false);
         setDeleteReceiptStatus(false);
         setDeleteReceiptStatusMessage(false);
@@ -273,8 +273,6 @@ export default function Receipt(props) {
 
     //final close
     function handleCloseDeletePopups(){
-        
-
         setDeleteDataClicked(false);
         setDeleteReceiptStatus(false);
         setDeleteReceiptStatusMessage(false);
@@ -345,12 +343,9 @@ export default function Receipt(props) {
          });
     }
 
-    //This is for viewing the orders for a distinct order
-    const [viewOrderItemsOrderNo, setViewOrderItemsOrderNo] = useState(0);
-    const [viewOrder, setViewOrder] = useState(false);
 
-    //This is for viewing the receipt for a distinct order
-    //const [viewReceiptItemsOrderNo, setViewReceiptItemsOrderNo] = useState(0);
+
+    //This is for setting the viewing of the receipt popup
     const [viewReceipt, setViewReceipt] = useState(false);
 
 
@@ -410,28 +405,28 @@ export default function Receipt(props) {
             popupType='createReceiptPopup'
             handleClose={togglePopupCreateReceipt}
             content={
-                <form onSubmit={onSubmitValidateInput}>
-                    <label className='formHeader'>Create New Receipt</label>
+                <form className='formCreateReceipt' onSubmit={onSubmitValidateInput}>
+                    <label className='formHeaderCreateReceipt'>Create New Receipt</label>
                     <br /><br />
 
-                    <label className='formLabelText'>Order No. Id:</label>
+                    <label className='formLabelTextReceiptOrderId'>Order No. Id:</label>
                     <input type="number" className='createInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
                     <br /><br />
 
-                    <label className='formLabelText'>Total Item Price:</label>
+                    <label className='formLabelTextReceiptTotalItemPrice'>Total Item Price:</label>
                     <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
                     <br /><br />
 
                     <button className='createReceiptButton'>Submit</button>
                     <br /><br />
 
-                    {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
+                    {submitStatusMessageStatus ? <label className='formLabelTextStatusCreate'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
                 </form>
             }/>}
 
             {createReceiptConfirmationPopupOpen && <Popup
             popupType='createReceiptConfirmationPopup'
-            handleClose={togglePopupCreateReceiptConfirmation}
+            handleClose={closePopupCreateReceiptConfirmation}
             content={
                 <ConfirmationPopupContents invokeAction={createReceipt} invokeRefresh={getReceipts} xButtonClose={closePopupCreateReceiptConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage}/>
             }/>}  
@@ -444,32 +439,32 @@ export default function Receipt(props) {
                 handleClose={toggleUpdateReceiptsPopup}
                 content={
                     <form onSubmit={onSubmitValidateinputForUpdate}>
-                        <label className='formHeader'>Update Receipt</label>
+                        <label className='formHeaderUpdateReceipt'>Update Receipt</label>
                             <br></br>
                             <br></br>
 
-                            <label className='formLabelText'>Order No. Id:</label>
+                            <label className='formLabelTextUpdateReceiptId'>Order No. Id:</label>
                             <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
                             <br></br>
 
-                            <label className='formLabelText'>Total Item Price:</label>
+                            <label className='formLabelTextUpdateReceiptTotalItemPrice'>Total Item Price:</label>
                             <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
                             <br></br>
 
-                            <button className='createOrderItemsButton'>Submit</button>
+                            <button className='updateReceiptButton'>Submit</button>
                             <br></br>
                             <br></br>
 
-                        {updateSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{updateSubmitStatusMessage}</label>}</label>:null}
+                        {updateSubmitStatus ? <label className='formLabelTextStatusUpdate'>{<label className='formLabelText'>{updateSubmitStatusMessage}</label>}</label>:null}
                     </form>
             }/>}
 
             { viewConfirmationUpdatePopupOpen && <Popup
             popupType='updateReceiptConfirmationPopup'
-            handleClose={toggleUpdateReceiptsConfirmation}
+            handleClose={closePopupUpdateReceiptConfirmation}
             content={
-                //props needed are: updateReceipts(), closePopupUpdateDistinctOrderConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateOrderItemsStatusMessage
-                <ConfirmationPopupContents  invokeAction={updateReceipts} invokeRefresh={getReceipts} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateOrderItemsStatusMessage}/>
+                //props needed are: updateReceipts(), closePopupUpdateReceiptConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateReceiptsStatusMessage
+                <ConfirmationPopupContents  invokeAction={updateReceipts} invokeRefresh={getReceipts} xButtonClose={closePopupUpdateReceiptConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateReceiptsStatusMessage}/>
             }/>}
 
             
@@ -479,19 +474,19 @@ export default function Receipt(props) {
                 handleClose={toggleDeleteReceiptPopup}
                 content={
                     <form onSubmit={onSubmitValidateinputForDelete}>
-                        <label className='formHeaderDelete'>Delete Receipt Record</label>
+                        <label className='formHeaderDeleteReceipt'>Delete Receipt Record</label>
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextDelete'>For Order No.:</label>
-                        <label className='formLabelOrderNo'>{orderNo}</label>
+                        <label className='formLabelTextDeleteOrderNo'>Order No.: </label>
+                        <label className='formLabelOrderNoInDelete'>{orderNo}</label>
                         <br></br>
 
-                        <button className='deleteCurrentDistinctOrderButton'>Submit</button>
+                        <button className='deleteReceiptButton'>Submit</button>
                         <br></br>
                         <br></br>
 
-                        {deleteSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label>:null}
+                        {deleteSubmitStatus ? <label className='formLabelTextStatusDelete'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label>:null}
                     </form>
                 }/>}
 
@@ -517,7 +512,7 @@ export default function Receipt(props) {
                             <tr key={receiptsList.orderNoId}>
                             <td>{index+1}</td>
                             <td>{receiptsList.DistinctOrderList.orderNo}</td>
-                            <td className='actionButtons'><ViewOrderItemsButton setReceiptNo={setViewOrderItemsOrderNo} orderNo={receiptsList.orderNoId} setViewReceipt={setViewReceipt}/></td>
+                            <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setOrderNo} orderNo={receiptsList.DistinctOrderList.orderNo} setViewOrder={setViewReceipt}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewUpdate} buttonText={"Update Receipt"}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewDelete} buttonText={"Delete Receipt"}/></td>
                             </tr>
@@ -525,9 +520,7 @@ export default function Receipt(props) {
                     )}
                 </table>
 
-                {/* {modalVisibleViewReceipt ? <div className='modal'></div>:null} */}
-                <ViewOrderItems orderNo={viewOrderItemsOrderNo} viewOrder={viewOrder} setViewOrder={setViewOrder}/>
-            
+                <ViewReceiptItems setViewOrder={setViewReceipt} viewOrder={viewReceipt} orderNo={orderNo}/>
             </div>
         </>
     )

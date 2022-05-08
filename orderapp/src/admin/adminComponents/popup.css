@@ -260,6 +260,23 @@
   margin-left: 95%;
 }
 
+.viewReceiptsItemsPopup-box{
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3;
+}
+
+.viewReceiptsItems-close-icon{
+  margin-left: 95%;
+}
+
 .viewReceiptConfirmationPopup-box {
   width:30%;
   height: auto;

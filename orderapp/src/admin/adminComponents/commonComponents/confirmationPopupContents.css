@@ -1,26 +1,46 @@
-.generalConfirmationHeader{
-      font-size: 300%;
+.generalConfirmationHeaderContainer{
+
 }
- 
+
+.generalConfirmationHeader{
+    margin-left: 25%;
+    font-size: 300%;
+}
+
+.generalConfirmationButtonContainer{
+    margin-top: 5%;
+}
+
 .generalConfirmationYesButton{
     width:15%;
-    margin-top: 5%;
-    margin-right: 5%;
-    
+    margin-left: 31%;  
 }
 
 .generalConfirmationNoButton{
     width:15%;
-    margin-top: 5%;
     margin-left: 5%;
 }
 
-.generalConfirmationCloseButton{
-    width:15%;
-    margin-top: 5%;
+.generalConfirmationHeaderStatus{
+    margin-left: 18%;
+    font-size: 300%;
 }
 
 .generalConfirmationStatusMessageContainer{
     margin-top:5%;
+    margin-left: 31%;  
     width:75%;
 }
+
+.generalConfirmationCloseButton{
+    margin-top: 5%;
+    margin-left: 38%;  
+    width:20%;
+    font-size: 100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
