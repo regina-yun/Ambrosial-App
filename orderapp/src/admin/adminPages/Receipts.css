@@ -22,6 +22,10 @@
 /* .createReceipt{
 
 } */
+.createReceipt {
+  width: 70%;
+}
+
 .createReceipt,
 .refreshList {
   padding: 0.5rem 1rem;
