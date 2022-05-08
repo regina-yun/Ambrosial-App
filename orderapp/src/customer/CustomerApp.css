@@ -101,9 +101,6 @@
     color: white;
 }
 
-.selected-page:hover {
-    border-top: white 2px solid
-}
 
 .maincontainer {
     display: flex;
