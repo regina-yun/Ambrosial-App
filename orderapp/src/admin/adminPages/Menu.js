@@ -81,8 +81,9 @@ return (
                         <td>{allMenuItems.chefRecommendation ? "Yes": "No" }</td> 
 
                         <td className='actionButtons'>Update Menu Item</td>
+                        <td className='actionButtons'>Delete Menu Item</td>
 
-                        {/* <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={allMenuItems.orderNoId} setView={setViewUpdate} buttonText={"Update Order Items"}/></td> */}
+                        <td className='actionButtons'><UpdateAndDeleteDistinctOrderButton setOrderNoId={setOrderNoId} orderNoId={allMenuItems.orderNoId} setView={setViewUpdate} buttonText={"Update Order Items"}/></td>
                         {/* <td className='actionButtons'><button className='trialOrderContainerUpdateButton' onClick={togglePopupCreateOrderConfirmation}>Update Order No.</button></td> */}
                         {/* <td className='actionButtons'><button className='trialOrderContainerDeleteButton' onClick={togglePopupCreateOrderConfirmation}>Delete Order</button></td> */}
                         </tr>
