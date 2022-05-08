@@ -172,6 +172,16 @@ function Popup(props){
             </div>
         );
     }
+    else if(props.popupType === 'viewReceiptsItemsPopup'){
+        return(
+            <div className="viewReceiptsItemsPopup-box">
+                <div className="viewReceiptsItems-box">
+                    <span className="viewReceiptsItems-close-icon" onClick={props.handleClose}>x</span>
+                        {props.content}
+                </div>
+            </div>
+        );
+    }
     else if(props.popupType === 'createReceiptConfirmationPopup'){
         return(
             <div className="createReceiptConfirmationPopup-box">
