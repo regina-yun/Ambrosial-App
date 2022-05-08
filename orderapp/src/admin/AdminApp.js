@@ -19,17 +19,28 @@ function AdminApp(props) {
             <Link to="/Payments" className="admin-pages">Payments</Link>
           </nav>
           <Header />
+
+          <div>
+              {/* <Link to="/Payments" className='logout-link' replace> */}
+                <button className='logout-button' onClick={() => {window.location.reload();}}>
+                  Logout
+                </button>
+                {/* </Link> */}
+                
+              </div>
+          
           <h2 className="greeting">Welcome back, {props.user}!</h2>
-        <div className="admin-container">
-          <Switch>
-            <Route exact path="/"><Home /></Route>
-            <Route path="/Menu"><Menu /></Route>
-            <Route path="/Orders"><Orders /></Route>
-            <Route path="/Receipts"><Receipts /></Route>
-            <Route path="/Payments"><Payments /></Route>
-            <Redirect from ="*" to="/" />
-          </Switch>
-        </div>
+          <div className="admin-container">
+            <Switch>
+              
+              <Route exact path="/"><Home /></Route>
+              <Route path="/Menu"><Menu /></Route>
+              <Route path="/Orders"><Orders /></Route>
+              <Route path="/Receipts"><Receipts /></Route>
+              <Route path="/Payments"><Payments /></Route>
+              <Redirect from ="*" to="/" />
+            </Switch>
+          </div>
         </Router>
     </div>
   );
