@@ -515,7 +515,7 @@ async function updateOrderItems(){
                 <br></br>
                 <br></br>
 
-                {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label>:null}
+                {submitStatusMessageStatus ? <label className='formLabelTextStatusCreateOrder'>{<label className='formLabelTextCreateOrder'>{submitStatusMessage}</label>}</label>:null}
             </form> 
         }/>}
 
@@ -566,7 +566,7 @@ async function updateOrderItems(){
                         <br></br>
                         <br></br>
 
-                    {updateSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{updateSubmitStatusMessage}</label>}</label>:null}
+                    {updateSubmitStatus ? <label className='formLabelTextStatusUpdateOrder'>{<label className='formLabelTextUpdateOrder'>{updateSubmitStatusMessage}</label>}</label>:null}
                 </form>
         }/>}
         
@@ -589,7 +589,7 @@ async function updateOrderItems(){
                 <br></br>
 
                 <label className='formLabelTextDeleteOrderItem'>Menu Item:</label>
-                <label className='formLabelOrderNo'>{menuItemName}</label>
+                <label className='formLabelMenuItem'>{menuItemName}</label>
                 <br></br>
 
                 {/* <label className='formLabelTextUpdate'>Order No. :</label>
@@ -600,7 +600,7 @@ async function updateOrderItems(){
                 <br></br>
                 <br></br>
 
-                {deleteSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label>:null}
+                {deleteSubmitStatus ? <label className='formLabelTextStatusDeleteOrder'>{<label className='formLabelTextDeleteOrder'>{deleteSubmitStatusMessage}</label>}</label>:null}
             </form>
         }/>}
 

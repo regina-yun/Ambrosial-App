@@ -1,14 +1,3 @@
-.updateAndDeleteButtons{
-    width: 100%;
-    padding-top:3%;
-    padding-bottom:3%;
-  }
-
-.updateAndDeleteButtonsContainer{
-    width: 20%;
-    border:1px solid white;
-}
-
 .modalViewOrderContainer{
   width:100%;
   height:100%;
@@ -19,17 +8,10 @@
   z-index: 3;
 }
 
-
-
-
+/* Create Section */
 .formHeaderCreateOrderItem{
   font-size: 300%;
   margin-left:0%;
-}
-
-.createOrderConfirmationHeader{
-  font-size: 300%;
-  margin-left: 25%;
 }
 
 .formLabelTextCreateOrder{
@@ -56,12 +38,19 @@
   margin-left:-2%;
 }
 
-.formLabelTextStatus{
+.formLabelTextStatusCreateOrder{
   margin-left:13%;
 }
 
-.createInputOrderNo{
-  margin-left: 10%;
+.formLabelTextCreateOrder{
+  
+}
+/* End of Create Section */
+
+/* Common for Create and update */
+/* This is for the similar input tags for the value*/
+.createInputOrderNoId{
+  /* margin-left: 10%; */
 }
 
 .createInputMenuItemId{
@@ -94,7 +83,9 @@
   padding-bottom: 1%;
   
 }
+/* End of common for create and update */
 
+/* Update Section */
 .formHeaderUpdateOrderItem{
   font-size: 300%;
   margin-left:0%;
@@ -129,6 +120,16 @@
   margin-left:0.2%;
 }
 
+.formLabelTextStatusUpdateOrder{
+  margin-left:13%;
+}
+
+.formLabelTextUpdateOrder{
+  
+}
+/* End of update section */
+
+/* Delete section */
 .formHeaderDeleteOrderItem{
   font-size: 300%;
   margin-left:15%;
@@ -139,7 +140,7 @@
   font-size: 130%;
 }
 
-.formLabelOrderNo{
+.formLabelMenuItem{
   margin-left:5%;
   font-size: 130%;
 }
@@ -152,3 +153,12 @@
   padding-left: 3%;
   padding-right: 3%;
 }
+
+.formLabelTextStatusDeleteOrder{
+  margin-left:13%;
+}
+
+.formLabelTextDeleteOrder{
+  
+}
+/* End of delete section */
