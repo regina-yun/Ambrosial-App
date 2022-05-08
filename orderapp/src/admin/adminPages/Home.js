@@ -1,9 +1,9 @@
 import './Home.css';
 
-export default function Home() {
+export default function Home(props) {
     return (
         <div className="home">
-            This is the home page
+            <h2 className="greeting">Welcome back, {props.user}!</h2>
         </div>
     )
 }
