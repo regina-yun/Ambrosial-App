@@ -3,14 +3,14 @@
     color: white;
 }
 
-h2 {
-    color: white;
+.logout-button {
+    position: absolute;
+    top:5%;
+    right: 3%;
 }
 
-.greeting {
-    position: absolute;
-    top: 10%;
-    right: 3%;
+h2 {
+    color: white;
 }
 
 .admin-navbar {
