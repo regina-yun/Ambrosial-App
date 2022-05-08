@@ -394,7 +394,7 @@ export default function Receipt(props) {
         <>
         <div className='createAndRefresh'>
             <button  className='refreshList' onClick={getReceipts}>Refresh List</button>
-            <button className='createReceipt' onClick={togglePopupCreateReceipt}>Create New Receipt</button> 
+            <button className='createReceipt' onClick={togglePopupCreateReceipt}>Create Receipt</button> 
         </div>
             
 
@@ -406,7 +406,7 @@ export default function Receipt(props) {
             handleClose={togglePopupCreateReceipt}
             content={
                 <form className='formCreateReceipt' onSubmit={onSubmitValidateInput}>
-                    <label className='formHeaderCreateReceipt'>Create New Receipt</label>
+                    <label className='formHeaderCreateReceipt'>Create Receipt</label>
                     <br /><br />
 
                     <label className='formLabelTextReceiptOrderId'>Order No. Id:</label>
@@ -500,18 +500,18 @@ export default function Receipt(props) {
 
 
             <div className="receipt">
-                <h1>Receipts</h1>
-                <table>
+                <h1 className='receipt-title'>Receipts</h1>
+                <table className='receipt-table'>
                     <tr>
-                        <th>No.</th>
-                        <th>Order No.</th>
-                        <th>Actions</th>
+                        <th className='receipt-table-column'>No.</th>
+                        <th className='receipt-table-column'>Order No.</th>
+                        <th className='receipt-table-column' colSpan='3'>Actions</th>
                     </tr>
                     
                     {receiptsListData.map((receiptsList, index)=>(
                             <tr key={receiptsList.orderNoId}>
-                            <td>{index+1}</td>
-                            <td>{receiptsList.DistinctOrderList.orderNo}</td>
+                            <td className='receipt-table-column'>{index+1}</td>
+                            <td className='receipt-table-column'>{receiptsList.DistinctOrderList.orderNo}</td>
                             <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setOrderNo} orderNo={receiptsList.DistinctOrderList.orderNo} setViewOrder={setViewReceipt}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewUpdate} buttonText={"Update Receipt"}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewDelete} buttonText={"Delete Receipt"}/></td>

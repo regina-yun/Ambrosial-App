@@ -72,6 +72,19 @@
   border: solid 5px green
 }
 
+.createPaymentButton:hover{
+  color: white;
+}
+
+.createPaymentButton:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
 .paymentFormHeader {
   font-size: 200%;
   font-family: 'Lora',serif;
