@@ -7,6 +7,8 @@ import './Payments.css';
 
 export default function Payments() {
 
+	const [tableStatus, setTableStatus] = useState(false);
+
 //#region CREATE PAYMENT
 
 	const [createPaymentInput, setCreatePaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
@@ -214,6 +216,7 @@ export default function Payments() {
 	// const [deletePaymentMessage, setDeletePaymentMessage] = useState('');
 	// const [deletePaymentMessageStatus, setDeletePaymentMessageStatus] = useState(false);
 
+	const [pendingDelete, setPendingDelete] = useState({invoiceId: 0});
 	const [modalVisibleDeletePaymentConfirmation, setModalVisibleDeletePaymentConfirmation] = useState(false);
 	const [deletePaymentConfirmationPopupOpen, setDeletePaymentConfirmationPopupOpen] = useState(false);
 
@@ -226,6 +229,11 @@ export default function Payments() {
 	// 	setModalVisibleDeletePayment(!modalVisibleDeletePayment);
 	// 	setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
 	// }
+	function deleteOnClick(invoiceId) {
+		let newPendingDelete = {invoiceId: invoiceId};
+		setPendingDelete(newPendingDelete);
+		togglePopupDeletePaymentConfirmation();
+	}
 
 	function togglePopupDeletePaymentConfirmation(){
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
@@ -246,10 +254,10 @@ export default function Payments() {
 		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
 	}
-	async function deletePayment(data) {
+	async function deletePayment() {
 
-		await ambrosialAxiosAPI.delete('/deletepayment/:invoiceID', {
-			receiptID: data.receiptID
+		await ambrosialAxiosAPI.delete(`/deletepayment/${pendingDelete.invoiceId}`, {
+			invoiceId: pendingDelete.invoiceId
 		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
@@ -302,22 +310,22 @@ export default function Payments() {
 
 //#region GET SPECIFIC PAYMENT
 	
-	async function getSpecificPayment(e) {
-		e.preventDefault();
+	// async function getSpecificPayment(e) {
+	// 	e.preventDefault();
 
-		await ambrosialAxiosAPI.get('viewpaymentlogs/:invoiceID')
-		.then((response) => {
-			console.log(`${response.config.method} method for route: ${response.config.url}`);
-			console.log(`response Status: ${response.data.status}`);
-			console.log(`response Message: ${response.data.message}`);
-			console.log("response Data: ", response.data.data);
- 		})
-		.catch((error) => {
-				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-				console.log(`Error Status: ${error.response.data.status}`);
-				console.log(`Error Message: ${error.response.data.message}`);
-		});
-	}
+	// 	await ambrosialAxiosAPI.get('viewpaymentlogs/:invoiceID')
+	// 	.then((response) => {
+	// 		console.log(`${response.config.method} method for route: ${response.config.url}`);
+	// 		console.log(`response Status: ${response.data.status}`);
+	// 		console.log(`response Message: ${response.data.message}`);
+	// 		console.log("response Data: ", response.data.data);
+ 	// 	})
+	// 	.catch((error) => {
+	// 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+	// 			console.log(`Error Status: ${error.response.data.status}`);
+	// 			console.log(`Error Message: ${error.response.data.message}`);
+	// 	});
+	// }
 //#endregion
 
 
@@ -471,7 +479,7 @@ export default function Payments() {
 						<br></br> 
 						<br></br> 
 
-						{allPaymentLogsData.map((paymentLogs) => {
+						{tableStatus ? allPaymentLogsData.map((paymentLogs) => {
 							return(
 								<tr key={paymentLogs.receiptID}>
 									<td>{paymentLogs.paymentInvoiceID}</td>
@@ -479,10 +487,18 @@ export default function Payments() {
 									<td>{paymentLogs.paymentType}</td>
 									<td>{paymentLogs.paymentStatus}</td>
 									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Update Payment Log'} setView={() => updateOnClick(paymentLogs.paymentInvoiceID, paymentLogs.receiptID)} setData={() => {}} setId={() => {}}/></td>
-									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Delete Payment Log'} setView={togglePopupDeletePaymentConfirmation} setData={() => {}} setId={() => {}}/></td>
+									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Delete Payment Log'} setView={() => deleteOnClick(paymentLogs.paymentInvoiceID)} setData={() => {}} setId={() => {}}/></td>
 								</tr>
 							)
-						})}
+						}):
+							<tr>
+								<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+							</tr>
+						}
 					</table>
 			</div>
 		</>
