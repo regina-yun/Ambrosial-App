@@ -7,6 +7,9 @@ import './Payments.css';
 
 export default function Payments() {
 
+	//State for Payments Table
+	const [tableStatus, setTableStatus] = useState(false);
+
 //#region CREATE PAYMENT
 
 	const [createPaymentInput, setCreatePaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
@@ -109,6 +112,7 @@ export default function Payments() {
 //#region UPDATE PAYMENT
 
 	const [updatePaymentInput, setUpdatePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
+	const [pendingUpdate, setPendingUpdate] = useState({invoiceId: 0, receiptId: 0});
 
 	const [updatePaymentSubmitMessage, setUpdatePaymentSubmitMessage] = useState('');
 	const [updatePaymentSubmitMessageStatus, setUpdatePaymentSubmitMessageStatus] = useState(false);
@@ -132,18 +136,25 @@ export default function Payments() {
 	function onSubmitUpdatePaymentInputValidation(e) {
 		e.preventDefault();
 
-		if(!updatePaymentInput.paymentInvoiceID && !updatePaymentInput.receiptID && !updatePaymentInput.paymentType && !updatePaymentInput.paymentStatus) {
+		if(!updatePaymentInput.paymentType && !updatePaymentInput.paymentStatus) {
 			setUpdatePaymentSubmitMessageStatus(true)
 			setUpdatePaymentSubmitMessage('***All of the input fields are empty***');
 			return;
 		}
-		else if(updatePaymentInput.paymentInvoiceID || !updatePaymentInput.receiptID || !updatePaymentInput.paymentType || !updatePaymentInput.paymentStatus) {
+		else if(!updatePaymentInput.paymentType || !updatePaymentInput.paymentStatus) {
 			setUpdatePaymentSubmitMessageStatus(true)
 			setUpdatePaymentSubmitMessage('***Some of the input fields are empty***');
 			return;
 		}
 
 		togglePopupUpdatePaymentConfirmation();
+	}
+
+	function updateOnClick(invoiceId, receiptId)
+	{
+		let newPendingUpdate = {invoiceId: invoiceId, receiptId: receiptId};
+		setPendingUpdate(newPendingUpdate);
+		togglePopupUpdatePayment();
 	}
 
 	function togglePopupUpdatePayment() {
@@ -168,20 +179,11 @@ export default function Payments() {
 		togglePopupUpdatePaymentConfirmation();
 	}
 
-	function handleUpdatePaymentClosePopups(e) {
-		e.preventDefault();
-		setUpdatePaymentPopupOpen(!updatePaymentPopupOpen);
-		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
-	}
-
-	async function updatePayment(data) {
-
-
-		await ambrosialAxiosAPI.put('/updatepayment/:invoiceID', {
-			paymentInvoiceID: data.paymentInvoiceID,
-			receiptID: data.receiptID,
-			paymentType: data.paymentType,
-			paymentStatus: data.paymentStatus
+	async function updatePayment() {
+		await ambrosialAxiosAPI.put(`/updatepayment/${pendingUpdate.invoiceId}`, {
+			receiptId: pendingUpdate.receiptId,
+			paymentType: updatePaymentInput.paymentType,
+			paymentStatus: updatePaymentInput.paymentStatus
 		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
@@ -191,6 +193,10 @@ export default function Payments() {
 
 			setUpdatePaymentPostStatus(response.data.status);
 			setCreatePaymentPostStatusMessage(response.data.message);
+
+			setPendingUpdate({invoiceId: 0, receiptId: 0});
+			setModalVisibleUpdatePaymentConfirmation(!modalVisibleUpdatePaymentConfirmation);
+		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
  		})
 		.catch((error) => {
 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
@@ -206,11 +212,7 @@ export default function Payments() {
 
 //#region DELETE PAYMENT
 
-	// const [deletePaymentInput, setDeletePaymentInput] = useState({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''});
-
-	// const [deletePaymentMessage, setDeletePaymentMessage] = useState('');
-	// const [deletePaymentMessageStatus, setDeletePaymentMessageStatus] = useState(false);
-
+	const [pendingDelete, setPendingDelete] = useState({invoiceId: 0});
 	const [modalVisibleDeletePaymentConfirmation, setModalVisibleDeletePaymentConfirmation] = useState(false);
 	const [deletePaymentConfirmationPopupOpen, setDeletePaymentConfirmationPopupOpen] = useState(false);
 
@@ -218,20 +220,16 @@ export default function Payments() {
 	const [deletePaymentPostStatusMessage, setDeletePaymentPostStatusMessage] = useState(false);
 	const [deletePaymentPostDataClicked, setDeletePaymentPostDataClicked] = useState(false);
 
-
-	// function togglePopupUpdatePayment() {
-	// 	setModalVisibleDeletePayment(!modalVisibleDeletePayment);
-	// 	setDeletePaymentPopupOpen(!deletePaymentPopupOpen);
-	// }
+	function deleteOnClick(invoiceId) {
+		let newPendingDelete = {invoiceId: invoiceId};
+		setPendingDelete(newPendingDelete);
+		togglePopupDeletePaymentConfirmation();
+	}
 
 	function togglePopupDeletePaymentConfirmation(){
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
 		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
 	}
-
-	// function resetUpdateInputsToDefault() {
-	// 	setUpdatePaymentInput({paymentInvoiceID: 0, receiptID: 0, paymentType: '', paymentStatus: ''})
-	// }
 
 	function closePopupDeletePaymentConfirmation() {
 		resetUpdateInputsToDefault();
@@ -243,10 +241,10 @@ export default function Payments() {
 		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
 	}
-	async function deletePayment(data) {
+	async function deletePayment() {
 
-		await ambrosialAxiosAPI.delete('/deletepayment/:invoiceID', {
-			receiptID: data.receiptID
+		await ambrosialAxiosAPI.delete(`/deletepayment/${pendingDelete.invoiceId}`, {
+			invoiceId: pendingDelete.invoiceId
 		})
 		.then((response) => {
 			console.log(`${response.config.method} method for route: ${response.config.url}`);
@@ -299,22 +297,22 @@ export default function Payments() {
 
 //#region GET SPECIFIC PAYMENT
 	
-	async function getSpecificPayment(e) {
-		e.preventDefault();
+	// async function getSpecificPayment(e) {
+	// 	e.preventDefault();
 
-		await ambrosialAxiosAPI.get('viewpaymentlogs/:invoiceID')
-		.then((response) => {
-			console.log(`${response.config.method} method for route: ${response.config.url}`);
-			console.log(`response Status: ${response.data.status}`);
-			console.log(`response Message: ${response.data.message}`);
-			console.log("response Data: ", response.data.data);
- 		})
-		.catch((error) => {
-				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-				console.log(`Error Status: ${error.response.data.status}`);
-				console.log(`Error Message: ${error.response.data.message}`);
-		});
-	}
+	// 	await ambrosialAxiosAPI.get('viewpaymentlogs/:invoiceID')
+	// 	.then((response) => {
+	// 		console.log(`${response.config.method} method for route: ${response.config.url}`);
+	// 		console.log(`response Status: ${response.data.status}`);
+	// 		console.log(`response Message: ${response.data.message}`);
+	// 		console.log("response Data: ", response.data.data);
+ 	// 	})
+	// 	.catch((error) => {
+	// 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+	// 			console.log(`Error Status: ${error.response.data.status}`);
+	// 			console.log(`Error Message: ${error.response.data.message}`);
+	// 	});
+	// }
 //#endregion
 
 
@@ -389,12 +387,12 @@ export default function Payments() {
 							<br /><br />
 
 							<label className='updatePaymentFormLabelText'>Invoice ID</label>
-							<input className='updatePaymentInputInvoiceId' value={updatePaymentInput.paymentInvoiceID} type='number' name='paymentInvoiceID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							<input className='updatePaymentInputInvoiceId' value={pendingUpdate.invoiceId} type='number' name='paymentInvoiceID' disabled/>
 							
 							<br /><br />
 
 							<label className='updatePaymentFormLabelText'>Receipt ID</label>
-							<input className='updatePaymentInputReceiptId' value={updatePaymentInput.receiptID} type='number' name='receiptID' onChange={handleUpdatePaymentOnChange} autoComplete='off'/>
+							<input className='updatePaymentInputReceiptId' value={pendingUpdate.receiptId} type='number' name='receiptID' disabled/>
 							
 							<br /><br />
 
@@ -429,7 +427,8 @@ export default function Payments() {
 					statusMessage={updatePaymentPostStatusMessage}
 					invokeAction={updatePayment}
 					xButtonClose={closePopupUpdatePaymentConfirmation}
-					closeButton={handleUpdatePaymentClosePopups}
+					closeButton={closePopupUpdatePaymentConfirmation}
+					invokeRefresh={()=>{}}
 					/>
 					}/>
 				}   
@@ -467,18 +466,26 @@ export default function Payments() {
 						<br></br> 
 						<br></br> 
 
-						{allPaymentLogsData.map((paymentLogs) => {
+						{tableStatus ? allPaymentLogsData.map((paymentLogs) => {
 							return(
 								<tr key={paymentLogs.receiptID}>
 									<td>{paymentLogs.paymentInvoiceID}</td>
 									<td>{paymentLogs.receiptID}</td>
 									<td>{paymentLogs.paymentType}</td>
 									<td>{paymentLogs.paymentStatus}</td>
-									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Update Payment Log'} setView={togglePopupUpdatePayment} setData={updatePayment} data={updatePaymentInput} setId={() => {}}/></td>
-									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Delete Payment Log'} setView={togglePopupDeletePaymentConfirmation} setData={deletePayment} data={updatePaymentInput} setId={() => {}}/></td>
+									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Update Payment Log'} setView={() => updateOnClick(paymentLogs.paymentInvoiceID, paymentLogs.receiptID)} setData={() => {}} setId={() => {}}/></td>
+									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Delete Payment Log'} setView={() => deleteOnClick(paymentLogs.paymentInvoiceID)} setData={() => {}} setId={() => {}}/></td>
 								</tr>
 							)
-						})}
+						}):
+							<tr>
+								<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+							</tr>
+						}
 					</table>
 			</div>
 		</>

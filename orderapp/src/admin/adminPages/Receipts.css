@@ -1,3 +1,12 @@
+.createAndRefresh{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 300px;
+  gap: 15px;
+  float: right;
+}
+
 .modal-one{
   width:100%;
   height:100%;
@@ -8,179 +17,111 @@
   z-index: 1;
 }
 
-/* .modal-two{
-  width:100%;
-  height:100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(0,0,0,.9);
-  z-index: 2;
-} */
+/* create region */
+.createReceipt{
 
+}
+
+.formCreateReceipt{
+  margin-top: 4%;
+}
+
+.formHeaderCreateReceipt{
+  font-size: 300%;
+  margin-left:16%;
+}
+
+.formLabelTextReceiptOrderId{
+  margin-left: 28%;
+}
+
+.formLabelTextReceiptTotalItemPrice{
+  margin-left: 24.5%;
+}
+
+.createReceiptButton{
+  font-size: 110%;
+  margin-top: 5%;
+  margin-left: 44%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  
+}
+
+.formLabelTextStatusCreate{
+  margin-left:3%;
+}
+
+/* end of create region */
+
+
+/* Start of update region */
+.formHeaderUpdateReceipt{
+  font-size: 300%;
+  margin-left:24%;
+}
+
+.formLabelTextUpdateReceiptId{
+  margin-left: 28%;
+}
+
+.formLabelTextUpdateReceiptTotalItemPrice{
+  margin-left: 24.5%;
+}
+
+.updateReceiptButton{
+  font-size: 110%;
+  margin-top: 5%;
+  margin-left: 43.5%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.formLabelTextStatusUpdate{
+  margin-left:3%;
+}
+
+/* End of update region */
+
+/* start of delete region */
+.formHeaderDeleteReceipt{
+  font-size: 300%;
+  margin-left:10%;
+}
+
+.formLabelTextDeleteOrderNo{
+  margin-left: 28%;
+  font-size: 140%;
+}
+
+.formLabelOrderNoInDelete{
+  font-size: 140%;
+}
+
+.deleteReceiptButton{
+  font-size: 110%;
+  margin-top: 5%;
+  margin-left: 38.5%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.formLabelTextStatusDelete{
+  margin-left:3%;
+}
+/* End of delete region */
+
+/* div for table to display receipts */
 .receipt {
     text-align: center;
     background-color: black;
     height: 100vh;
-  }
-  .formHeader{
-    font-size: 200%;
-    margin-left:18%;
-  }
-
-  .createReceiptConfirmationHeader{
-    font-size: 200%;
-    margin-left: 25%;
-  }
-
-  .updateReceiptConfirmationHeader{
-    font-size: 200%;
-    margin-left: 25%;
-  }
-
-  .deleteReceiptConfirmationHeader{
-    font-size: 200%;
-    margin-left: 25%;
-  }
-
-  .formLabelText{
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  .formLabelTextStatus{
-    margin-left:3%;
-  }
-
-  .createAndRefresh{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 300px;
-    gap: 15px;
-    float: right;
-  }
-
-  .createReceiptButton{
-    font-size: 110%;
-    margin-top: 5%;
-    margin-left: 40%;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    
-  }
-
-  .createReceiptConfirmationYesButton{
-    width:15%;
-    margin-top: 5%;
-    margin-left: 25.5%;
-  }
-
-  .createReceiptConfirmationNoButton{
-    width:15%;
-    margin-top: 5%;
-    margin-left: 19.5%;
-  }
-
-  .createReceiptConfirmationStatusMessageContainer{
-    margin-top:5%;
-    margin-left: 10%;
-    width:75%;
-  }
-
-  .updateInputOrderId{
-    margin-left: 10%;
-  }
-
-  .updateInputReceiptID{
-    margin-left: 10%;
-  }
-
-  .updateInputTotalItemPrice{
-    margin-left: 6.4%;
-  }
-
-  .updateReceiptButton{
-    font-size: 110%;
-    margin-top: 5%;
-    margin-left: 45.5%;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 1%;
-    padding-bottom: 1%;
- 
-  }
-
-  .updateReceiptConfirmationYesButton{
-    width:15%;
-    margin-top: 5%;
-    margin-left: 25.5%;
-  }
-
-  .updateReceiptConfirmationNoButton{
-    width:15%;
-    margin-top: 5%;
-    margin-left: 19.5%;
-  }
-
-  .updateReceiptConfirmationStatusMessageContainer{
-    margin-top:5%;
-    margin-left: 10%;
-    width:75%;
-  }
-
-  .deleteReceiptButton{
-    font-size: 110%;
-    margin-top: 5%;
-    margin-left: 45.5%;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-  }
-
-  .deleteReceiptConfirmationYesButton{
-    width:15%;
-    margin-top: 5%;
-    margin-left: 25.5%;
-  }
-
-  .deleteReceiptConfirmationNoButton{
-    width:15%;
-    margin-top: 5%;
-    margin-left: 19.5%;
-  }
-
-  .deleteReceiptConfirmationStatusMessageContainer{
-    margin-top:5%;
-    margin-left: 10%;
-    width:75%;
-  }
-
-
-  .trialReceiptContainer{
-    border: 1px solid white;
-    width: 20%;
-  }
-
-  .trialReceiptContainerViewButton{
-    width: 100%;
-    padding-top:3%;
-    padding-bottom:3%;
-  }
-
-  .trialReceiptContainerUpdateButton{
-    width: 100%;
-    padding-top:3%;
-    padding-bottom:3%;
-  }
-
-  .trialReceiptContainerDeleteButton{
-    width: 100%;
-    padding-top:3%;
-    padding-bottom:3%;
   }
 
   .actionButtons{

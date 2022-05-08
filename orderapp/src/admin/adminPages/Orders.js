@@ -37,7 +37,7 @@ export default function Orders() {
 
 
     function togglePopupCreateOrderConfirmation() {
-        // event.preventDefault();
+
         setConfirmationOrderPopupOpen(!confirmationOrderPopupOpen);
         togglePopupCreateOrder();
         setSubmitStatusMessageStatus(false);
@@ -57,8 +57,8 @@ export default function Orders() {
     }
 
     //final close
-    function handleClosePopups(event) {
-        //event.preventDefault();
+    function handleClosePopups() {
+
         setOrderNoValue(0);
 
         setPostDataClicked(false);
@@ -173,7 +173,7 @@ export default function Orders() {
     }
 
     function toggleUpdateDistinctOrderConfirmation() {
-        // event.preventDefault();
+
         console.log('in toggle here');
         setViewUpdate(!viewUpdate);
         setViewConfirmationUpdatePopupOpen(!viewConfirmationUpdatePopupOpen);
@@ -215,9 +215,9 @@ export default function Orders() {
     //For showing the result message
     const [updateDataClicked, setUpdateDataClicked] = useState(false);
 
-    async function updateDistinctOrder(event) {
+    async function updateDistinctOrder() {
         console.log('called update order');
-        //event.preventDefault();
+
 
         await ambrosialAxiosAPI.put(`/updatedistinctorder/${orderNoId}`, {
             orderNoOld: viewOrderItemsOrderNo,
@@ -310,7 +310,7 @@ export default function Orders() {
     //For showing the result message
     const [deleteDataClicked, setDeleteDataClicked] = useState(false);
 
-    async function deleteDistinctOrder(event) {
+    async function deleteDistinctOrder() {
         console.log('called delete distinct order');
 
 
@@ -397,7 +397,7 @@ export default function Orders() {
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelText'>Order No.:</label>
+                        <label className='formLabelTextCreateDistinctOrder'>Order No.:</label>
                         <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
                         <br></br>
 
@@ -405,7 +405,7 @@ export default function Orders() {
                         <br></br>
                         <br></br>
 
-                        {submitStatusMessageStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{submitStatusMessage}</label>}</label> : null}
+                        {submitStatusMessageStatus ? <label className='formLabelTextStatusCreateDistinctOrder'>{<label className='formLabelTextCreateDistinctOrder'>{submitStatusMessage}</label>}</label> : null}
                     </form>
                 } />}
 
@@ -428,7 +428,7 @@ export default function Orders() {
                         <br></br>
 
                         <label className='formLabelTextUpdate'>Order No. Now:</label>
-                        <label className='formLabelOrderNo'>{viewOrderItemsOrderNo}</label>
+                        <label className='formLabelOrderNoUpdate'>{viewOrderItemsOrderNo}</label>
                         <br></br>
 
                         <label className='formLabelTextUpdate'>Order No. :</label>
@@ -439,7 +439,7 @@ export default function Orders() {
                         <br></br>
                         <br></br>
 
-                        {updateSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{updateSubmitStatusMessage}</label>}</label> : null}
+                        {updateSubmitStatus ? <label className='formLabelTextStatusUpdateDistinctOrder'>{<label className='formLabelTextUpdateDistinctOrder'>{updateSubmitStatusMessage}</label>}</label> : null}
                     </form>
                 } />}
 
@@ -462,18 +462,14 @@ export default function Orders() {
                         <br></br>
 
                         <label className='formLabelTextDelete'>Order No.:</label>
-                        <label className='formLabelOrderNo'>{viewOrderItemsOrderNo}</label>
+                        <label className='formLabelOrderNoDelete'>{viewOrderItemsOrderNo}</label>
                         <br></br>
-
-                        {/* <label className='formLabelTextUpdate'>Order No. :</label>
-                <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
-                <br></br> */}
 
                         <button className='deleteCurrentDistinctOrderButton'>Submit</button>
                         <br></br>
                         <br></br>
 
-                        {deleteSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label> : null}
+                        {deleteSubmitStatus ? <label className='formLabelTextStatusDeleteDistinctOrder'>{<label className='formLabelTextDeleteDistinctOrder'>{deleteSubmitStatusMessage}</label>}</label> : null}
                     </form>
                 } />}
 

@@ -13,12 +13,6 @@ h2 {
     color: white;
 }
 
-.greeting {
-    position: absolute;
-    top: 10%;
-    right: 3%;
-}
-
 .admin-navbar {
     text-align:center;
     border: none;

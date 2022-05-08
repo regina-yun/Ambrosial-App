@@ -1,3 +1,19 @@
+/* div for the two buttons create order and refresh list */
+.createAndRefresh{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 82.5%;
+}
+
+.createOrder {
+    
+}
+
+.refreshList {
+  margin-left: 4%;
+}
+
 .modalContainer{
   width:100%;
   height:100%;
@@ -8,164 +24,135 @@
   z-index: 1;
 }
 
+/* Create section */
+.formHeaderCreateDistinctOrder{
+  font-size: 300%;
+  margin-left:18%;
+}
+
+.formLabelTextCreateDistinctOrder{
+  margin-left:20%;
+}
+
+.createInputOrderNo{
+  margin-left: 10%;
+}
+
+.createOrderButton{
+  font-size: 110%;
+  margin-top: 5%;
+  margin-left: 45.5%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%; 
+}
+
+.formLabelTextStatusCreateDistinctOrder{
+  margin-left:13%;
+}
+
+.formLabelTextCreateDistinctOrder{
+  
+}
+
+/* End of create section */
+
+/* Update section */
+.formHeaderUpdate{
+  font-size: 300%;
+  margin-left:5%;
+}
+
+.formLabelTextUpdate{
+  margin-left:25%;
+  font-size: 130%;
+}
+
+.formLabelOrderNoUpdate{
+  margin-left:5%;
+  font-size: 130%;
+}
+
+.updateOrderNo{
+
+}
+
+.updateCurrentDistinctOrderButton{
+  margin-top: 5%;
+  margin-left: 42%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.formLabelTextStatusUpdateDistinctOrder{
+  margin-left:13%;
+}
+
+.formLabelTextUpdateDistinctOrder{
+  
+}
+
+/* End of Update section */
+
+/* delete section */
+.formHeaderDelete{
+  font-size: 300%;
+  margin-left:15%;
+}
+
+.formLabelTextDelete{
+  margin-left:31%;
+  font-size: 130%;
+}
+
+.formLabelOrderNoDelete{
+  margin-left:5%;
+  font-size: 130%;
+}
+
+.deleteCurrentDistinctOrderButton{
+  margin-top: 5%;
+  margin-left: 42%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+
+.formLabelTextStatusDeleteDistinctOrder{
+  margin-left:13%;
+}
+
+.formLabelTextDeleteDistinctOrder{
+  
+}
+
+/* End of delete section */
+
+/* div to contain the page */
 .orders {
     text-align: center;
     background-color: black;
     height: 100vh;
   }
-  .formHeaderCreateDistinctOrder{
-    font-size: 300%;
-    margin-left:18%;
-  }
 
-  .createOrderConfirmationHeader{
-    font-size: 300%;
-    margin-left: 25%;
-  }
-
-  .formLabelText{
-    margin-left:20%;
-  }
-
-  .formLabelTextStatus{
-    margin-left:13%;
-  }
-
-  .createAndRefresh{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: 82.5%;
-  }
-
-  .createOrder {
-    
-  }
-
-  .refreshList {
-    margin-left: 4%;
-  }
-
-  .createInputOrderNo{
-    margin-left: 10%;
-  }
-
-  .createInputMenuItemId{
-    margin-left: 9%;
-  }
-
-  .createInputQuantity{
-    margin-left: 14.6%;
-  }
-
-  .createInputTotalItemPrice{
-    margin-left: 6.4%;
-  }
-
-  .createInputTableNo{
-    margin-left: 14.1%;
-  }
-
-  .createInputOrderStatus{
-    margin-left: 10.4%;
-  }
-
-  .createOrderButton{
-    font-size: 110%;
-    margin-top: 5%;
-    margin-left: 45.5%;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    
-  }
-
-  .createOrderConfirmationYesButton{
-    width:15%;
-    margin-top: 5%;
-    margin-left: 25.5%;
-  }
-
-  .createOrderConfirmationNoButton{
-    width:15%;
-    margin-top: 5%;
-    margin-left: 19.5%;
-  }
-
-  .createOrderConfirmationStatusMessageContainer{
-    margin-top:5%;
-    margin-left: 10%;
-    width:75%;
-  }
-
-  .trialOrderContainer{
-    border: 1px solid white;
-    width: 20%;
-  }
-
-  .trialOrderContainerViewButton{
-    width: 100%;
-    padding-top:3%;
-    padding-bottom:3%;
-  }
-
-  .trialOrderContainerUpdateButton{
-    width: 100%;
-    padding-top:3%;
-    padding-bottom:3%;
-  }
-
-  .trialOrderContainerDeleteButton{
-    width: 100%;
-    padding-top:3%;
-    padding-bottom:3%;
-  }
 
   .actionButtons{
     border:1px solid white;
     width: 20%;
   }
 
-  .formHeaderUpdate{
-    font-size: 300%;
-    margin-left:5%;
-  }
 
-  .updateCurrentDistinctOrderButton{
-    margin-top: 5%;
-    margin-left: 42%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    padding-left: 3%;
-    padding-right: 3%;
-  }
 
-  .formLabelOrderNo{
-    margin-left:5%;
-    font-size: 130%;
-  }
 
-  .formLabelTextUpdate{
-    margin-left:25%;
-    font-size: 130%;
-  }
 
-  .formHeaderDelete{
-    font-size: 300%;
-    margin-left:15%;
-  }
 
-  .formLabelTextDelete{
-    margin-left:31%;
-    font-size: 130%;
-  }
 
-  .deleteCurrentDistinctOrderButton{
-    margin-top: 5%;
-    margin-left: 42%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    padding-left: 3%;
-    padding-right: 3%;
-  }
+
+
+
+

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './confirmationPopupContents.css';
 
 function ConfirmationPopupContents(props){
@@ -23,19 +24,25 @@ function ConfirmationPopupContents(props){
         props.invokeRefresh();
     }
 
+
     return(
         <div>
-            <label className='generalConfirmationHeader'>Are You Sure ?</label>
+            {/* <label className='generalConfirmationHeader'>Are You Sure ?</label> */}
                 <br></br>
-                {!props.clickStatus ?  <div> 
-                        <button className='generalConfirmationYesButton' onClick={yesButtonAction}>Yes</button>
-                        <button className='generalConfirmationNoButton' onClick={noButtonAction}>No</button>
-                    </div>:
-                    <button type="button" className='generalConfirmationCloseButton'  onClick={closeButtonAction} >Close</button>
-                    
+                {!props.clickStatus ?  <div className='generalConfirmationHeaderContainer'> <label className='generalConfirmationHeader'>Are You Sure ?</label>
+                        <div className='generalConfirmationButtonContainer'>
+                            <button className='generalConfirmationYesButton' onClick={yesButtonAction}>Yes</button>
+                            <button className='generalConfirmationNoButton' onClick={noButtonAction}>No</button>
+                        </div>
+                    </div>:<div> <label className='generalConfirmationHeaderStatus'>Transaction Status</label>
+                        <div>
+                            <div className='generalConfirmationStatusMessageContainer'><label className='generalConfirmationStatusMessage'>{props.statusMessage}</label></div>
+                            <button type="button" className='generalConfirmationCloseButton'  onClick={closeButtonAction} >Close</button>
+                        </div>
+                    </div>
                 }
                 <br></br>
-                {props.clickStatus ? <div className='generalConfirmationStatusMessageContainer'><label className='generalConfirmationStatusMessage'>{props.statusMessage}</label></div>: null}
+                {/* {props.clickStatus ? <div className='generalConfirmationStatusMessageContainer'><label className='generalConfirmationStatusMessage'>{props.statusMessage}</label></div>: null} */}
                 
         </div>
     );
