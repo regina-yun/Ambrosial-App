@@ -3,6 +3,12 @@
     color: white;
 }
 
+.logout-button {
+    position: absolute;
+    top:5%;
+    right: 3%;
+}
+
 h2 {
     color: white;
 }
