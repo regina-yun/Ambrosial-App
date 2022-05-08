@@ -3,3 +3,8 @@
     background-color: black;
     height: 100vh;
   }
+
+.greeting {
+  text-align: center;
+  font-size: 200%;
+}

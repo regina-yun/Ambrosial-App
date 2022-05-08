@@ -29,11 +29,10 @@ function AdminApp(props) {
                 
               </div>
           
-          <h2 className="greeting">Welcome back, {props.user}!</h2>
           <div className="admin-container">
             <Switch>
               
-              <Route exact path="/"><Home /></Route>
+              <Route exact path="/"><Home user={props.user}/></Route>
               <Route path="/Menu"><Menu /></Route>
               <Route path="/Orders"><Orders /></Route>
               <Route path="/Receipts"><Receipts /></Route>
