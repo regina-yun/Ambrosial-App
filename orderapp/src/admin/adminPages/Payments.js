@@ -458,6 +458,7 @@ export default function Payments() {
 						<tr>
 							<th className='payment-table-column'>Invoice ID</th>
 							<th className='payment-table-column'>Receipt ID</th>
+							<th className='payment-table-column'>Order ID</th>
 							<th className='payment-table-column'>Payment Type</th>
 							<th className='payment-table-column'>Payment Status</th>
 							<th className='payment-table-column' colSpan='2'>Actions</th>
