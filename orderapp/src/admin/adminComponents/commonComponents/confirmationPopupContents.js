@@ -26,7 +26,7 @@ function ConfirmationPopupContents(props){
 
 
     return(
-        <div>
+        <div className='generalConfirmationContainer'>
             {/* <label className='generalConfirmationHeader'>Are You Sure ?</label> */}
                 <br></br>
                 {!props.clickStatus ?  <div className='generalConfirmationHeaderContainer'> <label className='generalConfirmationHeader'>Are You Sure ?</label>

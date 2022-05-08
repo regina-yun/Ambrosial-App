@@ -82,12 +82,12 @@
   position:absolute;
   top: 5%;
   left: 32%;
-  z-index: 3; */
+  z-index: 4; */
   position:absolute;
   top: 5%;
   left: 32%;
-  width:40%;
-  height: 80%;
+  width:30%;
+  height: 35%;
   border: 1px solid white;
   padding:3%;
   z-index: 4;
