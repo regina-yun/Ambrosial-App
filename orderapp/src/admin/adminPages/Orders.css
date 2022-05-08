@@ -1,4 +1,4 @@
-.modal{
+.modalContainer{
   width:100%;
   height:100%;
   position: absolute;
@@ -13,7 +13,7 @@
     background-color: black;
     height: 100vh;
   }
-  .formHeader{
+  .formHeaderCreateDistinctOrder{
     font-size: 300%;
     margin-left:18%;
   }
@@ -28,7 +28,7 @@
   }
 
   .formLabelTextStatus{
-    margin-left:3%;
+    margin-left:13%;
   }
 
   .createAndRefresh{
@@ -46,7 +46,7 @@
     margin-left: 4%;
   }
 
-  .createInputOrderId{
+  .createInputOrderNo{
     margin-left: 10%;
   }
 
@@ -125,4 +125,47 @@
   .actionButtons{
     border:1px solid white;
     width: 20%;
+  }
+
+  .formHeaderUpdate{
+    font-size: 300%;
+    margin-left:5%;
+  }
+
+  .updateCurrentDistinctOrderButton{
+    margin-top: 5%;
+    margin-left: 42%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .formLabelOrderNo{
+    margin-left:5%;
+    font-size: 130%;
+  }
+
+  .formLabelTextUpdate{
+    margin-left:25%;
+    font-size: 130%;
+  }
+
+  .formHeaderDelete{
+    font-size: 300%;
+    margin-left:15%;
+  }
+
+  .formLabelTextDelete{
+    margin-left:31%;
+    font-size: 130%;
+  }
+
+  .deleteCurrentDistinctOrderButton{
+    margin-top: 5%;
+    margin-left: 42%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
   }

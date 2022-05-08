@@ -1,5 +1,87 @@
 .payments {
-    text-align: center;
-    background-color: black;
-    height: 100vh;
+  text-align: center;
+  background-color: black;
+  height: 100vh;
   }
+
+.payment-modal{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,.9);
+  z-index: 1;
+}
+
+.payment-confimation-modal {
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0,0,0,.9);
+  z-index: 2;
+}
+
+.paymentFormHeader {
+  font-size: 200%;
+}
+
+.createPaymentFormLabelText {
+  position: absolute;
+  left: 27.5%;
+}
+
+.updatePaymentFormLabelText{
+  position: absolute;
+  left:28%
+}
+
+.paymentFormLabelTextStatus {
+  margin-left:3%;
+}
+
+.createAndRefreshPayment {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 300px;
+  gap: 15px;
+  float: right;
+  margin-left: 82.5%;
+}
+
+.createPaymentInputReceiptId,
+.createPaymentInputPaymentType,
+.createPaymentInputPaymentStatus {
+  position: absolute;
+  right:28%;
+}
+
+.updatePaymentInputInvoiceId,
+.updatePaymentInputReceiptId,
+.updatePaymentInputPaymentType,
+.updatePaymentInputPaymentStatus {
+  position: absolute;
+  right:28%;
+}
+
+
+
+.paymentButton {
+  font-size: 110%;
+  margin-top: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.paymentPageTitle {
+  margin: auto 0;
+}
+
+.paymentTable {
+  margin: 0 auto;
+}

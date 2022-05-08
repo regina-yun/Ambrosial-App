@@ -3,12 +3,17 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 import { ambrosialAxiosAPI } from '../../api/api';
 import AdminApp from '../AdminApp';
 import LoginHeader from '../adminComponents/login-header';
+import Popup from '../adminComponents/popup';
 import ChangePassword from './change-password';
 import './login.css';
 
 function Login() {
-  const [loginCredentials, setLoginCredentials] = useState({username: "", password: ""});
+  const [loginCredentials, setLoginCredentials] = useState({username: '', password: ''});
   const [loginStatus, setLoginStatus] = useState(false);
+  const [loginMessage, setLoginMessage] = useState('')
+
+  const [modalVisibleLogin, setModalVisibleLogin] = useState(false);
+  const [loginPopupOpen, setLoginPopupOpen] = useState(false);
 
   function handleOnChange(e) {
     let updatedCredentials = {...loginCredentials};
@@ -20,8 +25,24 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     
-    if(loginCredentials.username === "" && loginCredentials.password === "") {
-      alert('Please input username and password.');
+    if(loginCredentials.username === '' && loginCredentials.password === '') {
+      setLoginPopupOpen(true);
+      setModalVisibleLogin(true);
+      setLoginMessage('Kindly enter both username and password.');
+      setLoginStatus(false);
+    }
+    
+    else if(loginCredentials.username === '')  {
+      setLoginPopupOpen(true);
+      setModalVisibleLogin(true);
+      setLoginMessage('Kindly enter your username.');
+      setLoginStatus(false);
+    }
+
+    else if(loginCredentials.password === '')  {
+      setLoginPopupOpen(true);
+      setModalVisibleLogin(true);
+      setLoginMessage('Kindly enter your password.');
       setLoginStatus(false);
     }
 
@@ -42,12 +63,21 @@ function Login() {
         console.log(`Error Status: ${error.response.status}`);
         console.log(`Error Message: ${error.response.data}`);
 
-        alert("Invalid username/password");
+        setLoginPopupOpen(true);
+        setModalVisibleLogin(true);
+        setLoginMessage('Invalid username/password. Please try again.');
         setLoginStatus(false);
       });
     }
+  }
+  function resetLoginStateToDefault() {
+    setLoginCredentials({username: '', password: ''});
+  }
 
-    setLoginCredentials({username: "", password: ""});
+  function togglePopupLogin() {
+    resetLoginStateToDefault();
+    setLoginPopupOpen(!loginPopupOpen);
+    setModalVisibleLogin(!modalVisibleLogin);
   }
 
   return( 
@@ -60,12 +90,12 @@ function Login() {
             <LoginHeader />
             <form className='login-form'>
               <div className='login-input'>
-                <input id='username-input' type='text' autoComplete='off' placeholder='' name='username' onChange={handleOnChange}/>
+                <input id='username-input' type='text' autoComplete='off' placeholder='' value={loginCredentials.username} name='username' onChange={handleOnChange}/>
                 <label className='login-username-label'>Username</label>
               </div>
               
               <div className='login-input'>
-                <input id='password-input' type='password' placeholder='' minLength='8' name='password' onChange={handleOnChange}/>
+                <input id='password-input' type='password' placeholder='' minLength='8' value={loginCredentials.password} name='password' onChange={handleOnChange}/>
                 <label className='login-pw-label'>Password</label>
               </div>
 
@@ -79,7 +109,16 @@ function Login() {
                     {loginStatus === true && <Redirect to="/admin" className='login-page-link' />}
                   </button>
                 </div>
-
+                
+                {modalVisibleLogin && <div className='login-modal'>
+                    {loginPopupOpen && <Popup
+                      popupType='loginPopup'
+                      handleClose={togglePopupLogin}
+                      content={loginMessage}/>
+                    }  
+                  </div>
+                }
+                
                 <div className='login-cancel-button-div'>
                   <button className='login-cancel-button'>
                     <Link to="/" className='login-link' />Cancel

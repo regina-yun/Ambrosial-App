@@ -1,99 +1,6 @@
-/* Popup style */
-.view-popup-box {
-    position: fixed;
-    background: #00000050;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index:1000;
-  }
-   
-.view-box {
-  position: relative;
-  width: 40%;
-  margin: 0 auto;
-  height: auto;
-  max-height: 90vh;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: #fff;
-  border-radius: 4px;
-  border: 1px solid #999;
-  overflow: auto;
-}
-  
-.create-popup-box {
-  position: fixed;
-  background: #00000050;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  z-index:1000;
-}
-  
-.create-box {
-  position: relative;
-  width: 40%;
-  margin: 0 auto;
-  height: auto;
-  max-height: 90vh;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: #fff;
-  border-radius: 4px;
-  border: 1px solid #999;
-  overflow: auto;
-}
-
-.update-popup-box {
-  position: fixed;
-  background: #00000050;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  z-index:1000;
-}
-  
-.update-box {
-  position: relative;
-  width: 40%;
-  margin: 0 auto;
-  height: auto;
-  max-height: 90vh;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: #fff;
-  border-radius: 4px;
-  border: 1px solid #999;
-  overflow: auto;
-}
-
-.delete-popup-box {
-  position: fixed;
-  background: #00000050;
-  width: 100%;
-  height: auto;
-  top: 0;
-  left: 0;
-  z-index:1000;
-}
-  
-.delete-box {
-  position: relative;
-  width: 40%;
-  margin: 0 auto;
-  height: auto;
-  max-height: 90vh;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: #fff;
-  border-radius: 4px;
-  border: 1px solid #999;
-  overflow: auto;
-}
-
 .createOrderPopup-box{
   width:30%;
-  height: 30%;
+  height: 48%;
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
@@ -104,19 +11,174 @@
   z-index: 2;
 }
 
-.createOrder-close-icon{
+.updateCurrentDistinctOrderPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.updateOrderItemPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3;
+}
+
+.deleteCurrentDistinctOrderPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.deleteOrderItemPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 4;
+}
+
+.createOrder-close-icon {
+  margin-left: 95%;
+}
+
+.updateCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
+.updateOrderItem-close-icon{
+  margin-left: 95%;
+}
+
+.deleteCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderItem-close-icon{
   margin-left: 95%;
 }
 
 .createOrderConfirmationPopup-box {
   width:30%;
-  height: 15%;
+  height: 35%;
   border: 1px solid white;
   padding:3%;
   position:absolute;
   top: 5%;
   left: 32%;
   z-index: 2;
+}
+
+.createOrderItemConfirmationPopup-box {
+  /* width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3; */
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:40%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+  z-index: 4;
+}
+
+.updateOrderConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.updateOrderItemConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 3;
+}
+
+.deleteOrderConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.deleteOrderItemConfirmationPopup-box{
+  width:30%;
+  height: 35%;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 4;
+}
+
+.createOrderItemConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.createOrderConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.updateOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.updateOrderItemConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderItemConfirmation-close-icon{
+  margin-left: 95%;
 }
 
 .viewOrderPopup-box{
@@ -127,38 +189,216 @@
   height: 80%;
   border: 1px solid white;
   padding:3%;
+  z-index: 2;
 }
 
 .viewOrder-close-icon{
   margin-left: 95%;
 }
 
-.createOrderConfirmation-close-icon {
+.createOrderItemPopup-box{
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  width:40%;
+  height: 80%;
+  border: 1px solid white;
+  padding:3%;
+  z-index: 4;
+}
+
+.createOrderItem-close-icon{
   margin-left: 95%;
 }
 
-.createReceiptPopup-box,
-  .view-popup.active,
-  .edit-popup.active,
-  .destroy-popup.active {
-    display: block;
-    position: absolute;
-    top: 40vh;
-    left: 35vw;
-    background-color: white;
-    color: black;
-    height: auto;
-    width: 400px;
-    padding: 20px;
-    z-index: 1;
-  }
+.createReceiptPopup-box{
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
 
-  .createReceipt-close-icon{
-    float: right;
-    position: relative;
-    top: 0;
-    right: 0;
-  }
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.createReceipt-close-icon{
+  margin-left: 95%;
+}
+
+.createReceiptConfirmationPopup-box {
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.createReceiptConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.viewReceiptPopup-box{
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.viewReceipt-close-icon{
+  margin-left: 95%;
+}
+
+.viewReceiptConfirmationPopup-box {
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.viewReceiptConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.updateReceiptPopup-box{
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.updateReceipt-close-icon{
+  margin-left: 95%;
+}
+
+.updateReceiptConfirmationPopup-box {
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.updateReceiptConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.deleteReceiptPopup-box{
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.deleteReceipt-close-icon{
+  margin-left: 95%;
+}
+
+.deleteReceiptConfirmationPopup-box {
+  width:30%;
+  height: auto;
+  border: 1px solid white;
+  padding:3%;
+  position:absolute;
+  top: 5%;
+  left: 32%;
+  z-index: 2;
+}
+
+.deleteReceiptConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.loginPopup-box,
+.updatePasswordErrorPopup-box,
+.updatePasswordSuccessPopup-box,
+.createPaymentPopup-box,
+.updatePaymentPopup-box,
+.createPaymentConfirmationPopup-box,
+.updatePaymentConfirmationPopup-box,
+.deletePaymentConfirmationPopup-box {
+  width:30%;
+  height: auto;
+  background-color: black;
+  text-align: center;
+  border: 1px solid white;
+  padding:3%;
+  padding-bottom:5%;
+  position:absolute;
+  top: 20%;
+  left: 32%;
+  z-index: 2;
+}
+
+.login-close-icon,
+.updatePasswordError-close-icon,
+.updatePasswordSuccess-close-icon,
+.createPayment-close-icon,
+.updatePayment-close-icon,
+.createPaymentConfirmation-close-icon,
+.updatePaymentConfirmation-close-icon,
+.deletePaymentConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.login-close-icon,
+.updatePasswordError-close-icon,
+.updatePasswordSuccess-close-icon,
+.login-box,
+.updatePasswordError-box,
+.updatePasswordSuccess-box {
+  color: white;
+}
+
+.login-box,
+.updatePasswordError-box,
+.updatePasswordSuccess-box {
+  font-size:110%
+}
+.view-popup.active,
+.edit-popup.active,
+.destroy-popup.active {
+  display: block;
+  position: absolute;
+  top: 40vh;
+  left: 35vw;
+  background-color: white;
+  color: black;
+  height: auto;
+  width: 400px;
+  padding: 20px;
+  z-index: 1;
+}
 
 .view-close-icon, .create-close-icon, .update-close-icon, .delete-close-icon {
   content: 'x';
@@ -175,6 +415,27 @@
   font-size: 30px;
 }
 
-.view-close-icon:hover, .create-close-icon:hover, .update-close-icon:hover, .delete-close-icon:hover .createOrder-close-icon:hover{
-  font-size: 35px;
+.view-close-icon:hover, 
+.create-close-icon:hover, 
+.update-close-icon:hover, 
+.delete-close-icon:hover,
+.createOrder-close-icon:hover,
+.createReceipt-close-icon:hover,
+.updateReceipt-close-icon:hover,
+.viewReceipt-close-icon:hover,
+.deleteReceipt-close-icon:hover,
+.createReceiptConfirmation-close-icon:hover,
+.updateReceiptConfirmation-close-icon:hover,
+.viewReceiptConfirmation-close-icon:hover,
+.deleteReceiptConfirmation-close-icon:hover,
+.createPayment-close-icon:hover,
+.updatePayment-close-icon:hover,
+.createPaymentConfirmation-close-icon:hover,
+.updatePaymentConfirmation-close-icon:hover,
+.deletePaymentConfirmation-close-icon:hover,
+.login-close-icon:hover,
+.updatePasswordError-close-icon:hover,
+.updatePasswordSuccess-close-icon:hover {
+  font-size: 20px;
+  cursor: pointer;
 }

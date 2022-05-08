@@ -1,0 +1,26 @@
+.generalConfirmationHeader{
+      font-size: 300%;
+}
+ 
+.generalConfirmationYesButton{
+    width:15%;
+    margin-top: 5%;
+    margin-right: 5%;
+    
+}
+
+.generalConfirmationNoButton{
+    width:15%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.generalConfirmationCloseButton{
+    width:15%;
+    margin-top: 5%;
+}
+
+.generalConfirmationStatusMessageContainer{
+    margin-top:5%;
+    width:75%;
+}
