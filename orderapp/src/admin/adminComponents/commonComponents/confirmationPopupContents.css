@@ -1,10 +1,10 @@
-.generalConfirmationHeaderContainer{
+/* .generalConfirmationHeaderContainer{
 
-}
+} */
 
 .generalConfirmationHeader{
-    margin-left: 25%;
-    font-size: 300%;
+    font-size: 250%;
+    font-family:'Lora', serif;
 }
 
 .generalConfirmationButtonContainer{
@@ -12,35 +12,84 @@
 }
 
 .generalConfirmationYesButton{
-    width:15%;
-    margin-left: 31%;  
+    width:15%;  
+    padding: 0.5rem 1rem;
+    background-color: orange;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: bold;
+    border: solid 5px green
+}
+
+.generalConfirmationYesButton:hover {
+    color: white;
+}
+
+.generalConfirmationYesButton:active {
+    color: black;
+    background: yellow;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+            box-shadow: inset 0px 0px 5px #c1c1c1;
+     outline: none;
 }
 
 .generalConfirmationNoButton{
     width:15%;
     margin-left: 5%;
+    padding: 0.5rem 1rem;
+    background-color: orange;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: bold;
+    border: solid 5px green
+}
+
+.generalConfirmationNoButton:hover {
+    color: white;
+}
+
+.generalConfirmationNoButton:active {
+    color: black;
+    background: yellow;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+            box-shadow: inset 0px 0px 5px #c1c1c1;
+     outline: none;
 }
 
 .generalConfirmationHeaderStatus{
-    margin-left: 18%;
-    font-size: 300%;
+    font-size: 200%;
+    font-family: 'Lora', serif;
 }
 
 .generalConfirmationStatusMessageContainer{
-    margin-top:5%;
-    margin-left: 31%;  
+    margin-top:5%;  
     width:75%;
+    font-family: 'Lora', serif;
 }
 
 .generalConfirmationCloseButton{
     margin-top: 5%;
-    margin-left: 38%;  
-    width:20%;
-    font-size: 100%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    padding-left: 5%;
-    padding-right: 5%;
+    font-size: 110%;
+    margin-top: 5%;
+    font-family: 'Lora', serif;
+    background-color: orange;
+    border: 5px solid green;
+    padding: 0.5rem 1rem; 
+    font-size: 15px;
+    font-weight: bold;
+}
+  
+.generalConfirmationCloseButton:hover {
+color: white;
 }
 
-
+.generalConfirmationCloseButton:active {
+color: black;
+background: yellow;
+-webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+        box-shadow: inset 0px 0px 5px #c1c1c1;
+outline: none;
+}

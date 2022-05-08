@@ -1,9 +1,10 @@
 import {v4 as uuid} from 'uuid';
+import './Invoice.css';
 
 export default function Invoice() {
     
 
 return (
-    <p style={{textAlign: "center", fontFamily: "sans-serif", fontWeight: "bold"}}><strong>Invoice number:</strong>&nbsp;{uuid()}</p>
+    <p className='invoice-number'><strong>Invoice number:<br/></strong>&nbsp;{uuid()}</p>
 )
 }

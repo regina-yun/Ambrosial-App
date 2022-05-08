@@ -15,7 +15,9 @@ function LandingApp() {
           <Route path="/login"><Login /></Route>
     <div className="landing">
       <div className="main">
+        <h2 className='landing-text'>Welcome to</h2>
         <h1 className='landing-title'>Ambrosial</h1>
+        <h3 className='landing-subtitle'>quality you can taste</h3>
         <h2 className='landing-text'>I am a...</h2>
         <div className="landing-nav"></div>
           <Link to="/customer" className="customer-nav">Customer</Link>

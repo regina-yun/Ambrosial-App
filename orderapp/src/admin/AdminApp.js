@@ -21,13 +21,10 @@ function AdminApp(props) {
           <Header />
 
           <div>
-              {/* <Link to="/Payments" className='logout-link' replace> */}
-                <button className='logout-button' onClick={() => {window.location.reload();}}>
-                  Logout
-                </button>
-                {/* </Link> */}
-                
-              </div>
+            <button className='logout-button' onClick={() => {window.location.reload();}}>
+              Logout
+            </button> 
+          </div>
           
           <div className="admin-container">
             <Switch>

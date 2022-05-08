@@ -2,7 +2,7 @@
     height: 40px;
     width: 40px;
     position: absolute;
-    top: 3%;
+    top: 1%;
     left: 88%;
     float: right;
     padding: 5px;
@@ -15,7 +15,7 @@
 .server-content {
     text-align: center;
     padding: 20px 0;
-    font-family: 'Yomogi', cursive;
+    font-family: 'Lora', serif;
     font-size: 20px;
     font-weight: bold;
     color: black;

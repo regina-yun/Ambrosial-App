@@ -2,7 +2,7 @@
     height: 40px;
     width: 40px;
     position: absolute;
-    top: 3.5%;
+    top: 1.25%;
     left: 83%;
     float: right;
     z-index: 1;
@@ -17,8 +17,8 @@
 .payment-content {
     text-align: center;
     padding: 20px 0;
-    font-family: 'Yomogi', cursive;
-    font-size: 30px;
+    font-family: 'Lora', serif;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -43,7 +43,7 @@
 
     .payment-content {
         padding: 20px;
-        font-size: 14px;
+        font-size: 20px;
         width: auto;
         height: auto;
     }

@@ -18,9 +18,9 @@
 }
 
 /* create region */
-.createReceipt{
+/* .createReceipt{
 
-}
+} */
 
 .formCreateReceipt{
   margin-top: 4%;
@@ -125,7 +125,6 @@
   }
 
   .actionButtons{
-    border:1px solid white;
     width: 20%;
   }
 

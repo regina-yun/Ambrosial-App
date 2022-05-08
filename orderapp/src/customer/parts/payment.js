@@ -15,7 +15,7 @@ export default function Payment() {
             <div className="payment">
                 <img src={BillImg} 
                 alt="payment icon" 
-                style={{height: 45, width: 45}}
+                style={{height: 40, width: 40}}
                 onClick={togglePopup} />
             </div>
             

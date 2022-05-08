@@ -1,5 +1,5 @@
 #imagecontainer{
-    width:220px;
+    width:206px;
 }
 
 #image{
@@ -25,9 +25,9 @@
 
 .item-desc-container{
     text-align: center;
-    width: 180px;
-    height:60px;
-    font-family:'Yomogi', cursive;
+    width: 200px;
+    height:auto;
+    font-family:'Lora', serif;
     font-weight: bold;
     font-size: 15px;
 }

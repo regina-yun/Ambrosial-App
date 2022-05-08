@@ -1,11 +1,17 @@
 .header-title{
-  font-family: 'Licorice', cursive;
+  font-family: 'Sacramento', cursive;
   font-weight: bold;
   font-size: 100px;
-  padding: 50px 0;
-  color: white;
+  padding-bottom: 50px;
+  color: pink;
 }
 
+.header-subtitle {
+  margin-top: -50px;
+  font-size: 20px;
+  font-family: 'Lora', serif;
+  color: white;
+}
  
 @media only screen and (max-width: 600px) {
     .header-title {
