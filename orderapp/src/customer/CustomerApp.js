@@ -82,7 +82,7 @@ function CustomerApp() {
     <>
       <div className='background-opacity'>
         <div className='ingress'>
-        <span className='signup'><Membership/></span>
+        {/* <span className='signup'><Membership/></span> */}
         <div>
           <span className='orderlist'><OrderList selectedItemList={selectedItemList} setSelectedItemList={setSelectedItemList}/></span>
           <span className='server'><Server /></span>
