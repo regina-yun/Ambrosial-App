@@ -46,3 +46,8 @@
 .admin-pages:hover {
     font-weight: bold;
 }
+
+.admin-pages:focus {
+ color: orange;
+ border-top: orange 2px solid;
+}
