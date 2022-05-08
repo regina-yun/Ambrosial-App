@@ -468,7 +468,7 @@ async function updateOrderItems(){
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>-</td>
+                    <td colSpan='2'>-</td>
                 </tr>}
 
                 </table>
@@ -591,10 +591,6 @@ async function updateOrderItems(){
                 <label className='formLabelTextDeleteOrderItem'>Menu Item:</label>
                 <label className='formLabelMenuItem'>{menuItemName}</label>
                 <br></br>
-
-                {/* <label className='formLabelTextUpdate'>Order No. :</label>
-                <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
-                <br></br> */}
 
                 <button className='deleteOrderItemButton'>Submit</button>
                 <br></br>
