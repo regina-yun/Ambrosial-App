@@ -9,7 +9,7 @@ function ViewOrderItemsButton(props){
 
     return(
         <>
-            <button className="viewOrderItemsButton" onClick={setOrderNo}>View Order items</button>
+            <button className="viewOrderItemsButton" onClick={setOrderNo}>View Order Items</button>
         </>
     )
 }

@@ -1,10 +1,10 @@
 .orderlist {
-  height: auto;
-  width: auto;
-  padding: 10px 20px;
-  position: relative;
-  top: 0;
-  right: 0;
+  height: 40px;
+  width: 40px;
+  padding: 5px;
+  position: absolute;
+  top: 1%;
+  left: 95%;
   float: right;
   z-index: 1;
 }
@@ -14,17 +14,17 @@
 }
 
 .quantityUpdater {
-  width:20px;
-  height:20px;
+  width:25px;
+  height: 25px;
   border-radius: 50%;
   background-color: white;
-  opacity: 70%;
+
   text-align: center;
   margin-top: -20px;
   margin-left: 30px;
-  font-family: "Yomogi", cursive;
+  font-family: "Lora", serif;
+  font-size: 17px;
   font-weight: bold;
-  font-size: 12px;
   z-index: 1;
   position: absolute;
 }

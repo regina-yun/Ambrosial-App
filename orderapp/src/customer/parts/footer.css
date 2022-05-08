@@ -1,7 +1,7 @@
 .footer-container {
   text-align: center;
-  width: 90%;
   margin: 0 auto;
+  padding: 30px 0;
 }
 
 #fb-img, #instagram-img, #twitter-img, #telegram-img {
@@ -13,7 +13,6 @@
 .copyright {
   margin: 0;
   font-size: 13px;
-  font-family: "Yomogi", cursive;
-  font-weight: bold;
+  font-family: "Lora", serif;
   color: white;
 }

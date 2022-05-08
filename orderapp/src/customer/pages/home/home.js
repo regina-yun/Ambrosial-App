@@ -12,7 +12,7 @@ export default function Home() {
   
   return (  
     <div className="home">
-      <Carousel className="carouselcontainer" autoPlay infiniteLoop showArrows="true" showThumbs="false" thumbWidth={0}>
+      <Carousel className="carouselcontainer" autoPlay infiniteLoop interval='5000' showArrows="true" showThumbs="false" thumbWidth={0}>
           <div>
 
           <h1 className="promotion-header">&#129346; HAPPY HOUR PROMOTION! &#129346;</h1>

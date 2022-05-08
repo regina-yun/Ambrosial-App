@@ -15,7 +15,7 @@ export default function Server() {
       <img src={BellImg}
         className='server'
         alt="payment icon" 
-        style={{height: 35, width: 30}}
+        style={{height: 40, width: 40}}
         onClick={togglePopup} />
         
       {isOpen && <Popup 

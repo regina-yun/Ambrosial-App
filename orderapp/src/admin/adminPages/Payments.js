@@ -320,7 +320,7 @@ export default function Payments() {
 		<>
 			<div className='createAndRefreshPayment'>
 				<button className='refreshPaymentLogs' onClick={getAllPayment}>Refresh List</button>
-				<button className='createPayment' onClick={togglePopupCreatePayment}>Create New Payment Log</button>
+				<button className='createPaymentButton' onClick={togglePopupCreatePayment}>Create Payment</button>
 			</div>
 
 			{modalVisibleCreatePayment && <div className='payment-modal'>
@@ -329,7 +329,7 @@ export default function Payments() {
 					handleClose={togglePopupCreatePayment}
 					content={
 						<form className='paymentForm' onSubmit={onSubmitCreatePaymentInputValidation}>
-							<label className='paymentFormHeader'>Create New Payment Log</label>
+							<label className='paymentFormHeader'>Create Payment</label>
 
 							<br /><br />
 
@@ -382,7 +382,7 @@ export default function Payments() {
 					handleClose={togglePopupUpdatePayment}
 					content={
 						<form onSubmit={onSubmitUpdatePaymentInputValidation}>
-							<label className='paymentFormHeader'>Update Payment Log</label>
+							<label className='paymentFormHeader'>Update Payment</label>
 
 							<br /><br />
 
@@ -452,39 +452,32 @@ export default function Payments() {
 			</div>
 			}
 
-			<div className="payments">
-					<h1>Payment Logs</h1>
-					<table className='paymentTable'>
+			<div className="payments-container">
+					<h1 className='payment-title'>Payment Logs</h1>
+					<table className='payment-table'>
 						<tr>
-							<th>Invoice ID</th>
-							<th>Receipt ID</th>
-							<th>Payment Type</th>
-							<th>Payment Status</th>
-							<th colSpan='2'>Actions</th>
+							<th className='payment-table-column'>Invoice ID</th>
+							<th className='payment-table-column'>Receipt ID</th>
+							<th className='payment-table-column'>Payment Type</th>
+							<th className='payment-table-column'>Payment Status</th>
+							<th className='payment-table-column' colSpan='2'>Actions</th>
 						</tr>
 
 						<br></br> 
 						<br></br> 
 
-						{tableStatus ? allPaymentLogsData.map((paymentLogs) => {
+						{allPaymentLogsData.map((paymentLogs) => {
 							return(
 								<tr key={paymentLogs.receiptID}>
-									<td>{paymentLogs.paymentInvoiceID}</td>
-									<td>{paymentLogs.receiptID}</td>
-									<td>{paymentLogs.paymentType}</td>
-									<td>{paymentLogs.paymentStatus}</td>
+									<td className='payment-table-column'>{paymentLogs.paymentInvoiceID}</td>
+									<td className='payment-table-column'>{paymentLogs.receiptID}</td>
+									<td className='payment-table-column'>{paymentLogs.paymentType}</td>
+									<td className='payment-table-column'>{paymentLogs.paymentStatus}</td>
 									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Update Payment Log'} setView={() => updateOnClick(paymentLogs.paymentInvoiceID, paymentLogs.receiptID)} setData={() => {}} setId={() => {}}/></td>
 									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Delete Payment Log'} setView={() => deleteOnClick(paymentLogs.paymentInvoiceID)} setData={() => {}} setId={() => {}}/></td>
 								</tr>
 							)
-						}):
-							<tr>
-								<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-							</tr>
+						})
 						}
 					</table>
 			</div>

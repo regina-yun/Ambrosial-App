@@ -5,6 +5,7 @@
   width: 300px;
   gap: 15px;
   float: right;
+  padding: 0 3%;
 }
 
 .modal-one{
@@ -18,8 +19,33 @@
 }
 
 /* create region */
-.createReceipt{
+/* .createReceipt{
 
+} */
+.createReceipt,
+.refreshList {
+  padding: 0.5rem 1rem;
+  right: 10%;
+  background-color: orange;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 5px green
+}
+
+.createReceipt:hover,
+.refreshList:hover {
+  color: white;
+}
+
+.createReceipt:active,
+.refreshList:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
 }
 
 .formCreateReceipt{
@@ -125,11 +151,23 @@
   }
 
   .actionButtons{
-    border:1px solid white;
     width: 20%;
   }
 
   button:hover {
     cursor: pointer;
     font-weight: bold;
+  }
+
+  .receipt-title {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .receipt-table {
+    margin: 0 auto;
+    font-family: 'Lora', serif;
+  }
+  
+  .receipt-table-column {
+    padding: 0px 30px
   }

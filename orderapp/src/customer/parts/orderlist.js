@@ -38,7 +38,7 @@ function OrderList(props) {
       <img src="https://i.ibb.co/tYKtTN0/image.jpg"
         alt="cart icon" 
         className="orderlisticon"
-        style={{height: 45, width: 45}}
+        style={{height: 55, width: 55}}
         onClick={togglePopup} />
 
       <div className="quantityUpdater">{updateQuantityHandler()}</div>

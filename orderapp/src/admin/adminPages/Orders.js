@@ -383,7 +383,7 @@ export default function Orders() {
         <>
         <div className='createAndRefresh'>
             <button  className='refreshList' onClick={getAllDistinctOrders}>Refresh List</button>
-            <button className='createOrder' onClick={togglePopupCreateOrder}>Create New Order</button> 
+            <button className='createOrder' onClick={togglePopupCreateOrder}>Create Order</button> 
         </div>
             
         {modalVisible ? <div className='modalContainer'></div>:null}
@@ -392,7 +392,7 @@ export default function Orders() {
         handleClose={togglePopupCreateOrder}
         content={
             <form onSubmit={onSubmitValidateInput}>
-                <label className='formHeaderCreateDistinctOrder'>Create New Order</label>
+                <label className='formHeaderCreateDistinctOrder'>Create Order</label>
                 <br></br>
                 <br></br>
 
@@ -484,19 +484,19 @@ export default function Orders() {
 
 
         <div className="orders">
-            This is the orders page
+            <h1 className='orderTitle'>Orders</h1>
 
-            <table>
+            <table className='orderTable'>
                 <tr>
-                    <th>No.</th>
-                    <th>Order No.</th>
-                    <th>Actions</th>
+                    <th className='orderTableColumn'>No.</th>
+                    <th className='orderTableColumn'>Order No.</th>
+                    <th className='orderTableColumn' colSpan='3'>Actions</th>
                 </tr>
                 
                 {distinctOrderData.map((distinctOrder, index)=>(
                         <tr key={distinctOrder.orderNo}>
-                            <td>{index+1}</td>
-                            <td>{distinctOrder.orderNo}</td>
+                            <td className='orderTableColumn'>{index+1}</td>
+                            <td className='orderTableColumn'>{distinctOrder.orderNo}</td>
                             <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"}/></td>

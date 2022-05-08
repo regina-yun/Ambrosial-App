@@ -63,7 +63,7 @@ function CartItems(props) {
             return(
               <>
                 <tr>
-                  <td className='table-content'>{obj.name}</td>
+                  <td className='table-content'>{obj.alt}</td>
                   <td className='table-content'>
                     <button className="addMinusItem" onClick={() => handleChangeQuantity(obj.name, '-')}>-</button>
                     <input className="quantityDisplay" type='text' inputMode='numeric' value={obj.quantity}/>
@@ -77,7 +77,6 @@ function CartItems(props) {
             );
           })}    
         </table>
-        <hr/>
       </div>
     );
   }

@@ -7,11 +7,30 @@
 }
 
 .createOrder {
-    
+  width: 60%;
+  padding: 0.5rem 1rem;
+  background-color: orange;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 5px green
+}
+
+.createOrder:hover{
+  color: white;
+}
+
+.createOrder:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
 }
 
 .refreshList {
-  margin-left: 4%;
+  width: 60%
 }
 
 .modalContainer{
@@ -22,6 +41,19 @@
   left: 0px;
   background-color: rgba(0,0,0,.9);
   z-index: 1;
+}
+
+.orderTitle {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.orderTable {
+  margin: 0 auto;
+  font-family: 'Lora', serif;
+}
+
+.orderTableColumn {
+  padding: 0px 30px;
 }
 
 /* Create section */
@@ -142,7 +174,6 @@
 
 
   .actionButtons{
-    border:1px solid white;
     width: 20%;
   }
 
