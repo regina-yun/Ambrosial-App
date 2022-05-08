@@ -43,7 +43,7 @@ function onSubmitValidateInput(event){
 
 
 function togglePopupCreateOrderConfirmation() {
-    // event.preventDefault();
+    
     setConfirmationOrderPopupOpen(!confirmationOrderPopupOpen);
     togglePopupCreateOrder();
     setSubmitStatusMessageStatus(false);
@@ -51,8 +51,7 @@ function togglePopupCreateOrderConfirmation() {
 
 function closePopupCreateOrderConfirmation(){
     console.log('in closePopupCreateOrderConfirmation here');
-    //resetInputsToDefaultValue();
-    //togglePopupCreateOrderConfirmation();
+
     setOrderNoIdValue(0);
     setMenuItemIDValue(0);
     setQuantityValue(0);
@@ -101,9 +100,9 @@ const [postStatusMessage, setPostStatusMessage] = useState(false);
 //For showing the result message
 const [postDataClicked, setPostDataClicked] = useState(false);
 
-async function createOrder(event){
+async function createOrder(){
     console.log('called create distinct order');
-    //event.preventDefault();
+    
 
     await ambrosialAxiosAPI.post('/createorder', {
         orderNoId:orderNoIdValue,
@@ -523,7 +522,7 @@ async function updateOrderItems(){
             
         {confirmationOrderPopupOpen && <Popup
         popupType='createOrderItemConfirmationPopup'
-        handleClose={togglePopupCreateOrderConfirmation}
+        handleClose={closePopupCreateOrderConfirmation}
         content={
              <ConfirmationPopupContents invokeAction={createOrder} invokeRefresh={getAllOrderedItems} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage}/>
         }/>}  
@@ -573,7 +572,7 @@ async function updateOrderItems(){
         
         { viewConfirmationUpdatePopupOpen && <Popup
         popupType='updateOrderItemConfirmationPopup'
-        handleClose={toggleUpdateOrderItemsConfirmation}
+        handleClose={closePopupUpdateDistinctOrderConfirmation}
         content={
             //props needed are: updateOrderItems(), closePopupUpdateDistinctOrderConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateOrderItemsStatusMessage
             <ConfirmationPopupContents  invokeAction={updateOrderItems} invokeRefresh={getAllOrderedItems} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateOrderItemsStatusMessage}/>
