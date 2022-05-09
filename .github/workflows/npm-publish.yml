@@ -30,10 +30,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
-
-    - run: npm ci
-    - run: npm install
-    - run: npm run build --if-present
+    - name: run npm commands
+      working-directory: 'orderapp'
+      run: npm ci
+           npm install
+           npm run build --if-present
     #- run: npm test
     
     
