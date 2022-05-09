@@ -1,3 +1,4 @@
+.createMenuItemPopup-box,
 .createOrderPopup-box{
   width:30%;
   height: 48%;
@@ -65,6 +66,7 @@
   z-index: 4;
 }
 
+.createMenuItem-close-icon,
 .createOrder-close-icon {
   margin-left: 95%;
 }
@@ -87,6 +89,7 @@
   margin-left: 95%;
 }
 
+
 .createOrderConfirmationPopup-box {
   width:30%;
   height: 35%;
@@ -98,6 +101,7 @@
   z-index: 2;
 }
 
+.createMenuItemConfirmationPopup-box,
 .createOrderItemConfirmationPopup-box {
   /* width:30%;
   height: 35%;
@@ -165,6 +169,7 @@
   z-index: 4;
 }
 
+.createMenuItemConfirmation-close-icon,
 .createOrderItemConfirmation-close-icon {
   margin-left: 95%;
 }
@@ -202,6 +207,7 @@
   padding:3%;
   z-index: 2;
 }
+
 
 .createOrderItemPopup-box{
   position:absolute;

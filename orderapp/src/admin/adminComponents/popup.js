@@ -334,7 +334,28 @@ function Popup(props) {
             </div>
         );
     }
+    //For Menu Item PopupType: Create and Create Confirmation
 
+    else if (props.popupType === 'createMenuItemPopup') {
+        return (
+            <div className="createMenuItemPopup-box">
+                <div className="createMenuItem-box">
+                    <span className="createMenuItem-close-icon" onClick={props.handleClose}>x</span>
+                    {props.content}
+                </div>
+            </div>
+        );
+    }
+    else if (props.popupType === 'createMenuItemConfirmationPopup') {
+        return (
+            <div className="createMenuItemConfirmationPopup-box">
+                <div className="createMenuItemConfirmation-box">
+                    <span className="createMenuItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
+                    {props.content}
+                </div>
+            </div>
+        );
+    }
 
 
 }

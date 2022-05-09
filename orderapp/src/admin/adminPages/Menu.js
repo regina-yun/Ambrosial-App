@@ -8,102 +8,122 @@ import ConfirmationPopupContents from '../adminComponents/commonComponents/confi
 export default function Menu() {
 
     //submit popup and confirmation popup
-    //By Shaun
-    // const [createOrderPopupOpen, setCreateOrderPopupOpen] = useState(false);
-    // const [confirmationOrderPopupOpen, setConfirmationOrderPopupOpen] = useState(false);
+    const [createMenuItemPopupOpen, setCreateMenuItemPopupOpen] = useState(false);
+    const [confirmationMenuItemPopupOpen, setConfirmationMenuItemPopupOpen] = useState(false);
 
-    // function togglePopupCreateOrder() {
-    //     setCreateOrderPopupOpen(!createOrderPopupOpen);
-    //     setSubmitStatusMessageStatus(false);
-    //     setModalVisible(!modalVisible);
-    //   }
+    function togglePopupCreateMenuItem() {
+        setCreateMenuItemPopupOpen(!createMenuItemPopupOpen);
+        setSubmitStatusMessageStatus(false);
+        setModalVisible(!modalVisible);
+    }
 
     //State to see empty string and status message
-    //By Shaun
-    // const [submitStatusMessageStatus, setSubmitStatusMessageStatus] = useState(false);
-    // const [submitStatusMessage, setSubmitStatusMessage] = useState('');
+    const [submitStatusMessageStatus, setSubmitStatusMessageStatus] = useState(false);
+    const [submitStatusMessage, setSubmitStatusMessage] = useState('');
 
     //validation on submit
-    // function onSubmitValidateInput(event) {
-    //     event.preventDefault();
-    //     if (!orderNoValue) {
-    //         setSubmitStatusMessageStatus(true);
-    //         setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
-    //         return;
-    //     }
+    function onSubmitValidateInput(event) {
+        event.preventDefault();
 
-    //     togglePopupCreateOrderConfirmation();
-    // }
+        if (!menuItemSrcValue || !menuItemAltValue || !menuItemTypeValue || !menuItemPriceValue || !menuItemCategoryValue || !menuItemChefRecommendationValue) {
+            setSubmitStatusMessageStatus(true);
+            setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
+            return;
+        }
 
-    //By Shaun
-    // function togglePopupCreateOrderConfirmation() {
+        togglePopupCreateMenuItemConfirmation();
+    }
 
-    //     setConfirmationOrderPopupOpen(!confirmationOrderPopupOpen);
-    //     togglePopupCreateOrder();
-    //     setSubmitStatusMessageStatus(false);
-    // }
+    function togglePopupCreateMenuItemConfirmation() {
+        // event.preventDefault();
+        console.log('in toggle here');
+        setConfirmationMenuItemPopupOpen(!confirmationMenuItemPopupOpen);
+        togglePopupCreateMenuItem();
+        setSubmitStatusMessageStatus(false);
+    }
+    function closePopupCreateMenuItemConfirmation() {
+        console.log('in closePopupCreateMenuItemConfirmation here');
 
-    // function closePopupCreateOrderConfirmation() {
-    //     console.log('in closePopupCreateOrderConfirmation here');
-    //     setOrderNoValue(0);
+        setMenuItemIDValue(0);
+        setMenuItemSrcValue(0);
+        setMenuItemAltValue(0);
+        setMenuItemTypeValue(0);
+        setMenuItemPriceValue(0);
+        setMenuItemCategoryValue(0);
+        setMenuItemChefRecommendationValue(0);
 
-    //     setPostDataClicked(false);
-    //     setPostStatusMessage(false);
-    //     setPostDataClicked(false);
-    //     setSubmitStatusMessageStatus(false);
-    //     setCreateOrderPopupOpen(true);
-    //     setConfirmationOrderPopupOpen(false);
-
-    // }
+        setPostDataClicked(false);
+        setPostStatusMessage(false);
+        setPostDataClicked(false);
+        setSubmitStatusMessageStatus(false);
+        setCreateMenuItemPopupOpen(true);
+        setConfirmationMenuItemPopupOpen(false);
+    }
 
     // //final close
-    // function handleClosePopups() {
+    function handleClosePopups() {
 
-    //     setOrderNoValue(0);
+        setMenuItemIDValue(0);
+        setMenuItemSrcValue(0);
+        setMenuItemAltValue(0);
+        setMenuItemTypeValue(0);
+        setMenuItemPriceValue(0);
+        setMenuItemCategoryValue(0);
+        setMenuItemChefRecommendationValue(0);
 
-    //     setPostDataClicked(false);
-    //     setPostStatusMessage(false);
-    //     setPostDataClicked(false);
-    //     setSubmitStatusMessageStatus(false);
-    //     setCreateOrderPopupOpen(false);
-    //     setConfirmationOrderPopupOpen(false);
+        setPostDataClicked(false);
+        setPostStatusMessage(false);
+        setPostDataClicked(false);
+        setSubmitStatusMessageStatus(false);
+        setCreateMenuItemPopupOpen(true);
+        setConfirmationMenuItemPopupOpen(false);
+    }
 
-    // }
+    //For the inputs to create order
+    const [menuItemIDValue, setMenuItemIDValue] = useState(0);
+    const [menuItemSrcValue, setMenuItemSrcValue] = useState(0);
+    const [menuItemAltValue, setMenuItemAltValue] = useState(0);
+    const [menuItemTypeValue, setMenuItemTypeValue] = useState(0);
+    const [menuItemPriceValue, setMenuItemPriceValue] = useState(0);
+    const [menuItemCategoryValue, setMenuItemCategoryValue] = useState(0);
+    const [menuItemChefRecommendationValue, setMenuItemChefRecommendationValue] = useState(0);
 
-    // //For the inputs to create order
-    // const [orderNoValue, setOrderNoValue] = useState(0);
+    console.log(menuItemIDValue, menuItemSrcValue, menuItemAltValue, menuItemTypeValue, menuItemPriceValue, menuItemCategoryValue, menuItemChefRecommendationValue)
+    //For the result of the post
+    const [postStatus, setPostStatus] = useState(false);
+    const [postStatusMessage, setPostStatusMessage] = useState(false);
+    //For showing the result message
+    const [postDataClicked, setPostDataClicked] = useState(false);
 
-    // //For the result of the post
-    // const [postStatus, setPostStatus] = useState(false);
-    // const [postStatusMessage, setPostStatusMessage] = useState(false);
-    // //For showing the result message
-    // const [postDataClicked, setPostDataClicked] = useState(false);
+    async function createDistinctMenuItem() {
+        console.log('called create distinct menu item');
 
-    // async function createDistinctOrder() {
-    //     console.log('called create distinct order');
-
-    //     await ambrosialAxiosAPI.post('/createdistinctorder', {
-    //         orderNo: orderNoValue,
-    //     })
-    //         .then((response) => {
-    //             console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-    //             console.log(`response Status: ${response.data.status}`);
-    //             console.log(`response Message: ${response.data.message}`);
-    //             console.log("response Data: ", response.data.data);
-    //             setPostStatus(response.data.status);
-    //             setPostStatusMessage(response.data.message);
-    //         })
-    //         .catch((error) => {
-    //             console.log(`${error.response.config.method} method`, `for route:, ${error.response.config.url}`);
-    //             console.log(`Error Status: ${error.response.data.status}`);
-    //             console.log(`Error Message: ${error.response.data.message}`);
-    //             setPostStatus(error.response.data.status);
-    //             setPostStatusMessage(error.response.data.message);
-    //         });
-
-
-    //     setPostDataClicked(true);
-    // }
+        await ambrosialAxiosAPI.post('/new-mi', {
+            //menuItemID: menuItemIDValue,
+            src: menuItemSrcValue,
+            alt: menuItemAltValue,
+            type: menuItemTypeValue,
+            price: menuItemPriceValue,
+            category: menuItemCategoryValue,
+            chefRecommendation: menuItemChefRecommendationValue,
+        })
+            .then((response) => {
+                console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
+                console.log(`response Status: ${response.data.status}`);
+                console.log(`response Message: ${response.data.message}`);
+                console.log("response Data: ", response.data.data);
+                setPostStatus(response.data.status);
+                setPostStatusMessage(response.data.message);
+            })
+            .catch((error) => {
+                console.log(`${error.response.config.method} method`, `for route:, ${error.response.config.url}`);
+                console.log(`Error Status: ${error.response.data.status}`);
+                console.log(`Error Message: ${error.response.data.message}`);
+                setPostStatus(error.response.data.status);
+                setPostStatusMessage(error.response.data.message);
+            });
+        setPostDataClicked(true);
+    }
 
     //========== Get Request: All Menu Items ==========
 
@@ -135,9 +155,10 @@ export default function Menu() {
     }
 
     // //This is for viewing a distintive Menu Item (Refer to view-order-items.js line 135 from this point onwards for viewing/updates)
+
     const [viewMenuItemID, setViewMenuItemID] = useState(0);
     // const [viewMenuItemSrc, setViewMenuItemSrc] = useState(0);
-    // const [viewMenuItemAlt, setViewMenuItemAlt] = useState(0);
+    const [viewMenuItemAlt, setViewMenuItemAlt] = useState(0);
     // const [viewMenuItemType, setViewMenuItemType] = useState(0);
     // const [viewMenuItemPrice, setViewMenuItemPrice] = useState(0);
     // const [viewMenuItemCategory, setViewMenuItemCategory] = useState(0);
@@ -175,7 +196,7 @@ export default function Menu() {
     function onSubmitValidateinputForUpdate(event) {
         event.preventDefault();
         console.log(menuItemIDValueUpdate);
-        if (!menuItemIDValueUpdate || !menuItemSrcValueUpdate || !menuItemTypeValueUpdate || !menuItemPriceValueUpdate || !menuItemCategoryValueUpdate || !menuItemChefRecommendationValueUpdate) {
+        if (!menuItemSrcValueUpdate || !menuItemTypeValueUpdate || !menuItemPriceValueUpdate || !menuItemCategoryValueUpdate || !menuItemChefRecommendationValueUpdate) {
             setUpdateSubmitStatus(true);
             setUpdateSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
             console.log('inhere');
@@ -242,6 +263,7 @@ export default function Menu() {
     const [menuItemCategoryValueUpdate, setMenuItemCategoryValueUpdate] = useState(0);
     const [menuItemChefRecommendationValueUpdate, setMenuItemChefRecommendationValueUpdate] = useState(0);
 
+    console.log(menuItemIDValueUpdate, menuItemSrcValueUpdate, menuItemAltValueUpdate, menuItemTypeValueUpdate, menuItemPriceValueUpdate, menuItemCategoryValueUpdate, menuItemChefRecommendationValueUpdate)
     //setting of update being clicked and updating of menu itemID for distinct order
     //For the result of the post
     const [updateMenuItemStatus, setUpdateMenuItemStatus] = useState(false);
@@ -376,8 +398,7 @@ export default function Menu() {
         setDeleteDataClicked(true);
     }
 
-    // /////////////////////////////////////////////////////////////////////////////
-    // //order data status and ordereditems data (found in view-order-items but not order.js. to confirm if needed)
+    // ===============================================
 
 
     //modal Code for popups
@@ -388,13 +409,13 @@ export default function Menu() {
     //UseEffect to track the different popups
     useEffect(async () => {
 
-        // if ((createMenuItemPopupOpen === true)) {
-        //     setModalVisible(true);
-        // }
+        if ((createMenuItemPopupOpen === true)) {
+            setModalVisible(true);
+        }
 
-        // if ((confirmationMenuItemPopupOpen === true)) {
-        //     setModalVisible(true);
-        // }
+        if ((confirmationMenuItemPopupOpen === true)) {
+            setModalVisible(true);
+        }
 
         // if ((viewMenuItem === true)) {
         //     setModalVisible(true);
@@ -418,54 +439,67 @@ export default function Menu() {
 
         // if ((createMenuItemPopupOpen === false) && (confirmationMenuItemPopupOpen === false) && (viewMenuItem === false) && (viewUpdate === false) && (viewConfirmationUpdatePopupOpen === false) && (viewDelete === false) && (viewConfirmationDeletePopupOpen === false)) {
         //     setModalVisible(false);
-        // } 
+
+        if ((createMenuItemPopupOpen === false) && (confirmationMenuItemPopupOpen === false) && (viewUpdate === false) && (viewConfirmationUpdatePopupOpen === false) && (viewDelete === false) && (viewConfirmationDeletePopupOpen === false)) {
+            setModalVisible(false);
+        }
         else {
             console.log('not all popup states are false');
         }
 
-    }, [
-        //createMenuItemPopupOpen,
-        // confirmationMenuItemPopupOpen, 
-        // viewMenuItem, 
-        viewUpdate, viewConfirmationUpdatePopupOpen, viewDelete, viewConfirmationDeletePopupOpen]);
+    }, [createMenuItemPopupOpen, confirmationMenuItemPopupOpen, viewUpdate, viewConfirmationUpdatePopupOpen, viewDelete, viewConfirmationDeletePopupOpen]);
 
     return (
         <>
-            {/* By Shuan*/}
-            {/* <div className='createAndRefresh'>
-            <button className='refreshList' onClick={getAllDistinctOrders}>Refresh List</button>
-            <button className='createOrder' onClick={togglePopupCreateOrder}>Create New Order</button>
-        </div>
+            <div className='createAndRefresh'>
+                <button className='createMenuItem' onClick={togglePopupCreateMenuItem}>Create New Menu Item</button>
+            </div>
 
-        {modalVisible ? <div className='modalContainer'></div> : null}
-        {createOrderPopupOpen && <Popup
-            popupType='createOrderPopup'
-            handleClose={togglePopupCreateOrder}
-            content={
-                <form onSubmit={onSubmitValidateInput}>
-                    <label className='formHeaderCreateDistinctOrder'>Create New Order</label>
-                    <br></br>
-                    <br></br>
+            {modalVisible ? <div className='modalContainer'></div> : null}
+            {createMenuItemPopupOpen && <Popup
+                popupType='createMenuItemPopup'
+                handleClose={togglePopupCreateMenuItem}
+                content={
+                    <form onSubmit={onSubmitValidateInput}>
+                        <label className='formHeaderCreateDistinctMenuItem'>Create New Menu Item</label>
+                        <br></br>
+                        <br></br>
+                        {/* Input fields for menu item popup */}
+                        <label className='formLabelText'>Item Image:</label>
+                        <input type="text" className='createMenuItemAlt' onChange={(e) => setMenuItemSrcValue(e.target.value)}></input>
+                        <br></br>
+                        <label className='formLabelText'>Item Description:</label>
+                        <input type="text" className='createMenuItemAlt' onChange={(e) => setMenuItemAltValue(e.target.value)}></input>
+                        <br></br>
+                        <label className='formLabelText'>Type:</label>
+                        <input type="text" className='createMenuItemtype' onChange={(e) => setMenuItemTypeValue(e.target.value)}></input>
+                        <br></br>
+                        <label className='formLabelText'>Price:</label>
+                        <input type="number" step="0.01" className='createMenuItemPrice' onChange={(e) => setMenuItemPriceValue(e.target.value)}></input>
+                        <br></br>
+                        <label className='formLabelText'>Category:</label>
+                        <input type="text" className='createMenuItemCategory' onChange={(e) => setMenuItemCategoryValue(e.target.value)}></input>
+                        <br></br>
+                        <label className='formLabelText'>Chef Recommendation:</label>
+                        <input type="text" className='createeMenuItemChefRecommendation' onChange={(e) => setMenuItemChefRecommendationValue(e.target.value)}></input>
+                        <br></br>
+                        <button className='createMenuItemButton'>Submit</button>
+                        <br></br>
+                        <br></br>
 
-                    <label className='formLabelTextCreateDistinctOrder'>Order No.:</label>
-                    <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
-                    <br></br>
-
-                    <button className='createOrderButton'>Submit</button>
-                    <br></br>
-                    <br></br>
-
-                    {submitStatusMessageStatus ? <label className='formLabelTextStatusCreateDistinctOrder'>{<label className='formLabelTextCreateDistinctOrder'>{submitStatusMessage}</label>}</label> : null}
-                </form>
-            } />}
+                        {submitStatusMessageStatus ? <label className='formLabelTextStatusCreateDistinctMenuItem'>{<label className='formLabelTextCreateDistinctMenuItem'>{submitStatusMessage}</label>}</label> : null}
+                    </form>
+                } />}
 
 
-        {confirmationOrderPopupOpen && <Popup
-            popupType='createOrderConfirmationPopup'
-            handleClose={togglePopupCreateOrderConfirmation}
-            content={
-                <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage} />
-            } />} */}
+            {confirmationMenuItemPopupOpen && <Popup
+                popupType='createMenuItemConfirmationPopup'
+                handleClose={togglePopupCreateMenuItemConfirmation}
+                content={
+                    <div className='confirmationContainer'>
+                        <ConfirmationPopupContents invokeAction={createDistinctMenuItem} invokeRefresh={getAllMenuItems} xButtonClose={closePopupCreateMenuItemConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage} />
+                    </div>
+                } />}
 
 
             {/* update Popup */}
@@ -484,22 +518,22 @@ export default function Menu() {
                             <br></br>
                             {/* Input fields for menu item popup */}
                             <label className='formLabelText'>Item Image:</label>
-                            <input type="number" className='updateMenuItemAlt' onChange={(e) => setMenuItemSrcValueUpdate(e.target.value)}></input>
+                            <input type="text" className='updateMenuItemAlt' onChange={(e) => setMenuItemSrcValueUpdate(e.target.value)}></input>
                             <br></br>
                             <label className='formLabelText'>Item Description:</label>
-                            <input type="number" className='updateMenuItemAlt' onChange={(e) => setMenuItemAltValueUpdate(e.target.value)}></input>
+                            <input type="text" className='updateMenuItemAlt' onChange={(e) => setMenuItemAltValueUpdate(e.target.value)}></input>
                             <br></br>
                             <label className='formLabelText'>Type:</label>
-                            <input type="number" className='updateMenuItemtype' onChange={(e) => setMenuItemTypeValueUpdate(e.target.value)}></input>
+                            <input type="text" className='updateMenuItemtype' onChange={(e) => setMenuItemTypeValueUpdate(e.target.value)}></input>
                             <br></br>
                             <label className='formLabelText'>Price:</label>
-                            <input type="number" className='updateMenuItemPrice' onChange={(e) => setMenuItemPriceValueUpdate(e.target.value)}></input>
+                            <input type="number" step="0.01" className='updateMenuItemPrice' onChange={(e) => setMenuItemPriceValueUpdate(e.target.value)}></input>
                             <br></br>
                             <label className='formLabelText'>Category:</label>
-                            <input type="number" className='updateMenuItemCategory' onChange={(e) => setMenuItemCategoryValueUpdate(e.target.value)}></input>
+                            <input type="text" className='updateMenuItemCategory' onChange={(e) => setMenuItemCategoryValueUpdate(e.target.value)}></input>
                             <br></br>
                             <label className='formLabelText'>Chef Recommendation:</label>
-                            <input type="number" className='updateMenuItemChefRecommendation' onChange={(e) => setMenuItemChefRecommendationValueUpdate(e.target.value)}></input>
+                            <input type="text" className='updateMenuItemChefRecommendation' onChange={(e) => setMenuItemChefRecommendationValueUpdate(e.target.value)}></input>
                             <br></br>
                             <button className='updateMenuItemButton'>Submit</button>
                             <br></br>
@@ -517,24 +551,26 @@ export default function Menu() {
                     content={
                         //props needed are: updateMenuItem(), closePopupUpdateMenuItemConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateMenuOrderStatusMessage
                         <ConfirmationPopupContents invokeAction={updateMenuItem} invokeRefresh={getAllMenuItems} xButtonClose={closePopupUpdateMenuItemConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateMenuItemStatusMessage} />
-                    } />}
+                    } />
+            }
 
             {/* delete Popup */}
-            {viewDelete && <Popup
-                popupType='deleteMenuItemPopup'
-                handleClose={toggleDeleteMenuItemPopup}
-                content={
-                    <form onSubmit={onSubmitValidateinputForDelete}>
-                        <label className='formHeaderDeleteMenuItem'>Delete Menu Item Record</label>
-                        <br></br>
-                        <br></br>
-                        {/* Retrieve menuItemID from backend */}
-                        <label className='formLabelTextDeleteMenuItem'>Menu Item:</label>
-                        <label className='formLabelMenuItem'>{viewMenuItemID}</label>
-                        <br></br>
+            {
+                viewDelete && <Popup
+                    popupType='deleteMenuItemPopup'
+                    handleClose={toggleDeleteMenuItemPopup}
+                    content={
+                        <form onSubmit={onSubmitValidateinputForDelete}>
+                            <label className='formHeaderDeleteMenuItem'>Delete Menu Item Record</label>
+                            <br></br>
+                            <br></br>
+                            {/* Retrieve menuItemID from backend */}
+                            <label className='formLabelTextDeleteMenuItem'>Menu Item:</label>
+                            <label className='formLabelMenuItem'>{viewMenuItemID}</label>
+                            <br></br>
 
-                        {/* Input fields for menu item popup */}
-                        {/* <label className='formLabelText'>Item Image:</label>
+                            {/* Input fields for menu item popup */}
+                            {/* <label className='formLabelText'>Item Image:</label>
                         <label className='formLabelMenuItem'>{viewMenuItemSrc}</label>
                         <br></br>
                         <label className='formLabelText'>Item Description:</label>
@@ -552,20 +588,22 @@ export default function Menu() {
                         <label className='formLabelText'>Chef Recommendation:</label>
                         <label className='formLabelMenuItem'>{viewMenuItemChefRecommendation}</label>
                         <br></br> */}
-                        <button className='deleteMenuItemButton'>Submit</button>
-                        <br></br>
-                        <br></br>
+                            <button className='deleteMenuItemButton'>Submit</button>
+                            <br></br>
+                            <br></br>
 
-                        {deleteSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label> : null}
-                    </form>
-                } />}
+                            {deleteSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label> : null}
+                        </form>
+                    } />
+            }
 
-            {viewConfirmationDeletePopupOpen && <Popup
-                popupType='deleteMenuItemConfirmationPopup'
-                handleClose={toggleDeleteMenuItemConfirmation}
-                content={
-                    <ConfirmationPopupContents invokeAction={deleteMenuItem} invokeRefresh={getAllMenuItems} xButtonClose={closePopupDeleteMenuItemConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteMenuItemStatusMessage} />
-                } />
+            {
+                viewConfirmationDeletePopupOpen && <Popup
+                    popupType='deleteMenuItemConfirmationPopup'
+                    handleClose={toggleDeleteMenuItemConfirmation}
+                    content={
+                        <ConfirmationPopupContents invokeAction={deleteMenuItem} invokeRefresh={getAllMenuItems} xButtonClose={closePopupDeleteMenuItemConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteMenuItemStatusMessage} />
+                    } />
             }
 
             <div className="menuitems">
@@ -582,9 +620,9 @@ export default function Menu() {
                         <th>Action</th>
                     </tr>
 
-                    {menuItemData.map((allMenuItems) => (
+                    {menuItemData.map((allMenuItems, index) => (
                         <tr key={allMenuItems.menuItemID}>
-                            <td>{allMenuItems.menuItemID}</td>
+                            <td>{index + 1}</td>
                             <td><img class="menuitem-image" src={allMenuItems.src}></img></td>
                             <td>{allMenuItems.alt}</td>
                             <td>{allMenuItems.type}</td>
@@ -592,8 +630,8 @@ export default function Menu() {
                             <td>{allMenuItems.category}</td>
                             <td>{allMenuItems.chefRecommendation ? "Yes" : "No"}</td>
 
-                            <td className='actionButtons'><UpdateAndDeleteButton setId={setMenuItemID} id={menuItemData.menuItemID} setData={setViewMenuItemID} data={allMenuItems.menuItemID} setView={setViewUpdate} buttonText={"Update Menu Item"} /></td>
-                            <td className='actionButtons'><UpdateAndDeleteButton setId={setMenuItemID} id={menuItemData.menuItemID} setData={setViewMenuItemID} data={allMenuItems.menuItemID} setView={setViewDelete} buttonText={"Delete Menu Item"} /></td>
+                            <td className='actionButtons'><UpdateAndDeleteButton setId={setMenuItemID} id={allMenuItems.menuItemID} setData={setViewMenuItemID} data={allMenuItems.menuItemID} setView={setViewUpdate} buttonText={"Update Menu Item"} /></td>
+                            <td className='actionButtons'><UpdateAndDeleteButton setId={setMenuItemID} id={allMenuItems.menuItemID} setData={setViewMenuItemID} data={allMenuItems.menuItemID} setView={setViewDelete} buttonText={"Delete Menu Item"} /></td>
                         </tr>
                     )
                     )}
@@ -601,7 +639,6 @@ export default function Menu() {
                 </table>
 
 
-                {/* <ViewMenuItems setMenuItemID={setMenuItemID} setOrderNo={setViewOrderItemsOrderNo} viewMenuItem={viewMenuItemID} setViewMenuItem={setViewMenuItemID} /> */}
 
             </div>
 

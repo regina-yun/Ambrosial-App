@@ -83,7 +83,6 @@ function ViewOrderItems(props) {
         setSubmitStatusMessageStatus(false);
         setCreateOrderPopupOpen(false);
         setConfirmationOrderPopupOpen(false);
-
     }
 
     //For the inputs to create order
