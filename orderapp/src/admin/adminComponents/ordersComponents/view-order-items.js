@@ -1,6 +1,7 @@
 import './view-order-items.css'
 import Popup from '../popup';
 import { useEffect, useState } from 'react';
+import capitalize from 'capitalize-the-first-letter';
 import { ambrosialAxiosAPI } from '../../../api/api';
 import UpdateAndDeleteButton from '../commonComponents/UpdateAndDeleteButton';
 import ConfirmationPopupContents from '../commonComponents/confirmationPopupContents';
@@ -83,6 +84,7 @@ function ViewOrderItems(props) {
         setSubmitStatusMessageStatus(false);
         setCreateOrderPopupOpen(false);
         setConfirmationOrderPopupOpen(false);
+
     }
 
     //For the inputs to create order
@@ -435,39 +437,39 @@ function ViewOrderItems(props) {
                 handleClose={toggleViewOrderPopup}
                 content={
                     <div>
-                        <table>
+                        <table className='viewOrderItemsTable'>
 
                             <tr>
-                                <td>Order No.:</td>
-                                <td>{props.orderNo}</td>
+                                <td className='viewOrderItemsTableColumnData'>Order No.:</td>
+                                <td className='viewOrderItemsTableColumnData'>{props.orderNo}</td>
                                 <td></td>
                                 <td></td>
-                                <td colspan="2"><button onClick={togglePopupCreateOrder}>Create Order Item</button></td>
+                                <td colspan="2"><button className='createOrderItemsButton' onClick={togglePopupCreateOrder}>Create Order Item</button></td>
                             </tr>
                             <br></br>
                             <br></br>
 
                             <tr>
-                                <th>No.</th>
-                                <th>Item</th>
-                                <th>Quantity</th>
-                                <th colspan="2">Actions</th>
+                                <th className='viewOrderItemsTableColumn'>No.</th>
+                                <th className='viewOrderItemsTableColumn'>Item</th>
+                                <th className='viewOrderItemsTableColumn'>Quantity</th>
+                                <th className='viewOrderItemsTableColumn' colspan="2">Actions</th>
                             </tr>
 
                             {orderedItemsDataStatus ? orderedItemsData.map((orderedItemsData, index) => (
                                 <tr key={orderedItemsData.orderNo}>
-                                    <td>{index + 1}</td>
-                                    <td>{orderedItemsData.MenuItem.alt}</td>
-                                    <td>{orderedItemsData.quantity}</td>
+                                    <td className='viewOrderItemsTableColumnData'>{index + 1}</td>
+                                    <td className='viewOrderItemsTableColumnData'>{capitalize(orderedItemsData.MenuItem.alt)}</td>
+                                    <td className='viewOrderItemsTableColumnData'>{orderedItemsData.quantity}</td>
                                     <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderId} id={orderedItemsData.orderID} setData={props.setOrderNo} data={props.orderNo} setView={setViewUpdate} buttonText={"Update Order Item"} /></td>
                                     <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderId} id={orderedItemsData.orderID} setData={setMenuItemName} data={orderedItemsData.MenuItem.alt} setView={setViewDelete} buttonText={"Delete Order Item"} /></td>
                                 </tr>
                             )
                             ) : <tr>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td colSpan='2'>-</td>
+                                <td className='viewOrderItemsTableColumnData'>-</td>
+                                <td className='viewOrderItemsTableColumnData'>-</td>
+                                <td className='viewOrderItemsTableColumnData'>-</td>
+                                <td className='viewOrderItemsTableColumnData' colSpan='2'>-</td>
                             </tr>}
 
                         </table>
@@ -481,33 +483,45 @@ function ViewOrderItems(props) {
                 popupType='createOrderItemPopup'
                 handleClose={togglePopupCreateOrder}
                 content={
-                    <form onSubmit={onSubmitValidateInput}>
+                    <form className='formCreateNewOrderItem' onSubmit={onSubmitValidateInput}>
                         <label className='formHeaderCreateOrderItem'>Create New Order Item</label>
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextCreateOrder'>Order No.:</label>
-                        <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateOrderNo'>Order No.</label>
+                            <input type="number" className='createInputNewOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextCreateOrderMenuItemId'>Menu Item Id:</label>
-                        <input type="number" className='createInputMenuItemId' onChange={(e) => setMenuItemIDValue(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateOrderMenuItemId'>Menu Item Id</label>
+                            <input type="number" className='createInputNewMenuItemId' onChange={(e) => setMenuItemIDValue(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextCreateOrderQuantity'>Quantity:</label>
-                        <input type="number" className='createInputQuantity' onChange={(e) => setQuantityValue(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateOrderQuantity'>Quantity</label>
+                            <input type="number" className='createInputNewQuantity' onChange={(e) => setQuantityValue(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextCreateOrderTotalItemPrice'>Total Item Price:</label>
-                        <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateOrderTotalItemPrice'>Total Item Price</label>
+                            <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputNewTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextCreateOrderTableNo'>Table No:</label>
-                        <input type="number" className='createInputTableNo' onChange={(e) => setTableNoValue(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateOrderTableNo'>Table No</label>
+                            <input type="number" className='createInputNewTableNo' onChange={(e) => setTableNoValue(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextCreateOrderOrderStatus'>Order Status:</label>
-                        <input type="text" className='createInputOrderStatus' onChange={(e) => setOrderStatusValue(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateOrderOrderStatus'>Order Status</label>
+                            <input type="text" className='createInputNewOrderStatus' onChange={(e) => setOrderStatusValue(e.target.value)}></input>
+                        </div>
                         <br></br>
 
                         <button className='createOrderItemsButton'>Submit</button>
@@ -532,33 +546,45 @@ function ViewOrderItems(props) {
                 popupType='updateOrderItemPopup'
                 handleClose={toggleUpdateOrderItemsPopup}
                 content={
-                    <form onSubmit={onSubmitValidateinputForUpdate}>
+                    <form className='formUpdateOrderItem' onSubmit={onSubmitValidateinputForUpdate}>
                         <label className='formHeaderUpdateOrderItem'>Update Order Item</label>
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrder'>Order No. Id:</label>
-                        <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrder'>Order No. Id</label>
+                            <input type="number" className='createInputUpdateOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderMenuItemId'>Menu Item Id:</label>
-                        <input type="number" className='createInputMenuItemId' onChange={(e) => setMenuItemIDValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderMenuItemId'>Menu Item Id</label>
+                            <input type="number" className='createInputUpdateMenuItemId' onChange={(e) => setMenuItemIDValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderQuantity'>Quantity:</label>
-                        <input type="number" className='createInputQuantity' onChange={(e) => setQuantityValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderQuantity'>Quantity</label>
+                            <input type="number" className='createInputUpdateQuantity' onChange={(e) => setQuantityValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderTotalItemPrice'>Total Item Price:</label>
-                        <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderTotalItemPrice'>Total Item Price</label>
+                            <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputUpdateTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderTableNo'>Table No:</label>
-                        <input type="number" className='createInputTableNo' onChange={(e) => setTableNoValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderTableNo'>Table No</label>
+                            <input type="number" className='createInputUpdateTableNo' onChange={(e) => setTableNoValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderOrderStatus'>Order Status:</label>
-                        <input type="text" className='createInputOrderStatus' onChange={(e) => setOrderStatusValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderOrderStatus'>Order Status</label>
+                            <input type="text" className='createInputUpdateOrderStatus' onChange={(e) => setOrderStatusValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
                         <button className='createOrderItemsButton'>Submit</button>
@@ -582,16 +608,20 @@ function ViewOrderItems(props) {
                 popupType='deleteOrderItemPopup'
                 handleClose={toggleDeleteOrderItemPopup}
                 content={
-                    <form onSubmit={onSubmitValidateinputForDelete}>
-                        <label className='formHeaderDeleteOrderItem'>Delete Order Item Record</label>
+                    <form className='formDeleteOrderItem' onSubmit={onSubmitValidateinputForDelete}>
+                        <label className='formHeaderDeleteOrderItem'>Delete Order Item</label>
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextDeleteOrderItem'>Menu Item:</label>
-                        <label className='formLabelMenuItem'>{menuItemName}</label>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextDeleteOrderItem'>Menu Item:&nbsp;</label>
+                            <label className='formLabelMenuItem'>{capitalize(menuItemName)}</label>
+                        </div>
                         <br></br>
 
-                        <button className='deleteOrderItemButton'>Submit</button>
+                        <div className='label-input-div'>
+                            <button className='deleteOrderItemButton'>Submit</button>
+                        </div>
                         <br></br>
                         <br></br>
 

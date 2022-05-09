@@ -409,12 +409,16 @@ export default function Receipt(props) {
                     <label className='formHeaderCreateReceipt'>Create Receipt</label>
                     <br /><br />
 
-                    <label className='formLabelTextReceiptOrderId'>Order No. Id</label>
-                    <input type="number" className='createInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
+                    <div className='label-input-div'>
+                        <label className='formLabelTextReceiptOrderId'>Order No. Id</label>
+                        <input type="number" className='createInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
+                    </div>
                     <br /><br />
 
-                    <label className='formLabelTextReceiptTotalItemPrice'>Total Item Price</label>
-                    <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
+                    <div className='label-input-div'>
+                        <label className='formLabelTextReceiptTotalItemPrice'>Total Item Price</label>
+                        <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
+                    </div>
                     <br /><br />
 
                     <button className='createReceiptButton'>Submit</button>
@@ -443,12 +447,17 @@ export default function Receipt(props) {
                             <br></br>
                             <br></br>
 
-                            <label className='formLabelTextUpdateReceiptId'>Order No. Id</label>
-                            <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                            <div className='label-input-div'>
+                                <label className='formLabelTextUpdateReceiptId'>Order No. Id</label>
+                                <input type="number" className='updateInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                            </div>
                             <br></br>
 
-                            <label className='formLabelTextUpdateReceiptTotalItemPrice'>Total Item Price</label>
-                            <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
+                            
+                            <div className='label-input-div'>
+                                <label className='formLabelTextUpdateReceiptTotalItemPrice'>Total Item Price</label>
+                                <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
+                            </div>
                             <br></br>
 
                             <button className='updateReceiptButton'>Submit</button>
@@ -478,7 +487,7 @@ export default function Receipt(props) {
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextDeleteOrderNo'>Order No.: </label>
+                        <label className='formLabelTextDeleteOrderNo'>Order No.  </label>
                         <label className='formLabelOrderNoInDelete'>{orderNo}</label>
                         <br></br>
 

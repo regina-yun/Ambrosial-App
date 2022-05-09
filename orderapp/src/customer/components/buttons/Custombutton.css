@@ -1,13 +1,22 @@
 .custom-button {
-    background-color: white;
-    opacity: 90%;
-    border: none;
     border-radius: 1px;
+    background-color: orange;
+    border: green 3px solid;
+    font-family: 'Lora', serif;
+    font-weight: bold;
 }
 
 .custom-button:hover {
-    cursor: pointer;
-    font-weight: bold;
+    color: white;
+}
+  
+.custom-button:active {
+color: black;
+background: yellow;
+-webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+        box-shadow: inset 0px 0px 5px #c1c1c1;
+    outline: none;
 }
 
 /* Extra small devices (phones, 600px and down) */

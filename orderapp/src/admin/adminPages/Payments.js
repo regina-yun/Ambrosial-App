@@ -68,23 +68,24 @@ export default function Payments() {
 		setCreatePaymentSubmitMessageStatus(false);
 	}
 
-	function closePopupCreatePaymentConfirmation() {
-		resetCreateInputsToDefault();
+	function xPopupCreatePaymentConfirmation() {
 		togglePopupCreatePaymentConfirmation();
 	}
 
-	function handleCreatePaymentClosePopups(e) {
-		e.preventDefault();
-		setCreatePaymentPopupOpen(!createPaymentPopupOpen);
+	function closePopupCreatePaymentConfirmation() {
+		resetCreateInputsToDefault();
+
+		setModalVisibleCreatePaymentConfirmation(!modalVisibleCreatePaymentConfirmation);
 		setCreatePaymentConfirmationPopupOpen(!createPaymentConfirmationPopupOpen);
+
+		setCreatePaymentPostDataClicked(false);
+		getAllPayment();
 	}
 
-
-	async function createPayment(e) {
-		e.preventDefault();
-
+	async function createPayment() {
+		console.log(createPaymentInput);
 		await ambrosialAxiosAPI.post('/createpayment', {
-			receiptID: createPaymentInput.receiptID,
+			receiptId: parseInt(createPaymentInput.receiptID),
 			paymentType: createPaymentInput.paymentType,
 			paymentStatus: createPaymentInput.paymentStatus
 		})
@@ -96,6 +97,8 @@ export default function Payments() {
 
 			setCreatePaymentPostStatus(response.data.status);
 			setCreatePaymentPostStatusMessage(response.data.message);
+
+			setCreatePaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''});
  		})
 		.catch((error) => {
 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
@@ -174,9 +177,20 @@ export default function Payments() {
 		setUpdatePaymentSubmitMessageStatus(false);
 	}
 
-	function closePopupUpdatePaymentConfirmation() {
+	function xPopupUpdatePaymentConfirmation() {
 		resetUpdateInputsToDefault();
 		togglePopupUpdatePaymentConfirmation();
+	}
+
+	function closePopupUpdatePaymentConfirmation() {
+		resetUpdateInputsToDefault();
+
+		setModalVisibleUpdatePaymentConfirmation(!modalVisibleUpdatePaymentConfirmation);
+		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
+
+		setUpdatePaymentPostDataClicked(false);
+
+		getAllPayment();
 	}
 
 	async function updatePayment() {
@@ -192,11 +206,9 @@ export default function Payments() {
 			console.log("response Data: ", response.data.data);
 
 			setUpdatePaymentPostStatus(response.data.status);
-			setCreatePaymentPostStatusMessage(response.data.message);
+			setUpdatePaymentPostStatusMessage(response.data.message);
 
 			setPendingUpdate({invoiceId: 0, receiptId: 0});
-			setModalVisibleUpdatePaymentConfirmation(!modalVisibleUpdatePaymentConfirmation);
-		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
  		})
 		.catch((error) => {
 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
@@ -213,34 +225,53 @@ export default function Payments() {
 //#region DELETE PAYMENT
 
 	const [pendingDelete, setPendingDelete] = useState({invoiceId: 0});
+
+	const [deletePaymentSubmitMessage, setDeletePaymentSubmitMessage] = useState('');
+	const [deletePaymentSubmitMessageStatus, setDeletePaymentSubmitMessageStatus] = useState(false);
+
+	const [modalVisibleDeletePayment, setModalVisibleDeletePayment] = useState(false)
 	const [modalVisibleDeletePaymentConfirmation, setModalVisibleDeletePaymentConfirmation] = useState(false);
+	const [deletePaymentPopUpOpen, setDeletePaymentPopupOpen] = useState(false);
 	const [deletePaymentConfirmationPopupOpen, setDeletePaymentConfirmationPopupOpen] = useState(false);
 
 	const [deletePaymentPostStatus, setDeletePaymentPostStatus] = useState(false);
 	const [deletePaymentPostStatusMessage, setDeletePaymentPostStatusMessage] = useState(false);
 	const [deletePaymentPostDataClicked, setDeletePaymentPostDataClicked] = useState(false);
+	
 
 	function deleteOnClick(invoiceId) {
 		let newPendingDelete = {invoiceId: invoiceId};
 		setPendingDelete(newPendingDelete);
-		togglePopupDeletePaymentConfirmation();
+		togglePopupDeletePayment();
+	}
+
+	function togglePopupDeletePayment() {
+		setModalVisibleDeletePayment(!modalVisibleDeletePayment);
+		setDeletePaymentSubmitMessageStatus(false);
+		setDeletePaymentPopupOpen(!deletePaymentPopUpOpen);
 	}
 
 	function togglePopupDeletePaymentConfirmation(){
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
 		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
+		setDeletePaymentPopupOpen(!deletePaymentPopUpOpen);
+		setDeletePaymentSubmitMessageStatus(false);
 	}
 
-	function closePopupDeletePaymentConfirmation() {
-		resetUpdateInputsToDefault();
+	function xPopupDeletePaymentConfirmation() {
 		togglePopupDeletePaymentConfirmation();
 	} 
 
-	function handleDeletePaymentClosePopups(e) {
-		e.preventDefault();
-		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
+	function closePopupDeletePaymentConfirmation() {
 		setModalVisibleDeletePaymentConfirmation(!modalVisibleDeletePaymentConfirmation);
+		setDeletePaymentConfirmationPopupOpen(!deletePaymentConfirmationPopupOpen);
+		setModalVisibleDeletePayment(!modalVisibleDeletePayment);
+
+		setDeletePaymentPostDataClicked(false);
+
+		getAllPayment();
 	}
+
 	async function deletePayment() {
 
 		await ambrosialAxiosAPI.delete(`/deletepayment/${pendingDelete.invoiceId}`, {
@@ -290,6 +321,8 @@ export default function Payments() {
 				console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
 				console.log(`Error Status: ${error.response.data.status}`);
 				console.log(`Error Message: ${error.response.data.message}`);
+
+				setAllPaymentLogsData([]);
 		});
 	}
 
@@ -368,8 +401,9 @@ export default function Payments() {
 	         clickStatus={createPaymentPostDataClicked}
 					 statusMessage={createPaymentPostStatusMessage}
 					 invokeAction={createPayment}
-					 xButtonClose={closePopupCreatePaymentConfirmation}
-					 closeButton={handleCreatePaymentClosePopups}
+					 xButtonClose={xPopupCreatePaymentConfirmation}
+					 closeButton={closePopupCreatePaymentConfirmation}
+					 invokeRefresh={()=>{}}
 					/>
 				}/>
 				}   
@@ -426,13 +460,37 @@ export default function Payments() {
 					clickStatus={updatePaymentPostDataClicked}
 					statusMessage={updatePaymentPostStatusMessage}
 					invokeAction={updatePayment}
-					xButtonClose={closePopupUpdatePaymentConfirmation}
+					xButtonClose={xPopupUpdatePaymentConfirmation}
 					closeButton={closePopupUpdatePaymentConfirmation}
 					invokeRefresh={()=>{}}
 					/>
 					}/>
 				}   
 			</div>
+			}
+
+			{modalVisibleDeletePayment && <div className='payment-modal'>
+				{deletePaymentPopUpOpen && <Popup
+				popupType='deletePaymentPopup'
+				handleClose={togglePopupDeletePayment}
+				content={
+						<form className='formDeletePayment' onSubmit={togglePopupDeletePaymentConfirmation}>
+								<label className='paymentFormHeader'>Delete Payment</label>
+								<br></br>
+								<br></br>
+
+								<label className='deletePaymentFormLabelText'>Invoice ID:&nbsp;&nbsp;</label>
+								<label className='deletePaymentFormLabelText'>{pendingDelete.invoiceId}</label>
+								<br></br>
+
+								<button className='paymentButton'>Submit</button>
+								<br></br>
+								<br></br>
+
+								{deletePaymentSubmitMessageStatus ? <label className='formLabelTextStatusDelete'>{<label className='formLabelText'>{deletePaymentSubmitMessage}</label>}</label>:null}
+						</form>
+				}/>}
+				</div>
 			}
 
 			{modalVisibleDeletePaymentConfirmation && <div className='payment-confirmation-modal'>
@@ -444,8 +502,9 @@ export default function Payments() {
 					clickStatus={deletePaymentPostDataClicked}
 					statusMessage={deletePaymentPostStatusMessage}
 					invokeAction={deletePayment}
-					xButtonClose={closePopupDeletePaymentConfirmation}
-					closeButton={handleDeletePaymentClosePopups}
+					xButtonClose={xPopupDeletePaymentConfirmation}
+					closeButton={closePopupDeletePaymentConfirmation}
+					invokeRefresh={()=>{}}
 					/>
 					}/>
 				}   

@@ -26,6 +26,12 @@ function ChangePassword() {
     setUpdatePassword(updatedPassword);
   }
 
+  function handleCancel(e) {
+    e.preventDefault();
+
+    history.push("/login");
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -116,8 +122,6 @@ function ChangePassword() {
                 <label className='change-pw-confirmpw-label'>Confirm Password</label>
               </div>
 
-              {updatePassword.newPassword !== updatePassword.confirmPassword && <p>Both passwords do not match!</p>}
-
               <div className='change-pw-button-container'>
                 <div className='change-pw-change-button-div'>
                   <button className='change-pw-button' onClick={handleSubmit}>Change</button>
@@ -142,9 +146,7 @@ function ChangePassword() {
                 }
 
                 <div className='change-pw-cancel-button-div'>
-                  <button className='change-pw-button'>
-                    <Link to="/login" className='change-pw-cancel-link'>Cancel</Link>
-                  </button>
+                  <button className='change-pw-button' onClick={handleCancel}>Cancel</button>
                 </div>
               </div>
             </form> 

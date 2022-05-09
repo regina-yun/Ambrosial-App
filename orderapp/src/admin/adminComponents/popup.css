@@ -1,26 +1,26 @@
 .createMenuItemPopup-box,
 .createOrderPopup-box{
   width:30%;
-  height: 48%;
+  height:auto;
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
 
 .updateCurrentDistinctOrderPopup-box{
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -28,26 +28,26 @@
 .updateMenuItemPopup-box,
 .updateOrderItemPopup-box{
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 3;
 }
 
 .deleteCurrentDistinctOrderPopup-box{
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -55,13 +55,13 @@
 .deleteMenuItemPopup-box,
 .deleteOrderItemPopup-box{
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 4;
 }
@@ -92,30 +92,25 @@
 
 .createOrderConfirmationPopup-box {
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
 
 .createMenuItemConfirmationPopup-box,
 .createOrderItemConfirmationPopup-box {
-  /* width:30%;
-  height: 35%;
-  border: 1px solid white;
-  padding:3%;
   position:absolute;
-  top: 5%;
-  left: 32%;
-  z-index: 4; */
-  position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   width:30%;
-  height: 35%;
+  height: auto;
+  text-align: center;
   border: 1px solid white;
   padding:3%;
   z-index: 4;
@@ -124,11 +119,13 @@
 
 .updateOrderConfirmationPopup-box{
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
+  background-color:black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -136,11 +133,13 @@
 .updateMenuItemConfirmationPopup-box,
 .updateOrderItemConfirmationPopup-box{
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 3;
 }
@@ -148,11 +147,13 @@
 
 .deleteOrderConfirmationPopup-box{
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -160,11 +161,13 @@
 .deleteMenuItemConfirmationPopup-box,
 .deleteOrderItemConfirmationPopup-box{
   width:30%;
-  height: 35%;
+  height: auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 4;
 }
@@ -199,10 +202,11 @@
 
 .viewOrderPopup-box{
   position:absolute;
-  top: 5%;
-  left: 32%;
-  width:40%;
-  height: 80%;
+  top: 20%;
+  left: 23%;
+  width:50%;
+  height: auto;
+  background-color: black;
   border: 1px solid white;
   padding:3%;
   z-index: 2;
@@ -211,10 +215,11 @@
 
 .createOrderItemPopup-box{
   position:absolute;
-  top: 5%;
-  left: 32%;
+  top: 20%;
+  left: 28%;
   width:40%;
-  height: 80%;
+  height: auto;
+  background-color: black;
   border: 1px solid white;
   padding:3%;
   z-index: 4;
@@ -226,9 +231,9 @@
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -238,13 +243,15 @@
   height: auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
+  background-color:black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
 
-.viewReceiptPopup-box{
+/* .viewReceiptPopup-box{
   width:30%;
   height: auto;
   border: 1px solid white;
@@ -252,10 +259,10 @@
   padding-bottom:5%;
 
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
-}
+} */
 
 .viewReceiptsItemsPopup-box{
   width:30%;
@@ -263,14 +270,14 @@
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 3;
 }
 
-.viewReceiptConfirmationPopup-box {
+/* .viewReceiptConfirmationPopup-box {
   width:30%;
   height: auto;
   border: 1px solid white;
@@ -279,7 +286,7 @@
   top: 5%;
   left: 32%;
   z-index: 2;
-}
+} */
 
 .updateReceiptPopup-box{
   width:30%;
@@ -287,9 +294,9 @@
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -299,8 +306,10 @@
   height: auto;
   border: 1px solid white;
   padding:3%;
+  background-color: black;
+  text-align: center;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -311,9 +320,9 @@
   border: 1px solid white;
   padding:3%;
   padding-bottom:5%;
-
+  background-color: black;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -323,8 +332,10 @@
   height: auto;
   border: 1px solid white;
   padding:3%;
+  background-color: black;
+  text-align: center;
   position:absolute;
-  top: 5%;
+  top: 20%;
   left: 32%;
   z-index: 2;
 }
@@ -334,23 +345,19 @@
 .updateOrderItem-close-icon,
 .deleteCurrentDistinctOrder-close-icon,
 .deleteOrderItem-close-icon,
-.createOrderItemConfirmation-close-icon,
-.createOrderConfirmation-close-icon,
-.updateOrderConfirmation-close-icon,
-.updateOrderItemConfirmation-close-icon,
-.deleteOrderConfirmation-close-icon,
-.deleteOrderItemConfirmation-close-icon,
 .viewOrder-close-icon,
 .createOrderItem-close-icon,
 .createReceipt-close-icon,
-.createReceiptConfirmation-close-icon,
 .viewReceipt-close-icon,
 .viewReceiptsItems-close-icon,
-.viewReceiptConfirmation-close-icon,
 .updateReceipt-close-icon,
-.updateReceiptConfirmation-close-icon,
 .deleteReceipt-close-icon,
-.deleteReceiptConfirmation-close-icon {
+.login-close-icon,
+.updatePasswordError-close-icon,
+.updatePasswordSuccess-close-icon,
+.createPayment-close-icon,
+.updatePayment-close-icon,
+.deletePayment-close-icon {
   margin-left: 95%;
   font-family: "Yomogi", cursive;
   font-weight: bold;
@@ -364,6 +371,7 @@
 .updatePaymentPopup-box,
 .createPaymentConfirmationPopup-box,
 .updatePaymentConfirmationPopup-box,
+.deletePaymentPopup-box,
 .deletePaymentConfirmationPopup-box {
   width:30%;
   height: auto;
@@ -381,20 +389,6 @@
 .login-close-icon,
 .updatePasswordError-close-icon,
 .updatePasswordSuccess-close-icon,
-.createPayment-close-icon,
-.updatePayment-close-icon,
-.createPaymentConfirmation-close-icon,
-.updatePaymentConfirmation-close-icon,
-.deletePaymentConfirmation-close-icon {
-  margin-left: 95%;
-  font-family: 'Yomogi', cursive;
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.login-close-icon,
-.updatePasswordError-close-icon,
-.updatePasswordSuccess-close-icon,
 .login-box,
 .updatePasswordError-box,
 .updatePasswordSuccess-box {
@@ -404,8 +398,10 @@
 .login-box,
 .updatePasswordError-box,
 .updatePasswordSuccess-box {
-  font-size:110%
+  font-size:110%;
+  font-family: 'Lora', serif;
 }
+
 .view-popup.active,
 .edit-popup.active,
 .destroy-popup.active {
@@ -440,24 +436,21 @@
 .create-close-icon:hover, 
 .update-close-icon:hover, 
 .delete-close-icon:hover,
+.viewOrder-close-icon:hover,
 .createOrder-close-icon:hover,
+.createOrderItem-close-icon:hover,
+.updateOrderItem-close-icon:hover,
+.deleteOrderItem-close-icon:hover,
+.updateCurrentDistinctOrder-close-icon:hover,
+.deleteCurrentDistinctOrder-close-icon:hover,
 .createReceipt-close-icon:hover,
 .updateReceipt-close-icon:hover,
 .viewReceipt-close-icon:hover,
+.viewReceiptsItems-close-icon:hover,
 .deleteReceipt-close-icon:hover,
-.createReceiptConfirmation-close-icon:hover,
-.updateReceiptConfirmation-close-icon:hover,
-.viewReceiptConfirmation-close-icon:hover,
-.deleteReceiptConfirmation-close-icon:hover,
-.updateMenuItem-close-icon:hover,
-.deleteMenuItem-close-icon:hover,
-.updateMenuItemConfirmation-close-icon:hover,
-.deleteMenuItemConfirmation-close-icon:hover,
 .createPayment-close-icon:hover,
 .updatePayment-close-icon:hover,
-.createPaymentConfirmation-close-icon:hover,
-.updatePaymentConfirmation-close-icon:hover,
-.deletePaymentConfirmation-close-icon:hover,
+.deletePayment-close-icon:hover,
 .login-close-icon:hover,
 .updatePasswordError-close-icon:hover,
 .updatePasswordSuccess-close-icon:hover {

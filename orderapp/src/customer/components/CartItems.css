@@ -32,10 +32,15 @@
 }
 
 .quantityDisplay {
-  width: 15%;
+  width: 10%;
+  height: 55%;
   text-align: center;
-  margin: 0 10px;
-  height: 15px;
+  margin: 10px;
+  background-color: orange;
+  font-weight: bold;
+  font-size: 15px;
+  border: 3px solid green;
+  border-radius: 1px;
 }
 
 .orderlist-table{
@@ -43,7 +48,26 @@
   border-bottom:black 2px solid
 }
 
+.addMinusItem {
+  border-radius: 1px;
+  background-color: orange;
+  border: green 3px solid;
+  font-family: 'Lora', serif;
+  font-weight: bold;
+}
 
+.addMinusItem:hover {
+  color: white;
+}
+
+.addMinusItem:active {
+color: black;
+background: yellow;
+-webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+      box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}
 
 
 

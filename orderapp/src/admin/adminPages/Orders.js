@@ -383,7 +383,7 @@ export default function Orders() {
         <>
             <div className='createAndRefresh'>
                 <button className='refreshList' onClick={getAllDistinctOrders}>Refresh List</button>
-                <button className='createOrder' onClick={togglePopupCreateOrder}>Create New Order</button>
+                <button className='createOrder' onClick={togglePopupCreateOrder}>Create Order</button>
             </div>
 
             {modalVisible ? <div className='modalContainer'></div> : null}
@@ -391,13 +391,15 @@ export default function Orders() {
                 popupType='createOrderPopup'
                 handleClose={togglePopupCreateOrder}
                 content={
-                    <form onSubmit={onSubmitValidateInput}>
-                        <label className='formHeaderCreateDistinctOrder'>Create New Order</label>
+                    <form className='formCreateDistinctOrder' onSubmit={onSubmitValidateInput}>
+                        <label className='formHeaderCreateDistinctOrder'>Create Order</label>
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextCreateDistinctOrder'>Order No.:</label>
-                        <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateDistinctOrder'>Order No. </label>
+                            <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
+                        </div>
                         <br></br>
 
                         <button className='createOrderButton'>Submit</button>
@@ -413,9 +415,8 @@ export default function Orders() {
                 popupType='createOrderConfirmationPopup'
                 handleClose={togglePopupCreateOrderConfirmation}
                 content={
-                    <div className='confirmationContainer'>
-                        <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage} />
-                    </div>
+                    <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage} />
+
                 } />}
 
             {/* update Popup */}
@@ -423,17 +424,21 @@ export default function Orders() {
                 popupType='updateCurrentDistinctOrderPopup'
                 handleClose={toggleUpdateDistinctOrderPopup}
                 content={
-                    <form onSubmit={onSubmitValidateinputForUpdate}>
-                        <label className='formHeaderUpdate'>Update Current Order No.</label>
+                    <form className='formUpdateDistinctOrder' onSubmit={onSubmitValidateinputForUpdate}>
+                        <label className='formHeaderUpdate'>Update Current Order</label>
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextUpdate'>Order No. Now:</label>
-                        <label className='formLabelOrderNoUpdate'>{viewOrderItemsOrderNo}</label>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdate'>Current Order No.</label>
+                            <label className='formLabelOrderNoUpdate'>{viewOrderItemsOrderNo}</label>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdate'>Order No. :</label>
-                        <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdate'>Updated Order No.</label>
+                            <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
                         <button className='updateCurrentDistinctOrderButton'>Submit</button>
@@ -457,13 +462,15 @@ export default function Orders() {
                 popupType='deleteCurrentDistinctOrderPopup'
                 handleClose={toggleDeleteDistinctOrderPopup}
                 content={
-                    <form onSubmit={onSubmitValidateinputForDelete}>
-                        <label className='formHeaderDelete'>Delete Order Record</label>
+                    <form className='formDeleteDistinctOrder' onSubmit={onSubmitValidateinputForDelete}>
+                        <label className='formHeaderDelete'>Delete Order</label>
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextDelete'>Order No.:</label>
-                        <label className='formLabelOrderNoDelete'>{viewOrderItemsOrderNo}</label>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextDelete'>Order No.  </label>
+                            <label className='formLabelOrderNoDelete'>{viewOrderItemsOrderNo}</label>
+                        </div>
                         <br></br>
 
                         <button className='deleteCurrentDistinctOrderButton'>Submit</button>
@@ -484,19 +491,19 @@ export default function Orders() {
 
 
             <div className="orders">
-                This is the orders page
+                <h1 className='orderTitle'>Orders</h1>
 
-                <table>
+                <table className='orderTable'>
                     <tr>
-                        <th>No.</th>
-                        <th>Order No.</th>
-                        <th>Actions</th>
+                        <th className='orderTableColumn'>No.</th>
+                        <th className='orderTableColumn'>Order No.</th>
+                        <th className='orderTableColumn' colSpan='3'>Actions</th>
                     </tr>
 
                     {distinctOrderData.map((distinctOrder, index) => (
                         <tr key={distinctOrder.orderNo}>
-                            <td>{index + 1}</td>
-                            <td>{distinctOrder.orderNo}</td>
+                            <td className='orderTableColumn'>{index + 1}</td>
+                            <td className='orderTableColumn'>{distinctOrder.orderNo}</td>
                             <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder} /></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."} /></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"} /></td>
