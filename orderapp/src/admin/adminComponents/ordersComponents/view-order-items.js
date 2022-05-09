@@ -488,7 +488,7 @@ async function updateOrderItems(){
                 <br></br>
                 <br></br>
 
-                <label className='formLabelTextCreateOrder'>Order No.</label>
+                <label className='formLabelTextCreateOrderNo'>Order No.</label>
                 <input type="number" className='createInputNewOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
                 <br></br>
 

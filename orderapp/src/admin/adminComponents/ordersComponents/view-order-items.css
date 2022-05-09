@@ -20,6 +20,7 @@
 .viewOrderItemsTableColumn {
   font-family: 'Slabo 27px', serif;
 }
+
 /* Create Section */
 .formCreateNewOrderItem {
   margin-top: 4%;
@@ -31,7 +32,7 @@
   font-family: 'Lora', serif;
 }
 
-.formLabelTextCreateOrder,
+.formLabelTextCreateOrderNo,
 .formLabelTextCreateOrderQuantity,
 .formLabelTextCreateOrderMenuItemId,
 .formLabelTextCreateOrderTotalItemPrice,
@@ -111,10 +112,6 @@
   right: 24%;
 }
 
-.formLabelTextStatusUpdateOrder{
-  margin-left:13%;
-}
-
 /* End of update section */
 
 /* Delete section */
@@ -155,11 +152,6 @@
      -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
           box-shadow: inset 0px 0px 5px #c1c1c1;
    outline: none;
-}
-
-
-.formLabelTextStatusDeleteOrder{
-  margin-left:13%;
 }
 
 /* End of delete section */

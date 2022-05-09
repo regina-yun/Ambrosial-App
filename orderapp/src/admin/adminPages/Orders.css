@@ -156,14 +156,6 @@
    outline: none;
 }
 
-.formLabelTextStatusUpdateDistinctOrder{
-  margin-left:13%;
-}
-
-.formLabelTextUpdateDistinctOrder{
-  
-}
-
 /* End of Update section */
 
 /* delete section */
@@ -203,15 +195,6 @@
      -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
           box-shadow: inset 0px 0px 5px #c1c1c1;
    outline: none;
-}
-
-
-.formLabelTextStatusDeleteDistinctOrder{
-  margin-left:13%;
-}
-
-.formLabelTextDeleteDistinctOrder{
-  
 }
 
 /* End of delete section */

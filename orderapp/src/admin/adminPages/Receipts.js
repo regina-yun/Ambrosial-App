@@ -444,7 +444,7 @@ export default function Receipt(props) {
                             <br></br>
 
                             <label className='formLabelTextUpdateReceiptId'>Order No. Id</label>
-                            <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                            <input type="number" className='updateInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
                             <br></br>
 
                             <label className='formLabelTextUpdateReceiptTotalItemPrice'>Total Item Price</label>
