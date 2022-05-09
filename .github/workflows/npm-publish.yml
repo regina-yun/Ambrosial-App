@@ -9,10 +9,11 @@ on:
 
 jobs:
   build:
-    
+    defaults:
+        run:
+            working-directory: ./Ambrosial-App/orderapp
     env:
       CI: false
-      working-directory: ./orderapp
     
     runs-on: ubuntu-latest
 
