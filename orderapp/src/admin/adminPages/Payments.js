@@ -73,18 +73,10 @@ export default function Payments() {
 		togglePopupCreatePaymentConfirmation();
 	}
 
-	function handleCreatePaymentClosePopups(e) {
-		e.preventDefault();
-		setCreatePaymentPopupOpen(!createPaymentPopupOpen);
-		setCreatePaymentConfirmationPopupOpen(!createPaymentConfirmationPopupOpen);
-	}
-
-
-	async function createPayment(e) {
-		e.preventDefault();
-
+	async function createPayment() {
+		console.log(createPaymentInput);
 		await ambrosialAxiosAPI.post('/createpayment', {
-			receiptID: createPaymentInput.receiptID,
+			receiptId: parseInt(createPaymentInput.receiptID),
 			paymentType: createPaymentInput.paymentType,
 			paymentStatus: createPaymentInput.paymentStatus
 		})
@@ -96,6 +88,12 @@ export default function Payments() {
 
 			setCreatePaymentPostStatus(response.data.status);
 			setCreatePaymentPostStatusMessage(response.data.message);
+
+			setCreatePaymentInput({receiptID: 0, paymentType: '', paymentStatus: ''});
+			setModalVisibleCreatePaymentConfirmation(!modalVisibleCreatePaymentConfirmation);
+			setCreatePaymentConfirmationPopupOpen(!createPaymentConfirmationPopupOpen);
+
+			getAllPayment();
  		})
 		.catch((error) => {
 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
@@ -196,7 +194,9 @@ export default function Payments() {
 
 			setPendingUpdate({invoiceId: 0, receiptId: 0});
 			setModalVisibleUpdatePaymentConfirmation(!modalVisibleUpdatePaymentConfirmation);
-		setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
+			setUpdatePaymentConfirmationPopupOpen(!updatePaymentConfirmationPopupOpen);
+
+			getAllPayment();
  		})
 		.catch((error) => {
 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
@@ -254,6 +254,8 @@ export default function Payments() {
 
 			setDeletePaymentPostStatus(response.data.status);
 			setDeletePaymentPostStatusMessage(response.data.message);
+
+			getAllPayment();
  		})
 		.catch((error) => {
 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
@@ -369,7 +371,8 @@ export default function Payments() {
 					 statusMessage={createPaymentPostStatusMessage}
 					 invokeAction={createPayment}
 					 xButtonClose={closePopupCreatePaymentConfirmation}
-					 closeButton={handleCreatePaymentClosePopups}
+					 closeButton={closePopupCreatePaymentConfirmation}
+					 invokeRefresh={()=>{}}
 					/>
 				}/>
 				}   

@@ -57,66 +57,103 @@
 }
 
 /* Create section */
+.formCreateDistinctOrder {
+  margin-top: 4%;
+  text-align: center;
+}
+
 .formHeaderCreateDistinctOrder{
   font-size: 300%;
-  margin-left:18%;
+  font-family: 'Lora', serif;
 }
 
 .formLabelTextCreateDistinctOrder{
-  margin-left:20%;
+  position: absolute;
+  left: 24%;
+  font-family: 'Slabo 27px', rserif;
 }
 
 .createInputOrderNo{
-  margin-left: 10%;
+  position: absolute;
+  right: 24%;
 }
 
 .createOrderButton{
-  font-size: 110%;
+  padding: 0.5rem 1rem;
   margin-top: 5%;
-  margin-left: 45.5%;
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-top: 1%;
-  padding-bottom: 1%; 
+  background-color: orange;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 5px green
 }
 
-.formLabelTextStatusCreateDistinctOrder{
-  margin-left:13%;
+.createOrderButton:hover {
+  color: white;
 }
 
-.formLabelTextCreateDistinctOrder{
-  
+.createOrderButton:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
 }
 
 /* End of create section */
 
 /* Update section */
+.formUpdateDistinctOrder {
+  margin-top: 4%;
+  text-align: center;
+}
+
 .formHeaderUpdate{
   font-size: 300%;
-  margin-left:5%;
+  font-family: 'Lora', serif;
 }
 
 .formLabelTextUpdate{
-  margin-left:25%;
-  font-size: 130%;
+  position: absolute;
+  left: 15%;
+  font-size: 120%;
+  font-family: 'Slabo 27px', serif;
 }
 
-.formLabelOrderNoUpdate{
-  margin-left:5%;
-  font-size: 130%;
+.formLabelOrderNoUpdate {
+  position: absolute;
+  right: 15%;
+  font-size: 120%;
+  font-family: 'Lora', serif;
 }
 
 .updateOrderNo{
-
+  position: absolute;
+  right: 15%;
 }
 
 .updateCurrentDistinctOrderButton{
   margin-top: 5%;
-  margin-left: 42%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding: 0.5rem 1rem;
+  background-color: orange;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 5px green
+}
+
+.updateCurrentDistinctOrderButton:hover{
+  color: white;
+}
+
+.updateCurrentDistinctOrderButton:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
 }
 
 .formLabelTextStatusUpdateDistinctOrder{
@@ -130,28 +167,42 @@
 /* End of Update section */
 
 /* delete section */
+.formDeleteDistinctOrder{
+  margin-top: 4%;
+  text-align: center;
+  font-family: 'Lora', serif;
+}
+
 .formHeaderDelete{
   font-size: 300%;
-  margin-left:15%;
 }
 
-.formLabelTextDelete{
-  margin-left:31%;
-  font-size: 130%;
-}
-
+.formLabelTextDelete,
 .formLabelOrderNoDelete{
-  margin-left:5%;
   font-size: 130%;
 }
 
 .deleteCurrentDistinctOrderButton{
   margin-top: 5%;
-  margin-left: 42%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding: 0.5rem 1rem;
+  background-color: orange;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 5px green
+}
+
+.deleteCurrentDistinctOrderButton:hover{
+  color: white;
+}
+
+.deleteCurrentDistinctOrderButton:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
 }
 
 
