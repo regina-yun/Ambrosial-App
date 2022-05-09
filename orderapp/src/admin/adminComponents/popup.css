@@ -24,6 +24,7 @@
   z-index: 2;
 }
 
+.updateMenuItemPopup-box,
 .updateOrderItemPopup-box{
   width:30%;
   height: 35%;
@@ -50,6 +51,7 @@
   z-index: 2;
 }
 
+.deleteMenuItemPopup-box,
 .deleteOrderItemPopup-box{
   width:30%;
   height: 35%;
@@ -71,6 +73,7 @@
   margin-left: 95%;
 }
 
+.updateMenuItem-close-icon,
 .updateOrderItem-close-icon{
   margin-left: 95%;
 }
@@ -79,6 +82,7 @@
   margin-left: 95%;
 }
 
+.deleteMenuItem-close-icon,
 .deleteOrderItem-close-icon{
   margin-left: 95%;
 }
@@ -113,6 +117,7 @@
   z-index: 4;
 }
 
+
 .updateOrderConfirmationPopup-box{
   width:30%;
   height: 35%;
@@ -124,6 +129,7 @@
   z-index: 2;
 }
 
+.updateMenuItemConfirmationPopup-box,
 .updateOrderItemConfirmationPopup-box{
   width:30%;
   height: 35%;
@@ -134,6 +140,7 @@
   left: 32%;
   z-index: 3;
 }
+
 
 .deleteOrderConfirmationPopup-box{
   width:30%;
@@ -146,6 +153,7 @@
   z-index: 2;
 }
 
+.deleteMenuItemConfirmationPopup-box,
 .deleteOrderItemConfirmationPopup-box{
   width:30%;
   height: 35%;
@@ -169,6 +177,7 @@
   margin-left: 95%;
 }
 
+.updateMenuItemConfirmation-close-icon,
 .updateOrderItemConfirmation-close-icon{
   margin-left: 95%;
 }
@@ -177,6 +186,7 @@
   margin-left: 95%;
 }
 
+.deleteMenuItemConfirmation-close-icon,
 .deleteOrderItemConfirmation-close-icon{
   margin-left: 95%;
 }
@@ -445,6 +455,10 @@
 .updateReceiptConfirmation-close-icon:hover,
 .viewReceiptConfirmation-close-icon:hover,
 .deleteReceiptConfirmation-close-icon:hover,
+.updateMenuItem-close-icon:hover,
+.deleteMenuItem-close-icon:hover,
+.updateMenuItemConfirmation-close-icon:hover,
+.deleteMenuItemConfirmation-close-icon:hover,
 .createPayment-close-icon:hover,
 .updatePayment-close-icon:hover,
 .createPaymentConfirmation-close-icon:hover,
@@ -456,3 +470,5 @@
   font-size: 20px;
   cursor: pointer;
 }
+
+
