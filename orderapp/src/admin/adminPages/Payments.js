@@ -472,6 +472,7 @@ export default function Payments() {
 								<tr key={paymentLogs.receiptID}>
 									<td className='payment-table-column'>{paymentLogs.paymentInvoiceID}</td>
 									<td className='payment-table-column'>{paymentLogs.receiptID}</td>
+									<td className='payment-table-column'>{paymentLogs.Receipt.DistinctOrderList.orderNo}</td>
 									<td className='payment-table-column'>{paymentLogs.paymentType}</td>
 									<td className='payment-table-column'>{paymentLogs.paymentStatus}</td>
 									<td className='actionButtons'><UpdateAndDeleteButton buttonText={'Update Payment Log'} setView={() => updateOnClick(paymentLogs.paymentInvoiceID, paymentLogs.receiptID)} setData={() => {}} setId={() => {}}/></td>
