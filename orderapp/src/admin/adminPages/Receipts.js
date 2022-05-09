@@ -478,7 +478,7 @@ export default function Receipt(props) {
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextDeleteOrderNo'>Order No.: </label>
+                        <label className='formLabelTextDeleteOrderNo'>Order No.  </label>
                         <label className='formLabelOrderNoInDelete'>{orderNo}</label>
                         <br></br>
 

@@ -391,12 +391,12 @@ export default function Orders() {
         popupType='createOrderPopup'
         handleClose={togglePopupCreateOrder}
         content={
-            <form onSubmit={onSubmitValidateInput}>
+            <form className='formCreateDistinctOrder'onSubmit={onSubmitValidateInput}>
                 <label className='formHeaderCreateDistinctOrder'>Create Order</label>
                 <br></br>
                 <br></br>
 
-                <label className='formLabelTextCreateDistinctOrder'>Order No.:</label>
+                <label className='formLabelTextCreateDistinctOrder'>Order No. </label>
                 <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
                 <br></br>
 
@@ -423,16 +423,18 @@ export default function Orders() {
         popupType='updateCurrentDistinctOrderPopup'
         handleClose={toggleUpdateDistinctOrderPopup}
         content={
-            <form onSubmit={onSubmitValidateinputForUpdate}>
-                <label className='formHeaderUpdate'>Update Current Order No.</label>
+            <form className='formUpdateDistinctOrder' onSubmit={onSubmitValidateinputForUpdate}>
+                <label className='formHeaderUpdate'>Update Current Order</label>
                 <br></br>
                 <br></br>
-
-                <label className='formLabelTextUpdate'>Order No. Now:</label>
+                
+                <div>
+                <label className='formLabelTextUpdate'>Current Order No.</label>
                 <label className='formLabelOrderNoUpdate'>{viewOrderItemsOrderNo}</label>
+                </div>
                 <br></br>
 
-                <label className='formLabelTextUpdate'>Order No. :</label>
+                <label className='formLabelTextUpdate'>Updated Order No.</label>
                 <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
                 <br></br>
 
@@ -457,12 +459,12 @@ export default function Orders() {
         popupType='deleteCurrentDistinctOrderPopup'
         handleClose={toggleDeleteDistinctOrderPopup}
         content={
-            <form onSubmit={onSubmitValidateinputForDelete}>
-                <label className='formHeaderDelete'>Delete Order Record</label>
+            <form className='formDeleteDistinctOrder' onSubmit={onSubmitValidateinputForDelete}>
+                <label className='formHeaderDelete'>Delete Order</label>
                 <br></br>
                 <br></br>
 
-                <label className='formLabelTextDelete'>Order No.:</label>
+                <label className='formLabelTextDelete'>Order No.  </label>
                 <label className='formLabelOrderNoDelete'>{viewOrderItemsOrderNo}</label>
                 <br></br>
 
