@@ -36,23 +36,37 @@
     text-align: center;
 }
 
-.minusbutton,
-.plusbutton {
-    width:50px;
-}
-
 .menu-input{
     width: 10%;
+    height: 55%;
     text-align: center;
     margin: 10px;
-    background-color: white;
-    opacity: 90%;
+    background-color: orange;
+    font-weight: bold;
+    font-size: 15px;
     border: none;
     border-radius: 1px;
 }
 
-.addbutton{
+.addbutton {
     width:50px;
+    background-color: orange;
+    border: green 3px solid;
+    font-family: 'Lora', serif;
+    font-weight: bold;
+}
+
+.addbutton:hover {
+    color: white;
+}
+
+.addbutton:active {
+    color: black;
+    background: yellow;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+            box-shadow: inset 0px 0px 5px #c1c1c1;
+     outline: none;
 }
 
 /* Extra small devices (phones, 600px and down) */

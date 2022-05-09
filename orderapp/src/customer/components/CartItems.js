@@ -1,5 +1,6 @@
 import React from 'react';
 import './CartItems.css';
+import capitalize from 'capitalize-the-first-letter';;
 
 function CartItems(props) {
 
@@ -63,7 +64,7 @@ function CartItems(props) {
             return(
               <>
                 <tr>
-                  <td className='table-content'>{obj.alt}</td>
+                  <td className='table-content'>{capitalize(obj.name)}</td>
                   <td className='table-content'>
                     <button className="addMinusItem" onClick={() => handleChangeQuantity(obj.name, '-')}>-</button>
                     <input className="quantityDisplay" type='text' inputMode='numeric' value={obj.quantity}/>

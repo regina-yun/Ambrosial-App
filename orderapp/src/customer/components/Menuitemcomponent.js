@@ -38,7 +38,7 @@ function Menuitemcomponent(props){
         //passed down from the parent till this child
         //put at the common parent of orderlist and menuitem
         const itemDetailsLink = {
-            name:props.data.name,
+            name:props.data.alt,
             price:props.data.price,
             quantity:itemCount
         }
@@ -96,9 +96,9 @@ function Menuitemcomponent(props){
                  </div>
                 
                 <div className="quantity-container">
-                        <Custombutton className="minusbutton" sign="-" click={minus}/>
+                        <Custombutton sign="-" click={minus}/>
                         <input className="menu-input" type="text" value={itemCount} onChange={minmaxquantity}></input>
-                        <Custombutton className="plusbutton" sign="+" click={plus}/>
+                        <Custombutton sign="+" click={plus}/>
                 </div>
                  
                  <button className='addbutton' onClick={sendtoorder}>Add</button>
