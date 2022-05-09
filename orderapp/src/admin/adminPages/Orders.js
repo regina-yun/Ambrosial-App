@@ -413,9 +413,8 @@ export default function Orders() {
         popupType='createOrderConfirmationPopup'
         handleClose={togglePopupCreateOrderConfirmation}
         content={
-            <div className='confirmationContainer'>   
              <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage}/>
-            </div> 
+ 
         }/>}
 
         {/* update Popup */}

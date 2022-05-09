@@ -1,5 +1,6 @@
 import './view-receipt-items.css'
 import Popup from '../popup';
+import capitalize from 'capitalize-the-first-letter';
 import { useEffect, useState } from 'react';
 import { ambrosialAxiosAPI } from '../../../api/api';
 
@@ -118,7 +119,7 @@ function ViewReceiptItems(props){
                     {orderedItemsForReceiptDataStatus ?orderedItemsForReceiptData.map((orderedItemsForReceiptData, index)=>(
                             <tr key={orderedItemsForReceiptData.orderNo}>
                                 <td>{index+1}</td>
-                                <td>{orderedItemsForReceiptData.MenuItem.alt}</td>
+                                <td>{capitalize(orderedItemsForReceiptData.MenuItem.alt)}</td>
                                 <td>{orderedItemsForReceiptData.quantity}</td>
                                 {/* <td>{orderedItemsForReceiptData.MenuItem.price}</td>  */}
                                 <td>{(orderedItemsForReceiptData.MenuItem.price*orderedItemsForReceiptData.quantity).toFixed(2)}</td>
