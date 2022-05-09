@@ -95,11 +95,11 @@ function ViewReceiptItems(props){
             handleClose={toggleViewReceiptOrderPopup}
             content={
                 <div>
-                    <table>
+                    <table className='viewReceiptItemsTable'>
                     
                     <tr>
-                        <td>Order No.:</td>
-                        <td>{props.orderNo}</td>
+                        <td className='viewReceiptItemsOrderNo'><b>Order No.:</b></td>
+                        <td><b>{props.orderNo}</b></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -107,10 +107,10 @@ function ViewReceiptItems(props){
                     <br></br>  
 
                     <tr>
-                        <th>No.</th>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th>Item Price</th>
+                        <th className='viewReceiptItemsTableColumn'>No.</th>
+                        <th className='viewReceiptItemsTableColumn'>Item</th>
+                        <th className='viewReceiptItemsTableColumn'>Quantity</th>
+                        <th className='viewReceiptItemsTableColumn'>Item Price</th>
                     </tr>
                     
                     <br></br>  

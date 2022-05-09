@@ -394,7 +394,7 @@ export default function Receipt(props) {
         <>
         <div className='createAndRefresh'>
             <button  className='refreshList' onClick={getReceipts}>Refresh List</button>
-            <button className='createReceipt' onClick={togglePopupCreateReceipt}>Create New Receipt</button> 
+            <button className='createReceipt' onClick={togglePopupCreateReceipt}>Create Receipt</button> 
         </div>
             
 
@@ -406,14 +406,14 @@ export default function Receipt(props) {
             handleClose={togglePopupCreateReceipt}
             content={
                 <form className='formCreateReceipt' onSubmit={onSubmitValidateInput}>
-                    <label className='formHeaderCreateReceipt'>Create New Receipt</label>
+                    <label className='formHeaderCreateReceipt'>Create Receipt</label>
                     <br /><br />
 
-                    <label className='formLabelTextReceiptOrderId'>Order No. Id:</label>
+                    <label className='formLabelTextReceiptOrderId'>Order No. Id</label>
                     <input type="number" className='createInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
                     <br /><br />
 
-                    <label className='formLabelTextReceiptTotalItemPrice'>Total Item Price:</label>
+                    <label className='formLabelTextReceiptTotalItemPrice'>Total Item Price</label>
                     <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
                     <br /><br />
 
@@ -438,16 +438,16 @@ export default function Receipt(props) {
                 popupType='updateReceiptPopup'
                 handleClose={toggleUpdateReceiptsPopup}
                 content={
-                    <form onSubmit={onSubmitValidateinputForUpdate}>
+                    <form className='formUpdateReceipt' onSubmit={onSubmitValidateinputForUpdate}>
                         <label className='formHeaderUpdateReceipt'>Update Receipt</label>
                             <br></br>
                             <br></br>
 
-                            <label className='formLabelTextUpdateReceiptId'>Order No. Id:</label>
+                            <label className='formLabelTextUpdateReceiptId'>Order No. Id</label>
                             <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
                             <br></br>
 
-                            <label className='formLabelTextUpdateReceiptTotalItemPrice'>Total Item Price:</label>
+                            <label className='formLabelTextUpdateReceiptTotalItemPrice'>Total Item Price</label>
                             <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
                             <br></br>
 
@@ -473,8 +473,8 @@ export default function Receipt(props) {
                 popupType='deleteReceiptPopup'
                 handleClose={toggleDeleteReceiptPopup}
                 content={
-                    <form onSubmit={onSubmitValidateinputForDelete}>
-                        <label className='formHeaderDeleteReceipt'>Delete Receipt Record</label>
+                    <form className='formDeleteReceipt' onSubmit={onSubmitValidateinputForDelete}>
+                        <label className='formHeaderDeleteReceipt'>Delete Receipt</label>
                         <br></br>
                         <br></br>
 
@@ -500,18 +500,18 @@ export default function Receipt(props) {
 
 
             <div className="receipt">
-                <h1>Receipts</h1>
-                <table>
+                <h1 className='receipt-title'>Receipts</h1>
+                <table className='receipt-table'>
                     <tr>
-                        <th>No.</th>
-                        <th>Order No.</th>
-                        <th>Actions</th>
+                        <th className='receipt-table-column'>No.</th>
+                        <th className='receipt-table-column'>Order No.</th>
+                        <th className='receipt-table-column' colSpan='3'>Actions</th>
                     </tr>
                     
                     {receiptsListData.map((receiptsList, index)=>(
                             <tr key={receiptsList.orderNoId}>
-                            <td>{index+1}</td>
-                            <td>{receiptsList.DistinctOrderList.orderNo}</td>
+                            <td className='receipt-table-column'>{index+1}</td>
+                            <td className='receipt-table-column'>{receiptsList.DistinctOrderList.orderNo}</td>
                             <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setOrderNo} orderNo={receiptsList.DistinctOrderList.orderNo} setViewOrder={setViewReceipt}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewUpdate} buttonText={"Update Receipt"}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewDelete} buttonText={"Delete Receipt"}/></td>

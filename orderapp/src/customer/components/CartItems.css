@@ -1,12 +1,13 @@
 .orderlist-title {
-  font-family: "Vibur", cursive;
+  font-family: "Lora", serif;
   margin: 30px 0 0 0;
   text-align: center;
   color: black;
 }
 
 .empty-list {
-  font-family: "Yomogi", cursive;
+  font-family: "Lora", serif;
+  margin-bottom: 30px;
   font-weight: bold;
   text-align: center;
   color: black;
@@ -15,16 +16,16 @@
 .table-header {
   width: 150px;
   padding: 10px 10px 20px 10px;
-  font-family: "Yomogi", cursive;
+  font-family: "Slabo 27px", serif;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   color: black;
 }
 
 .table-content{
   text-align: center;
   padding-bottom: 10px;
-  font-family: "Yomogi", cursive;
+  font-family: "Lora", serif;
   font-weight: bold;
   width: 150px;
   color: black;
@@ -39,6 +40,7 @@
 
 .orderlist-table{
   margin: 0 auto;
+  border-bottom:black 2px solid
 }
 
 

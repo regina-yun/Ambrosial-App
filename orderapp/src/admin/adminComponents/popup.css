@@ -106,12 +106,12 @@
   position:absolute;
   top: 5%;
   left: 32%;
-  z-index: 3; */
+  z-index: 4; */
   position:absolute;
   top: 5%;
   left: 32%;
-  width:40%;
-  height: 80%;
+  width:30%;
+  height: 35%;
   border: 1px solid white;
   padding:3%;
   z-index: 4;
@@ -191,6 +191,7 @@
   margin-left: 95%;
 }
 
+
 .viewOrderPopup-box{
   position:absolute;
   top: 5%;
@@ -202,10 +203,6 @@
   z-index: 2;
 }
 
-.viewOrder-close-icon{
-  margin-left: 95%;
-}
-
 .createOrderItemPopup-box{
   position:absolute;
   top: 5%;
@@ -215,10 +212,6 @@
   border: 1px solid white;
   padding:3%;
   z-index: 4;
-}
-
-.createOrderItem-close-icon{
-  margin-left: 95%;
 }
 
 .createReceiptPopup-box{
@@ -234,10 +227,6 @@
   z-index: 2;
 }
 
-.createReceipt-close-icon{
-  margin-left: 95%;
-}
-
 .createReceiptConfirmationPopup-box {
   width:30%;
   height: auto;
@@ -247,10 +236,6 @@
   top: 5%;
   left: 32%;
   z-index: 2;
-}
-
-.createReceiptConfirmation-close-icon {
-  margin-left: 95%;
 }
 
 .viewReceiptPopup-box{
@@ -266,10 +251,6 @@
   z-index: 2;
 }
 
-.viewReceipt-close-icon{
-  margin-left: 95%;
-}
-
 .viewReceiptsItemsPopup-box{
   width:30%;
   height: auto;
@@ -283,10 +264,6 @@
   z-index: 3;
 }
 
-.viewReceiptsItems-close-icon{
-  margin-left: 95%;
-}
-
 .viewReceiptConfirmationPopup-box {
   width:30%;
   height: auto;
@@ -296,10 +273,6 @@
   top: 5%;
   left: 32%;
   z-index: 2;
-}
-
-.viewReceiptConfirmation-close-icon {
-  margin-left: 95%;
 }
 
 .updateReceiptPopup-box{
@@ -315,10 +288,6 @@
   z-index: 2;
 }
 
-.updateReceipt-close-icon{
-  margin-left: 95%;
-}
-
 .updateReceiptConfirmationPopup-box {
   width:30%;
   height: auto;
@@ -328,10 +297,6 @@
   top: 5%;
   left: 32%;
   z-index: 2;
-}
-
-.updateReceiptConfirmation-close-icon {
-  margin-left: 95%;
 }
 
 .deleteReceiptPopup-box{
@@ -347,10 +312,6 @@
   z-index: 2;
 }
 
-.deleteReceipt-close-icon{
-  margin-left: 95%;
-}
-
 .deleteReceiptConfirmationPopup-box {
   width:30%;
   height: auto;
@@ -362,8 +323,32 @@
   z-index: 2;
 }
 
+.createOrder-close-icon,
+.updateCurrentDistinctOrder-close-icon,
+.updateOrderItem-close-icon,
+.deleteCurrentDistinctOrder-close-icon,
+.deleteOrderItem-close-icon,
+.createOrderItemConfirmation-close-icon,
+.createOrderConfirmation-close-icon,
+.updateOrderConfirmation-close-icon,
+.updateOrderItemConfirmation-close-icon,
+.deleteOrderConfirmation-close-icon,
+.deleteOrderItemConfirmation-close-icon,
+.viewOrder-close-icon,
+.createOrderItem-close-icon,
+.createReceipt-close-icon,
+.createReceiptConfirmation-close-icon,
+.viewReceipt-close-icon,
+.viewReceiptsItems-close-icon,
+.viewReceiptConfirmation-close-icon,
+.updateReceipt-close-icon,
+.updateReceiptConfirmation-close-icon,
+.deleteReceipt-close-icon,
 .deleteReceiptConfirmation-close-icon {
   margin-left: 95%;
+  font-family: "Yomogi", cursive;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 .loginPopup-box,
@@ -396,6 +381,9 @@
 .updatePaymentConfirmation-close-icon,
 .deletePaymentConfirmation-close-icon {
   margin-left: 95%;
+  font-family: 'Yomogi', cursive;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .login-close-icon,
@@ -439,7 +427,7 @@
   text-align: center;
   font-family: "Yomogi", cursive;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .view-close-icon:hover, 
@@ -467,7 +455,7 @@
 .login-close-icon:hover,
 .updatePasswordError-close-icon:hover,
 .updatePasswordSuccess-close-icon:hover {
-  font-size: 20px;
+  font-size: 28px;
   cursor: pointer;
 }
 

@@ -1,8 +1,8 @@
-.payments {
+.payments-container {
   text-align: center;
   background-color: black;
   height: 100vh;
-  }
+}
 
 .payment-modal{
   width:100%;
@@ -24,25 +24,12 @@
   z-index: 2;
 }
 
-.paymentFormHeader {
-  font-size: 200%;
+.payment-title{
+  font-family: 'Open Sans', san-serif;
 }
 
-.createPaymentFormLabelText {
-  position: absolute;
-  left: 27.5%;
-}
-
-.updatePaymentFormLabelText{
-  position: absolute;
-  left:28%
-}
-
-.paymentFormLabelTextStatus {
-  margin-left:3%;
-}
-
-.createAndRefreshPayment {
+.createAndRefreshPayment{
+  padding: 0 3%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -51,12 +38,75 @@
   float: right;
   margin-left: 82.5%;
 }
+.refreshPaymentLogs {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  background-color: orange;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 5px green
+}
+
+.refreshPaymentLogs:hover{
+  color: white;
+}
+
+.refreshPaymentLogs:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
+.createPaymentButton {
+  width: 60%;
+  padding: 0.5rem 1rem;
+  right: 10%;
+  background-color: orange;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 5px green
+}
+
+.createPaymentButton:hover{
+  color: white;
+}
+
+.createPaymentButton:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
+.paymentFormHeader {
+  font-size: 200%;
+  font-family: 'Lora',serif;
+}
+
+.createPaymentFormLabelText,
+.updatePaymentFormLabelText{
+  position: absolute;
+  left:22%;
+  font-family: 'Slabo 27px', serif;
+}
+
+.paymentFormLabelTextStatus {
+  margin-left:3%;
+  font-family: 'Lora', serif;
+}
 
 .createPaymentInputReceiptId,
 .createPaymentInputPaymentType,
 .createPaymentInputPaymentStatus {
   position: absolute;
-  right:28%;
+  right:22%;
 }
 
 .updatePaymentInputInvoiceId,
@@ -64,24 +114,37 @@
 .updatePaymentInputPaymentType,
 .updatePaymentInputPaymentStatus {
   position: absolute;
-  right:28%;
+  right:22%;
 }
-
-
 
 .paymentButton {
-  font-size: 110%;
   margin-top: 5%;
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  font-family: 'Lora', serif;
+  background-color: orange;
+  border: 5px solid green;
+  padding: 0.5rem 1rem; 
+  font-size: 15px;
+  font-weight: bold;
 }
 
-.paymentPageTitle {
-  margin: auto 0;
+.paymentButton:hover {
+  color: white;
 }
 
-.paymentTable {
+.paymentButton:active {
+color: black;
+background: yellow;
+-webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+   -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+        box-shadow: inset 0px 0px 5px #c1c1c1;
+ outline: none;
+}
+
+.payment-table {
   margin: 0 auto;
+  font-family: 'Lora', serif;
+}
+
+.payment-table-column {
+  padding: 0px 30px
 }

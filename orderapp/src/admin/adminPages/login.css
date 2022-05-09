@@ -32,6 +32,7 @@
   height: 5%;
   border: 2px solid white;
   font-size: inherit;
+  font-family: 'Lora', serif;
   border-radius: 0.5rem;
   color: white;
   outline: none;
@@ -64,16 +65,18 @@
 #username-input:focus ~ .login-username-label,
 #username-input:not(:placeholder-shown)#username-input:not(:focus)
 ~ .login-username-label {
-  top: -0.5rem;
-  font-size: 0.9rem;
+  top: -0.6rem;
+  font-size:1rem;
+  font-family: 'Lora', serif;
   left: 1.5rem;
 }
 
 #password-input:focus ~ .login-pw-label,
 #password-input:not(:placeholder-shown)#password-input:not(:focus)
 ~ .login-pw-label {
-  top: -0.5rem;
-  font-size: 0.9rem;
+  top: -0.6rem;
+  font-size: 1rem;
+  font-family: 'Lora', serif;
   left: 1.5rem;
 }
 
@@ -83,11 +86,19 @@
 .login-forgot-password-link {
   color: white;
   text-decoration: none;
+  font-family: 'Lora', serif;
+  font-size: 15px
 }
 
 .login-forgot-password-link:hover{
   color:orange;
   text-decoration: underline;
+}
+
+.login-forgot-password-link:active {
+  color: white;
+  text-decoration: none;
+  
 }
 
 .login-page-button-container {
@@ -104,15 +115,27 @@
 
 .login-button,
 .login-cancel-button {
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
   background-color: orange;
+  font-family: 'Lora', serif;
+  font-size: 15px;
   font-weight: bold;
-  border: solid 3px green
+  border: solid 5px green
 }
 
 .login-button:hover,
 .login-cancel-button:hover {
   color: white
+}
+
+.login-button:active,
+.login-cancel-button:active {
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
 }
 
 .login-link {

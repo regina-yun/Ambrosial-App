@@ -75,40 +75,32 @@
 }
 
 .navbar {
-    margin: -2% auto;
-    border-top: solid white 2px;
-    border-bottom: solid white 2px;
+    margin: 0 auto;
 }
 
 .pages {
-    border: none;
     background-color: transparent;
     padding: 10px 40px;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Yomogi', cursive;
+    font-size: 25px;
+    font-family: 'Slabo 27px', serif;
     color: white;
 }
 
 
-.pages:hover, .pages:hover::before, .pages:hover::after{
+.pages:hover {
     cursor: pointer;
-    content: "\1F338";
 }
 
 .selected-page {
-    border: none;
+    border-top: white 2px solid;
     padding: 10px 40px;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
-    font-family: 'Yomogi', cursive;
+    font-family: 'Slabo 27px', serif;
     background-color: transparent;
     color: white;
 }
 
-.selected-page:hover, .selected-page:before, .selected-page:after {
-    content: "\1F338";
-}
 
 .maincontainer {
     display: flex;

@@ -9,13 +9,7 @@
 
 .popupTitle {
     text-align: center;
-    font-family:"Vibur", cursive;
-}
-
-th {
-    padding: 0 50px;
-    font-family: "Yomogi", cursive;
-    font-weight: bold;
+    font-family:"Lora", serif;
 }
 
 .close {

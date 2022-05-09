@@ -6,5 +6,6 @@
 
 .greeting {
   text-align: center;
+  font-family: 'Lora', serif;
   font-size: 200%;
 }

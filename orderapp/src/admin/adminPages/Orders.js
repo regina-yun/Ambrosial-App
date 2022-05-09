@@ -179,7 +179,6 @@ export default function Orders() {
         setViewConfirmationUpdatePopupOpen(!viewConfirmationUpdatePopupOpen);
         toggleUpdateDistinctOrderPopup();
         setUpdateSubmitStatus(false);
-        setOrderNoUpdate(0);
     }
 
     function closePopupUpdateDistinctOrderConfirmation() {
@@ -414,7 +413,9 @@ export default function Orders() {
                 popupType='createOrderConfirmationPopup'
                 handleClose={togglePopupCreateOrderConfirmation}
                 content={
-                    <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage} />
+                    <div className='confirmationContainer'>
+                        <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage} />
+                    </div>
                 } />}
 
             {/* update Popup */}
