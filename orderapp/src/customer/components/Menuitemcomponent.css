@@ -36,7 +36,7 @@
     text-align: center;
 }
 
-.menu-input{
+.menu-input {
     width: 10%;
     height: 55%;
     text-align: center;
@@ -44,7 +44,7 @@
     background-color: orange;
     font-weight: bold;
     font-size: 15px;
-    border: none;
+    border: 3px solid green;
     border-radius: 1px;
 }
 
