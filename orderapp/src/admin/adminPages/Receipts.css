@@ -104,10 +104,6 @@
    outline: none;
 }
 
-.formLabelTextStatusCreate{
-  margin-left:3%;
-}
-
 /* end of create region */
 
 
@@ -129,8 +125,8 @@
   left: 22%;
 }
 
-.createInputOrderNoId,
-.createInputTotalItemPrice {
+.updateInputOrderNoId,
+.updateInputTotalItemPrice {
   position: absolute;
   right: 22%;
 }
@@ -157,10 +153,6 @@
      -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
           box-shadow: inset 0px 0px 5px #c1c1c1;
    outline: none;
-}
-
-.formLabelTextStatusUpdate{
-  margin-left:3%;
 }
 
 /* End of update region */
@@ -206,9 +198,6 @@
    outline: none;
 }
 
-.formLabelTextStatusDelete{
-  margin-left:3%;
-}
 /* End of delete region */
 
 /* div for table to display receipts */
