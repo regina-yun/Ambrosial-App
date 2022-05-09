@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "cd orderapp && npm run start",
+        "start": "cd orderapp && npm run start"
         
       }
 }
