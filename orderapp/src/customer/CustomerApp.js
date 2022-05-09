@@ -1,6 +1,5 @@
 import {ambrosialAxiosAPI} from '../api/api.js';
 import React, {useState, useEffect} from 'react';
-
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 import Home from './pages/home/home';
 import Appetizer from './pages/appetizer/appetizer';
@@ -11,14 +10,9 @@ import Footer from './parts/footer';
 import Header from './parts/header';
 import Payment from './parts/payment';
 import Server from './parts/server';
-import Membership from './parts/membership.js';
 import OrderList from './parts/orderlist.js'
-
-
 import AddedItem from './components/OrderlistContainer.js';
-// import MenuitemContainer from './components/MenuitemContainer.js';
 import CategoryData from './components/CategoryData.js';
-
 import './CustomerApp.css';
 import './components/OrderlistSendBtn.css';
 
@@ -58,7 +52,6 @@ function CustomerApp() {
     const toCartObject = { ...itemobject };
     setAddItem(toCartObject);
     AddedItem(toCartObject, selectedItemList, setSelectedItemList); // function call to pass the obj to OrderlistContainer
-    //console.log("additem is", additem);
   }
 
   //funtion to clear the additem so that it can be ready for the next item to pass
@@ -82,7 +75,6 @@ function CustomerApp() {
     <>
       <div className='background-opacity'>
         <div className='ingress'>
-        {/* <span className='signup'><Membership/></span> */}
         <div>
           <span className='orderlist'><OrderList selectedItemList={selectedItemList} setSelectedItemList={setSelectedItemList}/></span>
           <span className='server'><Server /></span>
