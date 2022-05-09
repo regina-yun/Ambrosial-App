@@ -86,15 +86,21 @@
 }
 
 .paymentFormHeader {
-  font-size: 200%;
+  font-size: 300%;
   font-family: 'Lora',serif;
 }
 
 .createPaymentFormLabelText,
-.updatePaymentFormLabelText{
+.updatePaymentFormLabelText {
   position: absolute;
   left:22%;
   font-family: 'Slabo 27px', serif;
+}
+
+.deletePaymentFormLabelText {
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: 130%;
 }
 
 .paymentFormLabelTextStatus {

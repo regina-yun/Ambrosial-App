@@ -1,3 +1,7 @@
+.label-input-div {
+  padding-bottom: 2%;
+}
+
 /* div for the two buttons create order and refresh list */
 .createAndRefresh{
   display: flex;
