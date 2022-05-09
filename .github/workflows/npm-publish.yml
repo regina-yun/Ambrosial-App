@@ -11,7 +11,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: orderapp
+        working-directory: ./orderapp
     
     env:
       CI: false
@@ -41,7 +41,7 @@ jobs:
     name: Heroku Deploy
     defaults:
       run:
-        working-directory: orderapp
+        working-directory: ./orderapp
     runs-on: ubuntu-latest
     needs: [build]
     steps:
