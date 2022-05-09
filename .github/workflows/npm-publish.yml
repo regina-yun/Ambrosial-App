@@ -34,7 +34,7 @@ jobs:
       working-directory: 'orderapp'
       run: npm ci
            npm install
-           npm run build --if-present
+           #npm run build --if-present
     #- run: npm test
     
     
