@@ -12,7 +12,6 @@ function LandingApp() {
      <Router>
      <Switch>  
           <Route path="/customer"><CustomerApp /></Route>
-          <Route path="/admin"><AdminApp /></Route>
           <Route path="/login"><Login /></Route>
     <div className="landing">
       <div className="main">
@@ -23,8 +22,7 @@ function LandingApp() {
         <h2 className='landing-text'>I am a...</h2>
         <div className="landing-nav"></div>
           <Link to="/customer" className="customer-nav">Customer</Link>
-          <Link to="/admin" className="admin-nav">Admin</Link>
-          <Link to="/login" className="login-nav">Admin Login</Link>
+          <Link to="/login" className="login-nav">Admin</Link>
         </div>
       </div>
     </Switch> 

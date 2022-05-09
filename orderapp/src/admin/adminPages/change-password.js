@@ -116,8 +116,6 @@ function ChangePassword() {
                 <label className='change-pw-confirmpw-label'>Confirm Password</label>
               </div>
 
-              {updatePassword.newPassword !== updatePassword.confirmPassword && <p>Both passwords do not match!</p>}
-
               <div className='change-pw-button-container'>
                 <div className='change-pw-change-button-div'>
                   <button className='change-pw-button' onClick={handleSubmit}>Change</button>

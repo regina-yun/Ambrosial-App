@@ -337,7 +337,8 @@
 .login-box,
 .updatePasswordError-box,
 .updatePasswordSuccess-box {
-  font-size:110%
+  font-size:110%;
+  font-family: 'Lora', serif;
 }
 
 .view-popup.active,
