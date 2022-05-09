@@ -7,11 +7,6 @@ on:
   push:
     branches: [ main ]
 
-
-  run:
-    working-directory: orderapp
-
-
 jobs:
   build:
     defaults:
