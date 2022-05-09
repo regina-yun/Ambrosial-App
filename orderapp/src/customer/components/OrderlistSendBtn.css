@@ -7,10 +7,25 @@
 #sendorderbtn { 
   padding: 10px;
   max-width: 150px;
-  background-color: aquamarine;
-  border: 1px solid white;
-  border-radius: 5px;
+  background-color: orange;
+  border: green 5px solid;
+  font-family: 'Lora', serif;
+  font-weight: bold;
 }
+
+#sendorderbtn:hover { 
+  color: white;
+}
+
+#sendorderbtn:active { 
+  color: black;
+  background: yellow;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
 
 
 .sendbtn button {
