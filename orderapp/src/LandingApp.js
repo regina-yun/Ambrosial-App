@@ -1,5 +1,5 @@
 import './LandingApp.css';
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import LoginHeader from './admin/adminComponents/login-header';
 import CustomerApp from './customer/CustomerApp';
 import AdminApp from './admin/AdminApp';
