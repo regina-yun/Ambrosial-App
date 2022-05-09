@@ -90,12 +90,7 @@
   font-family: 'Lora',serif;
 }
 
-.createPaymentFormLabelText {
-  position: absolute;
-  left: 22%;
-  font-family: 'Slabo 27px', serif;
-}
-
+.createPaymentFormLabelText,
 .updatePaymentFormLabelText{
   position: absolute;
   left:22%;
@@ -123,7 +118,6 @@
 }
 
 .paymentButton {
-  font-size: 110%;
   margin-top: 5%;
   font-family: 'Lora', serif;
   background-color: orange;

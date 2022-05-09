@@ -409,11 +409,11 @@ export default function Receipt(props) {
                     <label className='formHeaderCreateReceipt'>Create Receipt</label>
                     <br /><br />
 
-                    <label className='formLabelTextReceiptOrderId'>Order No. Id:</label>
+                    <label className='formLabelTextReceiptOrderId'>Order No. Id</label>
                     <input type="number" className='createInputOrderId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
                     <br /><br />
 
-                    <label className='formLabelTextReceiptTotalItemPrice'>Total Item Price:</label>
+                    <label className='formLabelTextReceiptTotalItemPrice'>Total Item Price</label>
                     <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
                     <br /><br />
 
@@ -438,16 +438,16 @@ export default function Receipt(props) {
                 popupType='updateReceiptPopup'
                 handleClose={toggleUpdateReceiptsPopup}
                 content={
-                    <form onSubmit={onSubmitValidateinputForUpdate}>
+                    <form className='formUpdateReceipt' onSubmit={onSubmitValidateinputForUpdate}>
                         <label className='formHeaderUpdateReceipt'>Update Receipt</label>
                             <br></br>
                             <br></br>
 
-                            <label className='formLabelTextUpdateReceiptId'>Order No. Id:</label>
+                            <label className='formLabelTextUpdateReceiptId'>Order No. Id</label>
                             <input type="number" className='createInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
                             <br></br>
 
-                            <label className='formLabelTextUpdateReceiptTotalItemPrice'>Total Item Price:</label>
+                            <label className='formLabelTextUpdateReceiptTotalItemPrice'>Total Item Price</label>
                             <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
                             <br></br>
 
@@ -473,8 +473,8 @@ export default function Receipt(props) {
                 popupType='deleteReceiptPopup'
                 handleClose={toggleDeleteReceiptPopup}
                 content={
-                    <form onSubmit={onSubmitValidateinputForDelete}>
-                        <label className='formHeaderDeleteReceipt'>Delete Receipt Record</label>
+                    <form className='formDeleteReceipt' onSubmit={onSubmitValidateinputForDelete}>
+                        <label className='formHeaderDeleteReceipt'>Delete Receipt</label>
                         <br></br>
                         <br></br>
 
