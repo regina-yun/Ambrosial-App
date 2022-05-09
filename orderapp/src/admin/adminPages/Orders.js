@@ -24,9 +24,9 @@ export default function Orders() {
     const [submitStatusMessage, setSubmitStatusMessage] = useState('');
 
     //validation on submit
-    function onSubmitValidateInput(event){
+    function onSubmitValidateInput(event) {
         event.preventDefault();
-        if(!orderNoValue){
+        if (!orderNoValue) {
             setSubmitStatusMessageStatus(true);
             setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
             return;
@@ -35,18 +35,18 @@ export default function Orders() {
         togglePopupCreateOrderConfirmation();
     }
 
-    
+
     function togglePopupCreateOrderConfirmation() {
-        
+
         setConfirmationOrderPopupOpen(!confirmationOrderPopupOpen);
         togglePopupCreateOrder();
         setSubmitStatusMessageStatus(false);
     }
 
-    function closePopupCreateOrderConfirmation(){
+    function closePopupCreateOrderConfirmation() {
         console.log('in closePopupCreateOrderConfirmation here');
         setOrderNoValue(0);
-        
+
         setPostDataClicked(false);
         setPostStatusMessage(false);
         setPostDataClicked(false);
@@ -57,17 +57,17 @@ export default function Orders() {
     }
 
     //final close
-    function handleClosePopups(){
-        
+    function handleClosePopups() {
+
         setOrderNoValue(0);
- 
+
         setPostDataClicked(false);
         setPostStatusMessage(false);
         setPostDataClicked(false);
         setSubmitStatusMessageStatus(false);
         setCreateOrderPopupOpen(false);
         setConfirmationOrderPopupOpen(false);
-        
+
     }
 
     //For the inputs to create order
@@ -78,57 +78,57 @@ export default function Orders() {
     const [postStatusMessage, setPostStatusMessage] = useState(false);
     //For showing the result message
     const [postDataClicked, setPostDataClicked] = useState(false);
-    
-    async function createDistinctOrder(){
+
+    async function createDistinctOrder() {
         console.log('called create distinct order');
 
         await ambrosialAxiosAPI.post('/createdistinctorder', {
-            orderNo:orderNoValue,
+            orderNo: orderNoValue,
         })
-        .then((response) => {
-             console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-             console.log(`response Status: ${response.data.status}`);
-             console.log(`response Message: ${response.data.message}`);
-             console.log("response Data: ", response.data.data);
-             setPostStatus(response.data.status);
-             setPostStatusMessage(response.data.message);
-          })
-        .catch((error) => {
-            console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-            console.log(`Error Status: ${error.response.data.status}`);
-            console.log(`Error Message: ${error.response.data.message}`);
-            setPostStatus(error.response.data.status);
-            setPostStatusMessage(error.response.data.message);
-          });
+            .then((response) => {
+                console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
+                console.log(`response Status: ${response.data.status}`);
+                console.log(`response Message: ${response.data.message}`);
+                console.log("response Data: ", response.data.data);
+                setPostStatus(response.data.status);
+                setPostStatusMessage(response.data.message);
+            })
+            .catch((error) => {
+                console.log(`${error.response.config.method} method`, `for route:, ${error.response.config.url}`);
+                console.log(`Error Status: ${error.response.data.status}`);
+                console.log(`Error Message: ${error.response.data.message}`);
+                setPostStatus(error.response.data.status);
+                setPostStatusMessage(error.response.data.message);
+            });
 
-        
-          setPostDataClicked(true);
+
+        setPostDataClicked(true);
     }
 
-    useEffect(async () => {    
+    useEffect(async () => {
         //preload the orders
-        getAllDistinctOrders(); 
-        
+        getAllDistinctOrders();
+
     }, []);
 
     //To get all distinct orders data
     const [distinctOrderData, setDistinctOrderData] = useState([]);
-    
-    async function getAllDistinctOrders(){
+
+    async function getAllDistinctOrders() {
         await ambrosialAxiosAPI.get('/viewdistinctorder')
-        .then((response) => {
-         console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
-         console.log(`response Status: ${response.data.status}`);
-         console.log(`response Message: ${response.data.message}`);
-         //Not in template literal as it will only show the type object
-         console.log("response Data: ", response.data.data);
-         setDistinctOrderData(response.data.data);
-       })
-       .catch((error) => {
-       console.log(`${error.response.config.method} method`,`for route:, ${error.response.config.url}`);
-       console.log(`Error Status: ${error.response.data.status}`);
-       console.log(`Error Message: ${error.response.data.message}`);
-     });
+            .then((response) => {
+                console.log(`${response.config.method} method`, `for route:, ${response.config.url}`);
+                console.log(`response Status: ${response.data.status}`);
+                console.log(`response Message: ${response.data.message}`);
+                //Not in template literal as it will only show the type object
+                console.log("response Data: ", response.data.data);
+                setDistinctOrderData(response.data.data);
+            })
+            .catch((error) => {
+                console.log(`${error.response.config.method} method`, `for route:, ${error.response.config.url}`);
+                console.log(`Error Status: ${error.response.data.status}`);
+                console.log(`Error Message: ${error.response.data.message}`);
+            });
     }
 
     //This is for viewing the orders for a distinct order
@@ -139,7 +139,7 @@ export default function Orders() {
     //setting update view
     const [viewUpdate, setViewUpdate] = useState(false);
     const [viewConfirmationUpdatePopupOpen, setViewConfirmationUpdatePopupOpen] = useState(false);
-    
+
     //setting of orderNoId for each row
     const [orderNoId, setOrderNoId] = useState(false);
     const [orderNoUpdate, setOrderNoUpdate] = useState(0);
@@ -154,16 +154,16 @@ export default function Orders() {
     //setting of the update distinct order confirmation
 
     //function to toggle the popup update
-    function toggleUpdateDistinctOrderPopup(){
+    function toggleUpdateDistinctOrderPopup() {
         setViewUpdate(!viewUpdate);
         setUpdateSubmitStatus(false);
         setModalVisible(!modalVisible);
     }
 
     //function to validate the input tag for update
-    function onSubmitValidateinputForUpdate(event){
+    function onSubmitValidateinputForUpdate(event) {
         event.preventDefault();
-        if(!orderNoUpdate){
+        if (!orderNoUpdate) {
             setUpdateSubmitStatus(true);
             setUpdateSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
             return;
@@ -171,9 +171,9 @@ export default function Orders() {
 
         toggleUpdateDistinctOrderConfirmation();
     }
-  
+
     function toggleUpdateDistinctOrderConfirmation() {
-        
+
         console.log('in toggle here');
         setViewUpdate(!viewUpdate);
         setViewConfirmationUpdatePopupOpen(!viewConfirmationUpdatePopupOpen);
@@ -181,7 +181,7 @@ export default function Orders() {
         setUpdateSubmitStatus(false);
     }
 
-    function closePopupUpdateDistinctOrderConfirmation(){
+    function closePopupUpdateDistinctOrderConfirmation() {
         setOrderNoUpdate(0);
 
         setUpdateDataClicked(false);
@@ -195,7 +195,7 @@ export default function Orders() {
     }
 
     //final close
-    function handleCloseUpdatePopups(event){
+    function handleCloseUpdatePopups(event) {
         setOrderNoUpdate(0);
 
         setUpdateDataClicked(false);
@@ -213,34 +213,34 @@ export default function Orders() {
     const [updateDistinctOrderStatusMessage, setUpdateDistinctOrderStatusMessage] = useState(false);
     //For showing the result message
     const [updateDataClicked, setUpdateDataClicked] = useState(false);
-    
-    async function updateDistinctOrder(){
-        console.log('called update order');
-        
 
-        await ambrosialAxiosAPI.put(`/updatedistinctorder/${orderNoId}`, {    
+    async function updateDistinctOrder() {
+        console.log('called update order');
+
+
+        await ambrosialAxiosAPI.put(`/updatedistinctorder/${orderNoId}`, {
             orderNoOld: viewOrderItemsOrderNo,
             orderNoNew: orderNoUpdate
         })
-        .then((response) => {
-             console.log(`${response.config.method} method for route: ${response.config.url}`);
-             console.log(`response Status: ${response.data.status}`);
-             console.log(`response Message: ${response.data.message}`);
-             console.log("response Data: ", response.data.data);
-             setUpdateDistinctOrderStatus(response.data.status);
-             setUpdateDistinctOrderStatusMessage(response.data.message);
-        })
-        .catch((error) => {
-            console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-            console.log(`Error Status: ${error.response.data.status}`);
-            console.log(`Error Message: ${error.response.data.message}`);
-            setUpdateDistinctOrderStatus(error.response.data.status);
-            setUpdateDistinctOrderStatusMessage(error.response.data.message);
-        });
+            .then((response) => {
+                console.log(`${response.config.method} method for route: ${response.config.url}`);
+                console.log(`response Status: ${response.data.status}`);
+                console.log(`response Message: ${response.data.message}`);
+                console.log("response Data: ", response.data.data);
+                setUpdateDistinctOrderStatus(response.data.status);
+                setUpdateDistinctOrderStatusMessage(response.data.message);
+            })
+            .catch((error) => {
+                console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+                console.log(`Error Status: ${error.response.data.status}`);
+                console.log(`Error Message: ${error.response.data.message}`);
+                setUpdateDistinctOrderStatus(error.response.data.status);
+                setUpdateDistinctOrderStatusMessage(error.response.data.message);
+            });
 
         setUpdateDataClicked(true);
     }
-    
+
     //delete distinct order
     //setting delete view
     const [viewDelete, setViewDelete] = useState(false);
@@ -253,21 +253,21 @@ export default function Orders() {
     //setting of the update distinct order confirmation
 
     //function to toggle the popup update
-    function toggleDeleteDistinctOrderPopup(){
+    function toggleDeleteDistinctOrderPopup() {
         setViewDelete(!viewDelete);
         setDeleteSubmitStatus(false);
         setModalVisible(!modalVisible);
     }
 
     //function to validate the input tag for update
-    function onSubmitValidateinputForDelete(event){
+    function onSubmitValidateinputForDelete(event) {
         event.preventDefault();
 
         toggleDeleteDistinctOrderConfirmation();
     }
 
     function toggleDeleteDistinctOrderConfirmation() {
-        
+
         console.log('in toggleDeleteDistinctOrderConfirmation');
         setViewDelete(!viewDelete);
         setViewConfirmationDeletePopupOpen(!viewConfirmationDeletePopupOpen);
@@ -276,7 +276,7 @@ export default function Orders() {
         setOrderNoUpdate(0);
     }
 
-    function closePopupDeleteDistinctOrderConfirmation(){
+    function closePopupDeleteDistinctOrderConfirmation() {
         setOrderNoUpdate(0);
 
         setDeleteDataClicked(false);
@@ -290,7 +290,7 @@ export default function Orders() {
     }
 
     //final close
-    function handleCloseDeletePopups(event){
+    function handleCloseDeletePopups(event) {
         setOrderNoUpdate(0);
 
         setDeleteDataClicked(false);
@@ -309,31 +309,31 @@ export default function Orders() {
     //For showing the result message
     const [deleteDataClicked, setDeleteDataClicked] = useState(false);
 
-    async function deleteDistinctOrder(){
+    async function deleteDistinctOrder() {
         console.log('called delete distinct order');
 
 
         await ambrosialAxiosAPI.delete(`/deletedistinctOrder/${orderNoId}`)
-        .then((response) => {
-            console.log(`${response.config.method} method for route: ${response.config.url}`);
-            console.log(`response Status: ${response.data.status}`);
-            console.log(`response Message: ${response.data.message}`);
-            console.log("response Data: ", response.data.data);
-            setDeleteDistinctOrderStatus(response.data.status);
-            setDeleteDistinctOrderStatusMessage(response.data.message);
-        })
-        .catch((error) => {
-            console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-            console.log(`Error Status: ${error.response.data.status}`);
-            console.log(`Error Message: ${error.response.data.message}`);
-            setDeleteDistinctOrderStatus(error.response.data.status);
-            setDeleteDistinctOrderStatusMessage(error.response.data.message);
-        });
+            .then((response) => {
+                console.log(`${response.config.method} method for route: ${response.config.url}`);
+                console.log(`response Status: ${response.data.status}`);
+                console.log(`response Message: ${response.data.message}`);
+                console.log("response Data: ", response.data.data);
+                setDeleteDistinctOrderStatus(response.data.status);
+                setDeleteDistinctOrderStatusMessage(response.data.message);
+            })
+            .catch((error) => {
+                console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
+                console.log(`Error Status: ${error.response.data.status}`);
+                console.log(`Error Message: ${error.response.data.message}`);
+                setDeleteDistinctOrderStatus(error.response.data.status);
+                setDeleteDistinctOrderStatusMessage(error.response.data.message);
+            });
 
         setDeleteDataClicked(true);
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
-    
+
     //modal Code for popups
     const [modalVisible, setModalVisible] = useState(false);
     console.log('viewUpdate:', viewUpdate);
@@ -342,181 +342,181 @@ export default function Orders() {
     //UseEffect to track the different popups
     useEffect(async () => {
 
-        if((createOrderPopupOpen===true)){
+        if ((createOrderPopupOpen === true)) {
             setModalVisible(true);
         }
 
-        if((confirmationOrderPopupOpen===true) ){
+        if ((confirmationOrderPopupOpen === true)) {
             setModalVisible(true);
         }
 
-        if((viewOrder===true)){
+        if ((viewOrder === true)) {
             setModalVisible(true);
         }
 
-        if((viewUpdate===true)){
+        if ((viewUpdate === true)) {
             setModalVisible(true);
         }
 
-        if((viewConfirmationUpdatePopupOpen=== true)){
+        if ((viewConfirmationUpdatePopupOpen === true)) {
             setModalVisible(true);
         }
 
-        if((viewDelete===true)){
+        if ((viewDelete === true)) {
             setModalVisible(true);
         }
 
-        if((viewConfirmationDeletePopupOpen===true)){
+        if ((viewConfirmationDeletePopupOpen === true)) {
             setModalVisible(true);
         }
 
-        if((createOrderPopupOpen===false) && (confirmationOrderPopupOpen===false) && (viewOrder===false) && (viewUpdate===false) && (viewConfirmationUpdatePopupOpen===false) && (viewDelete===false) && (viewConfirmationDeletePopupOpen===false)){
+        if ((createOrderPopupOpen === false) && (confirmationOrderPopupOpen === false) && (viewOrder === false) && (viewUpdate === false) && (viewConfirmationUpdatePopupOpen === false) && (viewDelete === false) && (viewConfirmationDeletePopupOpen === false)) {
             setModalVisible(false);
-        }else{
+        } else {
             console.log('not all popup states are false');
         }
-        
+
     }, [createOrderPopupOpen, confirmationOrderPopupOpen, viewOrder, viewUpdate, viewConfirmationUpdatePopupOpen, viewDelete, viewConfirmationDeletePopupOpen]);
 
 
     return (
         <>
-        <div className='createAndRefresh'>
-            <button  className='refreshList' onClick={getAllDistinctOrders}>Refresh List</button>
-            <button className='createOrder' onClick={togglePopupCreateOrder}>Create Order</button> 
-        </div>
-            
-        {modalVisible ? <div className='modalContainer'></div>:null}
-        {createOrderPopupOpen && <Popup
-        popupType='createOrderPopup'
-        handleClose={togglePopupCreateOrder}
-        content={
-            <form className='formCreateDistinctOrder'onSubmit={onSubmitValidateInput}>
-                <label className='formHeaderCreateDistinctOrder'>Create Order</label>
-                <br></br>
-                <br></br>
+            <div className='createAndRefresh'>
+                <button className='refreshList' onClick={getAllDistinctOrders}>Refresh List</button>
+                <button className='createOrder' onClick={togglePopupCreateOrder}>Create Order</button>
+            </div>
 
-                <div className='label-input-div'>
-                    <label className='formLabelTextCreateDistinctOrder'>Order No. </label>
-                    <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
-                </div>
-                <br></br>
+            {modalVisible ? <div className='modalContainer'></div> : null}
+            {createOrderPopupOpen && <Popup
+                popupType='createOrderPopup'
+                handleClose={togglePopupCreateOrder}
+                content={
+                    <form className='formCreateDistinctOrder' onSubmit={onSubmitValidateInput}>
+                        <label className='formHeaderCreateDistinctOrder'>Create Order</label>
+                        <br></br>
+                        <br></br>
 
-                <button className='createOrderButton'>Submit</button>
-                <br></br>
-                <br></br>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateDistinctOrder'>Order No. </label>
+                            <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
+                        </div>
+                        <br></br>
 
-                {submitStatusMessageStatus ? <label className='formLabelTextStatusCreateDistinctOrder'>{<label className='formLabelTextCreateDistinctOrder'>{submitStatusMessage}</label>}</label>:null}
-            </form> 
-        }/>}
+                        <button className='createOrderButton'>Submit</button>
+                        <br></br>
+                        <br></br>
 
-            
-        {confirmationOrderPopupOpen && <Popup
-        popupType='createOrderConfirmationPopup'
-        handleClose={togglePopupCreateOrderConfirmation}
-        content={
-             <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage}/>
- 
-        }/>}
-
-        {/* update Popup */}
-        {viewUpdate && <Popup
-        popupType='updateCurrentDistinctOrderPopup'
-        handleClose={toggleUpdateDistinctOrderPopup}
-        content={
-            <form className='formUpdateDistinctOrder' onSubmit={onSubmitValidateinputForUpdate}>
-                <label className='formHeaderUpdate'>Update Current Order</label>
-                <br></br>
-                <br></br>
-                
-                <div className='label-input-div'>
-                    <label className='formLabelTextUpdate'>Current Order No.</label>
-                    <label className='formLabelOrderNoUpdate'>{viewOrderItemsOrderNo}</label>
-                </div>
-                <br></br>
-
-                <div className='label-input-div'>
-                    <label className='formLabelTextUpdate'>Updated Order No.</label>
-                    <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
-                </div>
-                <br></br>
-
-                <button className='updateCurrentDistinctOrderButton'>Submit</button>
-                <br></br>
-                <br></br>
-
-                {updateSubmitStatus ? <label className='formLabelTextStatusUpdateDistinctOrder'>{<label className='formLabelTextUpdateDistinctOrder'>{updateSubmitStatusMessage}</label>}</label>:null}
-            </form>
-        }/>}
-        
-        { viewConfirmationUpdatePopupOpen && <Popup
-        popupType='updateOrderConfirmationPopup'
-        handleClose={toggleUpdateDistinctOrderConfirmation}
-        content={
-            //props needed are: updateDistinctOrder(), closePopupUpdateDistinctOrderConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateDistinctOrderStatusMessage
-            <ConfirmationPopupContents  invokeAction={updateDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateDistinctOrderStatusMessage}/>
-        }/>} 
-
-        {/* delete Popup */}
-        {viewDelete && <Popup
-        popupType='deleteCurrentDistinctOrderPopup'
-        handleClose={toggleDeleteDistinctOrderPopup}
-        content={
-            <form className='formDeleteDistinctOrder' onSubmit={onSubmitValidateinputForDelete}>
-                <label className='formHeaderDelete'>Delete Order</label>
-                <br></br>
-                <br></br>
-
-                <div className='label-input-div'>
-                    <label className='formLabelTextDelete'>Order No.  </label>
-                    <label className='formLabelOrderNoDelete'>{viewOrderItemsOrderNo}</label>
-                </div>
-                <br></br>
-
-                <button className='deleteCurrentDistinctOrderButton'>Submit</button>
-                <br></br>
-                <br></br>
-
-                {deleteSubmitStatus ? <label className='formLabelTextStatusDeleteDistinctOrder'>{<label className='formLabelTextDeleteDistinctOrder'>{deleteSubmitStatusMessage}</label>}</label>:null}
-            </form>
-        }/>}
-
-        {viewConfirmationDeletePopupOpen && <Popup
-        popupType='deleteOrderConfirmationPopup'
-        handleClose={toggleDeleteDistinctOrderConfirmation}
-        content={
-            <ConfirmationPopupContents  invokeAction={deleteDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupDeleteDistinctOrderConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteDistinctOrderStatusMessage}/>
-        }/>
-        } 
+                        {submitStatusMessageStatus ? <label className='formLabelTextStatusCreateDistinctOrder'>{<label className='formLabelTextCreateDistinctOrder'>{submitStatusMessage}</label>}</label> : null}
+                    </form>
+                } />}
 
 
-        <div className="orders">
-            <h1 className='orderTitle'>Orders</h1>
+            {confirmationOrderPopupOpen && <Popup
+                popupType='createOrderConfirmationPopup'
+                handleClose={togglePopupCreateOrderConfirmation}
+                content={
+                    <ConfirmationPopupContents invokeAction={createDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupCreateOrderConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage} />
 
-            <table className='orderTable'>
-                <tr>
-                    <th className='orderTableColumn'>No.</th>
-                    <th className='orderTableColumn'>Order No.</th>
-                    <th className='orderTableColumn' colSpan='3'>Actions</th>
-                </tr>
-                
-                {distinctOrderData.map((distinctOrder, index)=>(
+                } />}
+
+            {/* update Popup */}
+            {viewUpdate && <Popup
+                popupType='updateCurrentDistinctOrderPopup'
+                handleClose={toggleUpdateDistinctOrderPopup}
+                content={
+                    <form className='formUpdateDistinctOrder' onSubmit={onSubmitValidateinputForUpdate}>
+                        <label className='formHeaderUpdate'>Update Current Order</label>
+                        <br></br>
+                        <br></br>
+
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdate'>Current Order No.</label>
+                            <label className='formLabelOrderNoUpdate'>{viewOrderItemsOrderNo}</label>
+                        </div>
+                        <br></br>
+
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdate'>Updated Order No.</label>
+                            <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
+                        </div>
+                        <br></br>
+
+                        <button className='updateCurrentDistinctOrderButton'>Submit</button>
+                        <br></br>
+                        <br></br>
+
+                        {updateSubmitStatus ? <label className='formLabelTextStatusUpdateDistinctOrder'>{<label className='formLabelTextUpdateDistinctOrder'>{updateSubmitStatusMessage}</label>}</label> : null}
+                    </form>
+                } />}
+
+            {viewConfirmationUpdatePopupOpen && <Popup
+                popupType='updateOrderConfirmationPopup'
+                handleClose={toggleUpdateDistinctOrderConfirmation}
+                content={
+                    //props needed are: updateDistinctOrder(), closePopupUpdateDistinctOrderConfirmation(), handleCloseUpdatePopups(), updateDataClicked and updateDistinctOrderStatusMessage
+                    <ConfirmationPopupContents invokeAction={updateDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupUpdateDistinctOrderConfirmation} closeButton={handleCloseUpdatePopups} clickStatus={updateDataClicked} statusMessage={updateDistinctOrderStatusMessage} />
+                } />}
+
+            {/* delete Popup */}
+            {viewDelete && <Popup
+                popupType='deleteCurrentDistinctOrderPopup'
+                handleClose={toggleDeleteDistinctOrderPopup}
+                content={
+                    <form className='formDeleteDistinctOrder' onSubmit={onSubmitValidateinputForDelete}>
+                        <label className='formHeaderDelete'>Delete Order</label>
+                        <br></br>
+                        <br></br>
+
+                        <div className='label-input-div'>
+                            <label className='formLabelTextDelete'>Order No.  </label>
+                            <label className='formLabelOrderNoDelete'>{viewOrderItemsOrderNo}</label>
+                        </div>
+                        <br></br>
+
+                        <button className='deleteCurrentDistinctOrderButton'>Submit</button>
+                        <br></br>
+                        <br></br>
+
+                        {deleteSubmitStatus ? <label className='formLabelTextStatusDeleteDistinctOrder'>{<label className='formLabelTextDeleteDistinctOrder'>{deleteSubmitStatusMessage}</label>}</label> : null}
+                    </form>
+                } />}
+
+            {viewConfirmationDeletePopupOpen && <Popup
+                popupType='deleteOrderConfirmationPopup'
+                handleClose={toggleDeleteDistinctOrderConfirmation}
+                content={
+                    <ConfirmationPopupContents invokeAction={deleteDistinctOrder} invokeRefresh={getAllDistinctOrders} xButtonClose={closePopupDeleteDistinctOrderConfirmation} closeButton={handleCloseDeletePopups} clickStatus={deleteDataClicked} statusMessage={deleteDistinctOrderStatusMessage} />
+                } />
+            }
+
+
+            <div className="orders">
+                <h1 className='orderTitle'>Orders</h1>
+
+                <table className='orderTable'>
+                    <tr>
+                        <th className='orderTableColumn'>No.</th>
+                        <th className='orderTableColumn'>Order No.</th>
+                        <th className='orderTableColumn' colSpan='3'>Actions</th>
+                    </tr>
+
+                    {distinctOrderData.map((distinctOrder, index) => (
                         <tr key={distinctOrder.orderNo}>
-                            <td className='orderTableColumn'>{index+1}</td>
+                            <td className='orderTableColumn'>{index + 1}</td>
                             <td className='orderTableColumn'>{distinctOrder.orderNo}</td>
-                            <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder}/></td>
-                            <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."}/></td>
-                            <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"}/></td>
+                            <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder} /></td>
+                            <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."} /></td>
+                            <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"} /></td>
                         </tr>
                     )
-                )}
-        
-            </table>
+                    )}
 
-                
-            <ViewOrderItems setOrderNoId={setOrderNoId} orderNo={viewOrderItemsOrderNo} setOrderNo={setViewOrderItemsOrderNo} viewOrder={viewOrder} setViewOrder={setViewOrder}/>
+                </table>
 
-    </div>
-    </>
+
+                <ViewOrderItems setOrderNoId={setOrderNoId} orderNo={viewOrderItemsOrderNo} setOrderNo={setViewOrderItemsOrderNo} viewOrder={viewOrder} setViewOrder={setViewOrder} />
+
+            </div>
+        </>
     )
 }

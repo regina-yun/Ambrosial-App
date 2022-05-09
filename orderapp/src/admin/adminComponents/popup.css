@@ -1,3 +1,4 @@
+.createMenuItemPopup-box,
 .createOrderPopup-box{
   width:30%;
   height:auto;
@@ -24,6 +25,7 @@
   z-index: 2;
 }
 
+.updateMenuItemPopup-box,
 .updateOrderItemPopup-box{
   width:30%;
   height: auto;
@@ -50,6 +52,7 @@
   z-index: 2;
 }
 
+.deleteMenuItemPopup-box,
 .deleteOrderItemPopup-box{
   width:30%;
   height: auto;
@@ -62,6 +65,30 @@
   left: 32%;
   z-index: 4;
 }
+
+.createMenuItem-close-icon,
+.createOrder-close-icon {
+  margin-left: 95%;
+}
+
+.updateCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
+.updateMenuItem-close-icon,
+.updateOrderItem-close-icon{
+  margin-left: 95%;
+}
+
+.deleteCurrentDistinctOrder-close-icon{
+  margin-left: 95%;
+}
+
+.deleteMenuItem-close-icon,
+.deleteOrderItem-close-icon{
+  margin-left: 95%;
+}
+
 
 .createOrderConfirmationPopup-box {
   width:30%;
@@ -76,6 +103,7 @@
   z-index: 2;
 }
 
+.createMenuItemConfirmationPopup-box,
 .createOrderItemConfirmationPopup-box {
   position:absolute;
   top: 20%;
@@ -87,6 +115,7 @@
   padding:3%;
   z-index: 4;
 }
+
 
 .updateOrderConfirmationPopup-box{
   width:30%;
@@ -101,6 +130,7 @@
   z-index: 2;
 }
 
+.updateMenuItemConfirmationPopup-box,
 .updateOrderItemConfirmationPopup-box{
   width:30%;
   height: auto;
@@ -113,6 +143,7 @@
   left: 32%;
   z-index: 3;
 }
+
 
 .deleteOrderConfirmationPopup-box{
   width:30%;
@@ -127,6 +158,7 @@
   z-index: 2;
 }
 
+.deleteMenuItemConfirmationPopup-box,
 .deleteOrderItemConfirmationPopup-box{
   width:30%;
   height: auto;
@@ -140,6 +172,34 @@
   z-index: 4;
 }
 
+.createMenuItemConfirmation-close-icon,
+.createOrderItemConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.createOrderConfirmation-close-icon {
+  margin-left: 95%;
+}
+
+.updateOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.updateMenuItemConfirmation-close-icon,
+.updateOrderItemConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.deleteOrderConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+.deleteMenuItemConfirmation-close-icon,
+.deleteOrderItemConfirmation-close-icon{
+  margin-left: 95%;
+}
+
+
 .viewOrderPopup-box{
   position:absolute;
   top: 20%;
@@ -151,6 +211,7 @@
   padding:3%;
   z-index: 2;
 }
+
 
 .createOrderItemPopup-box{
   position:absolute;
@@ -396,3 +457,5 @@
   font-size: 28px;
   cursor: pointer;
 }
+
+

@@ -3,3 +3,18 @@
     background-color: black;
     height: 100vh;
   }
+
+.table{
+  margin-top: 10vh;
+  margin-left: 10vw;
+  
+}
+
+.menuitem-image {
+  
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1px;
+  width: 120px;
+  object-fit: contain;
+}
