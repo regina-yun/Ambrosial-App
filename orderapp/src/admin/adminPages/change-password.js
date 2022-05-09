@@ -26,6 +26,12 @@ function ChangePassword() {
     setUpdatePassword(updatedPassword);
   }
 
+  function handleCancel(e) {
+    e.preventDefault();
+
+    history.push("/login");
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -140,9 +146,7 @@ function ChangePassword() {
                 }
 
                 <div className='change-pw-cancel-button-div'>
-                  <button className='change-pw-button'>
-                    <Link to="/login" className='change-pw-cancel-link'>Cancel</Link>
-                  </button>
+                  <button className='change-pw-button' onClick={handleCancel}>Cancel</button>
                 </div>
               </div>
             </form> 
