@@ -396,8 +396,10 @@ export default function Orders() {
                 <br></br>
                 <br></br>
 
-                <label className='formLabelTextCreateDistinctOrder'>Order No. </label>
-                <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
+                <div className='label-input-div'>
+                    <label className='formLabelTextCreateDistinctOrder'>Order No. </label>
+                    <input type="number" className='createInputOrderNo' onChange={(e) => setOrderNoValue(e.target.value)}></input>
+                </div>
                 <br></br>
 
                 <button className='createOrderButton'>Submit</button>
@@ -427,14 +429,16 @@ export default function Orders() {
                 <br></br>
                 <br></br>
                 
-                <div>
-                <label className='formLabelTextUpdate'>Current Order No.</label>
-                <label className='formLabelOrderNoUpdate'>{viewOrderItemsOrderNo}</label>
+                <div className='label-input-div'>
+                    <label className='formLabelTextUpdate'>Current Order No.</label>
+                    <label className='formLabelOrderNoUpdate'>{viewOrderItemsOrderNo}</label>
                 </div>
                 <br></br>
 
-                <label className='formLabelTextUpdate'>Updated Order No.</label>
-                <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
+                <div className='label-input-div'>
+                    <label className='formLabelTextUpdate'>Updated Order No.</label>
+                    <input type="number" className='updateOrderNo' value={orderNoUpdate} onChange={(e) => setOrderNoUpdate(e.target.value)}></input>
+                </div>
                 <br></br>
 
                 <button className='updateCurrentDistinctOrderButton'>Submit</button>
@@ -463,8 +467,10 @@ export default function Orders() {
                 <br></br>
                 <br></br>
 
-                <label className='formLabelTextDelete'>Order No.  </label>
-                <label className='formLabelOrderNoDelete'>{viewOrderItemsOrderNo}</label>
+                <div className='label-input-div'>
+                    <label className='formLabelTextDelete'>Order No.  </label>
+                    <label className='formLabelOrderNoDelete'>{viewOrderItemsOrderNo}</label>
+                </div>
                 <br></br>
 
                 <button className='deleteCurrentDistinctOrderButton'>Submit</button>

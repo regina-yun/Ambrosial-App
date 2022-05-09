@@ -21,6 +21,9 @@
   font-family: 'Slabo 27px', serif;
 }
 
+.label-input-div {
+  padding-bottom: 2%;
+}
 /* Create Section */
 .formCreateNewOrderItem {
   margin-top: 4%;

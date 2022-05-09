@@ -488,28 +488,40 @@ async function updateOrderItems(){
                 <br></br>
                 <br></br>
 
-                <label className='formLabelTextCreateOrderNo'>Order No.</label>
-                <input type="number" className='createInputNewOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
+                <div className='label-input-div'>
+                    <label className='formLabelTextCreateOrderNo'>Order No.</label>
+                    <input type="number" className='createInputNewOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
+                </div>
                 <br></br>
 
-                <label className='formLabelTextCreateOrderMenuItemId'>Menu Item Id</label>
-                <input type="number" className='createInputNewMenuItemId' onChange={(e) => setMenuItemIDValue(e.target.value)}></input>
+                <div className='label-input-div'>
+                    <label className='formLabelTextCreateOrderMenuItemId'>Menu Item Id</label>
+                    <input type="number" className='createInputNewMenuItemId' onChange={(e) => setMenuItemIDValue(e.target.value)}></input>
+                </div>
                 <br></br>
 
-                <label className='formLabelTextCreateOrderQuantity'>Quantity</label>
-                <input type="number" className='createInputNewQuantity' onChange={(e) => setQuantityValue(e.target.value)}></input>
+                <div className='label-input-div'>
+                    <label className='formLabelTextCreateOrderQuantity'>Quantity</label>
+                    <input type="number" className='createInputNewQuantity' onChange={(e) => setQuantityValue(e.target.value)}></input>
+                </div>
                 <br></br>
 
-                <label className='formLabelTextCreateOrderTotalItemPrice'>Total Item Price</label>
-                <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputNewTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
+                <div className='label-input-div'>
+                    <label className='formLabelTextCreateOrderTotalItemPrice'>Total Item Price</label>
+                    <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputNewTotalItemPrice' onChange={(e) => setTotalItemPriceValue(e.target.value)} ></input>
+                </div>
                 <br></br>
 
-                <label className='formLabelTextCreateOrderTableNo'>Table No</label>
-                <input type="number" className='createInputNewTableNo' onChange={(e) => setTableNoValue(e.target.value)}></input>
+                <div className='label-input-div'>
+                    <label className='formLabelTextCreateOrderTableNo'>Table No</label>
+                    <input type="number" className='createInputNewTableNo' onChange={(e) => setTableNoValue(e.target.value)}></input>
+                </div>
                 <br></br>
 
-                <label className='formLabelTextCreateOrderOrderStatus'>Order Status</label>
-                <input type="text" className='createInputNewOrderStatus' onChange={(e) => setOrderStatusValue(e.target.value)}></input>
+                <div className='label-input-div'>
+                    <label className='formLabelTextCreateOrderOrderStatus'>Order Status</label>
+                    <input type="text" className='createInputNewOrderStatus' onChange={(e) => setOrderStatusValue(e.target.value)}></input>
+                </div>
                 <br></br>
 
                 <button className='createOrderItemsButton'>Submit</button>
@@ -539,28 +551,40 @@ async function updateOrderItems(){
                         <br></br>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrder'>Order No. Id</label>
-                        <input type="number" className='createInputUpdateOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrder'>Order No. Id</label>
+                            <input type="number" className='createInputUpdateOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderMenuItemId'>Menu Item Id</label>
-                        <input type="number" className='createInputUpdateMenuItemId' onChange={(e) => setMenuItemIDValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderMenuItemId'>Menu Item Id</label>
+                            <input type="number" className='createInputUpdateMenuItemId' onChange={(e) => setMenuItemIDValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderQuantity'>Quantity</label>
-                        <input type="number" className='createInputUpdateQuantity' onChange={(e) => setQuantityValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderQuantity'>Quantity</label>
+                            <input type="number" className='createInputUpdateQuantity' onChange={(e) => setQuantityValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderTotalItemPrice'>Total Item Price</label>
-                        <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputUpdateTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderTotalItemPrice'>Total Item Price</label>
+                            <input pattern="^\d*(\.\d{0,2})?$" type="number" step="0.01" className='createInputUpdateTotalItemPrice' onChange={(e) => setTotalItemPriceValueUpdate(e.target.value)} ></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderTableNo'>Table No</label>
-                        <input type="number" className='createInputUpdateTableNo' onChange={(e) => setTableNoValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderTableNo'>Table No</label>
+                            <input type="number" className='createInputUpdateTableNo' onChange={(e) => setTableNoValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
-                        <label className='formLabelTextUpdateOrderOrderStatus'>Order Status</label>
-                        <input type="text" className='createInputUpdateOrderStatus' onChange={(e) => setOrderStatusValueUpdate(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextUpdateOrderOrderStatus'>Order Status</label>
+                            <input type="text" className='createInputUpdateOrderStatus' onChange={(e) => setOrderStatusValueUpdate(e.target.value)}></input>
+                        </div>
                         <br></br>
 
                         <button className='createOrderItemsButton'>Submit</button>
@@ -589,11 +613,15 @@ async function updateOrderItems(){
                 <br></br>
                 <br></br>
 
+                <div className='label-input-div'>
                 <label className='formLabelTextDeleteOrderItem'>Menu Item:&nbsp;</label>
                 <label className='formLabelMenuItem'>{capitalize(menuItemName)}</label>
+                </div>
                 <br></br>
 
+                <div className='label-input-div'>
                 <button className='deleteOrderItemButton'>Submit</button>
+                </div>
                 <br></br>
                 <br></br>
 
