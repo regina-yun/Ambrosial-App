@@ -497,6 +497,7 @@ export default function Orders() {
                     <tr>
                         <th className='orderTableColumn'>No.</th>
                         <th className='orderTableColumn'>Order No.</th>
+                        <th className='orderTableColumn'>Order Id</th>
                         <th className='orderTableColumn' colSpan='3'>Actions</th>
                     </tr>
 
@@ -504,6 +505,7 @@ export default function Orders() {
                         <tr key={distinctOrder.orderNo}>
                             <td className='orderTableColumn'>{index + 1}</td>
                             <td className='orderTableColumn'>{distinctOrder.orderNo}</td>
+                            <td className='orderTableColumn'>{distinctOrder.orderNoId}</td>
                             <td className='actionButtons'><ViewOrderItemsButton orderNoId={distinctOrder.orderNoId} setOrderNoId={setOrderNoId} setOrderNo={setViewOrderItemsOrderNo} orderNo={distinctOrder.orderNo} setViewOrder={setViewOrder} /></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewUpdate} buttonText={"Update Order No."} /></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setOrderNoId} id={distinctOrder.orderNoId} setData={setViewOrderItemsOrderNo} data={distinctOrder.orderNo} setView={setViewDelete} buttonText={"Delete Distinct Order"} /></td>
