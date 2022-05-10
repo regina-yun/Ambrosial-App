@@ -11,7 +11,7 @@ jobs:
   build:
     defaults:
         run:
-            working-directory: 'orderapp'
+            working-directory: 'order-app'
     env:
       CI: false
     
@@ -31,7 +31,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
     - name: run npm commands
-      working-directory: 'orderapp'
+      working-directory: 'order-app'
       run: npm ci
            npm install
            #npm run build --if-present
