@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import { ambrosialAxiosAPI } from '../../api/api';
 import AdminApp from '../admin-app';
-import LoginHeader from '../adminComponents/login-header';
-import Popup from '../adminComponents/popup';
+import LoginHeader from '../components/login-header';
+import Popup from '../components/popup';
 import ChangePassword from './change-password';
 import './login.css';
 

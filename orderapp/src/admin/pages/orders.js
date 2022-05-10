@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import './orders.css';
-import Popup from '../adminComponents/popup';
+import Popup from '../components/popup';
 import { ambrosialAxiosAPI } from '../../api/api';
-import ViewOrderItems from '../adminComponents/ordersComponents/view-order-items';
-import ViewOrderItemsButton from '../adminComponents/ordersComponents/view-order-items-button';
-import UpdateAndDeleteButton from '../adminComponents/commonComponents/update-and-delete-button';
-import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmation-popup-contents';
+import ViewOrderItems from '../components/orders-components/view-order-items';
+import ViewOrderItemsButton from '../components/orders-components/view-order-items-button';
+import UpdateAndDeleteButton from '../components/common-components/update-and-delete-button';
+import ConfirmationPopupContents from '../components/common-components/confirmation-popup-contents';
 
 export default function Orders() {
 

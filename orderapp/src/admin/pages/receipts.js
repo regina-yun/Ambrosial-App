@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import './receipts.css';
-import Popup from '../adminComponents/popup';
+import Popup from '../components/popup';
 import { ambrosialAxiosAPI } from '../../api/api';
-import UpdateAndDeleteButton from '../adminComponents/commonComponents/update-and-delete-button';
-import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmation-popup-contents';
-import ViewOrderItemsButton from '../adminComponents/ordersComponents/view-order-items-button';
-import ViewReceiptItems from '../adminComponents/ordersComponents/view-receipt-items';
+import UpdateAndDeleteButton from '../components/common-components/update-and-delete-button';
+import ConfirmationPopupContents from '../components/common-components/confirmation-popup-contents';
+import ViewOrderItemsButton from '../components/orders-components/view-order-items-button';
+import ViewReceiptItems from '../components/orders-components/view-receipt-items';
 
 export default function Receipt(props) {
 
