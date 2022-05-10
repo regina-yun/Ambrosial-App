@@ -141,7 +141,8 @@ export default function Receipt(props) {
     //function to validate the input tags for update
     function onSubmitValidateinputForUpdate(event){
         event.preventDefault();
-        console.log(orderNoIdValueUpdate);
+        console.log('orderNoIdValueUpdate is',orderNoIdValueUpdate);
+        console.log('totalItemPriceValueUpdate is', totalItemPriceValueUpdate);
         if(!orderNoIdValueUpdate || !totalItemPriceValueUpdate){
             setUpdateSubmitStatus(true);
             setUpdateSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
@@ -207,7 +208,7 @@ export default function Receipt(props) {
 
         await ambrosialAxiosAPI.put(`/updatereceipt/${receiptID}`, {    
             orderNoId:orderNoIdValueUpdate,
-            totalItemPrice:totalItemPriceValueUpdate,
+            totalPrice:totalItemPriceValueUpdate,
         })
         .then((response) => {
             console.log(`${response.config.method} method for route: ${response.config.url}`);
@@ -388,7 +389,7 @@ export default function Receipt(props) {
     }, [createReceiptPopupOpen, createReceiptConfirmationPopupOpen, viewUpdate, viewConfirmationUpdatePopupOpen, viewDelete, viewConfirmationDeletePopupOpen]);
 
 
-    console.log('totalItemPrice is:', totalItemPriceValue);
+
 
     return (
         <>
@@ -449,7 +450,7 @@ export default function Receipt(props) {
 
                             <div className='label-input-div'>
                                 <label className='formLabelTextUpdateReceiptId'>Order No. Id</label>
-                                <input type="number" className='updateInputOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                                <input type="number" className='updateInputOrderNoId' value={orderNoIdValueUpdate} disabled></input>
                             </div>
                             <br></br>
 
@@ -513,16 +514,20 @@ export default function Receipt(props) {
                 <table className='receipt-table'>
                     <tr>
                         <th className='receipt-table-column'>No.</th>
+                        <th className='receipt-table-column'>Order No. Id</th>
                         <th className='receipt-table-column'>Order No.</th>
+                        <th className='receipt-table-column'>Receipt Id.</th>
                         <th className='receipt-table-column' colSpan='3'>Actions</th>
                     </tr>
                     
                     {receiptsListData.map((receiptsList, index)=>(
                             <tr key={receiptsList.orderNoId}>
                             <td className='receipt-table-column'>{index+1}</td>
+                            <td className='receipt-table-column'>{receiptsList.orderNoId}</td>
                             <td className='receipt-table-column'>{receiptsList.DistinctOrderList.orderNo}</td>
-                            <td className='actionButtons'><ViewOrderItemsButton setOrderNo={setOrderNo} orderNo={receiptsList.DistinctOrderList.orderNo} setViewOrder={setViewReceipt}/></td>
-                            <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewUpdate} buttonText={"Update Receipt"}/></td>
+                            <td className='receipt-table-column'>{receiptsList.receiptID}</td>
+                            <td className='actionButtons'><ViewOrderItemsButton orderNoId={() => {}} setOrderNoId={() => {}} setOrderNo={setOrderNo} orderNo={receiptsList.DistinctOrderList.orderNo} setViewOrder={setViewReceipt}/></td>
+                            <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNoIdValueUpdate} data={receiptsList.orderNoId} setView={setViewUpdate} buttonText={"Update Receipt"}/></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setReceiptID} id={receiptsList.receiptID} setData={setOrderNo} data={receiptsList.DistinctOrderList.orderNo} setView={setViewDelete} buttonText={"Delete Receipt"}/></td>
                             </tr>
                         )

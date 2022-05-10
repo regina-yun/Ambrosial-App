@@ -3,6 +3,7 @@ import './view-order-items-button.css';
 function ViewOrderItemsButton(props){
 
     function setOrderNo(){
+        props.setOrderNoId(props.orderNoId);
         props.setOrderNo(props.orderNo);
         props.setViewOrder(true);
     }
