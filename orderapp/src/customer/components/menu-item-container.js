@@ -1,5 +1,5 @@
-import Menuitemcomponent from "./Menuitemcomponent.js";
-import './MenuitemContainer.css';
+import Menuitemcomponent from "./menu-item-component.js";
+import './menu-item-container.css';
 
 function MenuitemContainer(props){
     //reference for filter:https://upmostly.com/tutorials/react-filter-filtering-arrays-in-react-with-examples

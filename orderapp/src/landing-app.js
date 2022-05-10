@@ -1,8 +1,7 @@
-import './LandingApp.css';
+import './landing-app.css';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import LoginHeader from './admin/adminComponents/login-header';
-import CustomerApp from './customer/CustomerApp';
-import AdminApp from './admin/AdminApp';
+import CustomerApp from './customer/customer-app';
 import Login from './admin/adminPages/login';
 
 function LandingApp() {
@@ -16,8 +15,6 @@ function LandingApp() {
     <div className="landing">
       <div className="main">
         <h2 className='landing-text'>Welcome to</h2>
-        {/* <h1 className='landing-title'>Ambrosial</h1>
-        <h3 className='landing-subtitle'>quality you can taste</h3> */}
         <LoginHeader />
         <h2 className='landing-text'>I am a...</h2>
         <div className="landing-nav"></div>

@@ -1,5 +1,5 @@
 import {v4 as uuid} from 'uuid';
-import './Invoice.css';
+import './invoice.css';
 
 export default function Invoice() {
     

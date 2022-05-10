@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import './Receipts.css';
+import './receipts.css';
 import Popup from '../adminComponents/popup';
 import { ambrosialAxiosAPI } from '../../api/api';
-import UpdateAndDeleteButton from '../adminComponents/commonComponents/UpdateAndDeleteButton';
-import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmationPopupContents';
+import UpdateAndDeleteButton from '../adminComponents/commonComponents/update-and-delete-button';
+import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmation-popup-contents';
 import ViewOrderItemsButton from '../adminComponents/ordersComponents/view-order-items-button';
 import ViewReceiptItems from '../adminComponents/ordersComponents/view-receipt-items';
 

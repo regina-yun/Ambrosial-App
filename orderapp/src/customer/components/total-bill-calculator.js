@@ -1,5 +1,5 @@
 import React from "react";
-import './TotalBillCalculator.css';
+import './total-bill-calculator.css';
 
 function TotalBillCalculator(props) {
   let totalBill = 0;

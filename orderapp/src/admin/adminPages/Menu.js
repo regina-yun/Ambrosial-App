@@ -1,9 +1,9 @@
-import './Menu.css';
+import './menu.css';
 import React, { useEffect, useState } from 'react';
 import { ambrosialAxiosAPI } from '../../api/api';
 import Popup from '../adminComponents/popup';
-import UpdateAndDeleteButton from '../adminComponents/commonComponents/UpdateAndDeleteButton';
-import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmationPopupContents';
+import UpdateAndDeleteButton from '../adminComponents/commonComponents/update-and-delete-button';
+import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmation-popup-contents';
 
 export default function Menu() {
 
