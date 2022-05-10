@@ -33,7 +33,8 @@ function ViewOrderItems(props) {
     //validation on submit
     function onSubmitValidateInput(event) {
         event.preventDefault();
-        if (!orderNoIdValue || !menuItemIDValue || !quantityValue || !totalItemPriceValue || !tableNoValue || !orderStatusValue) {
+        //!orderNoIdValue || 
+        if (!menuItemIDValue || !quantityValue || !totalItemPriceValue || !tableNoValue || !orderStatusValue) {
             setSubmitStatusMessageStatus(true);
             setSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
             return;
@@ -106,7 +107,8 @@ function ViewOrderItems(props) {
 
 
         await ambrosialAxiosAPI.post('/createorder', {
-            orderNoId: orderNoIdValue,
+            //orderNoId: orderNoIdValue
+            orderNoId: props.orderNoId,
             menuItemID: menuItemIDValue,
             quantity: quantityValue,
             totalItemPrice: totalItemPriceValue,
@@ -164,7 +166,8 @@ function ViewOrderItems(props) {
     function onSubmitValidateinputForUpdate(event) {
         event.preventDefault();
         console.log(orderNoIdValueUpdate);
-        if (!orderNoIdValueUpdate || !menuItemIDValueUpdate || !quantityValueUpdate || !totalItemPriceValueUpdate || !tableNoValueUpdate || !orderStatusValueUpdate) {
+        //!orderNoIdValueUpdate || 
+        if (!menuItemIDValueUpdate || !quantityValueUpdate || !totalItemPriceValueUpdate || !tableNoValueUpdate || !orderStatusValueUpdate) {
             setUpdateSubmitStatus(true);
             setUpdateSubmitStatusMessage('***Please Fill Up Your Blank Input Fields***');
             console.log('inhere');
@@ -242,7 +245,8 @@ function ViewOrderItems(props) {
         console.log('called update order item');
 
         await ambrosialAxiosAPI.put(`/updateorder/${orderId}`, {
-            orderNoId: orderNoIdValueUpdate,
+            //orderNoId: orderNoIdValueUpdate,
+            orderNoId: props.orderNoId,
             menuItemID: menuItemIDValueUpdate,
             quantity: quantityValueUpdate,
             totalItemPrice: totalItemPriceValueUpdate,
@@ -489,8 +493,9 @@ function ViewOrderItems(props) {
                         <br></br>
 
                         <div className='label-input-div'>
-                            <label className='formLabelTextCreateOrderNo'>Order No.</label>
-                            <input type="number" className='createInputNewOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input>
+                            <label className='formLabelTextCreateOrderNo'>Order Id.</label>
+                            <input type="number" className='createInputNewOrderNoId' value={props.orderNoId} disabled></input>
+                            {/* <input type="number" className='createInputNewOrderNoId' onChange={(e) => setOrderNoIdValue(e.target.value)}></input> */}
                         </div>
                         <br></br>
 
@@ -553,7 +558,8 @@ function ViewOrderItems(props) {
 
                         <div className='label-input-div'>
                             <label className='formLabelTextUpdateOrder'>Order No. Id</label>
-                            <input type="number" className='createInputUpdateOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input>
+                            {/* <input type="number" className='createInputUpdateOrderNoId' onChange={(e) => setOrderNoIdValueUpdate(e.target.value)}></input> */}
+                            <input type="number" className='createInputUpdateOrderNoId' value={props.orderNoId} disabled></input>
                         </div>
                         <br></br>
 

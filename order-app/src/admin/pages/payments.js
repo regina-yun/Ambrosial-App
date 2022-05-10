@@ -9,7 +9,7 @@ export default function Payments() {
 
 //#region CREATE PAYMENT
 
-	const [createPaymentInput, setCreatePaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
+	const [createPaymentInput, setCreatePaymentInput] = useState({receiptID: '', paymentType: '', paymentStatus: ''});
 
 	const [createPaymentSubmitMessage, setCreatePaymentSubmitMessage] = useState('');
 	const [createPaymentSubmitMessageStatus, setCreatePaymentSubmitMessageStatus] = useState(false);
@@ -492,9 +492,10 @@ export default function Payments() {
 					<h1 className='payment-title'>Payment Logs</h1>
 					<table className='payment-table'>
 						<tr>
+							<th className='payment-table-column'>No.</th>
 							<th className='payment-table-column'>Invoice ID</th>
 							<th className='payment-table-column'>Receipt ID</th>
-							<th className='payment-table-column'>Order ID</th>
+							<th className='payment-table-column'>Order No.</th>
 							<th className='payment-table-column'>Payment Type</th>
 							<th className='payment-table-column'>Payment Status</th>
 							<th className='payment-table-column' colSpan='2'>Actions</th>
@@ -503,9 +504,10 @@ export default function Payments() {
 						<br></br> 
 						<br></br> 
 
-						{allPaymentLogsData.map((paymentLogs) => {
+						{allPaymentLogsData.map((paymentLogs, index) => {
 							return(
 								<tr key={paymentLogs.receiptID}>
+									<td className='payment-table-column'>{index+1}</td>
 									<td className='payment-table-column'>{paymentLogs.paymentInvoiceID}</td>
 									<td className='payment-table-column'>{paymentLogs.receiptID}</td>
 									<td className='payment-table-column'>{paymentLogs.Receipt.DistinctOrderList.orderNo}</td>

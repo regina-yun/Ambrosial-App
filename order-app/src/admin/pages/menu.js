@@ -75,7 +75,7 @@ export default function Menu() {
         setPostStatusMessage(false);
         setPostDataClicked(false);
         setSubmitStatusMessageStatus(false);
-        setCreateMenuItemPopupOpen(true);
+        setCreateMenuItemPopupOpen(false);
         setConfirmationMenuItemPopupOpen(false);
     }
 
@@ -250,7 +250,7 @@ export default function Menu() {
         setUpdateMenuItemStatusMessage(false);
         setUpdateSubmitStatus(false);
         setUpdateSubmitStatusMessage('');
-        setViewUpdate(true);
+        setViewUpdate(false);
         setViewConfirmationUpdatePopupOpen(false);
     }
 
@@ -485,7 +485,7 @@ export default function Menu() {
 
                         <div className='label-input-div'>
                             <label className='formLabelTextCreateMenuItem'>Price</label>
-                            <input type="number" step="0.01" className='createMenuItemInput' onChange={(e) => setMenuItemPriceValue(e.target.value)}></input>
+                            <input type="number" step="0.01" pattern='/^[0-9]+$/' className='createMenuItemInput' onChange={(e) => setMenuItemPriceValue(e.target.value)}></input>
                         </div>
                         <br></br>
 
