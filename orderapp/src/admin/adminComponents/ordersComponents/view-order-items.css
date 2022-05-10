@@ -54,6 +54,8 @@
 .createInputNewOrderStatus {
   position: absolute;
   right: 24%;
+  font-family: 'Lora', serif;
+  font-weight: bold;
 }
 
 .createOrderItemsButton{
@@ -113,6 +115,8 @@
 .createInputUpdateOrderStatus {
   position: absolute;
   right: 24%;
+  font-family: 'Lora', serif;
+  font-weight: bold;
 }
 
 /* End of update section */

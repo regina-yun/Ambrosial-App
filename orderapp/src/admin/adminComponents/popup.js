@@ -306,7 +306,6 @@ function Popup(props) {
         return (
             <div className="updateMenuItemConfirmationPopup-box">
                 <div className="updateMenuItemConfirmation-box">
-                    <span className="updateMenuItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
                     {props.content}
                 </div>
             </div>
@@ -327,7 +326,6 @@ function Popup(props) {
         return (
             <div className="deleteMenuItemConfirmationPopup-box">
                 <div className="deleteMenuItemConfirmation-box">
-                    <span className="deleteMenuItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
                     {props.content}
                 </div>
             </div>
@@ -349,7 +347,6 @@ function Popup(props) {
         return (
             <div className="createMenuItemConfirmationPopup-box">
                 <div className="createMenuItemConfirmation-box">
-                    <span className="createMenuItemConfirmation-close-icon" onClick={props.handleClose}>x</span>
                     {props.content}
                 </div>
             </div>

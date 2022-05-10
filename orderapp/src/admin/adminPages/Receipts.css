@@ -82,6 +82,8 @@
 .createInputTotalItemPrice {
   position: absolute;
   right: 22%;
+  font-family: 'Lora', serif;
+  font-weight: bold;
 }
 
 .createReceiptButton{
@@ -133,6 +135,8 @@
 .updateInputTotalItemPrice {
   position: absolute;
   right: 22%;
+  font-family: 'Lora', serif;
+  font-weight: bold;
 }
 
 .updateReceiptButton{
