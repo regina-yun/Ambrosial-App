@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import Popup from '../components/popup/popup';
-import CartItems from '../components/CartItems';
-import TotalBillCalculator from '../components/TotalBillCalculator';
-import OrderlistSendBtn from '../components/OrderlistSendBtn';
-import OrderlistPopUp from '../components/OrderlistPopUp' ;
-import "./orderlist.css";
+import CartItems from '../components/cart-items';
+import TotalBillCalculator from '../components/total-bill-calculator';
+import OrderlistSendBtn from '../components/order-list-send-button';
+import OrderlistPopUp from '../components/order-list-popup' ;
+import "./order-list.css";
 
 function OrderList(props) {
   const [isOpen, setIsOpen] = useState(false);

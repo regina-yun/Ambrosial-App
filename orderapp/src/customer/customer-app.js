@@ -10,11 +10,11 @@ import Footer from './parts/footer';
 import Header from './parts/header';
 import Payment from './parts/payment';
 import Server from './parts/server';
-import OrderList from './parts/orderlist.js'
-import AddedItem from './components/OrderlistContainer.js';
-import CategoryData from './components/CategoryData.js';
-import './CustomerApp.css';
-import './components/OrderlistSendBtn.css';
+import OrderList from './parts/order-list.js'
+import AddedItem from './components/order-list-container.js';
+import CategoryData from './components/category-data.js';
+import './customer-app.css';
+import './components/order-list-send-button.css';
 
 
 function CustomerApp() {

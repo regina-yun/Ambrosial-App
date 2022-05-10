@@ -1,6 +1,6 @@
 import React from 'react'
-import Invoice from './Invoice.js'
-import './OrderlistPopUp.css';
+import Invoice from './invoice.js'
+import './order-list-popup.css';
 
 function OrderlistPopUp(props) {
     console.log('Inside Order List Popup, id for invoice:', props.id)

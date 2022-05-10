@@ -1,8 +1,8 @@
 import './App.css';
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
-import LandingApp from './LandingApp';
-import CustomerApp from './customer/CustomerApp';
-import AdminApp from './admin/AdminApp';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import LandingApp from './landing-app';
+import CustomerApp from './customer/customer-app';
+import AdminApp from './admin/admin-app';
 
 function App() {
 

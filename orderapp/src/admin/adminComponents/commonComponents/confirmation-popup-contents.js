@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import './confirmationPopupContents.css';
+import React from 'react';
+import './confirmation-popup-contents.css';
 
 function ConfirmationPopupContents(props){
 

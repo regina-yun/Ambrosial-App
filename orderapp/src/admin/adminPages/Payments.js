@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ambrosialAxiosAPI } from '../../api/api';
 import Popup from '../adminComponents/popup';
-import UpdateAndDeleteButton from '../adminComponents/commonComponents/UpdateAndDeleteButton';
-import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmationPopupContents';
-import './Payments.css';
+import UpdateAndDeleteButton from '../adminComponents/commonComponents/update-and-delete-button';
+import ConfirmationPopupContents from '../adminComponents/commonComponents/confirmation-popup-contents';
+import './payments.css';
 
 export default function Payments() {
 

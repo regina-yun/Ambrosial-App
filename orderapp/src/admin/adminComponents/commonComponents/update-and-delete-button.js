@@ -1,4 +1,5 @@
-import './UpdateAndDeleteButton.css';
+import React from 'react';
+import './update-and-delete-button.css';
 
 function UpdateAndDeleteButton(props){
 

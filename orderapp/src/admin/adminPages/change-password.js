@@ -3,7 +3,7 @@ import { ambrosialAxiosAPI } from '../../api/api';
 import Login from './login';
 import LoginHeader from '../adminComponents/login-header';
 import Popup from '../adminComponents/popup';
-import { BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useHistory} from 'react-router-dom';
 import './change-password.css';
 
 function ChangePassword() {

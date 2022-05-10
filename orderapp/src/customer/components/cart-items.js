@@ -1,5 +1,5 @@
 import React from 'react';
-import './CartItems.css';
+import './cart-items.css';
 import capitalize from 'capitalize-the-first-letter';;
 
 function CartItems(props) {

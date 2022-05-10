@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import Custombutton from "./buttons/Custombutton";
+import Custombutton from "./buttons/custom-button";
 import capitalize from 'capitalize-the-first-letter';
-import './Menuitemcomponent.css';
+import './menu-item-component.css';
 
 function Menuitemcomponent(props){
     

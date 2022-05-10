@@ -3,8 +3,8 @@ import Popup from '../popup';
 import { useEffect, useState } from 'react';
 import capitalize from 'capitalize-the-first-letter';
 import { ambrosialAxiosAPI } from '../../../api/api';
-import UpdateAndDeleteButton from '../commonComponents/UpdateAndDeleteButton';
-import ConfirmationPopupContents from '../commonComponents/confirmationPopupContents';
+import UpdateAndDeleteButton from '../commonComponents/update-and-delete-button';
+import ConfirmationPopupContents from '../commonComponents/confirmation-popup-contents';
 
 
 function ViewOrderItems(props) {

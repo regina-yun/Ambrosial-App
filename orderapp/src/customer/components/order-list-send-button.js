@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './OrderlistSendBtn.css';
+import './order-list-send-button.css';
 import emailjs from '@emailjs/browser';
-import OrderlistPopUp from './OrderlistPopUp' ;
+import OrderlistPopUp from './order-list-popup' ;
 
 function OrderlistSendBtn ({selectedItemList, setTotalBilling, TotalBilling}) {
   const [buttonPopup, setButtonPopup] = useState(false);
