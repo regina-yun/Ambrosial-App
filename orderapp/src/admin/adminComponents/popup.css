@@ -4,6 +4,7 @@
   height:auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
   padding-bottom:5%;
   background-color: black;
   position:absolute;
@@ -31,6 +32,7 @@
   height: auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
   padding-bottom:5%;
   background-color: black;
   position:absolute;
@@ -58,6 +60,7 @@
   height: auto;
   border: 1px solid white;
   padding:3%;
+  text-align: center;
   padding-bottom:5%;
   background-color: black;
   position:absolute;
@@ -109,6 +112,7 @@
   top: 20%;
   left: 32%;
   width:30%;
+  background-color: black;
   height: auto;
   text-align: center;
   border: 1px solid white;
@@ -340,6 +344,12 @@
   z-index: 2;
 }
 
+.createMenuItem-close-icon,
+.updateMenuItem-close-icon,
+.deleteMenuItem-close-icon,
+.updateMenuItemConfirmation-close-icon,
+.createMenuItemConfirmation-close-icon,
+.deleteMenuItemConfirmation-close-icon,
 .createOrder-close-icon,
 .updateCurrentDistinctOrder-close-icon,
 .updateOrderItem-close-icon,
@@ -436,6 +446,9 @@
 .create-close-icon:hover, 
 .update-close-icon:hover, 
 .delete-close-icon:hover,
+.createMenuItem-close-icon:hover,
+.updateMenuItem-close-icon:hover,
+.deleteMenuItem-close-icon:hover,
 .viewOrder-close-icon:hover,
 .createOrder-close-icon:hover,
 .createOrderItem-close-icon:hover,

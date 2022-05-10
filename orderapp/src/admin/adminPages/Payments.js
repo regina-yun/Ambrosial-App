@@ -415,7 +415,7 @@ export default function Payments() {
 					popupType='updatePaymentPopup'
 					handleClose={togglePopupUpdatePayment}
 					content={
-						<form onSubmit={onSubmitUpdatePaymentInputValidation}>
+						<form className='formUpdatePayment' onSubmit={onSubmitUpdatePaymentInputValidation}>
 							<label className='paymentFormHeader'>Update Payment</label>
 
 							<br /><br />

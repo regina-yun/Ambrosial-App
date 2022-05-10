@@ -74,12 +74,14 @@
 .formLabelTextCreateDistinctOrder{
   position: absolute;
   left: 24%;
-  font-family: 'Slabo 27px', rserif;
+  font-family: 'Slabo 27px', serif;
 }
 
 .createInputOrderNo{
   position: absolute;
   right: 24%;
+  font-family: 'Lora', serif;
+  font-weight: bold;
 }
 
 .createOrderButton{
@@ -135,6 +137,8 @@
 .updateOrderNo{
   position: absolute;
   right: 15%;
+  font-family: 'Lora', serif;
+  font-weight: bold;
 }
 
 .updateCurrentDistinctOrderButton{

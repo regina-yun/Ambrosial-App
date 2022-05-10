@@ -451,8 +451,8 @@ export default function Menu() {
 
     return (
         <>
-            <div className='createAndRefresh'>
-                <button className='createMenuItem' onClick={togglePopupCreateMenuItem}>Create New Menu Item</button>
+            <div className='createAndRefreshMenuItem'>
+                <button className='createMenuItemButton' onClick={togglePopupCreateMenuItem}>Create Menu Item</button>
             </div>
 
             {modalVisible ? <div className='modalContainer'></div> : null}
@@ -461,33 +461,52 @@ export default function Menu() {
                 handleClose={togglePopupCreateMenuItem}
                 content={
                     <form onSubmit={onSubmitValidateInput}>
-                        <label className='formHeaderCreateDistinctMenuItem'>Create New Menu Item</label>
+                        <label className='menuFormHeader'>Create Menu Item</label>
                         <br></br>
                         <br></br>
                         {/* Input fields for menu item popup */}
-                        <label className='formLabelText'>Item Image:</label>
-                        <input type="text" className='createMenuItemAlt' onChange={(e) => setMenuItemSrcValue(e.target.value)}></input>
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateMenuItem'>Item Image</label>
+                            <input type="text" className='createMenuItemInput' onChange={(e) => setMenuItemSrcValue(e.target.value)}></input>
+                        </div>
                         <br></br>
-                        <label className='formLabelText'>Item Description:</label>
-                        <input type="text" className='createMenuItemAlt' onChange={(e) => setMenuItemAltValue(e.target.value)}></input>
+
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateMenuItem'>Item Description</label>
+                            <input type="text" className='createMenuItemInput' onChange={(e) => setMenuItemAltValue(e.target.value)}></input>
+                        </div>
                         <br></br>
-                        <label className='formLabelText'>Type:</label>
-                        <input type="text" className='createMenuItemtype' onChange={(e) => setMenuItemTypeValue(e.target.value)}></input>
+
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateMenuItem'>Type</label>
+                            <input type="text" className='createMenuItemInput' onChange={(e) => setMenuItemTypeValue(e.target.value)}></input>
+                        </div>
                         <br></br>
-                        <label className='formLabelText'>Price:</label>
-                        <input type="number" step="0.01" className='createMenuItemPrice' onChange={(e) => setMenuItemPriceValue(e.target.value)}></input>
+
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateMenuItem'>Price</label>
+                            <input type="number" step="0.01" className='createMenuItemInput' onChange={(e) => setMenuItemPriceValue(e.target.value)}></input>
+                        </div>
                         <br></br>
-                        <label className='formLabelText'>Category:</label>
-                        <input type="text" className='createMenuItemCategory' onChange={(e) => setMenuItemCategoryValue(e.target.value)}></input>
+
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateMenuItem'>Category</label>
+                            <input type="text" className='createMenuItemInput' onChange={(e) => setMenuItemCategoryValue(e.target.value)}></input>
+                        </div>
                         <br></br>
-                        <label className='formLabelText'>Chef Recommendation:</label>
-                        <input type="text" className='createeMenuItemChefRecommendation' onChange={(e) => setMenuItemChefRecommendationValue(e.target.value)}></input>
+
+                        <div className='label-input-div'>
+                            <label className='formLabelTextCreateMenuItem'>Chef Recommendation</label>
+                            <input type="text" className='createMenuItemInput' onChange={(e) => setMenuItemChefRecommendationValue(e.target.value)}></input>
+                        </div>
                         <br></br>
-                        <button className='createMenuItemButton'>Submit</button>
+
+
+                        <button className='menuItemButton'>Submit</button>
                         <br></br>
                         <br></br>
 
-                        {submitStatusMessageStatus ? <label className='formLabelTextStatusCreateDistinctMenuItem'>{<label className='formLabelTextCreateDistinctMenuItem'>{submitStatusMessage}</label>}</label> : null}
+                        {submitStatusMessageStatus ? <label className='menuFormLabelTextStatus'>{<label className='menuFormLabelText'>{submitStatusMessage}</label>}</label> : null}
                     </form>
                 } />}
 
@@ -496,9 +515,7 @@ export default function Menu() {
                 popupType='createMenuItemConfirmationPopup'
                 handleClose={togglePopupCreateMenuItemConfirmation}
                 content={
-                    <div className='confirmationContainer'>
                         <ConfirmationPopupContents invokeAction={createDistinctMenuItem} invokeRefresh={getAllMenuItems} xButtonClose={closePopupCreateMenuItemConfirmation} closeButton={handleClosePopups} clickStatus={postDataClicked} statusMessage={postStatusMessage} />
-                    </div>
                 } />}
 
 
@@ -509,37 +526,58 @@ export default function Menu() {
                     handleClose={toggleUpdateMenuItemPopup}
                     content={
                         <form onSubmit={onSubmitValidateinputForUpdate}>
-                            <label className='formHeader'>Update Menu Item</label>
+                            <label className='menuFormHeader'>Update Menu Item</label>
                             <br></br>
                             <br></br>
                             {/* Retrieve menuItemID from backend */}
-                            <label className='formLabelTextUpdate'>Menu Item ID:</label>
-                            <label className='formLabelMenuItemUpdate'>{viewMenuItemID}</label>
+                            <div className='label-input-div'>
+                                <label className='formLabelMenuItem'>Menu Item ID:&nbsp;&nbsp;</label>
+                                <label className='formLabelMenuItem'>{viewMenuItemID}</label>
+                            </div>
                             <br></br>
+
                             {/* Input fields for menu item popup */}
-                            <label className='formLabelText'>Item Image:</label>
-                            <input type="text" className='updateMenuItemAlt' onChange={(e) => setMenuItemSrcValueUpdate(e.target.value)}></input>
+                            <div className='label-input-div'>
+                            <label className='formLabelTextUpdateMenuItem'>Item Image</label>
+                            <input type="text" className='updateMenuItemInput' onChange={(e) => setMenuItemSrcValueUpdate(e.target.value)}></input>
+                            </div>
                             <br></br>
-                            <label className='formLabelText'>Item Description:</label>
-                            <input type="text" className='updateMenuItemAlt' onChange={(e) => setMenuItemAltValueUpdate(e.target.value)}></input>
+
+                            <div className='label-input-div'>
+                                <label className='formLabelTextUpdateMenuItem'>Item Description</label>
+                                <input type="text" className='updateMenuItemInput' onChange={(e) => setMenuItemAltValueUpdate(e.target.value)}></input>
+                            </div>
                             <br></br>
-                            <label className='formLabelText'>Type:</label>
-                            <input type="text" className='updateMenuItemtype' onChange={(e) => setMenuItemTypeValueUpdate(e.target.value)}></input>
+
+                            <div className='label-input-div'>
+                                <label className='formLabelTextUpdateMenuItem'>Type</label>
+                                <input type="text" className='updateMenuItemInput' onChange={(e) => setMenuItemTypeValueUpdate(e.target.value)}></input>
+                            </div>
                             <br></br>
-                            <label className='formLabelText'>Price:</label>
-                            <input type="number" step="0.01" className='updateMenuItemPrice' onChange={(e) => setMenuItemPriceValueUpdate(e.target.value)}></input>
+
+                            <div className='label-input-div'>
+                                <label className='formLabelTextUpdateMenuItem'>Price</label>
+                                <input type="number" step="0.01" className='updateMenuItemInput' onChange={(e) => setMenuItemPriceValueUpdate(e.target.value)}></input>
+                            </div>
                             <br></br>
-                            <label className='formLabelText'>Category:</label>
-                            <input type="text" className='updateMenuItemCategory' onChange={(e) => setMenuItemCategoryValueUpdate(e.target.value)}></input>
+
+                            <div className='label-input-div'>
+                                <label className='formLabelTextUpdateMenuItem'>Category</label>
+                                <input type="text" className='updateMenuItemInput' onChange={(e) => setMenuItemCategoryValueUpdate(e.target.value)}></input>
+                            </div>
                             <br></br>
-                            <label className='formLabelText'>Chef Recommendation:</label>
-                            <input type="text" className='updateMenuItemChefRecommendation' onChange={(e) => setMenuItemChefRecommendationValueUpdate(e.target.value)}></input>
+
+                            <div className='label-input-div'>
+                                <label className='formLabelTextUpdateMenuItem'>Chef Recommendation</label>
+                                <input type="text" className='updateMenuItemInput' onChange={(e) => setMenuItemChefRecommendationValueUpdate(e.target.value)}></input>
+                            </div>
                             <br></br>
-                            <button className='updateMenuItemButton'>Submit</button>
+
+                            <button className='menuItemButton'>Submit</button>
                             <br></br>
                             <br></br>
 
-                            {updateSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{updateSubmitStatusMessage}</label>}</label> : null}
+                            {updateSubmitStatus ? <label className='menuFormLabelTextStatus'>{<label className='menuFormLabelText'>{updateSubmitStatusMessage}</label>}</label> : null}
                         </form>
                     } />
             }
@@ -561,38 +599,21 @@ export default function Menu() {
                     handleClose={toggleDeleteMenuItemPopup}
                     content={
                         <form onSubmit={onSubmitValidateinputForDelete}>
-                            <label className='formHeaderDeleteMenuItem'>Delete Menu Item Record</label>
+                            <label className='menuFormHeader'>Delete Menu Item Record</label>
                             <br></br>
                             <br></br>
                             {/* Retrieve menuItemID from backend */}
-                            <label className='formLabelTextDeleteMenuItem'>Menu Item:</label>
-                            <label className='formLabelMenuItem'>{viewMenuItemID}</label>
+                            <div className='label-input-div'>
+                                <label className='formLabelTextDeleteMenuItem'>Menu Item:&nbsp;&nbsp;</label>
+                                <label className='formLabelMenuItem'>{viewMenuItemID}</label>
+                            </div>
                             <br></br>
 
-                            {/* Input fields for menu item popup */}
-                            {/* <label className='formLabelText'>Item Image:</label>
-                        <label className='formLabelMenuItem'>{viewMenuItemSrc}</label>
-                        <br></br>
-                        <label className='formLabelText'>Item Description:</label>
-                        <label className='formLabelMenuItem'>{viewMenuItemAlt}</label>
-                        <br></br>
-                        <label className='formLabelText'>Type:</label>
-                        <label className='formLabelMenuItem'>{viewMenuItemType}</label>
-                        <br></br>
-                        <label className='formLabelText'>Price:</label>
-                        <label className='formLabelMenuItem'>{viewMenuItemPrice}</label>
-                        <br></br>
-                        <label className='formLabelText'>Category:</label>
-                        <label className='formLabelMenuItem'>{viewMenuItemCategory}</label>
-                        <br></br>
-                        <label className='formLabelText'>Chef Recommendation:</label>
-                        <label className='formLabelMenuItem'>{viewMenuItemChefRecommendation}</label>
-                        <br></br> */}
-                            <button className='deleteMenuItemButton'>Submit</button>
+                            <button className='menuItemButton'>Submit</button>
                             <br></br>
                             <br></br>
 
-                            {deleteSubmitStatus ? <label className='formLabelTextStatus'>{<label className='formLabelText'>{deleteSubmitStatusMessage}</label>}</label> : null}
+                            {deleteSubmitStatus ? <label className='menuItemFormLabelTextStatus'>{<label className='menuFormLabelText'>{deleteSubmitStatusMessage}</label>}</label> : null}
                         </form>
                     } />
             }
@@ -606,29 +627,29 @@ export default function Menu() {
                     } />
             }
 
-            <div className="menuitems">
-                This is the menu page
-
-                <table className='table'>
+            <div className="menuItemsContainer">
+                <h1 className='menuItemsTitle'>Menu</h1>
+                <table className='menuItemsTable'>
                     <tr>
-                        <th>Menu Item ID</th>
-                        <th>Image</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                        <th>Chef Recommendation</th>
-                        <th>Action</th>
+                        <th className='menuItemsColumn'>Menu Item ID</th>
+                        <th className='menuItemsColumn'>Image</th>
+                        <th className='menuItemsColumn'>Name</th>
+                        <th className='menuItemsColumn'>Type</th>
+                        <th className='menuItemsColumn'>Price</th>
+                        <th className='menuItemsColumn'>Category</th>
+                        <th className='menuItemsColumn'>Chef Recommendation</th>
+                        <th className='menuItemsColumn' colSpan='2'>Action</th>
                     </tr>
 
                     {menuItemData.map((allMenuItems, index) => (
                         <tr key={allMenuItems.menuItemID}>
-                            <td>{index + 1}</td>
-                            <td><img class="menuitem-image" src={allMenuItems.src}></img></td>
-                            <td>{allMenuItems.alt}</td>
-                            <td>{allMenuItems.type}</td>
-                            <td>{allMenuItems.price}</td>
-                            <td>{allMenuItems.category}</td>
-                            <td>{allMenuItems.chefRecommendation ? "Yes" : "No"}</td>
+                            <td className='menuItemsColumn'>{index + 1}</td>
+                            <td className='menuItemsColumn'><img class="menuItems-image" src={allMenuItems.src}></img></td>
+                            <td className='menuItemsColumn'>{allMenuItems.alt}</td>
+                            <td className='menuItemsColumn'>{allMenuItems.type}</td>
+                            <td className='menuItemsColumn'>{allMenuItems.price}</td>
+                            <td className='menuItemsColumn'>{allMenuItems.category}</td>
+                            <td className='menuItemsColumn'>{allMenuItems.chefRecommendation ? "Yes" : "No"}</td>
 
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setMenuItemID} id={allMenuItems.menuItemID} setData={setViewMenuItemID} data={allMenuItems.menuItemID} setView={setViewUpdate} buttonText={"Update Menu Item"} /></td>
                             <td className='actionButtons'><UpdateAndDeleteButton setId={setMenuItemID} id={allMenuItems.menuItemID} setData={setViewMenuItemID} data={allMenuItems.menuItemID} setView={setViewDelete} buttonText={"Delete Menu Item"} /></td>
