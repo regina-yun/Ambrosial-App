@@ -1,9 +1,9 @@
 import {useState} from 'react';
-import Custombutton from "./buttons/custom-button";
+import CustomButton from "./buttons/custom-button";
 import capitalize from 'capitalize-the-first-letter';
 import './menu-item-component.css';
 
-function Menuitemcomponent(props){
+function MenuItemComponent(props){
     
     const [itemCount, setItemCount] = useState(1);
 
@@ -96,9 +96,9 @@ function Menuitemcomponent(props){
                  </div>
                 
                 <div className="quantity-container">
-                        <Custombutton sign="-" click={minus}/>
+                        <CustomButton sign="-" click={minus}/>
                         <input className="menu-input" type="text" value={itemCount} onChange={minmaxquantity}></input>
-                        <Custombutton sign="+" click={plus}/>
+                        <CustomButton sign="+" click={plus}/>
                 </div>
                  
                  <button className='addbutton' onClick={sendtoorder}>Add</button>
@@ -106,4 +106,4 @@ function Menuitemcomponent(props){
     )
 }
 
-export default Menuitemcomponent;
+export default MenuItemComponent;

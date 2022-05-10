@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './order-list-send-button.css';
 import emailjs from '@emailjs/browser';
-import OrderlistPopUp from './order-list-popup' ;
+import OrderListPopUp from './order-list-popup' ;
 
-function OrderlistSendBtn ({selectedItemList, setTotalBilling, TotalBilling}) {
+function OrderListSendButton ({selectedItemList, setTotalBilling, TotalBilling}) {
   const [buttonPopup, setButtonPopup] = useState(false);
   
      function createEmailItems() {
@@ -52,10 +52,10 @@ function OrderlistSendBtn ({selectedItemList, setTotalBilling, TotalBilling}) {
           <button id='sendorderbtn' onClick={() => onSendOrderButtonClick()}>Send Order</button>
         </div>
 
-        <OrderlistPopUp trigger={buttonPopup} setTrigger={setButtonPopup} selectedItemList={selectedItemList} TotalBilling={TotalBilling}/>
+        <OrderListPopUp trigger={buttonPopup} setTrigger={setButtonPopup} selectedItemList={selectedItemList} TotalBilling={TotalBilling}/>
       </>
       // For improvement of inserting invoice : id={invoicenum}
     )
   }  
 }
-export default OrderlistSendBtn;
+export default OrderListSendButton;

@@ -2,7 +2,7 @@ import React from 'react'
 import Invoice from './invoice.js'
 import './order-list-popup.css';
 
-function OrderlistPopUp(props) {
+function OrderListPopUp(props) {
     console.log('Inside Order List Popup, id for invoice:', props.id)
     console.log('Inside Order List Popup:', props.selectedItemList);
     return (props.trigger) ?  (
@@ -17,4 +17,4 @@ function OrderlistPopUp(props) {
     ) : null; 
 }
 
-export default OrderlistPopUp;
+export default OrderListPopUp;

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import Popup from '../components/popup/popup';
 import CartItems from '../components/cart-items';
 import TotalBillCalculator from '../components/total-bill-calculator';
-import OrderlistSendBtn from '../components/order-list-send-button';
-import OrderlistPopUp from '../components/order-list-popup' ;
+import OrderListSendButton from '../components/order-list-send-button';
+import OrderListPopUp from '../components/order-list-popup' ;
 import "./order-list.css";
 
 function OrderList(props) {
@@ -50,14 +50,14 @@ function OrderList(props) {
         <>
           <CartItems selectedItemList={props.selectedItemList} setSelectedItemList={props.setSelectedItemList}/>
           <TotalBillCalculator selectedItemList={props.selectedItemList} handleTotalBill={handleTotalBill}/>              
-          <OrderlistSendBtn selectedItemList={props.selectedItemList} TotalBilling={TotalBilling} setIsOpen={setIsOpen} setSendOrderPopup={setSendOrderPopup}/>
+          <OrderListSendButton selectedItemList={props.selectedItemList} TotalBilling={TotalBilling} setIsOpen={setIsOpen} setSendOrderPopup={setSendOrderPopup}/>
         </>
       }/>}
 
       {sendOrderPopup && <Popup 
         popupType='orderbill-popup' 
         handleClose={toggleSendOrderPopup}
-        content={<OrderlistPopUp setSendOrderPopup={setSendOrderPopup} TotalBilling={TotalBilling} selectedItemList={props.selectedItemList}/>}/>}
+        content={<OrderListPopUp setSendOrderPopup={setSendOrderPopup} TotalBilling={TotalBilling} selectedItemList={props.selectedItemList}/>}/>}
     </>);
 
 }

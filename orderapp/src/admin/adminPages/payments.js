@@ -7,9 +7,6 @@ import './payments.css';
 
 export default function Payments() {
 
-	//State for Payments Table
-	const [tableStatus, setTableStatus] = useState(false);
-
 //#region CREATE PAYMENT
 
 	const [createPaymentInput, setCreatePaymentInput] = useState({receiptID: 0, paymentType: '', paymentStatus: ''});
@@ -327,26 +324,6 @@ export default function Payments() {
 	}
 
 	//#endregion
-
-//#region GET SPECIFIC PAYMENT
-	
-	// async function getSpecificPayment(e) {
-	// 	e.preventDefault();
-
-	// 	await ambrosialAxiosAPI.get('viewpaymentlogs/:invoiceID')
-	// 	.then((response) => {
-	// 		console.log(`${response.config.method} method for route: ${response.config.url}`);
-	// 		console.log(`response Status: ${response.data.status}`);
-	// 		console.log(`response Message: ${response.data.message}`);
-	// 		console.log("response Data: ", response.data.data);
- 	// 	})
-	// 	.catch((error) => {
-	// 			console.log(`${error.response.config.method} method for route: ${error.response.config.url}`);
-	// 			console.log(`Error Status: ${error.response.data.status}`);
-	// 			console.log(`Error Message: ${error.response.data.message}`);
-	// 	});
-	// }
-//#endregion
 
 
 	return (
