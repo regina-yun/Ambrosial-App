@@ -1,10 +1,10 @@
 import './admin-app.css';
-import Header from './adminComponents/header';
-import Home from './adminPages/home';
-import Menu from './adminPages/menu';
-import Orders from './adminPages/orders';
-import Receipts from './adminPages/receipts';
-import Payments from './adminPages/payments';
+import Header from './components/header';
+import Home from './pages/home';
+import Menu from './pages/menu';
+import Orders from './pages/orders';
+import Receipts from './pages/receipts';
+import Payments from './pages/payments';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 
 function AdminApp(props) {

@@ -1,8 +1,8 @@
 import './landing-app.css';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import LoginHeader from './admin/adminComponents/login-header';
+import LoginHeader from './admin/components/login-header';
 import CustomerApp from './customer/customer-app';
-import Login from './admin/adminPages/login';
+import Login from './admin/pages/login';
 
 function LandingApp() {
 
